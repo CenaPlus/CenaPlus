@@ -9,7 +9,8 @@
         <ScrollViewer>
             <StackPanel MinWidth="200">
                 <TextBlock Text="ABOUT" Style="{StaticResource Heading2}" />
-                <TextBlock Text="TODO: provide information about the software" Margin="0,0,0,8" TextWrapping="Wrap" />
+                <TextBlock Text="Developers: Gasai Yuno, Onetwogoo, Cuteli" Margin="0,0,0,8" TextWrapping="Wrap" />
+                <TextBlock Text="Version: 0.9.0 beta" Margin="0,0,0,8" TextWrapping="Wrap" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
