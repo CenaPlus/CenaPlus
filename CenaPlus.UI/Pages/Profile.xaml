@@ -9,8 +9,13 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Content goes here" />
+                <Image Height="100" Width="100" HorizontalAlignment="Left" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d\=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s\=100"/>
+                <TextBlock Text="Gasai Yuno" Width="100" HorizontalAlignment="Left" TextAlignment="Center"></TextBlock>
+                <TextBlock Text="User ID: 1" Margin="0,10,0,0"></TextBlock>
+                <TextBlock Text="User Group: Administrator"></TextBlock>
+                <TextBlock Text="Email: 1#4321.io"></TextBlock>
+                <TextBlock Text="Rating: 1500"></TextBlock>
+                <TextBlock Text="Nation: China"></TextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>
