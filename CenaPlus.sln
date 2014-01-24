@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.UI", "CenaPlus.UI\CenaPlus.UI.csproj", "{31EB2B83-5F8F-4C3C-8FD5-50C160E4EE88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FCF684F1-4310-4724-89E1-146DEB3C8098}"
@@ -9,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FCF684
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.Entity", "CenaPlus.Entity\CenaPlus.Entity.csproj", "{33FE9792-C912-42E1-994F-E920F724230B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +24,10 @@ Global
 		{31EB2B83-5F8F-4C3C-8FD5-50C160E4EE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31EB2B83-5F8F-4C3C-8FD5-50C160E4EE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31EB2B83-5F8F-4C3C-8FD5-50C160E4EE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FE9792-C912-42E1-994F-E920F724230B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FE9792-C912-42E1-994F-E920F724230B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FE9792-C912-42E1-994F-E920F724230B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FE9792-C912-42E1-994F-E920F724230B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
