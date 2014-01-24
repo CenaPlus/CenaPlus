@@ -22,7 +22,7 @@
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="profile" Source="/Pages/Profile.xaml" />
                 <mui:Link DisplayName="recent contests" Source="/Pages/Tests.xaml" />
-                <mui:Link DisplayName="cloud problem sets" Source="/Pages/Problem.xaml" />
+                <mui:Link DisplayName="problem sets" Source="/Pages/Problem.xaml" />
                 <mui:Link DisplayName="records" Source="/Pages/Records.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
