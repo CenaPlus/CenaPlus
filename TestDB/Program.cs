@@ -11,6 +11,7 @@ namespace TestDB
         static void Main(string[] args)
         {
             var db = new DB();
+            Console.WriteLine(db.Configuration.LazyLoadingEnabled);
             /*
             Contest contest = new Contest
             {
@@ -24,8 +25,10 @@ namespace TestDB
                 Contest = contest
             });
             db.SaveChanges();
-             * */
+             */
+            var tmp = db.Set<Problem>().Find(1);
             Problem p = db.Problems.Where(x=>x.ID==1).Single();
+            //db.Entry(p).Reference(x => x.Contest).Load();
             Console.WriteLine(p.Contest);
            
         }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace TestDB
 {
-    enum ContestType
+    public enum ContestType
     {
         CF, OI
     }
     [Table("contests")]
-    class Contest
+    public class Contest
     {
         [Column("id")]
         public long ID { get; set; }
@@ -24,7 +24,7 @@ namespace TestDB
         public virtual ICollection<Problem> Problems { get; set; }
     }
     [Table("problems")]
-    class Problem
+    public class Problem
     {
         [Column("id")]
         public long ID { get; set; }
@@ -39,14 +39,14 @@ namespace TestDB
         [ForeignKey("Contest")]
         public long ContestID { get; set; }
 
-        public Contest Contest { get; set; }
+        public virtual Contest Contest { get; set; }
     }
-    class DB : DbContext
+    public class DB : DbContext
     {
         public DbSet<Problem> Problems { get; set; }
         public DbSet<Contest> Contests { get; set; }
         public DB()
-            : base("mysqldb")
+            : base("sqlitedb")
         {
         }
 
