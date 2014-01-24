@@ -58,7 +58,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FirstFloor.ModernUI">
@@ -151,7 +151,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CenaPlus.UI_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
