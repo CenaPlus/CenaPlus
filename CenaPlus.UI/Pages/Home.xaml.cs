@@ -22,7 +22,7 @@ namespace CenaPlus.UI.Pages
     /// </summary>
     public partial class Home : UserControl
     {
-        public static bool Logged=true;
+        public static bool Logged = false;
         public Home()
         {
             InitializeComponent();
@@ -38,7 +38,19 @@ namespace CenaPlus.UI.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ModernDialog.ShowMessage("Cannot connect to the target server.", "Message", System.Windows.MessageBoxButton.OK);
+            if (0 == 1)
+            {
+                ModernDialog.ShowMessage("Cannot connect to the target server.", "Message", System.Windows.MessageBoxButton.OK);
+            }
+            else
+            {
+                Logged = true;
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
+                }
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -57,7 +69,7 @@ namespace CenaPlus.UI.Pages
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {
-                    //frame.Source = new Uri("/Pages/Main.xaml", UriKind.Relative);
+                    frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
                 }
             }
         }
