@@ -10,14 +10,20 @@
         <mui:LinkGroup DisplayName="Cena Plus">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="home" Source="/Pages/Home.xaml" />
-                <mui:Link DisplayName="recent contests" Source="/Pages/Tests.xaml" />
-                <mui:Link DisplayName="cloud problem sets" Source="/Pages/Problem.xaml" />
                 <mui:Link DisplayName="Local Judge Box" Source="/Pages/JudgeBox.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="settings" GroupName="settings">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="software" Source="/Pages/Settings.xaml" />
+                <mui:Link DisplayName="Cena Plus" Source="/Pages/Settings.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="Cena Plus" GroupName="MainPanel">
+            <mui:LinkGroup.Links>
+                <mui:Link DisplayName="profile" Source="/Pages/Profile.xaml" />
+                <mui:Link DisplayName="recent contests" Source="/Pages/Tests.xaml" />
+                <mui:Link DisplayName="cloud problem sets" Source="/Pages/Problem.xaml" />
+                <mui:Link DisplayName="records" Source="/Pages/Records.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>
