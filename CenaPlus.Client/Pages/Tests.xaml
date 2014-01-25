@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="ContestListBox">
+        <ListBox x:Name="ContestListBox" SelectionChanged="ContestListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel MouseDown="DockPanel_MouseDown">

@@ -41,6 +41,11 @@ namespace CenaPlus.Client.Pages
 
         private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
+           // ModernDialog.ShowMessage(e.Source.ToString(), "Message", MessageBoxButton.OK);
+        }
+
+        private void ContestListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             ModernDialog.ShowMessage(e.Source.ToString(), "Message", MessageBoxButton.OK);
         }
     }
