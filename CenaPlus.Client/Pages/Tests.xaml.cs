@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Entity;
 
 namespace CenaPlus.Client.Pages
@@ -28,6 +29,7 @@ namespace CenaPlus.Client.Pages
             for (int i = 1; i <= 10; i++)
             {
                 ContestList t = new ContestList();
+                t.ID = i;
                 t.StartTime = Convert.ToDateTime("2014-1-24 12:00");
                 t.EndTime = Convert.ToDateTime("2014-1-24 14:00");
                 t.Type = ContestType.TopCoder;
@@ -35,6 +37,11 @@ namespace CenaPlus.Client.Pages
                 ContestList.Add(t);
             }
             ContestListBox.ItemsSource = ContestList;
+        }
+
+        private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ModernDialog.ShowMessage(e.Source.ToString(), "Message", MessageBoxButton.OK);
         }
     }
     public class ContestList : CenaPlus.Entity.Contest

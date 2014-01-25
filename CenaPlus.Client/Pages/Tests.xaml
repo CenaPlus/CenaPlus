@@ -10,10 +10,10 @@
         <ListBox x:Name="ContestListBox">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel HorizontalAlignment="Left">
-                        <Label Content="{Binding Title}" Foreground="MediumAquamarine" FontSize="24" HorizontalAlignment="Left"/>
-                        <Label Content="{Binding Detail}" HorizontalAlignment="Left" />
-                    </StackPanel>
+                    <DockPanel MouseDown="DockPanel_MouseDown">
+                        <Label Content="{Binding Title}" Foreground="MediumAquamarine" FontSize="24" DockPanel.Dock="Top"/>
+                        <Label Content="{Binding Detail}" DockPanel.Dock="Bottom" />
+                    </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
