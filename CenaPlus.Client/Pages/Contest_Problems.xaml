@@ -8,12 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
         <!-- TODO: set @SelectedSource -->
-        <mui:ModernTab Layout="Tab">
-            <mui:ModernTab.Links>
-                <!-- TODO: set @Source -->
-                <mui:Link DisplayName="A+B Problem" />
-                <mui:Link DisplayName="A*B Problem" />
-            </mui:ModernTab.Links>
+        <mui:ModernTab x:Name="ProblemTab" Layout="Tab" >
         </mui:ModernTab>
     </Grid>
 </UserControl>
