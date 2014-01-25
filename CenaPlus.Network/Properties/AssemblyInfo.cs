@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("TestContract")]
+[assembly: AssemblyTitle("CenaPlus.Network")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TestContract")]
+[assembly: AssemblyProduct("CenaPlus.Network")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("2cd82661-ec52-421d-9f83-0c0747ddd57b")]
+[assembly: Guid("2ac038d1-aa31-4e28-84d5-6ba5febc5b6c")]
 
 // 程序集的版本信息由下面四个值组成:
 //

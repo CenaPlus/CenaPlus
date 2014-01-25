@@ -161,9 +161,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CenaPlus.Entity\CenaPlus.Entity.csproj">
       <Project>{33fe9792-c912-42e1-994f-e920f724230b}</Project>
       <Name>CenaPlus.Entity</Name>
