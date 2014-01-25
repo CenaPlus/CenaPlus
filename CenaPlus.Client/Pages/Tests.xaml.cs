@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Entity;
 
@@ -46,7 +47,11 @@ namespace CenaPlus.Client.Pages
 
         private void ContestListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ModernDialog.ShowMessage(e.Source.ToString(), "Message", MessageBoxButton.OK);
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/Pages/Contest.xaml?id=" + ContestListBox.SelectedValue, UriKind.Relative);
+            }
         }
     }
     public class ContestList : CenaPlus.Entity.Contest
