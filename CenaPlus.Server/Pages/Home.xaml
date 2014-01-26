@@ -8,6 +8,9 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
+                <RichTextBox Name="txtRich"/>
+                <WebBrowser Name="browser" Source="http://www.baidu.com/"/>
+                <Button Name="btnToHTML" Content="To HTML" Click="btnToHTML_Click"/>
                 <Button Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
             </StackPanel>
         </ScrollViewer>

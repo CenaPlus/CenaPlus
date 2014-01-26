@@ -7,15 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab Layout="List" SelectedSource="/Content/Contest_Description.xaml">
-            <mui:ModernTab.Links>
-                <mui:Link DisplayName="description" Source="/Content/Contest_Description.xaml" />
-                <mui:Link DisplayName="problems" Source="/Pages/Contest_Problems.xaml" />
-                <mui:Link DisplayName="ranklist" Source="/Content/Contest_RankList.xaml" />
-                <mui:Link DisplayName="statistics" Source="/Content/Contest_Statistics.xaml" />
-                <mui:Link DisplayName="faq" Source="/Content/Contest_FAQ.xaml" />
-                <mui:Link DisplayName="print service" Source="/Content/Contest_PrintService.xaml" />
-            </mui:ModernTab.Links>
+        <mui:ModernTab Name="tabLeft" Layout="List">
         </mui:ModernTab>
     </Grid>
 </UserControl>

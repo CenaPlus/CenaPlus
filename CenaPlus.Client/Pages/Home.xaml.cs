@@ -12,8 +12,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Client.Bll;
@@ -22,7 +22,7 @@ namespace CenaPlus.Client.Pages
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : UserControl
+    public partial class Home : UserControl,IContent
     {
         public Home()
         {
@@ -76,7 +76,15 @@ namespace CenaPlus.Client.Pages
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
         {
             if (Foobar.Server != null)
             {
@@ -86,6 +94,10 @@ namespace CenaPlus.Client.Pages
                     frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
                 }
             }
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
         }
     }
 }
