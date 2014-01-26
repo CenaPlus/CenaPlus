@@ -9,7 +9,7 @@
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Cena Plus">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="home" Source="/Pages/Home.xaml" />
+                <mui:Link DisplayName="Remote" Source="/Pages/Home.xaml" />
                 <mui:Link DisplayName="Local Judge Box" Source="/Pages/JudgeBox.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
