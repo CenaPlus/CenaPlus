@@ -66,7 +66,7 @@ namespace CenaPlus.Server.ServerMode
         {
             get 
             {
-                return String.Format("{0} / Email: {1}", Role.ToString(), "???");
+                return String.Format("{0} / {1} / Email: {2}", Role.ToString(), "Qiqihar University", "???");
             }
         }
     }
