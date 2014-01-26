@@ -7,9 +7,11 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.IO;
 using System.Net.Sockets;
 using System.Net;
+using FirstFloor.ModernUI.Presentation;
 namespace CenaPlus.Server
 {
     /// <summary>
@@ -50,6 +52,10 @@ namespace CenaPlus.Server
                     WindowStyle = ProcessWindowStyle.Hidden
                 });
             }
+
+            //Theme Init
+            AppearanceManager.Current.AccentColor = Color.FromRgb(0x76, 0x60, 0x8a);
+            AppearanceManager.Current.ThemeSource = AppearanceManager.DarkThemeSource;
         }
 
         protected override void OnExit(ExitEventArgs e)
