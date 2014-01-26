@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using mshtml;
 using CenaPlus.Server.Bll;
 using CenaPlus.Server.Dal;
-namespace CenaPlus.Server.Pages
+namespace CenaPlus.Server.ServerMode
 {
     /// <summary>
     /// Interaction logic for Home.xaml
