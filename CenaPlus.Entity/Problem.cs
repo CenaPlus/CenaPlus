@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace CenaPlus.Entity
 {
@@ -21,7 +22,10 @@ namespace CenaPlus.Entity
         [Column("contest_id")]
         [ForeignKey("Contest")]
         public int ContestID { get; set; }//for db
+        
+        [IgnoreDataMember]
         public virtual Contest Contest { get; set; }//for navigation
+
         [NotMapped]
         public string ContestTitle { get; set; }//for client
     }

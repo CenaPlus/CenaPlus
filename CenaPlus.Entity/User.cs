@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace CenaPlus.Entity
 {
@@ -19,10 +20,19 @@ namespace CenaPlus.Entity
         /// Stored in SHA-1
         /// </summary>
         [Column("password")]
+        [IgnoreDataMember]
         public byte[] Password { get; set; }
 
         [Column("role")]
-        public UserRole Role { get; set; }
+        public int RoleAsInt { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        public UserRole Role
+        {
+            get { return (UserRole)RoleAsInt; }
+            set { RoleAsInt = (int)value; }
+        }
     }
 
     public enum UserRole
