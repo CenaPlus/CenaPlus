@@ -28,10 +28,10 @@ namespace CenaPlus.Client.Pages
             {
                 Link a = new Link();
                 a.DisplayName = c + "";
-                a.Source = new Uri("/Content/Problem.xaml?id=" + c, UriKind.Relative);
+                a.Source = new Uri("/Content/Problem.xaml#" + c, UriKind.Relative);
                 ProblemTab.Links.Add(a);
             }
-            ProblemTab.SelectedSource = new Uri("/Content/Problem.xaml?id=A", UriKind.Relative);
+            ProblemTab.SelectedSource = new Uri("/Remote/Contest/Problem.xaml#A", UriKind.Relative);
         }
     }
 }

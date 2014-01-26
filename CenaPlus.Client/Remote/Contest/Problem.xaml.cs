@@ -32,7 +32,7 @@ namespace CenaPlus.Client.Content
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/Content/Problem_Submit.xaml", UriKind.Relative);
+                frame.Source = new Uri("/Remote/Contest/Submit.xaml", UriKind.Relative);
             }
         }
     }

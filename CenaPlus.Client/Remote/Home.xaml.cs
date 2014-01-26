@@ -91,7 +91,7 @@ namespace CenaPlus.Client.Pages
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {
-                    frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
+                    frame.Source = new Uri("/Remote/Profile.xaml", UriKind.Relative);
                 }
             }
         }

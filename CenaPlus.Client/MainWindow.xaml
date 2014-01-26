@@ -14,20 +14,20 @@
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Cena+" GroupName="settings">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="settings" Source="/Pages/Settings.xaml" />
+                <mui:Link DisplayName="settings" Source="/Settings/Settings.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Cena+" GroupName="MainPanel">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="profile" Source="/Pages/Profile.xaml" />
-                <mui:Link DisplayName="recent contests" Source="/Pages/Tests.xaml" />
-                <mui:Link DisplayName="problem sets" Source="/Pages/Problem.xaml" />
-                <mui:Link DisplayName="records" Source="/Pages/Records.xaml" />
+                <mui:Link DisplayName="profile" Source="/Remote/Profile.xaml" />
+                <mui:Link DisplayName="recent contests" Source="/Remote/Tests.xaml" />
+                <mui:Link DisplayName="problem sets" Source="/Remote/Problem.xaml" />
+                <mui:Link DisplayName="records" Source="/Remote/Records.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>
 
     <mui:ModernWindow.TitleLinks>
-        <mui:Link DisplayName="settings" Source="/Pages/Settings.xaml" />
+        <mui:Link DisplayName="settings" Source="/Settings/Settings.xaml" />
     </mui:ModernWindow.TitleLinks>
 </mui:ModernWindow>

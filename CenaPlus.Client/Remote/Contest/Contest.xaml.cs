@@ -30,12 +30,12 @@ namespace CenaPlus.Client.Pages
         {
             int id = int.Parse(e.Fragment);
             tabLeft.Links.Clear();
-            tabLeft.Links.Add(new Link { DisplayName = "description", Source = new Uri("/Content/Contest_Description.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "problems", Source = new Uri("/Pages/Contest_Problems.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "rank list", Source = new Uri("/Content/Contest_RankList.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "statistics", Source = new Uri("/Content/Contest_Statistics.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "faq", Source = new Uri("/Content/Contest_FAQ.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Content/Contest_PrintService.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "description", Source = new Uri("/Remote/Contest/Description.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "problems", Source = new Uri("/Remote/Contest/Problems.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "rank list", Source = new Uri("/Remote/Contest/RankList.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "statistics", Source = new Uri("/Remote/Contest/Statistics.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "faq", Source = new Uri("/Remote/Contest/FAQ.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Remote/Contest/PrintService.xaml#" + id, UriKind.Relative) });
             tabLeft.SelectedSource = new Uri("/Content/Contest_Description.xaml#" + id, UriKind.Relative);
         }
 
