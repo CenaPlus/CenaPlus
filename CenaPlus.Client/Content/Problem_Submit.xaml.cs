@@ -12,28 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Client.Content
 {
     /// <summary>
-    /// Interaction logic for Problem.xaml
+    /// Interaction logic for Problem_Submit.xaml
     /// </summary>
-    public partial class Problem : UserControl
+    public partial class Problem_Submit : UserControl
     {
-        public Problem()
+        public Problem_Submit()
         {
             InitializeComponent();
-            TitleTextBlock.Text = "A+B Problem";
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var frame = NavigationHelper.FindFrame(null, this);
-            if (frame != null)
-            {
-                frame.Source = new Uri("/Content/Problem_Submit.xaml", UriKind.Relative);
-            }
         }
     }
 }
