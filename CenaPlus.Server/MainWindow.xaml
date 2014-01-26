@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
         Title="Cena Plus Server" IsTitleVisible="True"
-        ContentSource="/Pages/Home.xaml" Width="1024" Height="650">
+        ContentSource="/ServerMode/Home.xaml" Width="1024" Height="650">
 
     <mui:ModernWindow.MenuLinkGroups>
         <mui:LinkGroup DisplayName="Server Mode">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Main" Source="/Pages/Home.xaml" />
-                <mui:Link DisplayName="Server Settings" Source="/Pages/ServerSettings.xaml" />
+                <mui:Link DisplayName="Main" Source="/ServerMode/Home.xaml" />
+                <mui:Link DisplayName="Server Settings" Source="/ServerMode/ServerSettings.xaml" />
                 <mui:Link DisplayName="Users Manage" Source="/ServerMode/Users.xaml" />
                 <mui:Link DisplayName="Problems Manage" Source="/ServerMode/Problems.xaml" />
                 <mui:Link DisplayName="Contests Manage" Source="/ServerMode/Contests.xaml" />

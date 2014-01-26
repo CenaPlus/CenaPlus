@@ -103,7 +103,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Contest\Contest_Description.xaml">
+    <Page Include="Remote\Contest\Description.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -111,7 +111,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Contest\Problem_Submit.xaml">
+    <Page Include="Remote\Contest\Submit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,14 +125,14 @@
     <Compile Include="Settings\Compiler.xaml.cs">
       <DependentUpon>Compiler.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote\Contest\Contest_Description.xaml.cs">
-      <DependentUpon>Contest_Description.xaml</DependentUpon>
+    <Compile Include="Remote\Contest\Description.xaml.cs">
+      <DependentUpon>Description.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Contest\Problem.xaml.cs">
       <DependentUpon>Problem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote\Contest\Problem_Submit.xaml.cs">
-      <DependentUpon>Problem_Submit.xaml</DependentUpon>
+    <Compile Include="Remote\Contest\Submit.xaml.cs">
+      <DependentUpon>Submit.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -157,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Contest\Contest_Problems.xaml">
+    <Page Include="Remote\Contest\Problems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,8 +180,8 @@
     <Compile Include="Remote\Contest\Contest.xaml.cs">
       <DependentUpon>Contest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote\Contest\Contest_Problems.xaml.cs">
-      <DependentUpon>Contest_Problems.xaml</DependentUpon>
+    <Compile Include="Remote\Contest\Problems.xaml.cs">
+      <DependentUpon>Problems.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>

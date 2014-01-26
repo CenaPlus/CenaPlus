@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CenaPlus.Server.Pages
+namespace CenaPlus.Server.ServerMode
 {
     /// <summary>
     /// Interaction logic for Users.xaml
