@@ -16,7 +16,7 @@ using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Entity;
 using CenaPlus.Client.Bll;
-namespace CenaPlus.Client.Pages
+namespace CenaPlus.Client.Remote
 {
     /// <summary>
     /// Interaction logic for Tests.xaml

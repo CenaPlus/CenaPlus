@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CenaPlus.Client.Content
+namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Problem_Submit.xaml
     /// </summary>
-    public partial class Problem_Submit : UserControl
+    public partial class Submit : UserControl
     {
-        public Problem_Submit()
+        public Submit()
         {
             InitializeComponent();
         }

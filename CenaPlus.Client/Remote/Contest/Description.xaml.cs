@@ -15,14 +15,14 @@ using System.IO;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Client.Bll;
-namespace CenaPlus.Client.Content
+namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Contest_Description.xaml
     /// </summary>
-    public partial class Contest_Description : UserControl, IContent
+    public partial class Description : UserControl, IContent
     {
-        public Contest_Description()
+        public Description()
         {
             InitializeComponent();
         }

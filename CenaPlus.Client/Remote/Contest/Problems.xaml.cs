@@ -14,21 +14,21 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Presentation;
 
-namespace CenaPlus.Client.Pages
+namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Contest_Problems.xaml
     /// </summary>
-    public partial class Contest_Problems : UserControl
+    public partial class Problems : UserControl
     {
-        public Contest_Problems()
+        public Problems()
         {
             InitializeComponent();
             for (char c = 'A'; c <= 'J'; c++)
             {
                 Link a = new Link();
                 a.DisplayName = c + "";
-                a.Source = new Uri("/Content/Problem.xaml#" + c, UriKind.Relative);
+                a.Source = new Uri("/Remote/Contest/Problem.xaml#" + c, UriKind.Relative);
                 ProblemTab.Links.Add(a);
             }
             ProblemTab.SelectedSource = new Uri("/Remote/Contest/Problem.xaml#A", UriKind.Relative);

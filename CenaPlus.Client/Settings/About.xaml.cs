@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CenaPlus.Client.Content
+namespace CenaPlus.Client.Settings
 {
     /// <summary>
     /// Interaction logic for About.xaml

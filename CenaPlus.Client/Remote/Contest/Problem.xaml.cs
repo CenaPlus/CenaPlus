@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows.Navigation;
 
-namespace CenaPlus.Client.Content
+namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Problem.xaml

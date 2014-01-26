@@ -17,7 +17,7 @@ using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Client.Bll;
-namespace CenaPlus.Client.Pages
+namespace CenaPlus.Client.Remote
 {
     /// <summary>
     /// Interaction logic for Home.xaml
@@ -72,7 +72,7 @@ namespace CenaPlus.Client.Pages
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
+                frame.Source = new Uri("/Remote/Profile.xaml", UriKind.Relative);
             }
         }
 

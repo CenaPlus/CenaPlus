@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 
-namespace CenaPlus.Client.Content
+namespace CenaPlus.Client.Settings
 {
     /// <summary>
     /// Interaction logic for Compiler.xaml

@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Presentation;
-namespace CenaPlus.Client.Pages
+namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Contest.xaml
@@ -36,7 +36,7 @@ namespace CenaPlus.Client.Pages
             tabLeft.Links.Add(new Link { DisplayName = "statistics", Source = new Uri("/Remote/Contest/Statistics.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "faq", Source = new Uri("/Remote/Contest/FAQ.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Remote/Contest/PrintService.xaml#" + id, UriKind.Relative) });
-            tabLeft.SelectedSource = new Uri("/Content/Contest_Description.xaml#" + id, UriKind.Relative);
+            tabLeft.SelectedSource = new Uri("/Remote/Contest/Description.xaml#" + id, UriKind.Relative);
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
