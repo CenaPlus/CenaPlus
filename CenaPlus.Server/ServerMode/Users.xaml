@@ -5,31 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="800">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer Margin="0,0,0,30">
-            <ListBox x:Name="RecordListBox" >
+        <ScrollViewer Margin="0,30,20,30" HorizontalAlignment="Left" Width="393">
+            <ListBox x:Name="UserListBox" SelectedValuePath="ID" SelectionChanged="UserListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Height="50">
-                            <Image DockPanel.Dock="Left" Width="50" Height="50" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d\=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s\=50"></Image>
+                            <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
                             <StackPanel HorizontalAlignment="Left">
-                                <TextBlock Margin="10,0,0,0" Text="Accepted" FontSize="18" Foreground="Green" />
-                                <TextBlock Margin="10,0,0,0"  Text="User: Gasai Yuno / P1000 A+B Problem / 31 ms / 423 KB @1-24-2014 20:56" />
+                                <TextBlock Margin="10,0,0,0" Text="{Binding Name}" FontSize="18" Style="{StaticResource Heading2}"/>
+                                <TextBlock Margin="10,0,0,0"  Text="{Binding Profile}" />
                             </StackPanel>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
+        <StackPanel Margin="410,30,0,30" x:Name="ProfileDisplay" Visibility="Hidden">
+            <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
+            <TextBlock HorizontalAlignment="Left" Text="Name"></TextBlock>
+            <TextBox x:Name="NameTextBox" Margin="0,0,0,10"/>
+            <TextBlock HorizontalAlignment="Left" Text="Password" Margin="0,0,0,10"></TextBlock>
+            <PasswordBox Margin="0,0,0,10"/>
+            <Button Content="Save changes" HorizontalAlignment="Left" />
+        </StackPanel>
         <WrapPanel>
-            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" Width="120" Margin="0,0,10,0" />
-            <Button Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+            <TextBox HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" Width="120" Margin="0,0,10,0" />
+            <Button Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75"/>
         </WrapPanel>
         <WrapPanel VerticalAlignment="Bottom" Height="26">
             <Button Content="Delete" Width="75" Margin="0,0,10,0"/>
-            <Button Content="Modify" Width="75" Margin="0,0,10,0"/>
-            <Button Content="Create temporary users"  Margin="0,0,10,0"/>
+            <Button Content="Create temp users"  Margin="0,0,10,0"/>
             <Button Content="Create a normal user" Margin="0,0,10,0"/>
         </WrapPanel>
     </Grid>
