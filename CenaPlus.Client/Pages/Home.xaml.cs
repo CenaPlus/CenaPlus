@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -36,15 +38,10 @@ namespace CenaPlus.Client.Pages
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            if (0 == 1)
+            if (Logged)
             {
-                ModernDialog.ShowMessage("Cannot connect to the target server.", "Message", System.Windows.MessageBoxButton.OK);
-            }
-            else
-            {
-                Logged = true;
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {
@@ -53,19 +50,19 @@ namespace CenaPlus.Client.Pages
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var frame = NavigationHelper.FindFrame(null, this);
-            if (frame != null)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {/*
+            IPAddress ip;
+            if(IPAddress.TryParse(txtServerAddr.Text
+            var server = new Bll.CenaPlusServerProxy();
+            */
+            if (0 == 1)
             {
-                frame.Source = new Uri("/Content/Compiler.xaml", UriKind.Relative);
+                ModernDialog.ShowMessage("Cannot connect to the target server.", "Message", System.Windows.MessageBoxButton.OK);
             }
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (Logged)
+            else
             {
+                Logged = true;
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {

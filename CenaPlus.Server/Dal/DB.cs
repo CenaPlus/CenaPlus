@@ -8,6 +8,7 @@ namespace CenaPlus.Server.Dal
 {
     public class DB : DbContext
     {
+        public DB() : base("mysqldb") { }
         public DB(string nameOrConnectionString) : base(nameOrConnectionString) { }
     }
 }

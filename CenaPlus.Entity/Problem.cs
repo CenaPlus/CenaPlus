@@ -20,8 +20,9 @@ namespace CenaPlus.Entity
 
         [Column("contest_id")]
         [ForeignKey("Contest")]
-        public int ContestID { get; set; }
-
-        public virtual Contest Contest { get; set; }
+        public int ContestID { get; set; }//for db
+        public virtual Contest Contest { get; set; }//for navigation
+        [NotMapped]
+        public string ContestTitle { get; set; }//for client
     }
 }

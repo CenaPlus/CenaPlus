@@ -8,7 +8,7 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock Text="TODO: add content" />
+                <Button Name="btnTest" Click="btnTest_Click" Content="Test"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

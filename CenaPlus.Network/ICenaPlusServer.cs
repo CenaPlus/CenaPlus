@@ -22,6 +22,15 @@ namespace CenaPlus.Network
         string GetVersion();
 
         /// <summary>
+        /// Perform authentication
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns>whether authentication success</returns>
+        [OperationContract]
+        bool Authenticate(string userName, string password);
+
+        /// <summary>
         /// List all contests on the server.
         /// </summary>
         /// <returns>List of contest ids</returns>

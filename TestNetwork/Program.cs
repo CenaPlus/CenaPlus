@@ -1,4 +1,4 @@
-﻿using CenaPlus.Network;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,8 @@ using System.Net;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-
+using CenaPlus.Server.Bll;
+using CenaPlus.Network;
 namespace TestNetwork
 {
     class Ca : ICenaPlusServerCallback
@@ -23,9 +24,9 @@ namespace TestNetwork
         {
             if (false)
             {
-                using (ServiceHost host = new ServiceHost(typeof(CenaPlus.Server.Bll.LocalCenaServer)))
+                using (CenaPlusServerHost host = new CenaPlusServerHost(9999))
                 {
-                    host.AddServiceEndpoint(typeof(CenaPlus.Network.ICenaPlusServer), new NetTcpBinding(SecurityMode.None), "net.tcp://localhost:9999/CenaPlusServer");
+
                     host.Opened += (x, y) =>
                     {
                         Console.WriteLine("Opened");
@@ -45,7 +46,7 @@ namespace TestNetwork
                 }
                 proxy.GetVersion();
                 proxy.GetVersion();
-                proxy.GetVersion(); 
+                proxy.GetVersion();
                 proxy.GetVersion();
                 proxy.Close();
                 proxy = new CenaPlusServerProxy(new IPEndPoint(IPAddress.Parse("192.168.1.100"), 9999), new Ca());

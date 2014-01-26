@@ -30,12 +30,6 @@ namespace CenaPlus.Entity
         [Column("type")]
         public ContestType Type { get; set; }
 
-        [Column("join_password")]
-        public byte[] JoinPassword { get; set; }
-
-        [Column("manage_password")]
-        public byte[] ManagePassword { get; set; }
-
         public virtual ICollection<Problem> Problems { get; set; }
     }
 

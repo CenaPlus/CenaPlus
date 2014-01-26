@@ -75,6 +75,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -114,6 +115,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Bll\CenaPlusServerProxy.cs" />
+    <Compile Include="Bll\Foobar.cs" />
     <Compile Include="Content\Compiler.xaml.cs">
       <DependentUpon>Compiler.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
     <ProjectReference Include="..\CenaPlus.Entity\CenaPlus.Entity.csproj">
       <Project>{33fe9792-c912-42e1-994f-e920f724230b}</Project>
       <Name>CenaPlus.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CenaPlus.Network\CenaPlus.Network.csproj">
+      <Project>{e5e057e8-c266-4676-b86d-48cc97e4ba60}</Project>
+      <Name>CenaPlus.Network</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="ContestListBox" SelectionChanged="ContestListBox_SelectionChanged">
+        <ListBox x:Name="ContestListBox" MouseUp="ContestListBox_MouseUp" SelectedValue="ID">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel MouseDown="DockPanel_MouseDown">
+                    <DockPanel>
                         <Label Content="{Binding Title}" Foreground="MediumAquamarine" FontSize="24" DockPanel.Dock="Top"/>
                         <Label Content="{Binding Detail}" DockPanel.Dock="Bottom" />
                     </DockPanel>

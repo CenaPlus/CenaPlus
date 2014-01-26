@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using System.Security.Cryptography;
 using CenaPlus.Network;
 using CenaPlus.Entity;
 using CenaPlus.Server.Dal;
@@ -13,36 +14,53 @@ namespace CenaPlus.Server.Bll
 {
     public class LocalCenaServer : ICenaPlusServer
     {
-        private int counter;
+        public User CurrentUser { get; set; }
+
+        private void CheckRole(UserRole leastRole)
+        {
+            if (CurrentUser == null)
+                throw new AccessDeniedException("Not authenticated");
+            if (CurrentUser.Role < leastRole) 
+                throw new AccessDeniedException("Do not have required role.");
+        }
+
         public string GetVersion()
         {
-            Console.WriteLine("counter = " + counter++);
             var fileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
             return fileVersion.FileMajorPart + "." + fileVersion.FileMinorPart;
         }
 
-        public List<int> GetContestList()
+        public bool Authenticate(string userName, string password)
         {
-            var savedContext = OperationContext.Current;
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
-            timer.AutoReset = false;
-            timer.Elapsed += (x, y) =>
+            byte[] pwdHash = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(password));
+            using (DB db = new DB())
             {
-                savedContext.GetCallbackChannel<ICenaPlusServerCallback>().PopAd("Free iPhone5 ON SALE!");
-            };
-            timer.Start();
-            return new List<int> { 1, 2, 3, 4 };
-
-            // Should be implemented as below:
-            // using (DB db = new DB("some connection string"))
-            // {
-            //    return db.Set<Contest>().Select(c => c.ID).ToList();
-            // }
+                var user = (from u in db.Set<User>()
+                            where u.Name == userName && u.Password == pwdHash
+                            select u).SingleOrDefault();
+                if (user == null)
+                {
+                    return false;
+                }
+                CurrentUser = user;
+                return true;
+            }
         }
 
+        public List<int> GetContestList()
+        {
+            CheckRole(UserRole.Competitor);
+
+            using (DB db = new DB())
+            {
+                return db.Set<Contest>().Select(c => c.ID).ToList();
+            }
+        }
 
         public Contest GetContest(int id)
         {
+            CheckRole(UserRole.Competitor);
+
             return new Contest
             {
                 ID = id,
@@ -50,5 +68,7 @@ namespace CenaPlus.Server.Bll
                 Description = "Haha"
             };
         }
+
+
     }
 }

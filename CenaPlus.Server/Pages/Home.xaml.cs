@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CenaPlus.Server.Bll;
 
 namespace CenaPlus.Server.Pages
 {
@@ -20,9 +21,16 @@ namespace CenaPlus.Server.Pages
     /// </summary>
     public partial class Home : UserControl
     {
+        private CenaPlusServerHost host;
         public Home()
         {
             InitializeComponent();
+        }
+
+        private void btnTest_Click(object sender, RoutedEventArgs e)
+        {
+            host = new CenaPlusServerHost(9999);
+            host.Open();
         }
     }
 }

@@ -6,13 +6,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
     <Grid Style="{StaticResource ContentRoot}" MinWidth="400" Loaded="Grid_Loaded">
-
-        <TextBlock Text="Connect to a cena plus server." />
-        <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Margin="0,51,0,0" RenderTransformOrigin="-0.397,0.806" HorizontalAlignment="Left" Width="280" VerticalAlignment="Top"/>
-        <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Margin="0,23,0,0" RenderTransformOrigin="-0.397,0.806" HorizontalAlignment="Left" Width="280" VerticalAlignment="Top"/>
-        <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Margin="0,79,0,0" RenderTransformOrigin="-0.397,0.806" HorizontalAlignment="Left" Width="280" VerticalAlignment="Top"/>
-        <Button Content="Log in" Width="75" Margin="0,107,0,0" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="Register an official account" Width="200" Margin="80,107,-11,0" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Click="Button_Click_1"/>
-
+        <StackPanel>
+            <TextBlock Text="Connect to a cena plus server." />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name="txtServerAddr"  Text="localhost" />
+                <TextBox Name="txtServerPort"  Text="9999" />
+            </StackPanel>
+            <TextBox Name="txtUserName" Text="UserName" />
+            <PasswordBox Name="txtPassword" />
+            <StackPanel Orientation="Horizontal">
+                <Button Name="btnLogin" Content="Log in" IsDefault="True" Click="btnLogin_Click"/>
+                <Button Name="btnRegister" Content="Register an official account"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

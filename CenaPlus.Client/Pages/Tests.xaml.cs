@@ -40,18 +40,14 @@ namespace CenaPlus.Client.Pages
             ContestListBox.ItemsSource = ContestList;
         }
 
-        private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-           // ModernDialog.ShowMessage(e.Source.ToString(), "Message", MessageBoxButton.OK);
-        }
-
-        private void ContestListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ContestListBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
                 frame.Source = new Uri("/Pages/Contest.xaml?id=" + ContestListBox.SelectedValue, UriKind.Relative);
             }
+            ContestListBox.SelectedIndex = -1;
         }
     }
     public class ContestList : CenaPlus.Entity.Contest
@@ -59,7 +55,7 @@ namespace CenaPlus.Client.Pages
         private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
         public string Detail
         {
-            get 
+            get
             {
                 return String.Format(DetailTemplate, StartTime, (Duration.TotalSeconds / 60 / 60).ToString("0.0"), Type);
             }

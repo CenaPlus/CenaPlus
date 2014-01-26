@@ -8,8 +8,8 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Net;
 using CenaPlus.Entity;
-
-namespace CenaPlus.Network
+using CenaPlus.Network;
+namespace CenaPlus.Client.Bll
 {
     public class CenaPlusServerProxy : ClientBase<ICenaPlusServer>, ICenaPlusServer
     {

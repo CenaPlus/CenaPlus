@@ -42,6 +42,12 @@
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\packages\ModernUI.WPF.1.0.5\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity">
+      <HintPath>..\packages\Ventamatic.MySql.Data.Entity.6.6.5\lib\net40\MySql.Data.Entity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -72,6 +78,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Bll\AccessDeniedException.cs" />
+    <Compile Include="Bll\CenaPlusServerHost.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Dal\DB.cs" />
     <Compile Include="MainWindow.xaml.cs">
