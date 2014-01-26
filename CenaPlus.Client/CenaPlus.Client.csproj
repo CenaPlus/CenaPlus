@@ -99,19 +99,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Content\Compiler.xaml">
+    <Page Include="Settings\Compiler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\Contest_Description.xaml">
+    <Page Include="Remote\Contest\Contest_Description.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\Problem.xaml">
+    <Page Include="Remote\Contest\Problem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Content\Problem_Submit.xaml">
+    <Page Include="Remote\Contest\Problem_Submit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,84 +122,84 @@
     <Compile Include="Bll\CenaPlusServerProxy.cs" />
     <Compile Include="Bll\Foobar.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
-    <Compile Include="Content\Compiler.xaml.cs">
+    <Compile Include="Settings\Compiler.xaml.cs">
       <DependentUpon>Compiler.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\Contest_Description.xaml.cs">
+    <Compile Include="Remote\Contest\Contest_Description.xaml.cs">
       <DependentUpon>Contest_Description.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\Problem.xaml.cs">
+    <Compile Include="Remote\Contest\Problem.xaml.cs">
       <DependentUpon>Problem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\Problem_Submit.xaml.cs">
+    <Compile Include="Remote\Contest\Problem_Submit.xaml.cs">
       <DependentUpon>Problem_Submit.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Content\About.xaml">
+    <Page Include="Settings\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Content\About.xaml.cs">
+    <Compile Include="Settings\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Page Include="Content\SettingsAppearance.xaml">
+    <Page Include="Settings\SettingsAppearance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Content\SettingsAppearance.xaml.cs">
+    <Compile Include="Settings\SettingsAppearance.xaml.cs">
       <DependentUpon>SettingsAppearance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Content\SettingsAppearanceViewModel.cs" />
-    <Page Include="Pages\Contest.xaml">
+    <Compile Include="Settings\SettingsAppearanceViewModel.cs" />
+    <Page Include="Remote\Contest\Contest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Contest_Problems.xaml">
+    <Page Include="Remote\Contest\Contest_Problems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Home.xaml">
+    <Page Include="Remote\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Profile.xaml">
+    <Page Include="Remote\Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Records.xaml">
+    <Page Include="Remote\Records.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Settings.xaml">
+    <Page Include="Settings\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Pages\Contest.xaml.cs">
+    <Compile Include="Remote\Contest\Contest.xaml.cs">
       <DependentUpon>Contest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Contest_Problems.xaml.cs">
+    <Compile Include="Remote\Contest\Contest_Problems.xaml.cs">
       <DependentUpon>Contest_Problems.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Home.xaml.cs">
+    <Compile Include="Remote\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Profile.xaml.cs">
+    <Compile Include="Remote\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Records.xaml.cs">
+    <Compile Include="Remote\Records.xaml.cs">
       <DependentUpon>Records.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Settings.xaml.cs">
+    <Compile Include="Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Tests.xaml.cs">
+    <Compile Include="Remote\Tests.xaml.cs">
       <DependentUpon>Tests.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Page Include="Pages\Tests.xaml">
+    <Page Include="Remote\Tests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +238,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Local\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
