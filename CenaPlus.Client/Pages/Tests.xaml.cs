@@ -33,7 +33,8 @@ namespace CenaPlus.Client.Pages
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/Pages/Contest.xaml?id=" + ContestListBox.SelectedValue, UriKind.Relative);
+                Contest.ContestID = (int)ContestListBox.SelectedValue;
+                frame.Source = new Uri("/Pages/Contest.xaml", UriKind.Relative);
             }
             ContestListBox.SelectedIndex = -1;
         }

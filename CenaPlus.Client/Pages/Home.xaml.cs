@@ -55,9 +55,9 @@ namespace CenaPlus.Client.Pages
             {
                 server = new Bll.CenaPlusServerProxy(new IPEndPoint(ip, port), new Bll.ServerCallback());
             }
-            catch(Exception err)
+            catch
             {
-                ModernDialog.ShowMessage(err+"Connection to " + ip + ":" + port + " failed.", "Error", MessageBoxButton.OK);
+                ModernDialog.ShowMessage("Connection to " + ip + ":" + port + " failed.", "Error", MessageBoxButton.OK);
                 return;
             }
 

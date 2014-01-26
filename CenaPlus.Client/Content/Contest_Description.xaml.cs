@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using CenaPlus.Client.Bll;
 namespace CenaPlus.Client.Content
 {
     /// <summary>
@@ -23,6 +24,17 @@ namespace CenaPlus.Client.Content
         public Contest_Description()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            int id = Pages.Contest.ContestID;
+            Entity.Contest contest = Foobar.Server.GetContest(id);
+            var wholeRange = new TextRange(txtDescription.Document.ContentStart, txtDescription.Document.ContentEnd);
+            using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(contest.Description)))
+            {
+                wholeRange.Load(mem, DataFormats.Rtf);
+            }
         }
     }
 }

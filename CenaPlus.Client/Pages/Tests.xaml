@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="ContestListBox" MouseUp="ContestListBox_MouseUp" SelectedValue="ID">
+        <ListBox x:Name="ContestListBox" MouseUp="ContestListBox_MouseUp" SelectedValuePath="ID">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>

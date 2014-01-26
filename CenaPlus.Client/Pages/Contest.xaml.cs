@@ -20,6 +20,8 @@ namespace CenaPlus.Client.Pages
     /// </summary>
     public partial class Contest : UserControl
     {
+        public static int ContestID { get; set; }
+
         public Contest()
         {
             InitializeComponent();
