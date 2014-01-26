@@ -48,9 +48,9 @@ namespace CenaPlus.Entity
 
         [IgnoreDataMember]
         [NotMapped]
-        public ProgrammingLangauge Language
+        public ProgrammingLanguage Language
         {
-            get { return (ProgrammingLangauge)LanguageAsInt; }
+            get { return (ProgrammingLanguage)LanguageAsInt; }
             set { LanguageAsInt = (int)value; }
         }
 
@@ -74,7 +74,7 @@ namespace CenaPlus.Entity
         TimeLimitExceeded, MemoryLimitExceeded, OutputLimitExceeded
     }
 
-    public enum ProgrammingLangauge
+    public enum ProgrammingLanguage
     {
         C, Pascal
     }

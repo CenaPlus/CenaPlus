@@ -9,23 +9,9 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <TextBlock x:Name="TitleTextBlock" Text="A: A+B Problem" TextAlignment="Center" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Time Limit: 1s per a case  Memory Limit: 65536KB" TextAlignment="Center"/>
-                <TextBlock Text="Description" Style="{StaticResource Heading2}" Margin="0,10,0,0" />
-                <TextBlock Text="Caculate a+b" />
-                <TextBlock Text="Input" Style="{StaticResource Heading2}" Margin="0,10,0,0" />
-                <TextBlock Text="Input a, b" />
-                <TextBlock Text="Output" Style="{StaticResource Heading2}" Margin="0,10,0,0" />
-                <TextBlock Text="Output a+b" />
-                <TextBlock Text="Samples" Style="{StaticResource Heading2}" Margin="0,10,0,0" />
-                <Grid>
-                    <TextBox Height="100" Width="250" HorizontalAlignment="Left" TextWrapping="Wrap" Text="1 2" AcceptsReturn="True"/>
-                    <TextBox Height="100" Width="250" HorizontalAlignment="Left" Margin="260,0,0,0" TextWrapping="Wrap" Text="3" AcceptsReturn="True"/>
-                </Grid>
-                <TextBlock Text="Hint" Style="{StaticResource Heading2}" Margin="0,10,0,0" />
-                <TextBlock Text="Null" />
-                <Button Content="Submit" HorizontalAlignment="Left" Width="75" Margin="0,10,0,0" Click="Button_Click"/>
-
+                <TextBlock Name="txtTitle" Text="" TextAlignment="Center" Style="{StaticResource Heading2}" />
+                <RichTextBox Name="txtContent" IsReadOnly="True" BorderThickness="0"/>
+                <Button Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Width="75" Margin="0,10,0,0" Click="btnSubmit_Click"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -77,6 +77,35 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public List<int> GetProblemList(int contestID)
+        {
+            CheckRole(UserRole.Competitor);
 
+            using (DB db = new DB())
+            {
+                return (from p in db.Problems
+                        where p.ContestID == contestID
+                        select p.ID).ToList();
+            }
+        }
+
+        public Problem GetProblem(int id)
+        {
+            CheckRole(UserRole.Competitor);
+
+            using (DB db = new DB())
+            {
+                var problem = db.Problems.Find(id);
+                if (problem == null) return null;
+                return new Problem
+                {
+                    ID = problem.ID,
+                    Content = problem.Content,
+                    ContestID = problem.ContestID,
+                    ContestTitle = problem.Contest.Title,
+                    Title = problem.Title
+                };
+            }
+        }
     }
 }

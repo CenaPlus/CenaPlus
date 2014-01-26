@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CenaPlus.Client.Bll;
 
 namespace CenaPlus.Client
 {
@@ -13,5 +14,6 @@ namespace CenaPlus.Client
     /// </summary>
     public partial class App : Application
     {
+        public static CenaPlusServerProxy Server { get; set; }
     }
 }

@@ -55,5 +55,16 @@ namespace CenaPlus.Client.Bll
         {
             return Channel.Authenticate(userName, password);
         }
+
+        public List<int> GetProblemList(int contestID)
+        {
+            return Channel.GetProblemList(contestID);
+        }
+
+
+        public Problem GetProblem(int id)
+        {
+            return Channel.GetProblem(id);
+        }
     }
 }

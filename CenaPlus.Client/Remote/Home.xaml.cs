@@ -67,7 +67,7 @@ namespace CenaPlus.Client.Remote
                 return;
             }
 
-            Foobar.Server = server;
+            App.Server = server;
 
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
@@ -86,7 +86,7 @@ namespace CenaPlus.Client.Remote
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (Foobar.Server != null)
+            if (App.Server != null)
             {
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)

@@ -60,8 +60,8 @@ namespace CenaPlus.Client.Remote
 
         public void OnNavigatedTo(NavigationEventArgs e)
         {
-            var list = from id in Foobar.Server.GetContestList()
-                       let c = Foobar.Server.GetContest(id)
+            var list = from id in App.Server.GetContestList()
+                       let c = App.Server.GetContest(id)
                        select new ContestList
                        {
                            ID = c.ID,

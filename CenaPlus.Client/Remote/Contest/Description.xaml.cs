@@ -30,7 +30,7 @@ namespace CenaPlus.Client.Remote.Contest
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             int id = int.Parse(e.Fragment);
-            Entity.Contest contest = Foobar.Server.GetContest(id);
+            Entity.Contest contest = App.Server.GetContest(id);
             var wholeRange = new TextRange(txtDescription.Document.ContentStart, txtDescription.Document.ContentEnd);
             using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(contest.Description)))
             {

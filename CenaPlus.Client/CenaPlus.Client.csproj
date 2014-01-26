@@ -120,7 +120,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Bll\CenaPlusServerProxy.cs" />
-    <Compile Include="Bll\Foobar.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Settings\Compiler.xaml.cs">
       <DependentUpon>Compiler.xaml</DependentUpon>

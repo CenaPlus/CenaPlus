@@ -44,5 +44,22 @@ namespace CenaPlus.Network
         /// <returns>contest information</returns>
         [OperationContract]
         Contest GetContest(int id);
+
+
+        /// <summary>
+        /// Get problem ids of the contest
+        /// </summary>
+        /// <param name="contestID">id of the contest</param>
+        /// <returns>ids of all problems in the contest</returns>
+        [OperationContract]
+        List<int> GetProblemList(int contestID);
+
+        /// <summary>
+        /// Get problem by id
+        /// </summary>
+        /// <param name="id">problem id</param>
+        /// <returns>contest problem</returns>
+        [OperationContract]
+        Problem GetProblem(int id);
     }
 }

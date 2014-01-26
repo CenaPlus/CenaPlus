@@ -8,17 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
         <WrapPanel MinWidth="200" HorizontalAlignment="Left">
-            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="25" Margin="0,0,10,0">
-                <ListBoxItem Content="C" />
-                <ListBoxItem Content="C++" />
-                <ListBoxItem Content="Java" />
-                <ListBoxItem Content="Pascal" />
-                <ListBoxItem Content="Python 2.7" />
-                <ListBoxItem Content="Python 3.3" />
-                <ListBoxItem Content="Ruby" />
-            </ComboBox>
-            <Button Content="Submit" Width="75"/>
+            <ComboBox Name="lstLanguage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="25" Margin="0,0,10,0"/>
+            <Button Name="btnSubmit" Content="Submit" Width="75"/>
         </WrapPanel>
-        <TextBox Margin="0,35,0,0" AcceptsReturn="true"></TextBox>
+        <TextBox Name="txtCode" Margin="0,35,0,0" AcceptsReturn="true"></TextBox>
     </Grid>
 </UserControl>
