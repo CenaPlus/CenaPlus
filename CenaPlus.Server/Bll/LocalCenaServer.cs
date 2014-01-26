@@ -20,7 +20,7 @@ namespace CenaPlus.Server.Bll
         {
             if (CurrentUser == null)
                 throw new AccessDeniedException("Not authenticated");
-            if (CurrentUser.Role < leastRole) 
+            if (CurrentUser.Role < leastRole)
                 throw new AccessDeniedException("Do not have required role.");
         }
 
@@ -35,7 +35,7 @@ namespace CenaPlus.Server.Bll
             byte[] pwdHash = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(password));
             using (DB db = new DB())
             {
-                var user = (from u in db.Set<User>()
+                var user = (from u in db.Users
                             where u.Name == userName && u.Password == pwdHash
                             select u).SingleOrDefault();
                 if (user == null)
@@ -53,7 +53,7 @@ namespace CenaPlus.Server.Bll
 
             using (DB db = new DB())
             {
-                return db.Set<Contest>().Select(c => c.ID).ToList();
+                return db.Contests.Select(c => c.ID).ToList();
             }
         }
 
@@ -61,12 +61,20 @@ namespace CenaPlus.Server.Bll
         {
             CheckRole(UserRole.Competitor);
 
-            return new Contest
+            using (DB db = new DB())
             {
-                ID = id,
-                Title = "Foobar Contest",
-                Description = "Haha"
-            };
+                var contest = db.Contests.Find(id);
+                if (contest == null) return null;
+                return new Contest
+                {
+                    ID = contest.ID,
+                    Description = contest.Description,
+                    EndTime = contest.EndTime,
+                    StartTime = contest.StartTime,
+                    Title = contest.Title,
+                    Type = contest.Type
+                };
+            }
         }
 
 

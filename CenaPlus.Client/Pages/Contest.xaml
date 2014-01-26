@@ -7,10 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <!-- TODO: set @SelectedSource -->
         <mui:ModernTab Layout="List" SelectedSource="/Content/Contest_Description.xaml">
             <mui:ModernTab.Links>
-                <!-- TODO: set @Source -->
                 <mui:Link DisplayName="description" Source="/Content/Contest_Description.xaml" />
                 <mui:Link DisplayName="problems" Source="/Pages/Contest_Problems.xaml" />
                 <mui:Link DisplayName="ranklist" Source="/Content/Contest_RankList.xaml" />

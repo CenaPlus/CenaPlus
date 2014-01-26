@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Entity;
-
+using CenaPlus.Client.Bll;
 namespace CenaPlus.Client.Pages
 {
     /// <summary>
@@ -23,21 +23,9 @@ namespace CenaPlus.Client.Pages
     /// </summary>
     public partial class Tests : UserControl
     {
-        protected List<ContestList> ContestList = new List<ContestList>();
         public Tests()
         {
             InitializeComponent();
-            for (int i = 1; i <= 10; i++)
-            {
-                ContestList t = new ContestList();
-                t.ID = i;
-                t.StartTime = Convert.ToDateTime("2014-1-24 12:00");
-                t.EndTime = Convert.ToDateTime("2014-1-24 14:00");
-                t.Type = ContestType.TopCoder;
-                t.Title = "Cena Plus Beta Round #" + i;
-                ContestList.Add(t);
-            }
-            ContestListBox.ItemsSource = ContestList;
         }
 
         private void ContestListBox_MouseUp(object sender, MouseButtonEventArgs e)
@@ -49,15 +37,31 @@ namespace CenaPlus.Client.Pages
             }
             ContestListBox.SelectedIndex = -1;
         }
-    }
-    public class ContestList : CenaPlus.Entity.Contest
-    {
-        private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
-        public string Detail
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            get
+            var list = from id in Foobar.Server.GetContestList()
+                       let c = Foobar.Server.GetContest(id)
+                       select new ContestList
+                       {
+                           ID = c.ID,
+                           Title = c.Title,
+                           StartTime = c.StartTime,
+                           EndTime = c.EndTime,
+                           Type = c.Type
+                       };
+            ContestListBox.ItemsSource = list;
+        }
+
+        public class ContestList : CenaPlus.Entity.Contest
+        {
+            private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
+            public string Detail
             {
-                return String.Format(DetailTemplate, StartTime, (Duration.TotalSeconds / 60 / 60).ToString("0.0"), Type);
+                get
+                {
+                    return String.Format(DetailTemplate, StartTime, (Duration.TotalSeconds / 60 / 60).ToString("0.0"), Type);
+                }
             }
         }
     }

@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CenaPlusServerProxy.cs" />
     <Compile Include="ICenaPlusServer.cs" />
     <Compile Include="ICenaPlusServerCallbak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

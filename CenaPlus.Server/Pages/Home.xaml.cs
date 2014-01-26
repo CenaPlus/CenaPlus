@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CenaPlus.Server.Bll;
-
+using CenaPlus.Server.Dal;
 namespace CenaPlus.Server.Pages
 {
     /// <summary>
@@ -29,8 +29,18 @@ namespace CenaPlus.Server.Pages
 
         private void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            host = new CenaPlusServerHost(9999);
-            host.Open();
+            if (host == null)
+            {
+                host = new CenaPlusServerHost(9999);
+                host.Open();
+                btnTest.Content = "Click to stop";
+            }
+            else
+            {
+                host.Close();
+                host = null;
+                btnTest.Content = "Click to start";
+            }
         }
     }
 }

@@ -58,6 +58,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CenaPlus.Client\CenaPlus.Client.csproj">
+      <Project>{31eb2b83-5f8f-4c3c-8fd5-50c160e4ee88}</Project>
+      <Name>CenaPlus.Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CenaPlus.Entity\CenaPlus.Entity.csproj">
       <Project>{33fe9792-c912-42e1-994f-e920f724230b}</Project>
       <Name>CenaPlus.Entity</Name>

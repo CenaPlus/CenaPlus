@@ -10,8 +10,10 @@ namespace CenaPlus.Server.Bll
     public class CenaPlusServerHost : ServiceHost
     {
         public CenaPlusServerHost(int port)
-            : base(typeof(LocalCenaServer),new UriBuilder("net.tcp", "localhost", port, "/CenaPlusServer").Uri)
+            : base(typeof(LocalCenaServer))
         {
+            Uri uri = new UriBuilder("net.tcp", "localhost", port, "/CenaPlusServer").Uri;
+            base.AddServiceEndpoint(typeof(ICenaPlusServer), new NetTcpBinding(SecurityMode.None), uri.ToString());
         }
     }
 }

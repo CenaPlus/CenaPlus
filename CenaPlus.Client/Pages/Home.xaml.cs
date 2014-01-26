@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
-
+using CenaPlus.Client.Bll;
 namespace CenaPlus.Client.Pages
 {
     /// <summary>
@@ -24,45 +24,62 @@ namespace CenaPlus.Client.Pages
     /// </summary>
     public partial class Home : UserControl
     {
-        public static bool Logged = false;
         public Home()
         {
             InitializeComponent();
-            if (Logged)
-            {
-                var frame = NavigationHelper.FindFrame(null, this);
-                if (frame != null)
-                {
-                    frame.Source = new Uri("/Content/Compiler.xaml", UriKind.Relative);
-                }
-            }
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (Logged)
-            {
-                var frame = NavigationHelper.FindFrame(null, this);
-                if (frame != null)
-                {
-                    frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
-                }
-            }
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {/*
+        {
             IPAddress ip;
-            if(IPAddress.TryParse(txtServerAddr.Text
-            var server = new Bll.CenaPlusServerProxy();
-            */
-            if (0 == 1)
+            var addresses = Dns.GetHostAddresses(txtServerAddr.Text);
+            if (addresses.Length == 0)
             {
-                ModernDialog.ShowMessage("Cannot connect to the target server.", "Message", System.Windows.MessageBoxButton.OK);
+                ModernDialog.ShowMessage("Invalid IP address", "Error", MessageBoxButton.OK);
+                return;
             }
             else
             {
-                Logged = true;
+                ip = addresses[0];
+            }
+
+            int port;
+            if (!int.TryParse(txtServerPort.Text, out port))
+            {
+                ModernDialog.ShowMessage("Invalid port", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            CenaPlusServerProxy server;
+            try
+            {
+                server = new Bll.CenaPlusServerProxy(new IPEndPoint(ip, port), new Bll.ServerCallback());
+            }
+            catch(Exception err)
+            {
+                ModernDialog.ShowMessage(err+"Connection to " + ip + ":" + port + " failed.", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            if (!server.Authenticate(txtUserName.Text, txtPassword.Password))
+            {
+                ModernDialog.ShowMessage("Incorrect user name or password.", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            Foobar.Server = server;
+
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/Pages/Profile.xaml", UriKind.Relative);
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Foobar.Server != null)
+            {
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {

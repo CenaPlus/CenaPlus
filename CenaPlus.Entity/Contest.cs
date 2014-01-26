@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Runtime.Serialization;
 namespace CenaPlus.Entity
 {
     [Table("contests")]
@@ -25,11 +25,21 @@ namespace CenaPlus.Entity
         public DateTime EndTime { get; set; }
 
         [NotMapped]
+        [IgnoreDataMember]
         public TimeSpan Duration { get { return EndTime - StartTime; } }
 
         [Column("type")]
-        public ContestType Type { get; set; }
+        public int TypeAsInt { get; set; }
 
+        [NotMapped]
+        [IgnoreDataMember]
+        public ContestType Type
+        {
+            get { return (ContestType)TypeAsInt; }
+            set { TypeAsInt = (int)value; }
+        }
+
+        [IgnoreDataMember]
         public virtual ICollection<Problem> Problems { get; set; }
     }
 
