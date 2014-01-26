@@ -10,7 +10,7 @@
             <TextBlock Text="Connect to a cena plus server." Margin="0,0,0,10"/>
             <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,10">
                 <TextBox Name="txtServerAddr"  Text="localhost" Margin="0,0,100,0"/>
-                <TextBox Name="txtServerPort" HorizontalAlignment="Right" Width="90"  Text="4321" Margin="10,-23,0,0" />
+                <TextBox Name="txtServerPort" HorizontalAlignment="Right" Width="90"  Text="9999" Margin="10,-23,0,0" />
             </StackPanel>
             <TextBox Name="txtUserName" Text="GasaiYuno"  Margin="0,0,0,10"/>
             <PasswordBox Name="txtPassword" Password="GasaiYuno"  Margin="0,0,0,10"/>
