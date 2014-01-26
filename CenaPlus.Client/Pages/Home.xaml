@@ -7,16 +7,16 @@
              d:DesignHeight="300" d:DesignWidth="400" Loaded="UserControl_Loaded">
     <Grid Style="{StaticResource ContentRoot}" MinWidth="400" >
         <StackPanel>
-            <TextBlock Text="Connect to a cena plus server." />
-            <StackPanel Orientation="Horizontal">
-                <TextBox Name="txtServerAddr"  Text="localhost" />
-                <TextBox Name="txtServerPort"  Text="9999" />
+            <TextBlock Text="Connect to a cena plus server." Margin="0,0,0,10"/>
+            <StackPanel HorizontalAlignment="Stretch" Margin="0,0,0,10">
+                <TextBox Name="txtServerAddr"  Text="localhost" Margin="0,0,100,0"/>
+                <TextBox Name="txtServerPort" HorizontalAlignment="Right" Width="90"  Text="9999" Margin="10,-23,0,0" />
             </StackPanel>
-            <TextBox Name="txtUserName" Text="GasaiYuno" />
-            <PasswordBox Name="txtPassword" Password="GasaiYuno" />
-            <StackPanel Orientation="Horizontal">
-                <Button Name="btnLogin" Content="Log in" IsDefault="True" Click="btnLogin_Click"/>
-                <Button Name="btnRegister" Content="Register an official account"/>
+            <TextBox Name="txtUserName" Text="GasaiYuno"  Margin="0,0,0,10"/>
+            <PasswordBox Name="txtPassword" Password="GasaiYuno"  Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal"  Margin="0,0,0,10">
+                <Button Name="btnLogin" Content="Log in" IsDefault="True" Click="btnLogin_Click" Margin="0,0,10,0"/>
+                <Button Name="btnRegister" Content="Register an official account"  Margin="0,0,10,0"/>
             </StackPanel>
         </StackPanel>
     </Grid>
