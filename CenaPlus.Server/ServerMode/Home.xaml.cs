@@ -32,7 +32,7 @@ namespace CenaPlus.Server.ServerMode
         {
             if (host == null)
             {
-                host = new CenaPlusServerHost(9999);
+                host = new CenaPlusServerHost(9999,"Orz Yuno Server");
                 host.Open();
                 btnTest.Content = "Click to stop";
             }

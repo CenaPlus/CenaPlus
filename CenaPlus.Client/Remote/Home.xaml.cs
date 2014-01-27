@@ -22,8 +22,10 @@ namespace CenaPlus.Client.Remote
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : UserControl,IContent
+    public partial class Home : UserControl, IContent
     {
+        private ServerDiscoverer discoverer;
+
         public Home()
         {
             InitializeComponent();
@@ -83,6 +85,7 @@ namespace CenaPlus.Client.Remote
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
+            discoverer.Stop();
         }
 
         public void OnNavigatedTo(NavigationEventArgs e)
@@ -94,7 +97,21 @@ namespace CenaPlus.Client.Remote
                 {
                     frame.Source = new Uri("/Remote/Profile.xaml", UriKind.Relative);
                 }
+                return;
             }
+
+            discoverer = new ServerDiscoverer();
+
+            discoverer.FoundServer += (svr) =>
+            {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    txtServerAddr.Text = svr.Location.Address.ToString();
+                    txtServerPort.Text = svr.Location.Port.ToString();
+                    txtFoundServerName.Text = "Just found a server named " + svr.Name + "!";
+                }));
+            };
+            discoverer.Start();
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
