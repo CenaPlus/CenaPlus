@@ -16,6 +16,9 @@ namespace CenaPlus.Entity
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("nick_name")]
+        public string NickName { get; set; }
+
         /// <summary>
         /// Stored in SHA-1
         /// </summary>
@@ -47,6 +50,10 @@ namespace CenaPlus.Entity
 
     public enum UserRole
     {
-        Competitor, Manager
+        Competitor, Manager,
+        /// <summary>
+        /// Internal use only
+        /// </summary>
+        System
     }
 }

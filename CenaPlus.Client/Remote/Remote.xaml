@@ -7,12 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
-        <TextBlock Text="List of servers have been found."></TextBlock>
+        <TextBlock Text="List of servers"></TextBlock>
         <ListBox x:Name="ServerListBox" Margin="0,30,300,30" SelectionChanged="ServerListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel x:Name="Id" Margin="0,0,0,0">
-                        <TextBlock Margin="5,0,5,0" FontSize="18" Text="{Binding Title}" Style="{StaticResource Heading2}"></TextBlock>
+                        <TextBlock Margin="5,0,5,0" FontSize="18" Text="{Binding Name}" Style="{StaticResource Heading2}"></TextBlock>
                         <TextBlock Margin="5,0,5,5" Text="{Binding Details}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
@@ -20,18 +20,18 @@
         </ListBox>
         <WrapPanel HorizontalAlignment="Left" Height="25" VerticalAlignment="Bottom">
             <TextBlock Margin="0,0,5,0">Address</TextBlock>
-            <TextBox Width="80" Margin="0,0,10,0"></TextBox>
+            <TextBox Name="txtAddress" Width="80" Margin="0,0,10,0"></TextBox>
             <TextBlock Margin="0,0,5,0">Port</TextBlock>
-            <TextBox Width="40" Margin="0,0,10,0"></TextBox>
-            <Button Content="Add"></Button>
+            <TextBox Name="txtPort" Width="40" Margin="0,0,10,0"></TextBox>
+            <Button Name="btnAdd" Content="Add" Click="btnAdd_Click"></Button>
         </WrapPanel>
         <StackPanel x:Name="IdentificationPanel" HorizontalAlignment="Right" Width="280">
-            <TextBlock x:Name="IdentificationTextBlock" Text="Please select a server." Style="{StaticResource Heading2}" Margin="0,0,0,10"></TextBlock>
+            <TextBlock x:Name="IdentificationTextBlock" Text="Choose a server from the left..." Style="{StaticResource Heading2}" Margin="0,0,0,10"></TextBlock>
             <TextBlock Text="Username"></TextBlock>
-            <TextBox x:Name="UsernameBox" IsEnabled="False" Margin="0,0,0,10"></TextBox>
+            <TextBox x:Name="txtUserName" IsEnabled="False" Margin="0,0,0,10"></TextBox>
             <TextBlock Text="Password"></TextBlock>
-            <PasswordBox x:Name="PasswordBox" IsEnabled="False" Margin="0,0,0,10"></PasswordBox>
-            <Button x:Name="LoginButton" Content="Log in" IsEnabled="False"></Button>
+            <PasswordBox x:Name="txtPassword" IsEnabled="False" Margin="0,0,0,10"></PasswordBox>
+            <Button x:Name="btnLogin" Content="Log in" IsEnabled="False" Click="btnLogin_Click" IsDefault="True"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

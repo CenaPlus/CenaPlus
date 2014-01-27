@@ -43,19 +43,5 @@ namespace CenaPlus.Server.ServerMode
                 btnTest.Content = "Click to start";
             }
         }
-
-        private void btnToHTML_Click(object sender, RoutedEventArgs e)
-        {
-            var range = new TextRange(txtRich.Document.ContentStart, txtRich.Document.ContentEnd);
-            using (System.IO.MemoryStream mem = new System.IO.MemoryStream())
-            {
-                range.Save(mem,DataFormats.Xaml);
-                MessageBox.Show(Encoding.UTF8.GetString(mem.ToArray()));
-            }
-            IHTMLDocument2 doc = browser.Document as IHTMLDocument2;
-            doc.designMode = "On";
-
-            //MessageBox.Show(browser.Document.GetType().ToString());
-        }
     }
 }

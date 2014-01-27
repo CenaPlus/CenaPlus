@@ -10,29 +10,46 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Sockets;
+using System.Net;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
+using CenaPlus.Network;
+using CenaPlus.Client.Bll;
 
 namespace CenaPlus.Client.Remote
 {
     /// <summary>
     /// Interaction logic for Remote.xaml
     /// </summary>
-    public partial class Remote : UserControl
+    public partial class Remote : UserControl, IContent
     {
-        public List<ServerListItem> ServerListItems = new List<ServerListItem>();
+        private ServerDiscoverer discoverer;
+        private HashSet<EndPoint> foundServers;
+
         public Remote()
         {
             InitializeComponent();
-            //Official address
-            ServerListItem t = new ServerListItem();
-            t.Title = "Cena+ Official Server";
-            t.Online = 100;
-            t.IP = "www.cenaplus.org";
-            t.Port = 9999;
-            t.Ping = 1;
-            ServerListItems.Add(t);
-            ServerListBox.ItemsSource = ServerListItems;
+        }
+
+        private int GetDelay(IPEndPoint addr)
+        {
+            var start = DateTime.Now;
+            try
+            {
+                using (TcpClient client = new TcpClient())
+                {
+                    client.Connect(addr);
+                }
+            }
+            catch
+            {
+                return 999999;
+            }
+            var end = DateTime.Now;
+            return (int)(end - start).TotalMilliseconds;
         }
 
         private void ServerListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,34 +57,153 @@ namespace CenaPlus.Client.Remote
             if (ServerListBox.SelectedItem != null)
             {
                 IdentificationPanel.IsEnabled = true;
-                LoginButton.IsEnabled = true;
-                UsernameBox.IsEnabled = true;
-                PasswordBox.IsEnabled = true;
-                IdentificationTextBlock.Text = "Identification";
+                btnLogin.IsEnabled = true;
+                txtUserName.IsEnabled = true;
+                txtPassword.IsEnabled = true;
+                IdentificationTextBlock.Text = "Sign In";
             }
             else
             {
                 IdentificationPanel.IsEnabled = false;
-                LoginButton.IsEnabled = false;
-                UsernameBox.IsEnabled = false;
-                PasswordBox.IsEnabled = false;
-                IdentificationTextBlock.Text = "Please select a server.";
-            } 
-        }
-    }
-    public class ServerListItem
-    {
-        public string Title { get; set; }
-        public int Ping { get; set; }
-        public string IP { get; set; }
-        public int Port { get; set; }
-        public int Online { get; set; }
-        public string Details
-        {
-            get 
-            {
-                return String.Format("{0}:{1} / ping {2}ms / {3} online user(s)", IP, Port, Ping, Online);
+                btnLogin.IsEnabled = false;
+                txtUserName.IsEnabled = false;
+                txtPassword.IsEnabled = false;
+                IdentificationTextBlock.Text = "Choose a server from the left...";
             }
         }
+
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            IPAddress address;
+            try
+            {
+                var addresses = Dns.GetHostAddresses(txtAddress.Text);
+                address = addresses[0];
+            }
+            catch
+            {
+                ModernDialog.ShowMessage("Invalid server address", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            int port;
+            if (!int.TryParse(txtPort.Text, out port))
+            {
+                ModernDialog.ShowMessage("Port must be an integer", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            if (port < 0 || port > 65535)
+            {
+                ModernDialog.ShowMessage("Port is not in the valid range", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            IPEndPoint endpoint = new IPEndPoint(address, port);
+            if (foundServers.Contains(endpoint))
+            {
+                ModernDialog.ShowMessage("This server is already in the list", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            foundServers.Add(endpoint);
+            ServerListBox.Items.Add(new ServerListItem
+            {
+                Name = txtAddress.Text,
+                Location = endpoint,
+                Delay = GetDelay(endpoint)
+            });
+            ServerListBox.Items.Refresh();
+
+            txtAddress.Text = "";
+            txtPort.Text = "";
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            var serverItem = ServerListBox.SelectedItem as ServerListItem;
+
+            CenaPlusServerProxy server;
+            try
+            {
+                server = new Bll.CenaPlusServerProxy(serverItem.Location, new Bll.ServerCallback());
+            }
+            catch
+            {
+                ModernDialog.ShowMessage("Connection to " + serverItem.Location + " failed.", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            if (!server.Authenticate(txtUserName.Text, txtPassword.Password))
+            {
+                ModernDialog.ShowMessage("Incorrect user name or password.", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            App.Server = server;
+            App.HeartBeatTimer.Start();
+
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/Remote/Profile.xaml", UriKind.Relative);
+            }
+        }
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            discoverer.Stop();
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            foundServers = new HashSet<EndPoint>();
+            discoverer = new ServerDiscoverer();
+
+            discoverer.FoundServer += (svr) =>
+            {
+                if (!foundServers.Contains(svr.Location))
+                {
+                    foundServers.Add(svr.Location);
+                    var delay = GetDelay(svr.Location);
+
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        ServerListBox.Items.Add(new ServerListItem
+                        {
+                            Name = svr.Name,
+                            Location = svr.Location,
+                            Delay = delay
+                        });
+                        ServerListBox.Items.Refresh();
+                    }));
+                }
+            };
+            discoverer.Start();
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+
+        class ServerListItem : IntranetServer
+        {
+            public int Delay { get; set; }
+
+            public string Details
+            {
+                get
+                {
+                    return String.Format("{0} / delay: {1} ms", Location, Delay);
+                }
+            }
+        }
+
     }
+
 }

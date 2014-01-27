@@ -175,10 +175,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Home.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Remote\Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,9 +192,6 @@
     </Compile>
     <Compile Include="Remote\Contest\Problems.xaml.cs">
       <DependentUpon>Problems.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Remote\Home.xaml.cs">
-      <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>

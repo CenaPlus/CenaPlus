@@ -30,6 +30,7 @@ namespace CenaPlus.Client.Bll
         public void Start()
         {
             client = new UdpClient();
+            client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             client.Client.Bind(new IPEndPoint(IPAddress.Any, SSDP_ENDPOINT.Port));
             client.JoinMulticastGroup(SSDP_ENDPOINT.Address);
 
@@ -40,7 +41,16 @@ namespace CenaPlus.Client.Bll
         {
             UdpClient client = (UdpClient)result.AsyncState;
             IPEndPoint remote = null;
-            byte[] bytes = client.EndReceive(result, ref remote);
+            byte[] bytes ;
+            try
+            {
+                bytes = client.EndReceive(result, ref remote);
+            }
+            catch (ObjectDisposedException) // Closed already
+            {
+                return;
+            }
+
             string ssdp;
             try
             {

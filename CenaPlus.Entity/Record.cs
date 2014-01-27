@@ -20,7 +20,7 @@ namespace CenaPlus.Entity
         public virtual User User { get; set; }//For navigation
 
         [NotMapped]
-        public string UserName { get; set; }//For client
+        public string UserNickName { get; set; }//For client
 
         [Column("problem_id")]
         [ForeignKey("Problem")]

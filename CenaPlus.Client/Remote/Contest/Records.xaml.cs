@@ -41,7 +41,7 @@ namespace CenaPlus.Client.Remote.Contest
                            Status = r.Status,
                            SubmissionTime = r.SubmissionTime,
                            TimeUsage = r.TimeUsage,
-                           UserName = r.UserName
+                           UserNickName = r.UserNickName
                        };
             RecordListBox.ItemsSource = list;
         }
@@ -82,7 +82,7 @@ namespace CenaPlus.Client.Remote.Contest
             {
                 get
                 {
-                    return string.Format(STATUS_LINE_FORMT, UserName, ProblemTitle, TimeUsage, MemoryUsage / 1024, SubmissionTime);
+                    return string.Format(STATUS_LINE_FORMT, UserNickName, ProblemTitle, TimeUsage, MemoryUsage / 1024, SubmissionTime);
                 }
             }
         }

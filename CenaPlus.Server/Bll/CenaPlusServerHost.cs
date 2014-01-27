@@ -46,6 +46,7 @@ namespace CenaPlus.Server.Bll
             var ssdpMsg = Encoding.UTF8.GetBytes(string.Format(SSDP_FORMAT, version, serverName, port));
 
             UdpClient udp = new UdpClient();
+            udp.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             udp.Client.Bind(new IPEndPoint(IPAddress.Any, port));
             udp.JoinMulticastGroup(SSDP_ENDPOINT.Address);
 

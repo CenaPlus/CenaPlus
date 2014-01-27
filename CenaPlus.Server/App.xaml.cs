@@ -12,6 +12,8 @@ using System.IO;
 using System.Net.Sockets;
 using System.Net;
 using FirstFloor.ModernUI.Presentation;
+using CenaPlus.Network;
+using CenaPlus.Server.Bll;
 namespace CenaPlus.Server
 {
     /// <summary>
@@ -19,6 +21,8 @@ namespace CenaPlus.Server
     /// </summary>
     public partial class App : Application
     {
+        public static ICenaPlusServer Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
+
         protected override void OnStartup(StartupEventArgs e)
         {
             string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -64,7 +68,7 @@ namespace CenaPlus.Server
             string mySqlPath = Path.Combine(appPath, "mysql");
             Process.Start(new ProcessStartInfo
             {
-                Arguments="--user=root --port=3311 shutdown",
+                Arguments = "--user=root --port=3311 shutdown",
                 CreateNoWindow = true,
                 FileName = Path.Combine(mySqlPath, "bin\\mysqladmin.exe"),
                 WorkingDirectory = mySqlPath,

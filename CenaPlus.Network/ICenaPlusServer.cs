@@ -87,5 +87,23 @@ namespace CenaPlus.Network
         /// <returns>record information</returns>
         [OperationContract]
         Record GetRecord(int id);
+
+        /// <summary>
+        /// List all users
+        /// </summary>
+        /// <returns>ids of users</returns>
+        [OperationContract]
+        List<int> GetUserList();
+
+        /// <summary>
+        /// Get user by id
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns>user information</returns>
+        [OperationContract]
+        User GetUser(int id);
+
+        [OperationContract]
+        void UpdateUser(int id, string name, string nickname, string password, UserRole? role);
     }
 }

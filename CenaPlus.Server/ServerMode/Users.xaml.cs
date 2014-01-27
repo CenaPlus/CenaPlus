@@ -10,11 +10,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security;
 using System.Security.Cryptography;
+using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
+using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Entity;
 
 namespace CenaPlus.Server.ServerMode
@@ -22,21 +23,11 @@ namespace CenaPlus.Server.ServerMode
     /// <summary>
     /// Interaction logic for Users.xaml
     /// </summary>
-    public partial class Users : UserControl
+    public partial class Users : UserControl, IContent
     {
-        public List<UserListItem> UserList = new List<UserListItem>();
         public Users()
         {
             InitializeComponent();
-            for (int i = 1; i <= 10; i++)
-            {
-                UserListItem t = new UserListItem();
-                t.ID = i;
-                t.Name = "shabi#"+i;
-                t.Role = UserRole.Competitor;
-                UserList.Add(t);
-            }
-            UserListBox.ItemsSource = UserList;
         }
 
         private void UserListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,7 +35,11 @@ namespace CenaPlus.Server.ServerMode
             if (UserListBox.SelectedItem != null)
             {
                 ProfileDisplay.Visibility = Visibility.Visible;
-                NameTextBox.Text = (UserListBox.SelectedItem as UserListItem).Name;
+                var user = UserListBox.SelectedItem as UserListItem;
+
+                txtName.Text = user.Name;
+                txtNickName.Text = user.NickName;
+                txtPassword.Password = "";
             }
             else
             {
@@ -69,24 +64,70 @@ namespace CenaPlus.Server.ServerMode
                 frame.Source = new Uri("/ServerMode/CreateAUser.xaml", UriKind.Relative);
             }
         }
-    }
 
-    public class UserListItem : Entity.User
-    {
-        public string Gravatar
+        private void btnBatchCreate_Click(object sender, RoutedEventArgs e)
         {
-            get 
+
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            var user = UserListBox.SelectedItem as UserListItem;
+            App.Server.UpdateUser(user.ID, txtName.Text, txtNickName.Text, txtPassword.Password == "" ? null : txtPassword.Password, null);
+            user.Name = txtName.Text;
+            user.NickName = txtNickName.Text;
+            UserListBox.Items.Refresh();
+            ModernDialog.ShowMessage("User profile saved", "Cena+", MessageBoxButton.OK);
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var list = from id in App.Server.GetUserList()
+                       let u = App.Server.GetUser(id)
+                       select new UserListItem
+                       {
+                           ID = u.ID,
+                           Name = u.Name,
+                           NickName = u.NickName,
+                           Role = u.Role
+                       };
+            UserListBox.ItemsSource = list;
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+        class UserListItem : Entity.User
+        {
+            public string Gravatar
             {
-                return @"https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&s=50";
-                //return System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(Gravatar, "MD5").ToLower();
+                get
+                {
+                    return @"https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&s=50";
+                }
+            }
+            public string Profile
+            {
+                get
+                {
+                    return String.Format("{0} / {1} ({2})", Role, Name, NickName);
+                }
             }
         }
-        public string Profile
-        {
-            get 
-            {
-                return String.Format("{0} / {1} / Email: {2}", Role.ToString(), "Qiqihar University", "???");
-            }
-        }
+
     }
 }

@@ -20,11 +20,16 @@ namespace CenaPlus.Server.Bll
 
         private void CheckRole(DB db, UserRole leastRole)
         {
-            db.Users.Attach(CurrentUser);
-            db.Entry(CurrentUser).Reload();
-
             if (CurrentUser == null)
                 throw new AccessDeniedException("Not authenticated");
+
+            // Fake system user need not refreshing
+            if (CurrentUser.Role != UserRole.System)
+            {
+                db.Users.Attach(CurrentUser);
+                db.Entry(CurrentUser).Reload();
+            }
+
             if (CurrentUser.Role < leastRole)
                 throw new AccessDeniedException("Do not have required role.");
         }
@@ -202,8 +207,62 @@ namespace CenaPlus.Server.Bll
                     SubmissionTime = record.SubmissionTime,
                     TimeUsage = record.TimeUsage,
                     UserID = record.UserID,
-                    UserName = record.User.Name
+                    UserNickName = record.User.NickName
                 };
+            }
+        }
+
+
+        public List<int> GetUserList()
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                return db.Users.Select(u => u.ID).ToList();
+            }
+        }
+
+        public User GetUser(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                var user = db.Users.Find(id);
+                if (user == null) return null;
+
+                return new User
+                {
+                    ID = user.ID,
+                    Name = user.Name,
+                    NickName = user.NickName,
+                    Role = user.Role
+                };
+            }
+        }
+
+
+        public void UpdateUser(int id, string name, string nickname, string password, UserRole? role)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                var user = db.Users.Find(id);
+                if (user == null)
+                    throw new NotFoundException();
+
+                if (name != null)
+                    user.Name = name;
+                if (user.NickName != null)
+                    user.NickName = nickname;
+                if (password != null)
+                    user.Password = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(password));
+                if (role != null)
+                    user.Role = role.Value;
+
+                db.SaveChanges();
             }
         }
     }

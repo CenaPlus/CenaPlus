@@ -1,11 +1,11 @@
-INSERT INTO users (`name`,`password`,role) values ('GasaiYuno',unhex(sha1('GasaiYuno')),1);
-INSERT INTO users (`name`,`password`,role) values ('onetwogoo',unhex(sha1('onetwogoo')),1);
-INSERT INTO users (`name`,`password`,role) values ('user1',unhex(sha1('user1')),0);
-INSERT INTO users (`name`,`password`,role) values ('user2',unhex(sha1('user2')),0);
-INSERT INTO users (`name`,`password`,role) values ('user3',unhex(sha1('user3')),0);
-INSERT INTO users (`name`,`password`,role) values ('user4',unhex(sha1('user4')),0);
-INSERT INTO users (`name`,`password`,role) values ('user5',unhex(sha1('user5')),0);
-INSERT INTO users (`name`,`password`,role) values ('user6',unhex(sha1('user6')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('yuno','Gasai Yuno',unhex(sha1('GasaiYuno')),1);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('onetwogoo','Mr.Phone',unhex(sha1('onetwogoo')),1);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user1','u1',unhex(sha1('user1')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user2','u2',unhex(sha1('user2')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user3','u3',unhex(sha1('user3')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user4','u4',unhex(sha1('user4')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user5','u5',unhex(sha1('user5')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user6','u6',unhex(sha1('user6')),0);
 
 INSERT INTO contests (title, description, start_time, end_time, `type`) values ('OI', 'Sample OI', addtime(now(),'0:1'),addtime(now(),'0:3'),0);
 INSERT INTO contests (title, description, start_time, end_time, `type`) values ('ACM', 'Sample ACM', addtime(now(),'0:2'),addtime(now(),'0:4'),1);

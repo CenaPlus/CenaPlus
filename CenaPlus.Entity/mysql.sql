@@ -8,6 +8,7 @@ CREATE TABLE `users` (
     id int not null auto_increment,
     `name` varchar(20) not null,
     `password` binary(20) not null,
+	nick_name varchar(50) not null,
     role tinyint not null,
     primary key (id),
     unique index (`name`)

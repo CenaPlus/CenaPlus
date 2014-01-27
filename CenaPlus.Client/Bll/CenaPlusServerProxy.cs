@@ -83,5 +83,21 @@ namespace CenaPlus.Client.Bll
         {
             return Channel.GetRecord(id);
         }
+
+        public List<int> GetUserList()
+        {
+            return Channel.GetUserList();
+        }
+
+        public User GetUser(int id)
+        {
+            return Channel.GetUser(id);
+        }
+
+
+        public void UpdateUser(int id, string name, string nickname, string password, UserRole? role)
+        {
+            Channel.UpdateUser(id, name, nickname, password, role);
+        }
     }
 }
