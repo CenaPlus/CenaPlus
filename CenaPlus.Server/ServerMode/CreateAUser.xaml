@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.CreateAUser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Create a user" Style="{StaticResource Heading2}"/>
+                <TextBlock Text="Username"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Nick name"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Password"></TextBlock>
+                <PasswordBox Margin="0,0,0,10"></PasswordBox>
+                <TextBlock Text="Password confirm"></TextBlock>
+                <PasswordBox Margin="0,0,0,10"></PasswordBox>
+                <TextBlock Text="Email address"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Gravatar"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <Button Content="Confirm"></Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

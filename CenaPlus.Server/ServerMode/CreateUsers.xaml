@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.CreateUsers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel HorizontalAlignment="Left" Width="320">
+                <TextBlock Text="Create temporary users" Style="{StaticResource Heading2}"/>
+                <TextBlock Text="User count" />
+                <TextBox Height="23" TextWrapping="Wrap" Text="100" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Text="Username format (Use '@' instead of the serial numbering, a integer after the '@' means the length of numbers, the serial numberring must appear on the end of string.)" />
+                <TextBox Height="23" TextWrapping="Wrap" Text="team@3" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                <TextBlock Text="Password creation mode" />
+                <ComboBox x:Name="PasswordModeComboBox" Width="300" HorizontalAlignment="Left" Margin="0,0,0,10" SelectionChanged="PasswordModeComboBox_SelectionChanged">
+                    <ListBoxItem Content="Defined"/>
+                    <ListBoxItem Content="Random"/>
+                </ComboBox>
+                <StackPanel MinWidth="300" x:Name="DefinedPanel" Visibility="Collapsed">
+                    <TextBlock Text="Password string" />
+                    <TextBox Height="23" TextWrapping="Wrap" Text="" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                </StackPanel>
+                <StackPanel MinWidth="300" x:Name="RandomPanel" Visibility="Collapsed">
+                    <TextBlock Text="Password length" />
+                    <TextBox Height="23" TextWrapping="Wrap" Text="6" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                </StackPanel>
+                <Button x:Name="ConfirmButton" IsEnabled="False" Content="Confirm" HorizontalAlignment="Left" Click="ConfirmButton_Click"></Button>
+            </StackPanel>
+        </ScrollViewer>
+        <TextBox x:Name="ResultTextBox" Visibility="Hidden" Margin="320,0,0,0" IsReadOnly="True" Text="team001 123456&#x000A;team002 123456&#x000A;team003 123456&#x000A;team004 123456"/>
+    </Grid>
+</UserControl>

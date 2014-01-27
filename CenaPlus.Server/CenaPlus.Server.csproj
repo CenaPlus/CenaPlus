@@ -87,10 +87,24 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ServerMode\CreateAUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerMode\CreateUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="ServerMode\CreateAUser.xaml.cs">
+      <DependentUpon>CreateAUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\CreateUsers.xaml.cs">
+      <DependentUpon>CreateUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
