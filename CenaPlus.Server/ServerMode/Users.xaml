@@ -25,10 +25,12 @@
         <StackPanel Margin="410,30,0,30" x:Name="ProfileDisplay" Visibility="Hidden">
             <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
             <TextBlock HorizontalAlignment="Left" Text="Name"></TextBlock>
+            <TextBox x:Name="UsernameTextBox" Margin="0,0,0,10"/>
+            <TextBlock HorizontalAlignment="Left" Text="Name"></TextBlock>
             <TextBox x:Name="NameTextBox" Margin="0,0,0,10"/>
-            <TextBlock HorizontalAlignment="Left" Text="Password" Margin="0,0,0,10"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Text="Password"></TextBlock>
             <PasswordBox Margin="0,0,0,10"/>
-            <Button Content="Save changes" HorizontalAlignment="Left" />
+            <Button Content="Save changes" HorizontalAlignment="Left" Margin="0,0,0,10"/>
         </StackPanel>
         <WrapPanel>
             <TextBox HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" Width="120" Margin="0,0,10,0" />
