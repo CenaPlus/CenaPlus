@@ -8,7 +8,22 @@
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
-
+            <StackPanel>
+                <TextBlock Text="Create a user" Style="{StaticResource Heading2}"/>
+                <TextBlock Text="Username"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Nick name"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Password"></TextBlock>
+                <PasswordBox Margin="0,0,0,10"></PasswordBox>
+                <TextBlock Text="Password confirm"></TextBlock>
+                <PasswordBox Margin="0,0,0,10"></PasswordBox>
+                <TextBlock Text="Email address"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Gravatar"></TextBlock>
+                <TextBox Margin="0,0,0,10"></TextBox>
+                <Button Content="Confirm"></Button>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>

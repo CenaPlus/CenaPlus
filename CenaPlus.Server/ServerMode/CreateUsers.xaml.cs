@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace CenaPlus.Server.ServerMode
 {
@@ -44,6 +45,7 @@ namespace CenaPlus.Server.ServerMode
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             ResultTextBox.Visibility = Visibility.Visible;
+            ModernDialog.ShowMessage("Temporary users are created sucessful.", "Message", MessageBoxButton.OK);
         }
     }
 }
