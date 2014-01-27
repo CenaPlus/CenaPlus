@@ -58,8 +58,34 @@ namespace CenaPlus.Network
         /// Get problem by id
         /// </summary>
         /// <param name="id">problem id</param>
-        /// <returns>contest problem</returns>
+        /// <returns>problem information</returns>
         [OperationContract]
         Problem GetProblem(int id);
+
+        /// <summary>
+        /// Submit a solution.
+        /// </summary>
+        /// <param name="problemID">id of the solved problem</param>
+        /// <param name="code">source code</param>
+        /// <param name="language">language of the code</param>
+        /// <returns>id of the new record</returns>
+        [OperationContract]
+        int Submit(int problemID, string code, ProgrammingLanguage language);
+
+        /// <summary>
+        /// List all records of a contest
+        /// </summary>
+        /// <param name="contestID">id of the contest</param>
+        /// <returns>all record ids of the contest</returns>
+        [OperationContract]
+        List<int> GetRecordList(int contestID);
+
+        /// <summary>
+        /// Get record by id
+        /// </summary>
+        /// <param name="id">record id</param>
+        /// <returns>record information</returns>
+        [OperationContract]
+        Record GetRecord(int id);
     }
 }

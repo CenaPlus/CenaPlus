@@ -12,6 +12,7 @@ using CenaPlus.Server.Dal;
 
 namespace CenaPlus.Server.Bll
 {
+    [ServiceBehavior(UseSynchronizationContext = false, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class LocalCenaServer : ICenaPlusServer
     {
         public User CurrentUser { get; set; }
@@ -104,6 +105,71 @@ namespace CenaPlus.Server.Bll
                     ContestID = problem.ContestID,
                     ContestTitle = problem.Contest.Title,
                     Title = problem.Title
+                };
+            }
+        }
+
+        public int Submit(int problemID, string code, ProgrammingLanguage language)
+        {
+            CheckRole(UserRole.Competitor);
+
+            using (DB db = new DB())
+            {
+                var record = new Record
+                {
+                    Code = code,
+                    Language = language,
+                    ProblemID = problemID,
+                    Status = RecordStatus.Pending,
+                    UserID = CurrentUser.ID
+                };
+
+                db.Records.Add(record);
+                db.SaveChanges();
+                return record.ID;
+            }
+        }
+
+
+        public List<int> GetRecordList(int contestID)
+        {
+            CheckRole(UserRole.Competitor);
+
+            using (DB db = new DB())
+            {
+                var problemIDs = (from p in db.Problems
+                                  where p.ContestID == contestID
+                                  select p.ID).ToList();
+                var recordIDs = from r in db.Records
+                                where problemIDs.Contains(r.ProblemID)
+                                select r.ID;
+                return recordIDs.ToList();
+            }
+        }
+
+
+        public Record GetRecord(int id)
+        {
+            CheckRole(UserRole.Competitor);
+
+            using (DB db = new DB())
+            {
+                var record = db.Records.Find(id);
+                if (record == null) return null;
+                return new Record
+                {
+                    ID = record.ID,
+                    Code = record.Code,
+                    Detail = record.Detail,
+                    Language = record.Language,
+                    MemoryUsage = record.MemoryUsage,
+                    ProblemID = record.ProblemID,
+                    ProblemTitle = record.Problem.Title,
+                    Status = record.Status,
+                    SubmissionTime = record.SubmissionTime,
+                    TimeUsage = record.TimeUsage,
+                    UserID = record.UserID,
+                    UserName = record.User.Name
                 };
             }
         }

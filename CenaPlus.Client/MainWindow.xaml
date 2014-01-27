@@ -21,7 +21,6 @@
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="profile" Source="/Remote/Profile.xaml" />
                 <mui:Link DisplayName="recent contests" Source="/Remote/Tests.xaml" />
-                <mui:Link DisplayName="records" Source="/Remote/Records.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
     </mui:ModernWindow.MenuLinkGroups>

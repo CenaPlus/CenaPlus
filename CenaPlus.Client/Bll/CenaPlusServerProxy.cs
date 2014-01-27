@@ -66,5 +66,22 @@ namespace CenaPlus.Client.Bll
         {
             return Channel.GetProblem(id);
         }
+
+
+        public int Submit(int problemID, string code, ProgrammingLanguage language)
+        {
+            return Channel.Submit(problemID, code, language);
+        }
+
+
+        public List<int> GetRecordList(int contestID)
+        {
+            return Channel.GetRecordList(contestID);
+        }
+
+        public Record GetRecord(int id)
+        {
+            return Channel.GetRecord(id);
+        }
     }
 }

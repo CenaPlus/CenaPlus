@@ -21,6 +21,8 @@ namespace CenaPlus.Client.Remote.Contest
     /// </summary>
     public partial class Submit : UserControl, IContent
     {
+        private int problemID;
+
         public Submit()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace CenaPlus.Client.Remote.Contest
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-
+            problemID = int.Parse(e.Fragment);
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -45,6 +47,12 @@ namespace CenaPlus.Client.Remote.Contest
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            int recordID = App.Server.Submit(problemID, txtCode.Text, (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), (string)lstLanguage.SelectedValue));
+            MessageBox.Show("TODO: navigate to record #" + recordID);
         }
     }
 }

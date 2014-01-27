@@ -57,11 +57,14 @@ namespace CenaPlus.Entity
         [Column("code")]
         public string Code { get; set; }
 
+        [Column("submission_time")]
+        public DateTime SubmissionTime { get; set; }
+
         [Column("time_usage")]
-        public int TimeUsage { get; set; }//in millisecond
+        public int? TimeUsage { get; set; }//in millisecond
 
         [Column("memory_usage")]
-        public long MemoryUsage { get; set; }//in bytes
+        public long? MemoryUsage { get; set; }//in bytes
 
         [Column("detail")]
         public string Detail { get; set; }

@@ -68,6 +68,7 @@ namespace CenaPlus.Client.Remote
             }
 
             App.Server = server;
+            App.HeartBeatTimer.Start();
 
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)

@@ -42,6 +42,7 @@ CREATE TABLE `records` (
     `status` tinyint not null,
     `language` tinyint not null,
     `code` mediumtext not null,
+	submission_time datetime not null,
     time_usage int default null,
     memory_usage bigint default null,
     detail mediumtext default null,

@@ -168,7 +168,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Records.xaml">
+    <Page Include="Remote\Contest\Records.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,7 +188,7 @@
     <Compile Include="Remote\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote\Records.xaml.cs">
+    <Compile Include="Remote\Contest\Records.xaml.cs">
       <DependentUpon>Records.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Settings.xaml.cs">
