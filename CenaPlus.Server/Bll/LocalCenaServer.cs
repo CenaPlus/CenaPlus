@@ -9,16 +9,20 @@ using System.Security.Cryptography;
 using CenaPlus.Network;
 using CenaPlus.Entity;
 using CenaPlus.Server.Dal;
+using System.Data.Objects;
 
 namespace CenaPlus.Server.Bll
 {
-    [ServiceBehavior(UseSynchronizationContext = false, ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(UseSynchronizationContext = false)]
     public class LocalCenaServer : ICenaPlusServer
     {
         public User CurrentUser { get; set; }
 
-        private void CheckRole(UserRole leastRole)
+        private void CheckRole(DB db, UserRole leastRole)
         {
+            db.Users.Attach(CurrentUser);
+            db.Entry(CurrentUser).Reload();
+
             if (CurrentUser == null)
                 throw new AccessDeniedException("Not authenticated");
             if (CurrentUser.Role < leastRole)
@@ -39,6 +43,7 @@ namespace CenaPlus.Server.Bll
                 var user = (from u in db.Users
                             where u.Name == userName && u.Password == pwdHash
                             select u).SingleOrDefault();
+
                 if (user == null)
                 {
                     return false;
@@ -50,20 +55,27 @@ namespace CenaPlus.Server.Bll
 
         public List<int> GetContestList()
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
-                return db.Contests.Select(c => c.ID).ToList();
+                CheckRole(db, UserRole.Competitor);
+
+                IQueryable<Contest> contests = db.Contests;
+                if (CurrentUser.Role != UserRole.Manager)
+                    contests = contests.Where(c => CurrentUser.AssignedContestIDs.Contains(c.ID));
+                var ids = contests.Select(c => c.ID);
+                return ids.ToList();
             }
         }
 
         public Contest GetContest(int id)
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(id))
+                    return null;
+
                 var contest = db.Contests.Find(id);
                 if (contest == null) return null;
                 return new Contest
@@ -80,10 +92,13 @@ namespace CenaPlus.Server.Bll
 
         public List<int> GetProblemList(int contestID)
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new AccessDeniedException();
+
                 return (from p in db.Problems
                         where p.ContestID == contestID
                         select p.ID).ToList();
@@ -92,12 +107,16 @@ namespace CenaPlus.Server.Bll
 
         public Problem GetProblem(int id)
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
+                CheckRole(db, UserRole.Competitor);
+
                 var problem = db.Problems.Find(id);
                 if (problem == null) return null;
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(problem.ContestID))
+                    throw new AccessDeniedException();
+
                 return new Problem
                 {
                     ID = problem.ID,
@@ -111,10 +130,17 @@ namespace CenaPlus.Server.Bll
 
         public int Submit(int problemID, string code, ProgrammingLanguage language)
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
+                CheckRole(db, UserRole.Competitor);
+
+                var problem = db.Problems.Find(problemID);
+                if (problem == null)
+                    throw new NotFoundException();
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(problem.ContestID))
+                    throw new AccessDeniedException();
+
                 var record = new Record
                 {
                     Code = code,
@@ -133,10 +159,13 @@ namespace CenaPlus.Server.Bll
 
         public List<int> GetRecordList(int contestID)
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new AccessDeniedException();
+
                 var problemIDs = (from p in db.Problems
                                   where p.ContestID == contestID
                                   select p.ID).ToList();
@@ -150,12 +179,16 @@ namespace CenaPlus.Server.Bll
 
         public Record GetRecord(int id)
         {
-            CheckRole(UserRole.Competitor);
-
             using (DB db = new DB())
             {
+                CheckRole(db, UserRole.Competitor);
+
                 var record = db.Records.Find(id);
                 if (record == null) return null;
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(record.Problem.ContestID))
+                    return null;
+
                 return new Record
                 {
                     ID = record.ID,

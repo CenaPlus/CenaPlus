@@ -1,3 +1,4 @@
+drop table if exists `user_assigned_contests`;
 drop table if exists `records`;
 drop table if exists `problems`;
 drop table if exists `contests`;
@@ -42,7 +43,7 @@ CREATE TABLE `records` (
     `status` tinyint not null,
     `language` tinyint not null,
     `code` mediumtext not null,
-	submission_time datetime not null,
+    submission_time datetime not null,
     time_usage int default null,
     memory_usage bigint default null,
     detail mediumtext default null,
@@ -54,4 +55,16 @@ CREATE TABLE `records` (
         references problems (id)
         on delete cascade,
     index (`status`)
+)  default charset=utf8;
+
+CREATE TABLE `user_assigned_contests` (
+    user_id int not null,
+    contest_id int not null,
+    primary key (user_id , contest_id),
+    foreign key (user_id)
+        references users (id)
+        on delete cascade,
+    foreign key (contest_id)
+        references contests (id)
+        on delete cascade
 )  default charset=utf8;

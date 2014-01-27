@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using CenaPlus.Server.Bll;
 using CenaPlus.Network;
 using CenaPlus.Client.Bll;
+using CenaPlus.Server.Dal;
 namespace TestNetwork
 {
     class Ca : ICenaPlusServerCallback

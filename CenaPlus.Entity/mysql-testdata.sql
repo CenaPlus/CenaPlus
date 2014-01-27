@@ -22,3 +22,8 @@ INSERT INTO problems (title, content, contest_id) values ('TC A+B','a+b',4);
 INSERT INTO problems (title, content, contest_id) values ('TC C+D','c+d',4);
 
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time) values (1,1,0,0,'#include<con>',now());
+
+INSERT INTO user_assigned_contests (user_id,contest_id) values(3,1);
+INSERT INTO user_assigned_contests (user_id,contest_id) values(3,2);
+INSERT INTO user_assigned_contests (user_id,contest_id) values(4,2);
+INSERT INTO user_assigned_contests (user_id,contest_id) values(4,3);

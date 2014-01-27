@@ -33,6 +33,16 @@ namespace CenaPlus.Entity
             get { return (UserRole)RoleAsInt; }
             set { RoleAsInt = (int)value; }
         }
+
+        [IgnoreDataMember]
+        public virtual ICollection<Contest> AssignedContests { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        public List<int> AssignedContestIDs
+        {
+            get { return AssignedContests.Select(c => c.ID).ToList(); }
+        }
     }
 
     public enum UserRole

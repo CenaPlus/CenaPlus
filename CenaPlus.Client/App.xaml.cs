@@ -36,6 +36,7 @@ namespace CenaPlus.Client
                         Server = null;
                         HeartBeatTimer.Stop();
                         MessageBox.Show("Disconnected from the server", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Application.Current.Shutdown();
                     }
                 }
                 else
