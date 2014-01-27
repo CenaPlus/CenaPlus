@@ -27,6 +27,7 @@
         </WrapPanel>
         <StackPanel x:Name="IdentificationPanel" HorizontalAlignment="Right" Width="280">
             <TextBlock x:Name="IdentificationTextBlock" Text="Choose a server from the left..." Style="{StaticResource Heading2}" Margin="0,0,0,10"></TextBlock>
+            <Image Height="100" Source="http://www.mftp.info/20140103/1390832324x2074489068.png" ></Image>
             <TextBlock Text="Username"></TextBlock>
             <TextBox x:Name="txtUserName" IsEnabled="False" Margin="0,0,0,10"></TextBox>
             <TextBlock Text="Password"></TextBlock>
