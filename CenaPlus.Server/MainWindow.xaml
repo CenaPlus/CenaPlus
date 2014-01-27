@@ -11,8 +11,8 @@
                 <mui:Link DisplayName="Main" Source="/ServerMode/Home.xaml" />
                 <mui:Link DisplayName="Server Settings" Source="/ServerMode/ServerSettings.xaml" />
                 <mui:Link DisplayName="Users Manage" Source="/ServerMode/Users.xaml" />
-                <mui:Link DisplayName="Problems Manage" Source="/ServerMode/Problems.xaml" />
                 <mui:Link DisplayName="Contests Manage" Source="/ServerMode/Contests.xaml" />
+                <mui:Link DisplayName="Problems Manage" Source="/ServerMode/Problems.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Node Mode">

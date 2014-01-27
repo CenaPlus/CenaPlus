@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Security;
 using System.Security.Cryptography;
+using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Entity;
 
 namespace CenaPlus.Server.ServerMode
@@ -48,6 +49,24 @@ namespace CenaPlus.Server.ServerMode
             else
             {
                 ProfileDisplay.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/ServerMode/CreateUsers.xaml", UriKind.Relative);
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/ServerMode/CreateAUser.xaml", UriKind.Relative);
             }
         }
     }

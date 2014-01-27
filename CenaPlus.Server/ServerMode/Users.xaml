@@ -36,8 +36,8 @@
         </WrapPanel>
         <WrapPanel VerticalAlignment="Bottom" Height="26">
             <Button Content="Delete" Width="75" Margin="0,0,10,0"/>
-            <Button Content="Create temp users"  Margin="0,0,10,0"/>
-            <Button Content="Create a normal user" Margin="0,0,10,0"/>
+            <Button Content="Create temp users"  Margin="0,0,10,0" Click="Button_Click"/>
+            <Button Content="Create a normal user" Margin="0,0,10,0" Click="Button_Click_1"/>
         </WrapPanel>
     </Grid>
 </UserControl>
