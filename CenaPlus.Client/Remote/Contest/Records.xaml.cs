@@ -86,5 +86,17 @@ namespace CenaPlus.Client.Remote.Contest
                 }
             }
         }
+
+        private void RecordListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (RecordListBox.SelectedItem != null)
+            {
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/Remote/Contest/Hack.xaml#"+(RecordListBox.SelectedItem as RecordListItem).ID, UriKind.Relative);
+                }
+            }
+        }
     }
 }

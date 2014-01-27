@@ -99,6 +99,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Remote\Hack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings\Compiler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +126,9 @@
     <Compile Include="Bll\CenaPlusServerProxy.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServerDiscoverer.cs" />
+    <Compile Include="Remote\Hack.xaml.cs">
+      <DependentUpon>Hack.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\Compiler.xaml.cs">
       <DependentUpon>Compiler.xaml</DependentUpon>
     </Compile>

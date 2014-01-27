@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="480">
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer Margin="0,40,0,0" VerticalAlignment="Top">
-            <ListBox x:Name="RecordListBox" SelectedValuePath="ID">
+            <ListBox x:Name="RecordListBox" SelectedValuePath="ID" SelectionChanged="RecordListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Height="50">
