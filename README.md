@@ -1,7 +1,7 @@
 CenaPlus
 ========
 
-![Cena Plus Logo](http://www.cenaplus.org/images/Logo.png)
+![Cena Plus Logo](http://www.cenaplus.org/images/Logo.png?v1)
 
 
 ***Cena plus is an online judge system within a local area network.***
