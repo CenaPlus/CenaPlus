@@ -1,15 +1,18 @@
 CenaPlus
 ========
 
-![Cena Plus](http://www.cenaplus.org/images/cenaplus.jpg)
+![Cena Plus](http://www.cenaplus.org/images/Logo.png)
+
 
 ***Cena plus is an online judge system within a local area network.***
+
 
 The project is divided into two parts.
 
 The first part is the server side. It carries the entire competitions service, users can perform maintenance on the competitions information, and test programs on the server. Server supports four competitions format, namely OI, ACM, Codeforces, TopCoder.
 
 The second part is the client. Users can search the LAN server, or manually connect to the Cena + Server on the Internet.
+
 
 ***ScreenShots***
 
