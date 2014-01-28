@@ -12,7 +12,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="#" DisplayMemberBinding="{Binding Rank}" Width="25"/>
-                        <GridViewColumn Header="Who" DisplayMemberBinding="{Binding Nickname}" Width="200"/>
+                        <GridViewColumn Header="Who" DisplayMemberBinding="{Binding Nickname}" Width="100"/>
                         <GridViewColumn Header="AC(oi,acm)/Score(cf,tc)" DisplayMemberBinding="{Binding Item1}" Width="50"/>
                         <GridViewColumn Header="Penalty(oi,acm)/Hack(cf,tc)" DisplayMemberBinding="{Binding Item2}" Width="50"/>
                     </GridView>
