@@ -191,7 +191,7 @@ namespace CenaPlus.Client.Remote
         }
 
 
-        class ServerListItem : IntranetServer
+        private class ServerListItem : IntranetServer
         {
             public int Delay { get; set; }
 

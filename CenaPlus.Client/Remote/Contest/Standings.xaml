@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="CenaPlus.Client.Remote.Contest.Standings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="#" DisplayMemberBinding="{Binding ID}" Width="25"/>
+                        <GridViewColumn Header="Who" DisplayMemberBinding="{Binding ID}" Width="200"/>
+                        <GridViewColumn Header="AC(oi,acm)/Score(cf,tc)" DisplayMemberBinding="{Binding ID}" Width="50"/>
+                        <GridViewColumn Header="Penalty(oi,acm)/Hack(cf,tc)" DisplayMemberBinding="{Binding ID}" Width="50"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

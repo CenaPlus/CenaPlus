@@ -99,6 +99,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Remote\Contest\Standings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Hack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +134,9 @@
     <Compile Include="Bll\CenaPlusServerProxy.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServerDiscoverer.cs" />
+    <Compile Include="Remote\Contest\Standings.xaml.cs">
+      <DependentUpon>Standings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Remote\Hack.xaml.cs">
       <DependentUpon>Hack.xaml</DependentUpon>
     </Compile>
@@ -179,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Contest\Records.xaml">
+    <Page Include="Remote\Contest\Status.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,8 +203,8 @@
     <Compile Include="Remote\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote\Contest\Records.xaml.cs">
-      <DependentUpon>Records.xaml</DependentUpon>
+    <Compile Include="Remote\Contest\Status.xaml.cs">
+      <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>

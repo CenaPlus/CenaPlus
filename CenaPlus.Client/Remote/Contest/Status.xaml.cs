@@ -20,9 +20,9 @@ namespace CenaPlus.Client.Remote.Contest
     /// <summary>
     /// Interaction logic for Records.xaml
     /// </summary>
-    public partial class Records : UserControl, IContent
+    public partial class Status : UserControl, IContent
     {
-        public Records()
+        public Status()
         {
             InitializeComponent();
         }
