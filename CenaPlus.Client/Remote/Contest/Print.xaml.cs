@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace CenaPlus.Client.Remote.Contest
 {
@@ -47,6 +48,22 @@ namespace CenaPlus.Client.Remote.Contest
             {
                 CancelPrintButton.IsEnabled = false;
             }
+        }
+
+        private void PrintTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PrintRequestListBox.SelectedIndex = -1;
+            CancelPrintButton.IsEnabled = false;
+        }
+
+        private void CancelPrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            ModernDialog.ShowMessage("Your request has been canceled.", "Message", MessageBoxButton.OK);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ModernDialog.ShowMessage("Your request has been accepted.", "Message", MessageBoxButton.OK);
         }
     }
     public class PrintRequestListItem

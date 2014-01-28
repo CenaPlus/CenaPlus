@@ -8,7 +8,9 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel MinWidth="200">
-                <Button Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
+                <TextBlock Text="Host name" Margin="0,0,0,5"></TextBlock>
+                <TextBox x:Name="HostnameTextBox" Margin="0,0,0,10" Text="Local Cena+ Server"></TextBox>
+                <Button x:Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

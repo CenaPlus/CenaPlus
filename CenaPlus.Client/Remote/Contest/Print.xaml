@@ -19,15 +19,15 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="25">
-            <Button x:Name="CancelPrintButton" Content="Cancel the request" IsEnabled="False"></Button>
+            <Button x:Name="CancelPrintButton" Content="Cancel the request" IsEnabled="False" Click="CancelPrintButton_Click"></Button>
         </WrapPanel>
         <Grid HorizontalAlignment="Right" Width="280">
             <TextBlock Text="Print board" Style="{StaticResource Heading2}" />
-            <TextBox AcceptsReturn="True" Margin="0,30,0,30"></TextBox>
+            <TextBox x:Name="PrintTextBox" AcceptsReturn="True" Margin="0,30,0,30" GotFocus="PrintTextBox_GotFocus"></TextBox>
             <WrapPanel VerticalAlignment="Bottom" Height="25">
                 <TextBlock Text="Copies" Margin="0,0,10,0"></TextBlock>
                 <TextBox Width="40" Margin="0,0,10,0" Text="1"></TextBox>
-                <Button Content="Print"></Button>
+                <Button Content="Print" Click="Button_Click"></Button>
             </WrapPanel>
         </Grid>
     </Grid>
