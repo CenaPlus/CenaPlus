@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CenaPlus.Client.Remote
+namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Hack.xaml

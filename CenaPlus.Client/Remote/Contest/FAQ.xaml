@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="CenaPlus.Client.Remote.Contest.FAQ"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <Grid>
+        <ListBox x:Name="FAQListBox" Width="400" HorizontalAlignment="Left" SelectionChanged="FAQListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Height="50">
+                        <Image DockPanel.Dock="Left" Width="50" Height="50" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d\=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s\=50"></Image>
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding Question}" FontSize="18" Style="{StaticResource Heading2}" Width="315" Margin="10,0,0,0" />
+                            <TextBlock Text="{Binding Details}" Width="315" Margin="10,0,0,0" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ScrollViewer Margin="420,0,0,180">
+            <StackPanel>
+                <TextBlock Text="Question" Style="{StaticResource Heading2}" Margin="0,0,0,5"></TextBlock>
+                <TextBlock Text="" x:Name="QuestionTextBlock" TextWrapping="Wrap"></TextBlock>
+                <TextBlock Text="Answer" Style="{StaticResource Heading2}" Margin="0,0,0,5"></TextBlock>
+                <TextBlock Text="" x:Name="AnswerTextBlock" TextWrapping="Wrap"></TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Height="165" Margin="420,0,0,0" VerticalAlignment="Bottom">
+            <TextBlock Text="Ask a question" Style="{StaticResource Heading2}" Margin="0,0,0,10"></TextBlock>
+            <TextBlock Text="Content" Margin="0,0,0,5"></TextBlock>
+            <TextBox AcceptsReturn="True" Height="75" Margin="0,0,0,10"></TextBox>
+            <Button Content="Submit"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

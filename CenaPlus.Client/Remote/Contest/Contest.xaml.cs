@@ -32,11 +32,11 @@ namespace CenaPlus.Client.Remote.Contest
             tabLeft.Links.Clear();
             tabLeft.Links.Add(new Link { DisplayName = "description", Source = new Uri("/Remote/Contest/Description.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "problems", Source = new Uri("/Remote/Contest/Problems.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "rank list", Source = new Uri("/Remote/Contest/RankList.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "records", Source = new Uri("/Remote/Contest/Records.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "standings", Source = new Uri("/Remote/Contest/Standings.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "status", Source = new Uri("/Remote/Contest/Status.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "statistics", Source = new Uri("/Remote/Contest/Statistics.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "faq", Source = new Uri("/Remote/Contest/FAQ.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Remote/Contest/PrintService.xaml#" + id, UriKind.Relative) });
+            tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Remote/Contest/Print.xaml#" + id, UriKind.Relative) });
             tabLeft.SelectedSource = new Uri("/Remote/Contest/Description.xaml#" + id, UriKind.Relative);
         }
 

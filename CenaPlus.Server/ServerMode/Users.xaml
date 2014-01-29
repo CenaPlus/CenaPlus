@@ -37,9 +37,9 @@
             <Button Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75"/>
         </WrapPanel>
         <WrapPanel VerticalAlignment="Bottom" Height="26">
-            <Button Name="btnDelete" Content="Delete" Width="75" Margin="0,0,10,0"/>
-            <Button Name="btnCreate" Content="Create" Margin="0,0,10,0" Click="btnCreate_Click"/>
-            <Button Name="btnBatchCreate" Content="Batch Create"  Margin="0,0,10,0" Click="btnBatchCreate_Click"/>
+            <Button x:Name="btnDelete" Content="Delete" IsEnabled="False" Width="75" Margin="0,0,10,0"/>
+            <Button x:Name="btnCreate" Content="Create" Margin="0,0,10,0" Click="btnCreate_Click"/>
+            <Button x:Name="btnBatchCreate" Content="Batch Create"  Margin="0,0,10,0" Click="btnBatchCreate_Click"/>
         </WrapPanel>
     </Grid>
 </UserControl>
