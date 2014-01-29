@@ -11,18 +11,21 @@
             <StackPanel>
                 <TextBlock Text="Create a user" Style="{StaticResource Heading2}"/>
                 <TextBlock Text="Username"></TextBlock>
-                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBox Name="txtName" Margin="0,0,0,10" TextChanged="txtName_TextChanged"></TextBox>
                 <TextBlock Text="Nick name"></TextBlock>
-                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBox Name="txtNickName" Margin="0,0,0,10"></TextBox>
                 <TextBlock Text="Password"></TextBlock>
-                <PasswordBox Margin="0,0,0,10"></PasswordBox>
+                <PasswordBox Name="txtPassword" Margin="0,0,0,10"></PasswordBox>
                 <TextBlock Text="Password confirm"></TextBlock>
-                <PasswordBox Margin="0,0,0,10"></PasswordBox>
+                <PasswordBox Name="txtPasswordConfirm" Margin="0,0,0,10"></PasswordBox>
                 <TextBlock Text="Email address"></TextBlock>
-                <TextBox Margin="0,0,0,10"></TextBox>
+                <TextBox Name="txtEmail" Margin="0,0,0,10" IsEnabled="False" Text="Not supported."></TextBox>
                 <TextBlock Text="Gravatar"></TextBlock>
-                <TextBox Margin="0,0,0,10"></TextBox>
-                <Button Content="Confirm"></Button>
+                <TextBox Name="txtGravatar" Margin="0,0,0,10" IsEnabled="False" Text="Not supported."></TextBox>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="btnCreate" Content="Create" IsDefault="True" Click="btnCreate_Click"></Button>
+                    <Button Name="btnCancel" Content="Cancel" IsCancel="True" Click="btnCancel_Click"></Button>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>

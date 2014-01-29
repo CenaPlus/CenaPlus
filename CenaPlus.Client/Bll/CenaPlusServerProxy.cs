@@ -61,18 +61,15 @@ namespace CenaPlus.Client.Bll
             return Channel.GetProblemList(contestID);
         }
 
-
         public Problem GetProblem(int id)
         {
             return Channel.GetProblem(id);
         }
 
-
         public int Submit(int problemID, string code, ProgrammingLanguage language)
         {
             return Channel.Submit(problemID, code, language);
         }
-
 
         public List<int> GetRecordList(int contestID)
         {
@@ -94,10 +91,19 @@ namespace CenaPlus.Client.Bll
             return Channel.GetUser(id);
         }
 
-
         public void UpdateUser(int id, string name, string nickname, string password, UserRole? role)
         {
             Channel.UpdateUser(id, name, nickname, password, role);
+        }
+
+        public void CreateUser(string name, string nickname, string password, UserRole role)
+        {
+            Channel.CreateUser(name, nickname, password, role);
+        }
+
+        public void DeleteUser(int id)
+        {
+            Channel.DeleteUser(id);
         }
     }
 }

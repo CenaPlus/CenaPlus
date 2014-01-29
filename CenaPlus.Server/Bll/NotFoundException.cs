@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CenaPlus.Server.Bll
 {
-    public class NotFoundException:Exception
+    public class NotFoundException:ClientException
     {
         public NotFoundException() { }
         public NotFoundException(string message) : base(message) { }

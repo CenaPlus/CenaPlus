@@ -30,6 +30,11 @@
             <TextBox x:Name="txtNickName" Margin="0,0,0,10"/>
             <TextBlock HorizontalAlignment="Left" Text="Password(Leave me empty if you don't want to change)"></TextBlock>
             <PasswordBox Name="txtPassword" Margin="0,0,0,10"/>
+            <TextBlock HorizontalAlignment="Left" Text="Role"></TextBlock>
+            <ComboBox Name="lstRole" Margin="0,0,0,10">
+                <ComboBoxItem>Competitor</ComboBoxItem>
+                <ComboBoxItem>Manager</ComboBoxItem>
+            </ComboBox>
             <Button Name="btnSave" Content="Save changes" HorizontalAlignment="Left" Margin="0,0,0,10" Click="btnSave_Click"/>
         </StackPanel>
         <WrapPanel>
@@ -37,7 +42,7 @@
             <Button Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75"/>
         </WrapPanel>
         <WrapPanel VerticalAlignment="Bottom" Height="26">
-            <Button x:Name="btnDelete" Content="Delete" IsEnabled="False" Width="75" Margin="0,0,10,0"/>
+            <Button x:Name="btnDelete" Content="Delete" IsEnabled="False" Width="75" Margin="0,0,10,0" Click="btnDelete_Click"/>
             <Button x:Name="btnCreate" Content="Create" Margin="0,0,10,0" Click="btnCreate_Click"/>
             <Button x:Name="btnBatchCreate" Content="Batch Create"  Margin="0,0,10,0" Click="btnBatchCreate_Click"/>
         </WrapPanel>

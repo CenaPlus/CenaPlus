@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CenaPlus.Server.Bll
 {
-    public class AccessDeniedException:Exception
+    public class AccessDeniedException:ClientException
     {
         public AccessDeniedException() { }
         public AccessDeniedException(string reason) : base(reason) { }

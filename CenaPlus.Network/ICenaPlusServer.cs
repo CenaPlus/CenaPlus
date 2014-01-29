@@ -104,6 +104,12 @@ namespace CenaPlus.Network
         User GetUser(int id);
 
         [OperationContract]
+        void CreateUser(string name, string nickname, string password, UserRole role);
+
+        [OperationContract]
         void UpdateUser(int id, string name, string nickname, string password, UserRole? role);
+
+        [OperationContract]
+        void DeleteUser(int id);
     }
 }

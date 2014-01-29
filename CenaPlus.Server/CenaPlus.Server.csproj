@@ -80,6 +80,7 @@
     </Page>
     <Compile Include="Bll\AccessDeniedException.cs" />
     <Compile Include="Bll\CenaPlusServerHost.cs" />
+    <Compile Include="Bll\ClientException.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Bll\NotFoundException.cs" />

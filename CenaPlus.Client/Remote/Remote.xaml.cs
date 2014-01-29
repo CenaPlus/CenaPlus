@@ -60,7 +60,7 @@ namespace CenaPlus.Client.Remote
                 btnLogin.IsEnabled = true;
                 txtUserName.IsEnabled = true;
                 txtPassword.IsEnabled = true;
-                IdentificationTextBlock.Text = "Sign In";
+                IdentificationTextBlock.Text = "Sign in to "+ (ServerListBox.SelectedItem as ServerListItem).Name;
             }
             else
             {

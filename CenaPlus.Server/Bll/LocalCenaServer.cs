@@ -1,15 +1,14 @@
-﻿using System;
-using System.Reflection;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ServiceModel;
-using System.Security.Cryptography;
+﻿using CenaPlus.Entity;
 using CenaPlus.Network;
-using CenaPlus.Entity;
 using CenaPlus.Server.Dal;
-using System.Data.Objects;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.ServiceModel;
+using System.Text;
 
 namespace CenaPlus.Server.Bll
 {
@@ -261,6 +260,43 @@ namespace CenaPlus.Server.Bll
                     user.Password = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(password));
                 if (role != null)
                     user.Role = role.Value;
+
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                User user = db.Users.Find(id);
+                if (user == null)
+                    throw new NotFoundException();
+
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+        }
+
+
+        public void CreateUser(string name, string nickname, string password, UserRole role)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                if (db.Users.Where(u => u.Name == name).Any())
+                    throw new ClientException("The user already exists");
+
+                db.Users.Add(new User
+                {
+                    Name = name,
+                    NickName = nickname,
+                    Password = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(password)),
+                    Role = role
+                });
 
                 db.SaveChanges();
             }

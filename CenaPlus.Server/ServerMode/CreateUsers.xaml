@@ -9,27 +9,29 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel HorizontalAlignment="Left" Width="320">
-                <TextBlock Text="Create temporary users" Style="{StaticResource Heading2}"/>
+                <TextBlock Text="Batch create users" Style="{StaticResource Heading2}"/>
                 <TextBlock Text="User count" />
-                <TextBox Height="23" TextWrapping="Wrap" Text="100" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Text="Username format (Use '@' instead of the serial numbering, a integer after the '@' means the length of numbers, the serial numberring must appear on the end of string.)" />
-                <TextBox Height="23" TextWrapping="Wrap" Text="team@3" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                <TextBox Name="txtCount" Height="23" TextWrapping="Wrap" Text="100" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Text="User name prefix" />
+                <TextBox Name="txtPrefix" Text="user_" Height="23" TextWrapping="Wrap" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="300" Text="Length of user name postfix numbers"/>
+                <TextBox Name="txtNumberLength" Text="3" Height="23" TextWrapping="Wrap" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
                 <TextBlock Text="Password creation mode" />
                 <ComboBox x:Name="PasswordModeComboBox" Width="300" HorizontalAlignment="Left" Margin="0,0,0,10" SelectionChanged="PasswordModeComboBox_SelectionChanged">
-                    <ListBoxItem Content="Defined"/>
+                    <ListBoxItem Content="Fixed"/>
                     <ListBoxItem Content="Random"/>
                 </ComboBox>
-                <StackPanel MinWidth="300" x:Name="DefinedPanel" Visibility="Collapsed">
-                    <TextBlock Text="Password string" />
-                    <TextBox Height="23" TextWrapping="Wrap" Text="" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                <StackPanel MinWidth="300" x:Name="FixedPanel" Visibility="Collapsed">
+                    <TextBlock Text="Password" />
+                    <TextBox Name="txtPassword" Height="23" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
                 </StackPanel>
                 <StackPanel MinWidth="300" x:Name="RandomPanel" Visibility="Collapsed">
                     <TextBlock Text="Password length" />
-                    <TextBox Height="23" TextWrapping="Wrap" Text="6" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
+                    <TextBox Name="txtPasswordLength" Height="23" TextWrapping="Wrap" Text="6" Width="300" HorizontalAlignment="left" Margin="0,0,0,10"/>
                 </StackPanel>
                 <Button x:Name="ConfirmButton" IsEnabled="False" Content="Confirm" HorizontalAlignment="Left" Click="ConfirmButton_Click"></Button>
             </StackPanel>
         </ScrollViewer>
-        <TextBox x:Name="ResultTextBox" Visibility="Hidden" Margin="320,0,0,0" IsReadOnly="True" Text="team001 123456&#x000A;team002 123456&#x000A;team003 123456&#x000A;team004 123456"/>
+        <TextBox x:Name="ResultTextBox" Margin="320,0,0,0" IsReadOnly="True"/>
     </Grid>
 </UserControl>

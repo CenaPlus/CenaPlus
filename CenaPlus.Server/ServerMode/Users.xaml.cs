@@ -25,6 +25,8 @@ namespace CenaPlus.Server.ServerMode
     /// </summary>
     public partial class Users : UserControl, IContent
     {
+        private List<UserListItem> userList;
+
         public Users()
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace CenaPlus.Server.ServerMode
                 txtName.Text = user.Name;
                 txtNickName.Text = user.NickName;
                 txtPassword.Password = "";
+                lstRole.SelectedIndex = (int)user.Role;
             }
             else
             {
@@ -72,8 +75,16 @@ namespace CenaPlus.Server.ServerMode
             App.Server.UpdateUser(user.ID, txtName.Text, txtNickName.Text, txtPassword.Password == "" ? null : txtPassword.Password, null);
             user.Name = txtName.Text;
             user.NickName = txtNickName.Text;
+            user.Role = (UserRole)lstRole.SelectedIndex;
             UserListBox.Items.Refresh();
             ModernDialog.ShowMessage("User profile saved", "Cena+", MessageBoxButton.OK);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            App.Server.DeleteUser((int)UserListBox.SelectedValue);
+            userList.RemoveAt(UserListBox.SelectedIndex);
+            UserListBox.Items.Refresh();
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -95,7 +106,9 @@ namespace CenaPlus.Server.ServerMode
                            NickName = u.NickName,
                            Role = u.Role
                        };
-            UserListBox.ItemsSource = list;
+            userList = new List<UserListItem>();
+            foreach (var item in list) userList.Add(item);
+            UserListBox.ItemsSource = userList;
         }
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -119,6 +132,8 @@ namespace CenaPlus.Server.ServerMode
                 }
             }
         }
+
+
 
     }
 }
