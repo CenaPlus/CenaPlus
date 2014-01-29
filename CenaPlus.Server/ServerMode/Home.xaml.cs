@@ -32,7 +32,7 @@ namespace CenaPlus.Server.ServerMode
         {
             if (host == null)
             {
-                host = new CenaPlusServerHost(9999, HostnameTextBox.Text);
+                host = new CenaPlusServerHost(Convert.ToInt32(CenaPlusPortTextBox.Text), HostnameTextBox.Text);
                 host.Open();
                 btnTest.Content = "Click to stop";
             }

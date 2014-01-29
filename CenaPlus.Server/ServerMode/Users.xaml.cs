@@ -47,7 +47,7 @@ namespace CenaPlus.Server.ServerMode
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnBatchCreate_Click(object sender, RoutedEventArgs e)
         {
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
@@ -56,23 +56,13 @@ namespace CenaPlus.Server.ServerMode
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
                 frame.Source = new Uri("/ServerMode/CreateAUser.xaml", UriKind.Relative);
             }
-        }
-
-        private void btnBatchCreate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCreate_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

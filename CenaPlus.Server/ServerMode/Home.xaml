@@ -10,6 +10,10 @@
             <StackPanel MinWidth="200">
                 <TextBlock Text="Host name" Margin="0,0,0,5"></TextBlock>
                 <TextBox x:Name="HostnameTextBox" Margin="0,0,0,10" Text="Local Cena+ Server"></TextBox>
+                <TextBlock Text="Cena+ Port" Margin="0,0,0,5"></TextBlock>
+                <TextBox x:Name="CenaPlusPortTextBox" Margin="0,0,0,10" Text="9999"></TextBox>
+                <TextBlock Text="MySQL Port" Margin="0,0,0,5"></TextBlock>
+                <TextBox x:Name="MySQLPortTextBox" Margin="0,0,0,10" Text="3311"></TextBox>
                 <Button x:Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
             </StackPanel>
         </ScrollViewer>

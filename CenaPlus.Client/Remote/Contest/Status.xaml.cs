@@ -74,6 +74,8 @@ namespace CenaPlus.Client.Remote.Contest
                             return "Green";
                         case RecordStatus.CompileError:
                             return "Orange";
+                        case RecordStatus.Pending:
+                            return "Indigo";
                         default:
                             return "Red";
                     }
