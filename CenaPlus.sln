@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.Client", "CenaPlus.Client\CenaPlus.Client.csproj", "{31EB2B83-5F8F-4C3C-8FD5-50C160E4EE88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FCF684F1-4310-4724-89E1-146DEB3C8098}"
@@ -17,6 +19,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.Network", "CenaPlus.Network\CenaPlus.Network.csproj", "{E5E057E8-C266-4676-B86D-48CC97E4BA60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNetwork", "TestNetwork\TestNetwork.csproj", "{DB10E2DB-6A8A-427F-AF77-3046DEE5F40F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.Judge", "CenaPlus.Judge\CenaPlus.Judge.csproj", "{86DC25DF-CC96-4716-A9AD-179594CDCD3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +48,10 @@ Global
 		{DB10E2DB-6A8A-427F-AF77-3046DEE5F40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB10E2DB-6A8A-427F-AF77-3046DEE5F40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB10E2DB-6A8A-427F-AF77-3046DEE5F40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86DC25DF-CC96-4716-A9AD-179594CDCD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86DC25DF-CC96-4716-A9AD-179594CDCD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86DC25DF-CC96-4716-A9AD-179594CDCD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86DC25DF-CC96-4716-A9AD-179594CDCD3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
