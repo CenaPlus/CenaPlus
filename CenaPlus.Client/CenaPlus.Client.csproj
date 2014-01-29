@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Hack.xaml">
+    <Page Include="Remote\Contest\Hack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,7 +158,7 @@
     <Compile Include="Remote\Contest\Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote\Hack.xaml.cs">
+    <Compile Include="Remote\Contest\Hack.xaml.cs">
       <DependentUpon>Hack.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Remote.xaml.cs">

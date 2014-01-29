@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
-    <Grid Style="{StaticResource ContentRoot}">
+    <Grid>
         <TextBlock Text="Requests" Style="{StaticResource Heading2}"></TextBlock>
         <ListBox x:Name="PrintRequestListBox" Margin="0,30,300,30" SelectionChanged="PrintRequestListBox_SelectionChanged">
             <ListBox.ItemTemplate>

@@ -61,7 +61,7 @@ namespace CenaPlus.Client.Remote.Contest
 
         class RecordListItem : Record
         {
-            private const string STATUS_LINE_FORMT = "User: {0} / {1} / {2} ms / {3} KB @{4}";
+            private const string STATUS_LINE_FORMT = "User: {0} / {1} / {2} ms / {3} KB @{4}";//Please put the score in the string if it is OI format
 
             public string StatusColor
             {
@@ -72,6 +72,8 @@ namespace CenaPlus.Client.Remote.Contest
                     {
                         case RecordStatus.Accepted:
                             return "Green";
+                        case RecordStatus.CompileError:
+                            return "Orange";
                         default:
                             return "Red";
                     }

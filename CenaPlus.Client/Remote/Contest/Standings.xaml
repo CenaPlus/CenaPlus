@@ -6,7 +6,7 @@
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
-    <Grid Style="{StaticResource ContentRoot}">
+    <Grid>
         <ScrollViewer>
             <ListView>
                 <ListView.View>

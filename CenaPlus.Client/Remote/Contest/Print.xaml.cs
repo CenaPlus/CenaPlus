@@ -58,7 +58,7 @@ namespace CenaPlus.Client.Remote.Contest
 
         private void CancelPrintButton_Click(object sender, RoutedEventArgs e)
         {
-            ModernDialog.ShowMessage("Your request has been canceled.", "Message", MessageBoxButton.OK);
+            ModernDialog.ShowMessage("The print request has been canceled.", "Message", MessageBoxButton.OK);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,6 +66,7 @@ namespace CenaPlus.Client.Remote.Contest
             ModernDialog.ShowMessage("Your request has been accepted.", "Message", MessageBoxButton.OK);
         }
     }
+    //TODO: Move the entity into the entity layer.
     public class PrintRequestListItem
     {
         public int ID { get; set; }
@@ -77,9 +78,9 @@ namespace CenaPlus.Client.Remote.Contest
         {
             get
             {
-                return String.Format("Length {0}B / {1} Copies / {2}", Content.Length, Copies, Status);
+                return String.Format("Length {0} B / {1} Copies / {2}", Content.Length, Copies, Status);
             }
         }
     }
-    public enum PrintStatus { Pending, Printed };
+    public enum PrintStatus { Pending, Printed, Rejected };
 }
