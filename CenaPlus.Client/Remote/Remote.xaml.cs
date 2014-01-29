@@ -163,6 +163,7 @@ namespace CenaPlus.Client.Remote
         {
             foundServers = new HashSet<EndPoint>();
             discoverer = new ServerDiscoverer();
+            ServerListBox.Items.Clear();
 
             discoverer.FoundServer += (svr) =>
             {
