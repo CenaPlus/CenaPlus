@@ -36,13 +36,14 @@ namespace CenaPlus.Server.ServerMode
             {
                 ProfileDisplay.Visibility = Visibility.Visible;
                 var user = UserListBox.SelectedItem as UserListItem;
-
+                btnDelete.IsEnabled = true;
                 txtName.Text = user.Name;
                 txtNickName.Text = user.NickName;
                 txtPassword.Password = "";
             }
             else
             {
+                btnDelete.IsEnabled = false;
                 ProfileDisplay.Visibility = Visibility.Hidden;
             }
         }
