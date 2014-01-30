@@ -7,36 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer Margin="0,30,20,30" HorizontalAlignment="Left" Width="393">
-            <ListBox x:Name="UserListBox" SelectedValuePath="ID" SelectionChanged="UserListBox_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel Height="50">
-                            <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
-                            <StackPanel HorizontalAlignment="Left">
-                                <TextBlock Margin="10,0,0,0" Text="{Binding Name}" FontSize="18" Style="{StaticResource Heading2}"/>
-                                <TextBlock Margin="10,0,0,0"  Text="{Binding Profile}" />
-                            </StackPanel>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <ListBox x:Name="UserListBox" SelectedValuePath="ID" SelectionChanged="UserListBox_SelectionChanged" Margin="0,30,20,30" HorizontalAlignment="Left" Width="393">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Height="50">
+                        <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Name}" FontSize="18" Style="{StaticResource Heading2}"/>
+                            <TextBlock Margin="10,0,0,0"  Text="{Binding Profile}" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ScrollViewer  Margin="410,30,0,30">
+            <StackPanel x:Name="ProfileDisplay" Visibility="Hidden">
+                <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
+                <TextBlock HorizontalAlignment="Left" Text="Account"></TextBlock>
+                <TextBox x:Name="txtName" Margin="0,0,0,10"/>
+                <TextBlock HorizontalAlignment="Left" Text="Nick Name"></TextBlock>
+                <TextBox x:Name="txtNickName" Margin="0,0,0,10"/>
+                <TextBlock HorizontalAlignment="Left" Text="Password(Leave me empty if you don't want to change)" TextWrapping="Wrap"></TextBlock>
+                <PasswordBox Name="txtPassword" Margin="0,0,0,10"/>
+                <TextBlock HorizontalAlignment="Left" Text="Role"></TextBlock>
+                <ComboBox Name="lstRole" Margin="0,0,0,10">
+                    <ComboBoxItem>Competitor</ComboBoxItem>
+                    <ComboBoxItem>Manager</ComboBoxItem>
+                </ComboBox>
+                <Button Name="btnSave" Content="Save changes" HorizontalAlignment="Left" Margin="0,0,0,10" Click="btnSave_Click"/>
+            </StackPanel>
         </ScrollViewer>
-        <StackPanel Margin="410,30,0,30" x:Name="ProfileDisplay" Visibility="Hidden">
-            <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
-            <TextBlock HorizontalAlignment="Left" Text="Account"></TextBlock>
-            <TextBox x:Name="txtName" Margin="0,0,0,10"/>
-            <TextBlock HorizontalAlignment="Left" Text="Nick Name"></TextBlock>
-            <TextBox x:Name="txtNickName" Margin="0,0,0,10"/>
-            <TextBlock HorizontalAlignment="Left" Text="Password(Leave me empty if you don't want to change)"></TextBlock>
-            <PasswordBox Name="txtPassword" Margin="0,0,0,10"/>
-            <TextBlock HorizontalAlignment="Left" Text="Role"></TextBlock>
-            <ComboBox Name="lstRole" Margin="0,0,0,10">
-                <ComboBoxItem>Competitor</ComboBoxItem>
-                <ComboBoxItem>Manager</ComboBoxItem>
-            </ComboBox>
-            <Button Name="btnSave" Content="Save changes" HorizontalAlignment="Left" Margin="0,0,0,10" Click="btnSave_Click"/>
-        </StackPanel>
         <WrapPanel>
             <TextBox HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" Width="120" Margin="0,0,10,0" />
             <Button Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75"/>

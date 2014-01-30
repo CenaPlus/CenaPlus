@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.ServerSettings.Compilers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel MinWidth="200">
+                <TextBlock Text="Compilers" Style="{StaticResource Heading2}" Margin="0,0,0,10" />
+                <TextBlock Margin="0,0,0,20" Text="WARNING: THE SOURCE FILENAME MUST BE SAME WITH THE BINARY FILENAME. EVERY ARGUMENTS MUST USE BINDING FILENAME EXCEPT JAVA." TextWrapping="Wrap"></TextBlock>
+                <TextBlock Text="C language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtC">gcc -O2 -o {Binding Filename}.exe -DONLINE_JUDGE -Wall -lm --static --std=c99 -fno-asm {Binding Filename}.c</TextBox>
+                <TextBlock Text="C++ language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtCxx">g++ -O2 -o {Binding Filename}.exe -DONLINE_JUDGE -Wall -lm --static --std=c++98 -fno-asm {Binding Filename}.cpp</TextBox>
+                <TextBlock Text="JavaC compile arguments (the source name must be Main.java, do not change!)" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,5" x:Name="TxtJavaC">javac Main.java</TextBox>
+                <TextBlock Text="Java virtual machine start arguments (the class name must be Main, do not change!)" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtJava">java Main</TextBox>
+                <TextBlock Text="Pascal language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtPascal">fpc -O2 -dONLINE_JUDGE {Binding Filename}.pas</TextBox>
+                <TextBlock Text="Python 2.7 language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtPython27">python {Binding Filename}.py</TextBox>
+                <TextBlock Text="Python 3.3 language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtPython33">python {Binding Filename}.py</TextBox>
+                <TextBlock Text="Ruby language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtRuby">ruby {Binding Filename}.rb</TextBox>
+                <Button x:Name="btnSave" Content="Save changes"></Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

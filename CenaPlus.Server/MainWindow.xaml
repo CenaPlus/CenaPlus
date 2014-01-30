@@ -3,21 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
         Title="Cena Plus Server" IsTitleVisible="True"
-        ContentSource="/ServerMode/Home.xaml" Width="1024" Height="650">
+        ContentSource="/ServerMode/Home.xaml" MinWidth="700" MinHeight="500" Width="1024" Height="650">
 
     <mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="Server Mode">
+        <mui:LinkGroup DisplayName="Cena+ server">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Main" Source="/ServerMode/Home.xaml" />
-                <mui:Link DisplayName="Server Settings" Source="/ServerMode/ServerSettings.xaml" />
+                <mui:Link DisplayName="Online Users" Source="/ServerMode/Online.xaml" />
+                <mui:Link DisplayName="Server Settings" Source="/ServerMode/ServerSettings/ServerSettings.xaml" />
                 <mui:Link DisplayName="Users Manage" Source="/ServerMode/Users.xaml" />
                 <mui:Link DisplayName="Contests Manage" Source="/ServerMode/Tests.xaml" />
                 <mui:Link DisplayName="Problems Manage" Source="/ServerMode/Problems.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Node Mode">
+        <mui:LinkGroup DisplayName="Judge node" GroupName="JudgeNode">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="authentication" Source="/NodeMode/Authentication.xaml" />
+                <mui:Link DisplayName="Status" Source="/JudgeNode/Status.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="settings" GroupName="settings">

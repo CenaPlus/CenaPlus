@@ -43,5 +43,23 @@ namespace CenaPlus.Server.ServerMode
                 btnTest.Content = "Click to start";
             }
         }
+
+        private void ModeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ModeComboBox.SelectedIndex > 0)
+            {
+                MySQLPortTextBlock.Visibility = Visibility.Collapsed;
+                MySQLPortTextBox.Visibility = Visibility.Collapsed;
+                AccessTokenTextBlock.Visibility = Visibility.Visible;
+                AccesTokenTextBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MySQLPortTextBlock.Visibility = Visibility.Visible;
+                MySQLPortTextBox.Visibility = Visibility.Visible;
+                AccessTokenTextBlock.Visibility = Visibility.Collapsed;
+                AccesTokenTextBox.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

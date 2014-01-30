@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.Online"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <WrapPanel Height="35" VerticalAlignment="Top">
+            <TextBlock Text="Name" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="QueryBox" Width="120" Margin="0,0,10,0"></TextBox>
+            <Button x:Name="btnQuery" Content="Query"></Button>
+        </WrapPanel>
+        <ListBox Margin="0,35,0,30" x:Name="OnlineListBox" SelectionChanged="OnlineListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Height="50">
+                        <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
+                        <StackPanel HorizontalAlignment="Left">
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Title}" FontSize="18" Style="{StaticResource Heading2}"/>
+                            <TextBlock Margin="10,0,0,0"  Text="{Binding Details}" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <WrapPanel Height="25" VerticalAlignment="Bottom">
+            <Button x:Name="btnKick" Content="Kick" Margin="0,0,10,0" IsEnabled="False"></Button>
+            <Button x:Name="btnBanUser" Content="Ban user" Margin="0,0,10,0" IsEnabled="False"></Button>
+            <Button x:Name="btnBanIP" Content="Ban IP" IsEnabled="False"></Button>
+        </WrapPanel>
+    </Grid>
+</UserControl>

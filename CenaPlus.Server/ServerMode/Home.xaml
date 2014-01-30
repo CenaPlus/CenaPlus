@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
@@ -10,10 +11,17 @@
             <StackPanel MinWidth="200">
                 <TextBlock Text="Host name" Margin="0,0,0,5"></TextBlock>
                 <TextBox x:Name="HostnameTextBox" Margin="0,0,0,10" Text="Local Cena+ Server"></TextBox>
-                <TextBlock Text="Cena+ Port" Margin="0,0,0,5"></TextBlock>
+                <TextBlock Text="Cena+ port" Margin="0,0,0,5"></TextBlock>
                 <TextBox x:Name="CenaPlusPortTextBox" Margin="0,0,0,10" Text="9999"></TextBox>
-                <TextBlock Text="MySQL Port" Margin="0,0,0,5"></TextBlock>
+                <TextBlock x:Name="MySQLPortTextBlock" Text="Database service port" Margin="0,0,0,5"></TextBlock>
                 <TextBox x:Name="MySQLPortTextBox" Margin="0,0,0,10" Text="3311"></TextBox>
+                <TextBlock x:Name="AccessTokenTextBlock" Margin="0,0,0,5" Text="Access token"></TextBlock>
+                <TextBox x:Name="AccesTokenTextBox" Margin="0,0,0,10"></TextBox>
+                <ComboBox x:Name="ModeComboBox" SelectedIndex="0" Margin="0,0,0,10" SelectionChanged="ModeComboBox_SelectionChanged">
+                    <ListBoxItem Content="Full-service"/>
+                    <ListBoxItem Content="private judge node"/>
+                    <ListBoxItem Content="Shared judge node"/>
+                </ComboBox>
                 <Button x:Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
             </StackPanel>
         </ScrollViewer>

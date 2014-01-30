@@ -79,6 +79,6 @@ namespace CenaPlus.Entity
 
     public enum ProgrammingLanguage
     {
-        C, Pascal
+        C, CXX, CXX11, Java, Pascal, Python27, Python33, Ruby
     }
 }

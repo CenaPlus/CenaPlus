@@ -54,6 +54,6 @@ namespace CenaPlus.Entity
         /// <summary>
         /// Internal use only
         /// </summary>
-        System
+        System, Banned
     }
 }

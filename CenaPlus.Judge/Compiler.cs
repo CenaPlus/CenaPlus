@@ -6,5 +6,6 @@ namespace CenaPlus.Judge
 {
     public class Compiler
     {
+
     }
 }
