@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.Judge", "CenaPlus.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core", "CenaPlus.Core\CenaPlus.Core.vcxproj", "{234AE650-2018-4AE6-A3AE-10E43AA35FE7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core.Defender", "CenaPlus.Core.Defender\CenaPlus.Core.Defender.vcxproj", "{967DFB6E-AB63-4BC5-A7DA-6255493317DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,16 @@ Global
 		{234AE650-2018-4AE6-A3AE-10E43AA35FE7}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{234AE650-2018-4AE6-A3AE-10E43AA35FE7}.Release|Win32.ActiveCfg = Release|Win32
 		{234AE650-2018-4AE6-A3AE-10E43AA35FE7}.Release|Win32.Build.0 = Release|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Debug|Win32.Build.0 = Debug|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Any CPU.ActiveCfg = Release|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Win32.ActiveCfg = Release|Win32
+		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

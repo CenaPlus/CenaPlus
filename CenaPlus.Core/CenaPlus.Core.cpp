@@ -40,11 +40,8 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {
 	int nRetCode = 0;
 	const int nSuccess = 0;
-	const int nRuntimeError = 1;
-	const int nTimeLimitExceeded = 2;
-	const int nMemoryLimitExceeded = 3;
-	const int nSystemError = 4;
-	const int nArgcError = 5;
+	const int nSystemError = 1;
+	const int nArgcError = 2;
 
 	HMODULE hModule = ::GetModuleHandle(NULL);
 	HANDLE TimeLimitValidator;
@@ -61,9 +58,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		}
 		else
 		{
-			if (argc != 9)
+			if (argc != 10)
 			{
-				_tprintf(_T("ERROR:  GetModuleHandle failed\n"));
+				_tprintf(_T("ERROR: Missing arguments\n"));
 				nRetCode = nSystemError;
 			}
 			else
@@ -106,19 +103,16 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 					LoadRemoteDLL(ProcessInfo.dwProcessId, argv[8]);
 				LPTHREAD_PARAM pData;
 				pData = (LPTHREAD_PARAM)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(THREAD_PARAM));
-				if (pData != NULL)
-				{
-					pData->ProcessHandle = ProcessInfo.hProcess;
-					pData->TimeLimit = TimeLimit;
-					TimeLimitValidator = CreateThread(
-						NULL,
-						0,
-						TimeLimitValidatorThreadProc,
-						pData,
-						0,
-						&TimeLimitValidatorThreadID
-						);
-				}
+				pData->ProcessHandle = ProcessInfo.hProcess;
+				pData->TimeLimit = TimeLimit;
+				TimeLimitValidator = CreateThread(
+					NULL,
+					0,
+					TimeLimitValidatorThreadProc,
+					pData,
+					0,
+					&TimeLimitValidatorThreadID
+					);
 				ResumeThread(ProcessInfo.hThread);
 				WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
 				GetProcessMemoryInfo(ProcessInfo.hProcess, &ProcessMemoryCounters, sizeof(ProcessMemoryCounters));
@@ -130,23 +124,26 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 					TimeUsed = TimeLimit + 1;
 				CloseHandle(TimeLimitValidator);
 				GetExitCodeProcess(pData->ProcessHandle, &ExitCode);
+				FILETIME CreateTime, ExitTime, KernelTime, UserTime, CurrentTime;
+				GetProcessTimes(ProcessInfo.hProcess, &CreateTime, &ExitTime, &KernelTime, &UserTime);
+				TimeUsed = UserTime.dwLowDateTime / 10000;
 				CString Convert;
-				CString Result = L"<?xml version=\"1.0\" ?>";
-				Result += L"<Result>";
-				Convert = L"";
-				Convert.Format(L"%d", ExitCode);
-				Result += L"    <ExitCode>" + Convert + L"</ExitCode>";
-				Convert = L"";
+				CString Result = CString("<?xml version=\"1.0\" ?>\r\n");
+				Result += CString("<Result>\r\n");
+				Convert = CString("");
+				Convert.Format(CString("%d"), ExitCode);
+				Result += CString("    <ExitCode>") + Convert + CString("</ExitCode>\r\n");
+				Convert = CString("");
 				Convert.Format(L"%d", TimeUsed);
-				Result += L"    <TimeUsed>" + Convert + L"</TimeUsed>";
-				Convert = L"";
+				Result += CString("    <TimeUsed>") + Convert + CString("</TimeUsed>\r\n");
+				Convert = CString("");
 				Convert.Format(L"%d", PagedUsed);
-				Result += L"    <PagedSize>" + Convert + L"</PagedSize>";
-				Convert = L"";
+				Result += CString("    <PagedSize>") + Convert + CString("</ PagedSize>\r\n");
+				Convert = CString("");
 				Convert.Format(L"%d", WorkingSetUsed);
-				Result += L"    <WorkingSet>" + Convert + L"</WorkingSet>";
-				Result += L"</Result>";
-				wcout << Result << endl;
+				Result += CString("    <WorkingSet>") + Convert + CString("</WorkingSet>\r\n");
+				Result += CString("</Result>");
+				wcout << Result.GetString()<< endl;
 				if (argv[9] != CString("NULL"))
 				{
 					CFile XmlFile(argv[9], CFile::modeWrite | CFile::modeCreate);
@@ -165,7 +162,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	return nRetCode;
 }
 
-DWORD static WINAPI TimeLimitValidatorThreadProc(LPVOID lpParam)
+DWORD WINAPI TimeLimitValidatorThreadProc(LPVOID lpParam)
 {
 	LPTHREAD_PARAM pData;
 	pData = (LPTHREAD_PARAM)lpParam;
