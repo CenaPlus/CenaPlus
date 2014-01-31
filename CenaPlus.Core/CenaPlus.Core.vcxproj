@@ -80,9 +80,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="APIHook.h" />
     <ClInclude Include="CenaPlus.Core.h" />
     <ClInclude Include="Resource.h" />

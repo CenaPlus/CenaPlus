@@ -28,6 +28,7 @@ namespace CenaPlus.Network
         /// <param name="password"></param>
         /// <returns>whether authentication success</returns>
         [OperationContract]
+        [FaultContract(typeof(AlreadyLoggedInError))]
         bool Authenticate(string userName, string password);
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace CenaPlus.Network
         /// </summary>
         /// <returns>List of contest ids</returns>
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         List<int> GetContestList();
 
         /// <summary>
@@ -43,6 +45,7 @@ namespace CenaPlus.Network
         /// <param name="id">contest id</param>
         /// <returns>contest information</returns>
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         Contest GetContest(int id);
 
 
@@ -52,6 +55,8 @@ namespace CenaPlus.Network
         /// <param name="contestID">id of the contest</param>
         /// <returns>ids of all problems in the contest</returns>
         [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        [FaultContract(typeof(AccessDeniedError))]
         List<int> GetProblemList(int contestID);
 
         /// <summary>
@@ -60,6 +65,7 @@ namespace CenaPlus.Network
         /// <param name="id">problem id</param>
         /// <returns>problem information</returns>
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         Problem GetProblem(int id);
 
         /// <summary>
@@ -70,6 +76,8 @@ namespace CenaPlus.Network
         /// <param name="language">language of the code</param>
         /// <returns>id of the new record</returns>
         [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        [FaultContract(typeof(AccessDeniedError))]
         int Submit(int problemID, string code, ProgrammingLanguage language);
 
         /// <summary>
@@ -78,6 +86,8 @@ namespace CenaPlus.Network
         /// <param name="contestID">id of the contest</param>
         /// <returns>all record ids of the contest</returns>
         [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        [FaultContract(typeof(AccessDeniedError))]
         List<int> GetRecordList(int contestID);
 
         /// <summary>
@@ -86,6 +96,7 @@ namespace CenaPlus.Network
         /// <param name="id">record id</param>
         /// <returns>record information</returns>
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         Record GetRecord(int id);
 
         /// <summary>
@@ -93,6 +104,7 @@ namespace CenaPlus.Network
         /// </summary>
         /// <returns>ids of users</returns>
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         List<int> GetUserList();
 
         /// <summary>
@@ -101,15 +113,30 @@ namespace CenaPlus.Network
         /// <param name="id">user id</param>
         /// <returns>user information</returns>
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         User GetUser(int id);
 
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         void CreateUser(string name, string nickname, string password, UserRole role);
 
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
         void UpdateUser(int id, string name, string nickname, string password, UserRole? role);
 
         [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
         void DeleteUser(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        List<int> GetOnlineList();
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void Kick(int userID);
     }
 }

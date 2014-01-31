@@ -11,7 +11,7 @@ using CenaPlus.Entity;
 using CenaPlus.Network;
 namespace CenaPlus.Client.Bll
 {
-    public class CenaPlusServerProxy : ClientBase<ICenaPlusServer>, ICenaPlusServer
+    public class CenaPlusServerProxy : DuplexClientBase<ICenaPlusServer>, ICenaPlusServer
     {
 
         private static ServiceEndpoint GetServiceEndPoint(IPEndPoint server)
@@ -104,6 +104,18 @@ namespace CenaPlus.Client.Bll
         public void DeleteUser(int id)
         {
             Channel.DeleteUser(id);
+        }
+
+
+        public List<int> GetOnlineList()
+        {
+            return Channel.GetOnlineList();
+        }
+
+
+        public void Kick(int userID)
+        {
+            Channel.Kick(userID);
         }
     }
 }

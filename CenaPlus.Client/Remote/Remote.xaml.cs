@@ -18,6 +18,7 @@ using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Network;
 using CenaPlus.Client.Bll;
+using System.ServiceModel;
 
 namespace CenaPlus.Client.Remote
 {
@@ -60,7 +61,7 @@ namespace CenaPlus.Client.Remote
                 btnLogin.IsEnabled = true;
                 txtUserName.IsEnabled = true;
                 txtPassword.IsEnabled = true;
-                IdentificationTextBlock.Text = "Sign in to "+ (ServerListBox.SelectedItem as ServerListItem).Name;
+                IdentificationTextBlock.Text = "Sign in to " + (ServerListBox.SelectedItem as ServerListItem).Name;
             }
             else
             {
@@ -135,9 +136,17 @@ namespace CenaPlus.Client.Remote
                 return;
             }
 
-            if (!server.Authenticate(txtUserName.Text, txtPassword.Password))
+            try
             {
-                ModernDialog.ShowMessage("Incorrect user name or password.", "Error", MessageBoxButton.OK);
+                if (!server.Authenticate(txtUserName.Text, txtPassword.Password))
+                {
+                    ModernDialog.ShowMessage("Incorrect user name or password.", "Error", MessageBoxButton.OK);
+                    return;
+                }
+            }
+            catch (FaultException<AlreadyLoggedInError>)
+            {
+                ModernDialog.ShowMessage("This account is online.", "Error", MessageBoxButton.OK);
                 return;
             }
 

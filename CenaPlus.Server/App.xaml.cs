@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.IO;
 using System.Net.Sockets;
 using System.Net;
+using System.Collections.Concurrent;
 using FirstFloor.ModernUI.Presentation;
 using CenaPlus.Network;
 using CenaPlus.Server.Bll;
@@ -22,6 +23,7 @@ namespace CenaPlus.Server
     public partial class App : Application
     {
         public static ICenaPlusServer Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
+        public static Dictionary<int, LocalCenaServer> Clients = new Dictionary<int, LocalCenaServer>();
 
         protected override void OnStartup(StartupEventArgs e)
         {

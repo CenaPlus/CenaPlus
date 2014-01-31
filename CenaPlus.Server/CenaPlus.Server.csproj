@@ -81,12 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Bll\AccessDeniedException.cs" />
     <Compile Include="Bll\CenaPlusServerHost.cs" />
-    <Compile Include="Bll\ClientException.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
-    <Compile Include="Bll\NotFoundException.cs" />
     <Compile Include="Dal\DB.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

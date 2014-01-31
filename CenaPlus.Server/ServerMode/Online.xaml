@@ -12,7 +12,7 @@
             <TextBox x:Name="QueryBox" Width="120" Margin="0,0,10,0"></TextBox>
             <Button x:Name="btnQuery" Content="Query"></Button>
         </WrapPanel>
-        <ListBox Margin="0,35,0,30" x:Name="OnlineListBox" SelectionChanged="OnlineListBox_SelectionChanged">
+        <ListBox Margin="0,35,0,30" x:Name="OnlineListBox" SelectionChanged="OnlineListBox_SelectionChanged" SelectedValuePath="ID">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Height="50">
@@ -26,7 +26,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <WrapPanel Height="25" VerticalAlignment="Bottom">
-            <Button x:Name="btnKick" Content="Kick" Margin="0,0,10,0" IsEnabled="False"></Button>
+            <Button x:Name="btnKick" Content="Kick" Margin="0,0,10,0" IsEnabled="False" Click="btnKick_Click"></Button>
             <Button x:Name="btnBanUser" Content="Ban user" Margin="0,0,10,0" IsEnabled="False"></Button>
             <Button x:Name="btnBanIP" Content="Ban IP" IsEnabled="False"></Button>
         </WrapPanel>

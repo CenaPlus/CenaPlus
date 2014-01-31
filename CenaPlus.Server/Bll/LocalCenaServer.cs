@@ -16,11 +16,34 @@ namespace CenaPlus.Server.Bll
     public class LocalCenaServer : ICenaPlusServer
     {
         public User CurrentUser { get; set; }
+        public InstanceContext Context { get; set; }
+        public ICenaPlusServerCallback Callback { get; set; }
+
+        public LocalCenaServer()
+        {
+            if (OperationContext.Current != null)
+            {
+                Context = OperationContext.Current.InstanceContext;
+                Callback = OperationContext.Current.GetCallbackChannel<ICenaPlusServerCallback>();
+                Context.Closed += InstanceContext_Closed;
+            }
+        }
+
+        void InstanceContext_Closed(object sender, EventArgs e)
+        {
+            if (CurrentUser != null)
+            {
+                lock (App.Clients)
+                {
+                    App.Clients.Remove(CurrentUser.ID);
+                }
+            }
+        }
 
         private void CheckRole(DB db, UserRole leastRole)
         {
             if (CurrentUser == null)
-                throw new AccessDeniedException("Not authenticated");
+                throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "Not authenticated");
 
             // Fake system user need not refreshing
             if (CurrentUser.Role != UserRole.System)
@@ -30,7 +53,7 @@ namespace CenaPlus.Server.Bll
             }
 
             if (CurrentUser.Role < leastRole)
-                throw new AccessDeniedException("Do not have required role.");
+                throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "Do not have the required role.");
         }
 
         public string GetVersion()
@@ -41,6 +64,9 @@ namespace CenaPlus.Server.Bll
 
         public bool Authenticate(string userName, string password)
         {
+            if (CurrentUser != null)
+                return false;
+
             byte[] pwdHash = SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(password));
             using (DB db = new DB())
             {
@@ -52,6 +78,14 @@ namespace CenaPlus.Server.Bll
                 {
                     return false;
                 }
+
+                lock (App.Clients)
+                {
+                    if (App.Clients.ContainsKey(user.ID))
+                        throw new FaultException<AlreadyLoggedInError>(new AlreadyLoggedInError());
+                    App.Clients.Add(user.ID, this);
+                }
+
                 CurrentUser = user;
                 return true;
             }
@@ -101,7 +135,7 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new AccessDeniedException();
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 return (from p in db.Problems
                         where p.ContestID == contestID
@@ -119,7 +153,7 @@ namespace CenaPlus.Server.Bll
                 if (problem == null) return null;
 
                 if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(problem.ContestID))
-                    throw new AccessDeniedException();
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 return new Problem
                 {
@@ -140,10 +174,10 @@ namespace CenaPlus.Server.Bll
 
                 var problem = db.Problems.Find(problemID);
                 if (problem == null)
-                    throw new NotFoundException();
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = problemID, Type = "Problem" });
 
                 if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(problem.ContestID))
-                    throw new AccessDeniedException();
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 var record = new Record
                 {
@@ -168,7 +202,7 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new AccessDeniedException();
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 var problemIDs = (from p in db.Problems
                                   where p.ContestID == contestID
@@ -250,7 +284,7 @@ namespace CenaPlus.Server.Bll
 
                 var user = db.Users.Find(id);
                 if (user == null)
-                    throw new NotFoundException();
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "User" });
 
                 if (name != null)
                     user.Name = name;
@@ -273,7 +307,7 @@ namespace CenaPlus.Server.Bll
 
                 User user = db.Users.Find(id);
                 if (user == null)
-                    throw new NotFoundException();
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "User" });
 
                 db.Users.Remove(user);
                 db.SaveChanges();
@@ -288,7 +322,7 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Manager);
 
                 if (db.Users.Where(u => u.Name == name).Any())
-                    throw new ClientException("The user already exists");
+                    throw new FaultException<ConflictError>(new ConflictError());
 
                 db.Users.Add(new User
                 {
@@ -300,6 +334,40 @@ namespace CenaPlus.Server.Bll
 
                 db.SaveChanges();
             }
+        }
+
+        public List<int> GetOnlineList()
+        {
+            using (DB db= new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+            }
+
+            lock (App.Clients)
+            {
+                return (from c in App.Clients
+                        where c.Value.CurrentUser != null && c.Value.CurrentUser.Role != UserRole.System
+                        select c.Value.CurrentUser.ID).ToList();
+            }
+        }
+
+        public void Kick(int userID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+            }
+
+            LocalCenaServer server;
+            lock(App.Clients){
+                if (!App.Clients.ContainsKey(userID))
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = userID, Type = "OnlineUser" });
+
+                server = App.Clients[userID];
+            }
+
+            server.Callback.Bye();
+            server.Context.Abort();
         }
     }
 }

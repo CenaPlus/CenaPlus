@@ -8,10 +8,9 @@ namespace CenaPlus.Network
     public interface ICenaPlusServerCallback
     {
         /// <summary>
-        /// Pop an advertisement.
+        /// Be kicked out
         /// </summary>
-        /// <param name="ad"></param>
         [OperationContract(IsOneWay = true)]
-        void PopAd(string ad);
+        void Bye();
     }
 }

@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDeniedError.cs" />
+    <Compile Include="AlreadyLoggedInError.cs" />
+    <Compile Include="ConflictError.cs" />
     <Compile Include="ICenaPlusServer.cs" />
     <Compile Include="ICenaPlusServerCallbak.cs" />
+    <Compile Include="NotFoundError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

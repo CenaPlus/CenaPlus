@@ -10,29 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
+using CenaPlus.Entity;
 namespace CenaPlus.Server.ServerMode
 {
     /// <summary>
     /// Interaction logic for Online.xaml
     /// </summary>
-    public partial class Online : UserControl
+    public partial class Online : UserControl, IContent
     {
-        public List<OnlineListItem> OnlineListItems = new List<OnlineListItem>();
+        public List<OnlineListItem> onlineList = new List<OnlineListItem>();
         public Online()
         {
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
-            {
-                OnlineListItem t = new OnlineListItem();
-                t.IP = "127.0.0.1:8888";
-                t.Username = "GasaiYuno";
-                t.Nickname = "Gasai Yuno";
-                OnlineListItems.Add(t);
-            }
-            OnlineListBox.ItemsSource = OnlineListItems;
+            OnlineListBox.ItemsSource = onlineList;
         }
 
         private void OnlineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,24 +43,60 @@ namespace CenaPlus.Server.ServerMode
                 btnKick.IsEnabled = false;
             }
         }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        private void btnKick_Click(object sender, RoutedEventArgs e)
+        {
+            int id =(int) OnlineListBox.SelectedValue;
+            App.Server.Kick(id);
+            onlineList.RemoveAt(OnlineListBox.SelectedIndex);
+            OnlineListBox.Items.Refresh();
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var list = from id in App.Server.GetOnlineList()
+                       let u = App.Server.GetUser(id)
+                       select new OnlineListItem
+                       {
+                           ID = u.ID,
+                           IP = "Unknown",
+                           Name = u.Name,
+                           NickName = u.NickName
+                       };
+            onlineList.Clear();
+            foreach (var item in list) onlineList.Add(item);
+
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+        
     }
-    public class OnlineListItem
+    public class OnlineListItem : User
     {
-        public string Username { get; set; }
-        public string Nickname { get; set; }
         public string IP { get; set; }
         public string Gravatar
         {
-            get 
+            get
             {
                 return @"https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&s=50";
             }
         }
-        public string Title 
+        public string Title
         {
             get
             {
-                return String.Format("{0}({1})", Username, Nickname);
+                return String.Format("{0}({1})", Name, NickName);
             }
         }
         public string Details
