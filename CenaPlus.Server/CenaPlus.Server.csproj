@@ -116,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerMode\ServerSettings\Judgers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ServerMode\ServerSettings\ServerSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +149,9 @@
     </Compile>
     <Compile Include="ServerMode\ServerSettings\Compilers.xaml.cs">
       <DependentUpon>Compilers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\ServerSettings\Judgers.xaml.cs">
+      <DependentUpon>Judgers.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\ServerSettings\ServerSettings.xaml.cs">
       <DependentUpon>ServerSettings.xaml</DependentUpon>
