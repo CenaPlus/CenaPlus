@@ -34,4 +34,6 @@
 #include <Tlhelp32.h>
 #include <Windows.h>
 #include <Psapi.h>
+#include <Sddl.h>
+#include <winnt.h>
 #include "APIHook.h"

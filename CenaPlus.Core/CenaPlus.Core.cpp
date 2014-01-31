@@ -98,6 +98,22 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 					StartupInfo.hStdError = ErrputFile;
 				}
 				StartupInfo.dwFlags |= STARTF_USESTDHANDLES;
+				/*
+					HANDLE hToken;
+					HANDLE hNewToken;
+					PWSTR szIntegritySid = L"S-1-16-4096"; // µÕÕÍ’˚–‘ SID   
+					PSID pIntegritySid = NULL;
+					TOKEN_MANDATORY_LABEL TIL = { 0 };
+					ULONG ExitCode = 0;
+					OpenProcessToken(GetCurrentProcess(), MAXIMUM_ALLOWED, &hToken);
+					DuplicateTokenEx(hToken, MAXIMUM_ALLOWED, NULL, SecurityImpersonation, TokenPrimary, &hNewToken);
+					ConvertStringSidToSid(szIntegritySid, &pIntegritySid);
+					TIL.Label.Attributes = SE_GROUP_INTEGRITY;
+					TIL.Label.Sid = pIntegritySid;
+					SetTokenInformation(hNewToken, TokenIntegrityLevel, &TIL,
+						sizeof(TOKEN_MANDATORY_LABEL)+sizeof(pIntegritySid));
+					CreateProcessAsUser(hNewToken, NULL, argv[1], NULL, NULL, FALSE, 0, NULL, NULL, (LPSTARTUPINFOW)(&StartupInfo), &ProcessInfo);
+				*/
 				CreateProcess(NULL, argv[1], NULL, NULL, TRUE, CREATE_SUSPENDED, NULL, NULL, (LPSTARTUPINFOW)(&StartupInfo), &ProcessInfo);
 				if (CString(argv[8]) != CString(L"NULL"))
 					LoadRemoteDLL(ProcessInfo.dwProcessId, argv[8]);
