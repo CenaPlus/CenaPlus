@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CenaPlus.Client.Remote
 {
     /// <summary>
-    /// Interaction logic for Profile.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Profile : UserControl
+    public partial class Home : UserControl
     {
-        public Profile()
+        public Home()
         {
             InitializeComponent();
         }

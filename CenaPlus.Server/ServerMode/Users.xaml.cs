@@ -124,11 +124,18 @@ namespace CenaPlus.Server.ServerMode
                     return @"https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&s=50";
                 }
             }
-            public string Profile
+            public string Title
+            {
+                get 
+                {
+                    return String.Format("{0}({1})", Name, NickName);
+                }
+            }
+            public string Details
             {
                 get
                 {
-                    return String.Format("{0} / {1} ({2})", Role, Name, NickName);
+                    return String.Format("{0}", Role, Name, NickName);
                 }
             }
         }

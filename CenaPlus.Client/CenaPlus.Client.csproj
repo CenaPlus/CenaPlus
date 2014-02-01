@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Remote\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Remote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +167,9 @@
     </Compile>
     <Compile Include="Remote\Contest\Hack.xaml.cs">
       <DependentUpon>Hack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remote\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Remote.xaml.cs">
       <DependentUpon>Remote.xaml</DependentUpon>
@@ -206,10 +213,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote\Profile.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Remote\Contest\Status.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -223,9 +226,6 @@
     </Compile>
     <Compile Include="Remote\Contest\Problems.xaml.cs">
       <DependentUpon>Problems.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Remote\Profile.xaml.cs">
-      <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Contest\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>

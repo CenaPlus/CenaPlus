@@ -7,20 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="UserListBox" SelectedValuePath="ID" SelectionChanged="UserListBox_SelectionChanged" Margin="0,30,20,30" HorizontalAlignment="Left" Width="393">
+        <ListBox x:Name="UserListBox" SelectedValuePath="ID" SelectionChanged="UserListBox_SelectionChanged" Margin="0,30,20,30" HorizontalAlignment="Left" Width="273">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel Height="50">
-                        <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
+                    <DockPanel Height="34">
+                        <Image DockPanel.Dock="Left" Width="34" Height="34" Source="{Binding Gravatar}"></Image>
                         <StackPanel HorizontalAlignment="Left">
-                            <TextBlock Margin="10,0,0,0" Text="{Binding Name}" FontSize="18" Style="{StaticResource Heading2}"/>
-                            <TextBlock Margin="10,0,0,0"  Text="{Binding Profile}" />
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Title}" FontSize="13" />
+                            <TextBlock Margin="10,0,0,0"  Text="{Binding Details}" FontSize="10" />
                         </StackPanel>
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ScrollViewer  Margin="410,30,0,30">
+        <ScrollViewer  Margin="300,30,0,30">
             <StackPanel x:Name="ProfileDisplay" Visibility="Hidden">
                 <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
                 <TextBlock HorizontalAlignment="Left" Text="Account"></TextBlock>

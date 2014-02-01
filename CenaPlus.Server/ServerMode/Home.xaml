@@ -19,7 +19,7 @@
                     <Button x:Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
                 </StackPanel>
                 <StackPanel x:Name="spJudgeNode">
-                    <TextBlock Text="You need a low power windows-account to run the program that uploaded by competitors." TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="You need a low power windows-account to run the program that uploaded by competitors." TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
                     <TextBlock Text="Username" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
                     <TextBox x:Name="txtWinUser" Margin="0,0,0,10"></TextBox>
                     <TextBlock Text="Password" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
@@ -33,7 +33,7 @@
             </StackPanel>
         </ScrollViewer>
         <StackPanel>
-            <TextBlock Text="Serve role"></TextBlock>
+            <TextBlock Text="Server role"></TextBlock>
             <ComboBox x:Name="ModeComboBox" SelectedIndex="0" Margin="0,0,0,10" SelectionChanged="ModeComboBox_SelectionChanged">
                 <ListBoxItem Content="Full-service"/>
                 <ListBoxItem Content="Judge node"/>

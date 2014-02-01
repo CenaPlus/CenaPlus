@@ -20,7 +20,7 @@
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Cena+" GroupName="MainPanel">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="profile" Source="/Remote/Profile.xaml" />
+                <mui:Link DisplayName="home" Source="/Remote/Home.xaml" />
                 <mui:Link DisplayName="recent contests" Source="/Remote/Tests.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>

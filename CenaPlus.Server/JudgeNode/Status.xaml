@@ -7,11 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
+        <ScrollViewer Margin="0,0,0,30">
             <StackPanel MinWidth="200">
-                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Content goes here" />
+                <TextBlock Text="Center server" Style="{StaticResource Heading2}" />
+                <TextBlock Text="Not found" Margin="0,0,0,20"/>
+                <TextBlock Text="Status" Style="{StaticResource Heading2}" />
+                <TextBlock Text="Idle" Margin="0,0,0,20"/>
+                <TextBlock Text="Pending task count" Style="{StaticResource Heading2}" />
+                <TextBlock Text="0" Margin="0,0,0,20"/>
+                <TextBlock Text="Judged count" Style="{StaticResource Heading2}" />
+                <TextBlock Text="0" Margin="0,0,0,20"/>
+                <TextBlock Text="Error count" Style="{StaticResource Heading2}" />
+                <TextBlock Text="0" Margin="0,0,0,20"/>
             </StackPanel>
         </ScrollViewer>
+        <Button Content="Stop service" VerticalAlignment="Bottom"></Button>
     </Grid>
 </UserControl>

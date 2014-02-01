@@ -156,7 +156,7 @@ namespace CenaPlus.Client.Remote
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/Remote/Profile.xaml", UriKind.Relative);
+                frame.Source = new Uri("/Remote/Home.xaml", UriKind.Relative);
             }
         }
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -209,7 +209,7 @@ namespace CenaPlus.Client.Remote
             {
                 get
                 {
-                    return String.Format("{0} / delay: {1} ms", Location, Delay);
+                    return String.Format("{0} / Delay: {1} ms / Online: 0", Location, Delay);
                 }
             }
         }

@@ -18,12 +18,14 @@
                 <PasswordBox Name="txtPassword" Margin="0,0,0,10"></PasswordBox>
                 <TextBlock Text="Password confirm"></TextBlock>
                 <PasswordBox Name="txtPasswordConfirm" Margin="0,0,0,10"></PasswordBox>
+                <TextBlock Text="Role"></TextBlock>
+                <TextBox Name="txtRole" Margin="0,0,0,10" IsEnabled="False" Text="Not supported."></TextBox>
                 <TextBlock Text="Email address"></TextBlock>
                 <TextBox Name="txtEmail" Margin="0,0,0,10" IsEnabled="False" Text="Not supported."></TextBox>
                 <TextBlock Text="Gravatar"></TextBlock>
                 <TextBox Name="txtGravatar" Margin="0,0,0,10" IsEnabled="False" Text="Not supported."></TextBox>
                 <StackPanel Orientation="Horizontal">
-                    <Button Name="btnCreate" Content="Create" IsDefault="True" Click="btnCreate_Click"></Button>
+                    <Button Name="btnCreate" Content="Create" IsDefault="True" Click="btnCreate_Click" Margin="0,0,10,0"></Button>
                     <Button Name="btnCancel" Content="Cancel" IsCancel="True" Click="btnCancel_Click"></Button>
                 </StackPanel>
             </StackPanel>
