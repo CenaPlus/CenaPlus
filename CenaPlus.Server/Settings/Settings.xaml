@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <mui:ModernTab Layout="List" SelectedSource="/Settings/SettingsAppearance.xaml">
+        <mui:ModernTab Layout="List" SelectedSource="/Settings/Judge.xaml">
             <mui:ModernTab.Links>
+                <mui:Link DisplayName="judge settings" Source="/Settings/Judge.xaml" />
                 <mui:Link DisplayName="appearance" Source="/Settings/SettingsAppearance.xaml" />
                 <mui:Link DisplayName="about" Source="/Settings/About.xaml" />
             </mui:ModernTab.Links>
