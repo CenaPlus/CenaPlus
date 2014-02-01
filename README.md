@@ -25,3 +25,5 @@ The second part is the client. Users can search the LAN server, or manually conn
 ![Cena Plus](http://www.cenaplus.org/images/04.jpg)
 
 ![Cena Plus](http://www.cenaplus.org/images/05.jpg)
+
+![Cena Plus](http://www.cenaplus.org/images/06.png)
