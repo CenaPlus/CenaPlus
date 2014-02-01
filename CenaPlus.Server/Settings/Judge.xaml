@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="CenaPlus.Server.Settings.Judge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel x:Name="spJudgeNode">
+                <TextBlock Text="You need a low power windows-account to run the program that uploaded by competitors." TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+                <TextBlock Text="Username" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+                <TextBox x:Name="txtWinUser" Margin="0,0,0,10"></TextBox>
+                <TextBlock Text="Password" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+                <TextBox x:Name="txtWinPwd" Margin="0,0,0,20"></TextBox>
+                <TextBlock Text="You should create a floder to provide cena+ put some temporary files, and make sure the floder authority supports everyone to write." TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                <TextBox x:Name="txtPath" Margin="0,0,0,20"></TextBox>
+                <TextBlock Text="When the center server contact your node server, you should provide a token." TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                <TextBox x:Name="AccessTokenTextBox" Margin="0,0,0,20"></TextBox>
+                <Button Content="Save changes"></Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
