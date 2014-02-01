@@ -7,23 +7,37 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
+        <ScrollViewer Margin="0,45,0,0">
             <StackPanel MinWidth="200">
-                <TextBlock Text="Host name" Margin="0,0,0,5"></TextBlock>
-                <TextBox x:Name="HostnameTextBox" Margin="0,0,0,10" Text="Local Cena+ Server"></TextBox>
-                <TextBlock Text="Cena+ port" Margin="0,0,0,5"></TextBlock>
-                <TextBox x:Name="CenaPlusPortTextBox" Margin="0,0,0,10" Text="9999"></TextBox>
-                <TextBlock x:Name="MySQLPortTextBlock" Text="Database service port" Margin="0,0,0,5"></TextBlock>
-                <TextBox x:Name="MySQLPortTextBox" Margin="0,0,0,10" Text="3311"></TextBox>
-                <TextBlock x:Name="AccessTokenTextBlock" Margin="0,0,0,5" Text="Access token"></TextBlock>
-                <TextBox x:Name="AccesTokenTextBox" Margin="0,0,0,10"></TextBox>
-                <ComboBox x:Name="ModeComboBox" SelectedIndex="0" Margin="0,0,0,10" SelectionChanged="ModeComboBox_SelectionChanged">
-                    <ListBoxItem Content="Full-service"/>
-                    <ListBoxItem Content="private judge node"/>
-                    <ListBoxItem Content="Shared judge node"/>
-                </ComboBox>
-                <Button x:Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
+                <StackPanel x:Name="spFullService">
+                    <TextBlock Text="Host name" Margin="0,0,0,5"></TextBlock>
+                    <TextBox x:Name="HostnameTextBox" Margin="0,0,0,10" Text="Local Cena+ Server"></TextBox>
+                    <TextBlock Text="Cena+ port" Margin="0,0,0,5"></TextBlock>
+                    <TextBox x:Name="CenaPlusPortTextBox" Margin="0,0,0,10" Text="9999"></TextBox>
+                    <TextBlock x:Name="MySQLPortTextBlock" Text="Database service port" Margin="0,0,0,5"></TextBlock>
+                    <TextBox x:Name="MySQLPortTextBox" Margin="0,0,0,10" Text="3311"></TextBox>
+                    <Button x:Name="btnTest" Click="btnTest_Click" Content="Click to start"/>
+                </StackPanel>
+                <StackPanel x:Name="spJudgeNode">
+                    <TextBlock Text="You need a low power windows-account to run the program that uploaded by competitors." TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                    <TextBlock Text="Username" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+                    <TextBox x:Name="txtWinUser" Margin="0,0,0,10"></TextBox>
+                    <TextBlock Text="Password" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
+                    <TextBox x:Name="txtWinPwd" Margin="0,0,0,20"></TextBox>
+                    <TextBlock Text="You should create a floder to provide cena+ put some temporary files, and make sure the floder authority supports everyone to write." TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                    <TextBox x:Name="txtPath" Margin="0,0,0,20"></TextBox>
+                    <TextBlock Text="When the center server contact your node server, you should provide a token." TextWrapping="Wrap" Margin="0,0,0,10"></TextBlock>
+                    <TextBox x:Name="AccessTokenTextBox" Margin="0,0,0,20"></TextBox>
+                    <Button Content="Start service"></Button>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
+        <StackPanel>
+            <TextBlock Text="Serve role"></TextBlock>
+            <ComboBox x:Name="ModeComboBox" SelectedIndex="0" Margin="0,0,0,10" SelectionChanged="ModeComboBox_SelectionChanged">
+                <ListBoxItem Content="Full-service"/>
+                <ListBoxItem Content="Judge node"/>
+            </ComboBox>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -48,17 +48,13 @@ namespace CenaPlus.Server.ServerMode
         {
             if (ModeComboBox.SelectedIndex > 0)
             {
-                MySQLPortTextBlock.Visibility = Visibility.Collapsed;
-                MySQLPortTextBox.Visibility = Visibility.Collapsed;
-                AccessTokenTextBlock.Visibility = Visibility.Visible;
-                AccesTokenTextBox.Visibility = Visibility.Visible;
+                spFullService.Visibility = Visibility.Collapsed;
+                spJudgeNode.Visibility = Visibility.Visible;
             }
             else
             {
-                MySQLPortTextBlock.Visibility = Visibility.Visible;
-                MySQLPortTextBox.Visibility = Visibility.Visible;
-                AccessTokenTextBlock.Visibility = Visibility.Collapsed;
-                AccesTokenTextBox.Visibility = Visibility.Collapsed;
+                spFullService.Visibility = Visibility.Visible;
+                spJudgeNode.Visibility = Visibility.Collapsed;
             }
         }
     }
