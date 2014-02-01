@@ -15,6 +15,7 @@ using System.Collections.Concurrent;
 using FirstFloor.ModernUI.Presentation;
 using CenaPlus.Network;
 using CenaPlus.Server.Bll;
+using CenaPlus.Entity;
 namespace CenaPlus.Server
 {
     /// <summary>
@@ -22,43 +23,16 @@ namespace CenaPlus.Server
     /// </summary>
     public partial class App : Application
     {
+        public static string ConnectionString;
         public static ICenaPlusServer Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
         public static Dictionary<int, LocalCenaServer> Clients = new Dictionary<int, LocalCenaServer>();
 
+        #region Global Events
+        public event Action<Record> NewRecord;
+        #endregion
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string mySqlPath = Path.Combine(appPath, "mysql");
-
-            bool mySqlRunning = false;
-            if (File.Exists(Path.Combine(mySqlPath, "data\\mysqld.pid")))
-            {
-                mySqlRunning = true;
-                // Try to connect mysql
-                try
-                {
-                    Socket sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    sock.Connect(new IPEndPoint(IPAddress.Loopback, 3311));
-                    sock.Close();
-                }
-                catch
-                {
-                    mySqlRunning = false;
-                    File.Delete(Path.Combine(mySqlPath, "data\\mysqld.pid"));
-                }
-            }
-
-            if (!mySqlRunning)
-            {
-                Process.Start(new ProcessStartInfo
-                {
-                    CreateNoWindow = true,
-                    FileName = Path.Combine(mySqlPath, "bin\\mysqld.exe"),
-                    WorkingDirectory = mySqlPath,
-                    WindowStyle = ProcessWindowStyle.Hidden
-                });
-            }
-
             //Theme Init
             AppearanceManager.Current.AccentColor = Color.FromRgb(0x76, 0x60, 0x8a);
             AppearanceManager.Current.ThemeSource = AppearanceManager.DarkThemeSource;

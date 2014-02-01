@@ -251,7 +251,6 @@ namespace CenaPlus.Server.Bll
             using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Manager);
-
                 return db.Users.Select(u => u.ID).ToList();
             }
         }
@@ -338,7 +337,7 @@ namespace CenaPlus.Server.Bll
 
         public List<int> GetOnlineList()
         {
-            using (DB db= new DB())
+            using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Manager);
             }
@@ -359,7 +358,8 @@ namespace CenaPlus.Server.Bll
             }
 
             LocalCenaServer server;
-            lock(App.Clients){
+            lock (App.Clients)
+            {
                 if (!App.Clients.ContainsKey(userID))
                     throw new FaultException<NotFoundError>(new NotFoundError { ID = userID, Type = "OnlineUser" });
 

@@ -11,7 +11,7 @@ namespace CenaPlus.Client.Bll
     {
         public void Bye()
         {
-            ModernDialog.ShowMessage("You are kicked out.", "Cena+", MessageBoxButton.OK);
+            ModernDialog.ShowMessage("You are kicked out.", "Message", MessageBoxButton.OK);
             Application.Current.Shutdown();
         }
     }

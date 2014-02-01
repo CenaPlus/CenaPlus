@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using CenaPlus.Entity;
-
 namespace CenaPlus.Server.Dal
 {
     public class DB : DbContext
@@ -14,7 +13,8 @@ namespace CenaPlus.Server.Dal
         public DbSet<Problem> Problems { get; set; }
         public DbSet<Record> Records { get; set; }
 
-        public DB() : base("mysqldb") { }
+        public DB() :base("mysqldb") {
+        }
         public DB(string nameOrConnectionString) : base(nameOrConnectionString) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

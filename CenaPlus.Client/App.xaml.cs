@@ -31,7 +31,7 @@ namespace CenaPlus.Client
                     }
                     catch
                     {
-                        try { Server.Close(); }
+                        try { Server.Abort(); }
                         catch { }
                         Server = null;
                         HeartBeatTimer.Stop();

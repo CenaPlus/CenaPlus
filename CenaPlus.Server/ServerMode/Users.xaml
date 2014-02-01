@@ -12,15 +12,13 @@
                 <DataTemplate>
                     <DockPanel Height="50">
                         <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
-                        <StackPanel HorizontalAlignment="Left">
-                            <TextBlock Margin="10,0,0,0" Text="{Binding Name}" FontSize="18" Style="{StaticResource Heading2}"/>
-                            <TextBlock Margin="10,0,0,0"  Text="{Binding Profile}" />
-                        </StackPanel>
+                            <TextBlock  Text="{Binding Name}" FontSize="18" Style="{StaticResource Heading2}"/>
+                            <TextBlock   Text="{Binding Profile}" />
                     </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ScrollViewer  Margin="410,30,0,30">
+        <ScrollViewer Margin="410,30,0,30">
             <StackPanel x:Name="ProfileDisplay" Visibility="Hidden">
                 <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
                 <TextBlock HorizontalAlignment="Left" Text="Account"></TextBlock>
