@@ -1,15 +1,116 @@
-﻿<UserControl x:Class="CenaPlus.Server.ServerMode.ServerSettings.Circulars"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:local="clr-namespace:CenaPlus.Server.ServerMode.ServerSettings" x:Class="CenaPlus.Server.ServerMode.ServerSettings.Circulars"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Style="{StaticResource ContentRoot}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
+                <Setter Property="FontFamily" Value="Palatino Linotype"/>
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="FontSize" Value ="14"/>
+                <Setter Property="CommandTarget" Value="{Binding ElementName=richMain}"/>
+            </Style>
 
-        <TextBlock Text="Circulars" Style="{StaticResource Heading2}" />
-        <RichTextBox AcceptsReturn="True" Margin="0,30,0,30"></RichTextBox>
-        <Button Content="Save changes" Height="25" VerticalAlignment="Bottom"></Button>
+            <Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
+                <Setter Property="Width" Value="30"/>
+                <Setter Property="CommandTarget" Value="{Binding ElementName=richMain}"/>
+            </Style>
+
+
+        </Grid.Resources>
+        <RichTextBox x:Name="richMain" AcceptsTab="True" Margin="0,40,0,40"
+			VerticalScrollBarVisibility="Visible" FontSize="16" >
+            <FlowDocument LineHeight="5"  >
+                <Paragraph/>
+            </FlowDocument>
+        </RichTextBox>
+        <Button Content="Save changes" VerticalAlignment="Bottom"></Button>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Style="{StaticResource formatTextStyle}" Height="30" Command="EditingCommands.ToggleBold" ToolTip="Bold">
+                <TextBlock FontWeight="Bold"><Run Text="B"/></TextBlock>
+            </Button>
+            <Button Style="{StaticResource formatTextStyle}" Height="30" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
+                <TextBlock FontStyle="Italic" FontWeight="Bold"><Run Text="I"/></TextBlock>
+            </Button>
+            <Button Margin="0,0,10,0" Style="{StaticResource formatTextStyle}" Height="30" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
+                <TextBlock TextDecorations="Underline" FontWeight="Bold"><Run Text="U"/></TextBlock>
+            </Button>
+
+
+            <Button Style="{StaticResource formatImageStyle}" Height="30" Command="EditingCommands.AlignLeft" ToolTip="Left">
+                <Image Width="15" Height="15" Source="..\..\Resources\ParagraphLeftJustify.png"/>
+            </Button>
+            <Button Style="{StaticResource formatImageStyle}" Height="30"  Command="EditingCommands.AlignCenter" ToolTip="Center">
+                <Image Width="15" Height="15" Source="..\..\Resources\ParagraphCenterJustify.png"/>
+            </Button>
+            <Button Style="{StaticResource formatImageStyle}" Height="30" Command="EditingCommands.AlignRight" ToolTip="Right">
+                <Image Width="15" Height="15" Source="..\..\Resources\ParagraphRightJustify.png"/>
+            </Button>
+            <Button Style="{StaticResource formatImageStyle}" Height="30" Command="EditingCommands.AlignJustify" ToolTip="Justify">
+                <Image Width="15" Height="15" Source="..\..\Resources\ParagraphFullJustify.png"/>
+            </Button>
+            <Button Style="{StaticResource formatImageStyle}" Height="30" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indentation">
+                <Image Width="15" Height="15" Source="..\..\Resources\ParagraphIncreaseIndentation.png"/>
+            </Button>
+            <Button Margin="0,0,10,0" Style="{StaticResource formatImageStyle}" Height="30" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indentation">
+                <Image Width="15" Height="15" Source="..\..\Resources\ParagraphDecreaseIndentation.png"/>
+            </Button>
+
+            <Button Height="30" Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+                <Image Width="15" Height="15" Source="..\..\Resources\ListBullets.png"/>
+            </Button>
+            <Button Height="30" Margin="0,0,10,0" Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+                <Image Width="15" Height="15" Source="..\..\Resources\ListNumbering.png"/>
+            </Button>
+
+
+            <ComboBox Width="60" Height="30" x:Name="ComboBoxFontColor" HorizontalContentAlignment="Stretch"  
+				SelectionChanged="ComboBoxFontColor_SelectionChanged" SelectedValuePath="Color">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Foreground="{Binding Color}" Background="{Binding Color}" Width="15" Height="15"></Button>
+                            <TextBlock Text="{Binding Color}" FontSize="15" Margin="5,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                <local:ColorSelectionItem Color="None"/>
+                <local:ColorSelectionItem Color="Red"/>
+                <local:ColorSelectionItem Color="Green"/>
+                <local:ColorSelectionItem Color="Blue"/>
+                <local:ColorSelectionItem Color="Yellow"/>
+                <local:ColorSelectionItem Color="Purple"/>
+                <local:ColorSelectionItem Color="Orange"/>
+                <local:ColorSelectionItem Color="Pink"/>
+                <local:ColorSelectionItem Color="Brown"/>
+                <local:ColorSelectionItem Color="LightSkyBlue"/>
+                <local:ColorSelectionItem Color="Gold"/>
+                <local:ColorSelectionItem Color="DarkGray"/>
+                <local:ColorSelectionItem Color="White"/>
+                <local:ColorSelectionItem Color="Black"/>
+
+            </ComboBox>
+            <ComboBox x:Name="ComboBoxFontSize" Height="30"  MinWidth="30" SelectionChanged="ComboBoxFontSize_SelectionChanged" SelectedIndex="2" SelectedValuePath="{Binding Content}">
+                <ListViewItem Content="8"/>
+                <ListViewItem Content="12"/>
+                <ListViewItem Content="16"/>
+                <ListViewItem Content="24"/>
+                <ListViewItem Content="32"/>
+                <ListViewItem Content="36"/>
+                <ListViewItem Content="48"/>
+                <ListViewItem Content="64"/>
+                <ListViewItem Content="72"/>
+            </ComboBox>
+        </StackPanel>
     </Grid>
 </UserControl>
