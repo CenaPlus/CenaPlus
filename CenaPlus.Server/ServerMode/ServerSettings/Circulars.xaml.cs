@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+
 
 namespace CenaPlus.Server.ServerMode.ServerSettings
 {
@@ -50,5 +53,31 @@ namespace CenaPlus.Server.ServerMode.ServerSettings
                 }
             }
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "rich text file|*.rtf";
+            try
+            {
+                if ((bool)save.ShowDialog())
+                {
+                    SaveFile(save.FileName);
+                    MessageBox.Show("保存成功");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private void SaveFile(string path)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+
+            TextRange range = new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd);
+            range.Save(fs, DataFormats.Rtf);
+            fs.Close();
+        } 
     }
 }
