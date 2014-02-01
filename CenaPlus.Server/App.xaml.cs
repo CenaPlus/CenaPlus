@@ -24,7 +24,7 @@ namespace CenaPlus.Server
     public partial class App : Application
     {
         public static string ConnectionString;
-        public static ICenaPlusServer Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
+        public static ICenaPlusServer Server;
         public static Dictionary<int, LocalCenaServer> Clients = new Dictionary<int, LocalCenaServer>();
 
         #region Global Events

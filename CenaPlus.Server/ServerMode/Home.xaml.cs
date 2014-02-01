@@ -17,6 +17,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Server.Bll;
 using CenaPlus.Server.Dal;
 namespace CenaPlus.Server.ServerMode
@@ -62,7 +63,6 @@ namespace CenaPlus.Server.ServerMode
                 return;
             }
 
-            /*
             if (lstMySqlMode.SelectedIndex == -1)
             {
                 ModernDialog.ShowMessage("Please select mysql mode", "Error", MessageBoxButton.OK);
@@ -81,10 +81,22 @@ namespace CenaPlus.Server.ServerMode
                 return;
             }
             App.ConnectionString = connectionString;
-             * */
+
+            using (DB db = new DB())
+            {
+                db.Users.Find(1);
+            }
 
             host = new CenaPlusServerHost(localPort, serverName);
             host.Open();
+
+            App.Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
+
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/ServerMode/Online.xaml", UriKind.Relative);
+            }
         }
 
         private void StartEmbeddedMySQL()
