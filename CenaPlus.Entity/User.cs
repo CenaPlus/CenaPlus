@@ -50,10 +50,10 @@ namespace CenaPlus.Entity
 
     public enum UserRole
     {
-        Competitor, Manager,
+        Banned, Competitor, Manager,
         /// <summary>
         /// Internal use only
         /// </summary>
-        System, Banned
+        System
     }
 }

@@ -1,16 +1,16 @@
-INSERT INTO users (`name`,nick_name,`password`,role) values ('yuno','Gasai Yuno',unhex(sha1('GasaiYuno')),1);
-INSERT INTO users (`name`,nick_name,`password`,role) values ('onetwogoo','Mr.Phone',unhex(sha1('onetwogoo')),1);
-INSERT INTO users (`name`,nick_name,`password`,role) values ('user1','u1',unhex(sha1('user1')),0);
-INSERT INTO users (`name`,nick_name,`password`,role) values ('user2','u2',unhex(sha1('user2')),0);
-INSERT INTO users (`name`,nick_name,`password`,role) values ('user3','u3',unhex(sha1('user3')),0);
-INSERT INTO users (`name`,nick_name,`password`,role) values ('user4','u4',unhex(sha1('user4')),0);
-INSERT INTO users (`name`,nick_name,`password`,role) values ('user5','u5',unhex(sha1('user5')),0);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('yuno','Gasai Yuno',unhex(sha1('GasaiYuno')),2);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('onetwogoo','Mr.Phone',unhex(sha1('onetwogoo')),2);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user1','u1',unhex(sha1('user1')),1);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user2','u2',unhex(sha1('user2')),1);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user3','u3',unhex(sha1('user3')),1);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user4','u4',unhex(sha1('user4')),1);
+INSERT INTO users (`name`,nick_name,`password`,role) values ('user5','u5',unhex(sha1('user5')),1);
 INSERT INTO users (`name`,nick_name,`password`,role) values ('user6','u6',unhex(sha1('user6')),0);
 
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('OI', 'Sample OI', addtime(now(),'0:1'),addtime(now(),'0:3'),0);
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('ACM', 'Sample ACM', addtime(now(),'0:2'),addtime(now(),'0:4'),1);
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('CF', 'Sample CF', addtime(now(),'0:3'),addtime(now(),'0:5'),2);
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('TC', 'Sample TC', addtime(now(),'0:4'),addtime(now(),'0:6'),3);
+INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample OI', 'Sample OI', addtime(now(),'0:1'),addtime(now(),'0:3'),0);
+INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample ACM', 'Sample ACM', addtime(now(),'0:2'),addtime(now(),'0:4'),1);
+INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample CF', 'Sample CF', addtime(now(),'0:3'),addtime(now(),'0:5'),2);
+INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample TC', 'Sample TC', addtime(now(),'0:4'),addtime(now(),'0:6'),3);
 
 INSERT INTO problems (title, content, contest_id) values ('OI A+B','a+b',1); 
 INSERT INTO problems (title, content, contest_id) values ('OI C+D','c+d',1);
@@ -27,3 +27,8 @@ INSERT INTO user_assigned_contests (user_id,contest_id) values(3,1);
 INSERT INTO user_assigned_contests (user_id,contest_id) values(3,2);
 INSERT INTO user_assigned_contests (user_id,contest_id) values(4,2);
 INSERT INTO user_assigned_contests (user_id,contest_id) values(4,3);
+
+INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (3,2,now(),0,'How to ask a question?',null);
+INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (4,2,addtime(now(),'0:1'),1,'Why are these problems so easy?','Because the competitors are so weak.');
+INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (5,2,addtime(now(),'0:2'),2,'How to solve this knapsack problem?','By means of a DP algorithm.');
+INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (6,2,addtime(now(),'0:3'),3,'Fxxk your mother!','Keep silence or I will ban you out!');

@@ -369,5 +369,48 @@ namespace CenaPlus.Server.Bll
             server.Callback.Bye();
             server.Context.Abort();
         }
+
+
+        public List<int> GetQuestionList(int contestID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                /*
+                Contest contest = db.Contests.Find(contestID);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
+                */
+                return (from q in db.Questions
+                        where q.ContestID == contestID
+                        where CurrentUser.Role >= UserRole.Manager
+                            || q.AskerID == CurrentUser.ID || q.Status == QuestionStatus.Public
+                        select q.ID).ToList();
+            }
+        }
+
+        public Question GetQuestion(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                Question question = db.Questions.Find(id);
+                if (question == null) return null;
+
+                bool accessGranted=false;
+                if (CurrentUser.Role >= UserRole.Manager)
+                    accessGranted = true;
+                if (!accessGranted && !CurrentUser.AssignedContestIDs.Contains(question.ContestID))
+                    accessGranted = false;
+
+                //TODO Not Finished
+                return null;
+            }
+        }
     }
 }

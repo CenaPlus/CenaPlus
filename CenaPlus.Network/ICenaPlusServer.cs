@@ -99,6 +99,15 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         Record GetRecord(int id);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        List<int> GetQuestionList(int contestID);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        Question GetQuestion(int id);
+
         /// <summary>
         /// List all users
         /// </summary>

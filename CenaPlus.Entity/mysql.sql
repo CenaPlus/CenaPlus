@@ -1,3 +1,4 @@
+drop table if exists `questions`;
 drop table if exists `user_assigned_contests`;
 drop table if exists `records`;
 drop table if exists `problems`;
@@ -8,7 +9,7 @@ CREATE TABLE `users` (
     id int not null auto_increment,
     `name` varchar(20) not null,
     `password` binary(20) not null,
-	nick_name varchar(50) not null,
+    nick_name varchar(50) not null,
     role tinyint not null,
     primary key (id),
     unique index (`name`)
@@ -67,5 +68,22 @@ CREATE TABLE `user_assigned_contests` (
         on delete cascade,
     foreign key (contest_id)
         references contests (id)
+        on delete cascade
+)  default charset=utf8;
+
+CREATE TABLE `questions` (
+    id int not null auto_increment,
+    asker_id int not null,
+    contest_id int not null,
+    `time` datetime not null,
+    `status` tinyint not null,
+    description mediumtext not null,
+    answer mediumtext default null,
+    primary key (id),
+    foreign key (contest_id)
+        references contests (id)
+        on delete cascade,
+    foreign key (asker_id)
+        references users (id)
         on delete cascade
 )  default charset=utf8;

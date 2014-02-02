@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 
-
 namespace CenaPlus.Server.ServerMode.ServerSettings
 {
 

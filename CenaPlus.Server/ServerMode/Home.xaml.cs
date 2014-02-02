@@ -77,7 +77,7 @@ namespace CenaPlus.Server.ServerMode
             }
             else
             {
-                ModernDialog.ShowMessage("Not Supported","",MessageBoxButton.OK);
+                ModernDialog.ShowMessage("Not Supported", "", MessageBoxButton.OK);
                 return;
             }
             App.ConnectionString = connectionString;
@@ -136,7 +136,25 @@ namespace CenaPlus.Server.ServerMode
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
+            IPAddress address;
+            try
+            {
+                address = Dns.GetHostAddresses(txtAddr.Text)[0];
+            }
+            catch
+            {
+                ModernDialog.ShowMessage("Incorrect server address", "Error", MessageBoxButton.OK);
+                return;
+            }
 
+            int port;
+            if (!int.TryParse(txtRemotePort.Text, out port))
+            {
+                ModernDialog.ShowMessage("Port must be an integer", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            ModernDialog.ShowMessage("NotSupported", "Error", MessageBoxButton.OK);
         }
     }
 }

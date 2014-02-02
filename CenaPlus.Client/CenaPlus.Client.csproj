@@ -102,7 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Remote\Contest\FAQ.xaml">
+    <Page Include="Remote\Contest\Questions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,8 +153,8 @@
     <Compile Include="Bll\CenaPlusServerProxy.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServerDiscoverer.cs" />
-    <Compile Include="Remote\Contest\FAQ.xaml.cs">
-      <DependentUpon>FAQ.xaml</DependentUpon>
+    <Compile Include="Remote\Contest\Questions.xaml.cs">
+      <DependentUpon>Questions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Contest\Print.xaml.cs">
       <DependentUpon>Print.xaml</DependentUpon>

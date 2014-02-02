@@ -57,6 +57,7 @@
     <Compile Include="Contest.cs" />
     <Compile Include="Problem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
