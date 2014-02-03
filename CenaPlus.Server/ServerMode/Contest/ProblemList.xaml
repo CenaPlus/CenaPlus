@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
         <ListView Margin="0,0,0,30" x:Name="ProblemListView">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
                     <GridViewColumn Header="#" DisplayMemberBinding="{Binding Number}" Width="30"/>
-                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="120"/>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="240"/>
                     <GridViewColumn Header="Test cases" DisplayMemberBinding="{Binding TestCasesCount}" Width="70"/>
                     <GridViewColumn Header="Pts" DisplayMemberBinding="{Binding Point}" Width="70"/>
                 </GridView>
