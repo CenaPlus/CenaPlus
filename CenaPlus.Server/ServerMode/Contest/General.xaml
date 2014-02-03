@@ -28,6 +28,9 @@
                     <ListBoxItem Content="Codeforces format"/>
                     <ListBoxItem Content="TopCoder format"/>
                 </ComboBox>
+
+                <TextBlock Text="Accept print requests" Margin="0,0,0,5" />
+                <CheckBox Content="Allow" Margin="0,0,0,20"></CheckBox>
                 
                 <Button Content="Save changes"></Button>
             </StackPanel>

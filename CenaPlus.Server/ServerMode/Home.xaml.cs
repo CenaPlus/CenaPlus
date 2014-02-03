@@ -36,6 +36,7 @@ namespace CenaPlus.Server.ServerMode
 
         private void lstMySqlMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (lblMySQLAddr == null) return;
             if (lstMySqlMode.SelectedIndex == 1)
             {
                 lblMySQLAddr.Visibility = System.Windows.Visibility.Visible;

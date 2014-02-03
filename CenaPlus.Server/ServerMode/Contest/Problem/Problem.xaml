@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.Contest.Problem.Problem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <Grid>
+        <!-- TODO: set @SelectedSource -->
+        <mui:ModernTab Layout="Tab" SelectedSource="/ServerMode/Contest/Problem/General.xaml">
+            <mui:ModernTab.Links>
+                <!-- TODO: set @Source -->
+                <mui:Link DisplayName="General" Source="/ServerMode/Contest/Problem/General.xaml" />
+                <mui:Link DisplayName="Content" Source="/ServerMode/Contest/Problem/Content.xaml" />
+                <mui:Link DisplayName="Test cases" Source="/ServerMode/Contest/Problem/TestCases.xaml" />
+                <mui:Link DisplayName="SPJ" Source="/ServerMode/Contest/Problem/SpecialJudge.xaml" />
+                <mui:Link DisplayName="Range validator" Source="/ServerMode/Contest/Problem/RangeValidator.xaml" />
+                <mui:Link DisplayName="Std source" Source="/ServerMode/Contest/Problem/StandardSource.xaml" />
+            </mui:ModernTab.Links>
+        </mui:ModernTab>
+    </Grid>
+</UserControl>
