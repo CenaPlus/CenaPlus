@@ -18,7 +18,6 @@
                 <mui:Link DisplayName="Server Settings" Source="/ServerMode/ServerSettings/ServerSettings.xaml" />
                 <mui:Link DisplayName="Users Manage" Source="/ServerMode/Users.xaml" />
                 <mui:Link DisplayName="Contests Manage" Source="/ServerMode/Tests.xaml" />
-                <mui:Link DisplayName="Problems Manage" Source="/ServerMode/Problems.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Cena+ Judge Node" GroupName="JudgeMode">

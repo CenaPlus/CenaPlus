@@ -37,7 +37,7 @@ namespace CenaPlus.Client.Remote
             }
             ContestListBox.SelectedIndex = -1;
         }
-
+        //TODO: Change the class name to 'ContestListItem'
         public class ContestList : CenaPlus.Entity.Contest
         {
             private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";

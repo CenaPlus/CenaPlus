@@ -97,7 +97,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ServerMode\Contest\Main.xaml">
+    <Page Include="ServerMode\Contest\Contest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerMode\Contest\Description.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerMode\Contest\General.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,8 +145,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="ServerMode\Contest\Main.xaml.cs">
-      <DependentUpon>Main.xaml</DependentUpon>
+    <Compile Include="RichTextEditor\Module.cs" />
+    <Compile Include="ServerMode\Contest\Contest.xaml.cs">
+      <DependentUpon>Contest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\Contest\Description.xaml.cs">
+      <DependentUpon>Description.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\Contest\General.xaml.cs">
+      <DependentUpon>General.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\CreateAUser.xaml.cs">
       <DependentUpon>CreateAUser.xaml</DependentUpon>

@@ -56,6 +56,6 @@ namespace CenaPlus.Entity
 
     public enum QuestionStatus
     {
-        Pending, Private, Public,Rejected
+        Pending, Private, Public, Rejected
     }
 }

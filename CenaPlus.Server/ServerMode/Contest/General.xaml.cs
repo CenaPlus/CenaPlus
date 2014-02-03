@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CenaPlus.Server.ServerMode.Contest
 {
     /// <summary>
-    /// Interaction logic for Main.xaml
+    /// Interaction logic for General.xaml
     /// </summary>
-    public partial class Main : UserControl
+    public partial class General : UserControl
     {
-        public Main()
+        public General()
         {
             InitializeComponent();
         }

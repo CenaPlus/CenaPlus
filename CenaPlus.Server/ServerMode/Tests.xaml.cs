@@ -21,9 +21,20 @@ namespace CenaPlus.Server.ServerMode
     /// </summary>
     public partial class Tests : UserControl
     {
+        public List<ContestListItem> ContestListItems = new List<ContestListItem>();
         public Tests()
         {
             InitializeComponent();
+            for (int i = 0; i < 10; i++)
+            {
+                ContestListItem t = new ContestListItem();
+                t.StartTime = Convert.ToDateTime("2014-2-3 10:00");
+                t.EndTime = Convert.ToDateTime("2014-2-3 14:00");
+                t.Type = Entity.ContestType.Codeforces;
+                t.Title = "Cena+ Round #" + (i + 1).ToString();
+                ContestListItems.Add(t);
+            }
+            ContestListBox.ItemsSource = ContestListItems;
         }
 
         private void ModifyButton_Click(object sender, RoutedEventArgs e)
@@ -31,7 +42,7 @@ namespace CenaPlus.Server.ServerMode
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/ServerMode/Contest/Main.xaml", UriKind.Relative);
+                frame.Source = new Uri("/ServerMode/Contest/Contest.xaml#" + (ContestListBox.SelectedItem as ContestListItem).ID, UriKind.Relative);
             }
         }
 
@@ -46,6 +57,17 @@ namespace CenaPlus.Server.ServerMode
             {
                 ModifyButton.IsEnabled = false;
                 DeleteButton.IsEnabled = false;
+            }
+        }
+    }
+    public class ContestListItem : CenaPlus.Entity.Contest
+    {
+        private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
+        public string Detail
+        {
+            get
+            {
+                return String.Format(DetailTemplate, StartTime, (Duration.TotalSeconds / 60 / 60).ToString("0.0"), Type);
             }
         }
     }

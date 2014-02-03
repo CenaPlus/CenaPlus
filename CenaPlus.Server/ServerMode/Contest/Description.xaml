@@ -1,14 +1,13 @@
-﻿<UserControl
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.Contest.Description"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CenaPlus.Server.RichTextEditor"
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-             xmlns:local="clr-namespace:CenaPlus.Server.RichTextEditor" 
-             x:Class="CenaPlus.Server.ServerMode.ServerSettings.Circulars"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Style="{StaticResource ContentRoot}">
         <Grid.Resources>
             <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
                 <Setter Property="FontFamily" Value="Palatino Linotype"/>
@@ -28,7 +27,7 @@
                 <Paragraph/>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="btnSave" Content="Save changes" VerticalAlignment="Bottom" Click="btnSave_Click"></Button>
+        <Button x:Name="btnSave" Content="Save changes" VerticalAlignment="Bottom"></Button>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <Button Style="{StaticResource formatTextStyle}" Height="30" Command="EditingCommands.ToggleBold" ToolTip="Bold">
                 <TextBlock FontWeight="Bold"><Run Text="B"/></TextBlock>
