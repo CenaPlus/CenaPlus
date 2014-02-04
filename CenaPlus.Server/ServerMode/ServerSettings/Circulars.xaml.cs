@@ -72,6 +72,8 @@ namespace CenaPlus.Server.ServerMode.ServerSettings
             TextRange range = new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd);
             range.Save(fs, DataFormats.Rtf);
             fs.Close();
-        } 
+        }
+
+        //http://www.csharpwin.com/csharpspace/10836r4358.shtml insert local pic
     }
 }

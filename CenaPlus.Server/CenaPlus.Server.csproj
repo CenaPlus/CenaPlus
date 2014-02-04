@@ -113,6 +113,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerMode\Contest\Problem\Code.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ServerMode\Contest\Problem\Content.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +181,9 @@
     </Compile>
     <Compile Include="ServerMode\Contest\ProblemList.xaml.cs">
       <DependentUpon>ProblemList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\Contest\Problem\Code.xaml.cs">
+      <DependentUpon>Code.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\Contest\Problem\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
