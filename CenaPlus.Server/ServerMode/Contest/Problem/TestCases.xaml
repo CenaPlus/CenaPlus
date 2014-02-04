@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.Contest.Problem.TestCases"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ListView Margin="0,0,0,30" Width="300" x:Name="TestCasesListView" HorizontalAlignment="Left" SelectionChanged="TestCasesListView_SelectionChanged">
+            <ListView.View>
+                <GridView x:Name="StatisticsGridView">
+                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding Index}" Width="30"/>
+                    <GridViewColumn Header="Input" DisplayMemberBinding="{Binding InputSize}" Width="80"/>
+                    <GridViewColumn Header="Output" DisplayMemberBinding="{Binding OutputSize}" Width="80"/>
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="25">
+            <Button Content="Create" x:Name="btnCreate" Margin="0,0,10,0" Click="btnCreate_Click"></Button>
+            <Button Content="Batch create" x:Name="btnBatch" Margin="0,0,10,0" Click="btnBatch_Click"></Button>
+        </WrapPanel>
+        <ScrollViewer Margin="320,0,0,0">
+            <Grid>
+                <StackPanel x:Name="SinglePanel" Visibility="Collapsed">
+                    <TextBlock Text="Input" Margin="0,0,0,5"></TextBlock>
+                    <TextBox AcceptsReturn="True" Height="80" Margin="0,0,0,20"></TextBox>
+                    <TextBlock Text="Output" Margin="0,0,0,5"></TextBlock>
+                    <TextBox AcceptsReturn="True" Height="80" Margin="0,0,0,20"></TextBox>
+                    <TextBlock>From file</TextBlock>
+                    <WrapPanel Margin="0,0,0,20">
+                        <TextBox Width="200" Margin="0,0,10,0"></TextBox>
+                        <Button x:Name="btnFileDialog">...</Button>
+                    </WrapPanel>
+                    <TextBlock Text="Case status (CF, TC format only)" Margin="0,0,0,5"></TextBlock>
+                    <CheckBox Content="Pretest" Margin="0,0,0,20"></CheckBox>
+                    <Button x:Name="btnDelete" Content="Delete this case" Margin="0,0,0,10" Click="btnDelete_Click"/>
+                    <Button Content="Save changes"></Button>
+                </StackPanel>
+                <StackPanel x:Name="BatchPanel" Visibility="Collapsed">
+                    <TextBlock Text="Floder directory" Margin="0,0,0,5"></TextBlock>
+                    <WrapPanel Margin="0,0,0,20">
+                        <TextBox Width="200" Margin="0,0,10,0"></TextBox>
+                        <Button Content="..." x:Name="FloderDialog"></Button>
+                    </WrapPanel>
+                    <Button x:Name="btnBatchInsert" Content="BatchInsert"></Button>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

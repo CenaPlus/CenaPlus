@@ -24,5 +24,29 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         {
             InitializeComponent();
         }
+        private void ComboBoxFontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!richMain.Selection.IsEmpty)
+            {
+                richMain.Selection.ApplyPropertyValue(RichTextBox.FontSizeProperty, Convert.ToDouble((ComboBoxFontSize.SelectedItem as ListViewItem).Content));
+            }
+            richMain.Focus();
+        }
+        private void ComboBoxFontColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!richMain.Selection.IsEmpty)
+            {
+                TextRange range = new TextRange(richMain.Selection.Start, richMain.Selection.End);
+                if (ComboBoxFontColor.SelectedValue.ToString() != "None")
+                {
+                    Brush b = (Brush)new BrushConverter().ConvertFromString(ComboBoxFontColor.SelectedValue.ToString());
+                    range.ApplyPropertyValue(RichTextBox.ForegroundProperty, b);
+                }
+                else
+                {
+                    range.ClearAllProperties();
+                }
+            }
+        }
     }
 }
