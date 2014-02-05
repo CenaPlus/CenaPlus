@@ -98,7 +98,7 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 IQueryable<Contest> contests = db.Contests;
-                if (CurrentUser.Role != UserRole.Manager)
+                if (CurrentUser.Role < UserRole.Manager)
                     contests = contests.Where(c => CurrentUser.AssignedContestIDs.Contains(c.ID));
                 var ids = contests.Select(c => c.ID);
                 return ids.ToList();
@@ -380,15 +380,10 @@ namespace CenaPlus.Server.Bll
                 if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
                     throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
-                /*
-                Contest contest = db.Contests.Find(contestID);
-                if (contest == null)
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
-                */
                 return (from q in db.Questions
                         where q.ContestID == contestID
-                        where CurrentUser.Role >= UserRole.Manager
-                            || q.AskerID == CurrentUser.ID || q.Status == QuestionStatus.Public
+                        where CurrentUser.RoleAsInt >= (int)UserRole.Manager
+                            || q.AskerID == CurrentUser.ID || q.StatusAsInt == (int)QuestionStatus.Public
                         select q.ID).ToList();
             }
         }
@@ -400,16 +395,98 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 Question question = db.Questions.Find(id);
-                if (question == null) return null;
+                if (question == null)
+                    return null;
 
-                bool accessGranted=false;
-                if (CurrentUser.Role >= UserRole.Manager)
-                    accessGranted = true;
-                if (!accessGranted && !CurrentUser.AssignedContestIDs.Contains(question.ContestID))
-                    accessGranted = false;
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(question.ContestID))
+                    return null;
 
-                //TODO Not Finished
-                return null;
+                if (CurrentUser.Role >= UserRole.Manager || question.Status == QuestionStatus.Public || question.AskerID == CurrentUser.ID)
+                {
+                    return new Question
+                    {
+                        Answer = question.Answer,
+                        AskerID = question.AskerID,
+                        AskerNickName = question.Asker.NickName,
+                        ContestID = question.ContestID,
+                        ContestName = question.ContestName,
+                        Description = question.Description,
+                        ID = question.ID,
+                        Status = question.Status,
+                        Time = question.Time
+                    };
+                }
+                else return null;
+            }
+        }
+
+
+        public int AskQuestion(int contestID, string description)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                Question question = new Question
+                {
+                    AskerID = CurrentUser.ID,
+                    ContestID = contestID,
+                    Description = description,
+                    Status = QuestionStatus.Pending,
+                    Time = DateTime.Now
+                };
+
+                db.Questions.Add(question);
+                db.SaveChanges();
+
+                return question.ID;
+            }
+        }
+
+
+        public void DeleteContest(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Contest contest = db.Contests.Find(id);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
+
+                db.Contests.Remove(contest);
+                db.SaveChanges();
+            }
+        }
+
+
+        public void UpdateContest(int id, string title,string description, DateTime? startTime, DateTime? endTime, ContestType? type)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Contest contest = db.Contests.Find(id);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
+
+                if (title != null)
+                    contest.Title = title;
+                if (startTime != null)
+                    contest.StartTime = startTime.Value;
+                if (endTime != null)
+                    contest.EndTime = endTime.Value;
+                if (contest.StartTime > contest.EndTime)
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (description != null)
+                    contest.Description = description;
+                if (type != null)
+                    contest.Type = type.Value;
+
+                db.SaveChanges();
             }
         }
     }

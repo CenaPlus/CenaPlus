@@ -48,6 +48,16 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         Contest GetContest(int id);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void DeleteContest(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        [FaultContract(typeof(ValidationError))]
+        void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type);
 
         /// <summary>
         /// Get problem ids of the contest
@@ -107,6 +117,11 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         Question GetQuestion(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        int AskQuestion(int contestID, string description);
 
         /// <summary>
         /// List all users

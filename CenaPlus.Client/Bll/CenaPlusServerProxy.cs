@@ -117,5 +117,21 @@ namespace CenaPlus.Client.Bll
         {
             Channel.Kick(userID);
         }
+
+
+        public List<int> GetQuestionList(int contestID)
+        {
+            return Channel.GetQuestionList(contestID);
+        }
+
+        public Question GetQuestion(int id)
+        {
+            return Channel.GetQuestion(id);
+        }
+
+        public int AskQuestion(int contestID, string description)
+        {
+            return Channel.AskQuestion(contestID, description);
+        }
     }
 }

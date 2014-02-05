@@ -10,8 +10,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Server.ServerMode
@@ -19,30 +19,34 @@ namespace CenaPlus.Server.ServerMode
     /// <summary>
     /// Interaction logic for Tests.xaml
     /// </summary>
-    public partial class Tests : UserControl
+    public partial class Tests : UserControl, IContent
     {
-        public List<ContestListItem> ContestListItems = new List<ContestListItem>();
+        private List<ContestListItem> contestList = new List<ContestListItem>();
+
         public Tests()
         {
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
-            {
-                ContestListItem t = new ContestListItem();
-                t.StartTime = Convert.ToDateTime("2014-2-3 10:00");
-                t.EndTime = Convert.ToDateTime("2014-2-3 14:00");
-                t.Type = Entity.ContestType.Codeforces;
-                t.Title = "Cena+ Round #" + (i + 1).ToString();
-                ContestListItems.Add(t);
-            }
-            ContestListBox.ItemsSource = ContestListItems;
+            ContestListBox.ItemsSource = contestList;
         }
 
-        private void ModifyButton_Click(object sender, RoutedEventArgs e)
+        private void btnModify_Click(object sender, RoutedEventArgs e)
         {
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/ServerMode/Contest/Contest.xaml#" + (ContestListBox.SelectedItem as ContestListItem).ID, UriKind.Relative);
+                frame.Source = new Uri("/ServerMode/Contest/Contest.xaml#" + ContestListBox.SelectedValue, UriKind.Relative);
+            }
+        }
+
+        private void ContestListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ContestListBox.SelectedIndex != -1)
+            {
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/ServerMode/Contest/Contest.xaml#" + ContestListBox.SelectedValue, UriKind.Relative);
+                }
             }
         }
 
@@ -50,25 +54,65 @@ namespace CenaPlus.Server.ServerMode
         {
             if (ContestListBox.SelectedItem != null)
             {
-                ModifyButton.IsEnabled = true;
-                DeleteButton.IsEnabled = true;
+                btnModify.IsEnabled = true;
+                btnDelete.IsEnabled = true;
             }
             else
             {
-                ModifyButton.IsEnabled = false;
-                DeleteButton.IsEnabled = false;
+                btnModify.IsEnabled = false;
+                btnDelete.IsEnabled = false;
             }
         }
-    }
-    public class ContestListItem : CenaPlus.Entity.Contest
-    {
-        private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
-        public string Detail
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            get
+            int id = (int)ContestListBox.SelectedValue;
+            App.Server.DeleteContest(id);
+            contestList.RemoveAt(ContestListBox.SelectedIndex);
+            ContestListBox.Items.Refresh();
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var list = from id in App.Server.GetContestList()
+                       let c = App.Server.GetContest(id)
+                       select new ContestListItem
+                       {
+                           ID = c.ID,
+                           StartTime = c.StartTime,
+                           EndTime=c.EndTime,
+                           Title = c.Title,
+                           Type = c.Type
+                       };
+            contestList.Clear();
+            foreach (var item in list) contestList.Add(item);
+            ContestListBox.Items.Refresh();
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+        class ContestListItem : CenaPlus.Entity.Contest
+        {
+            private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
+            public string Detail
             {
-                return String.Format(DetailTemplate, StartTime, (Duration.TotalSeconds / 60 / 60).ToString("0.0"), Type);
+                get
+                {
+                    return String.Format(DetailTemplate, StartTime, (Duration.TotalSeconds / 60 / 60).ToString("0.0"), Type);
+                }
             }
         }
+
+
     }
 }
