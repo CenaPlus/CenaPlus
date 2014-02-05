@@ -14,25 +14,19 @@
                 <TextBlock Text="Begin time" Margin="0,0,0,5" />
                 <WrapPanel Margin="0,0,0,20">
                     <DatePicker x:Name="dateBeginDate" Margin="0,0,10,0"></DatePicker>
-                    <TextBox x:Name="txtBeginTime" Width="50" Text="0:00"></TextBox>
+                    <TextBox x:Name="txtBeginTime" Width="80" Text="0:00"></TextBox>
                 </WrapPanel>
                 <TextBlock Text="End time" Margin="0,0,0,5" />
                 <WrapPanel Margin="0,0,0,20">
-                    <DatePicker x:Name="dateEndDate" Margin="0,0,10,0"></DatePicker>
-                    <TextBox x:Name="txtEndTime" Width="50" Text="0:00"></TextBox>
+                    <DatePicker x:Name="dateEndDate" Margin="0,0,10,0" Text="asdfasdf"></DatePicker>
+                    <TextBox x:Name="txtEndTime" Width="80" Text="0:00"></TextBox>
                 </WrapPanel>
-                <TextBlock Text="Contest format"></TextBlock>
-                <ComboBox x:Name="cbbType" SelectedIndex="0" Margin="0,0,0,20">
-                    <ListBoxItem Content="OI format"/>
-                    <ListBoxItem Content="ACM format"/>
-                    <ListBoxItem Content="Codeforces format"/>
-                    <ListBoxItem Content="TopCoder format"/>
-                </ComboBox>
-
-                <TextBlock Text="Accept print requests" Margin="0,0,0,5" />
+                <TextBlock Text="Contest type"></TextBlock>
+                <ComboBox x:Name="cbbType" Margin="0,0,0,20"></ComboBox>
+                <TextBlock Text="Accept print requests(Not supported)" Margin="0,0,0,5" />
                 <CheckBox Content="Allow" Margin="0,0,0,20"></CheckBox>
                 
-                <Button Content="Save changes"></Button>
+                <Button Name="btnSave" Content="Save changes" Click="btnSave_Click"></Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

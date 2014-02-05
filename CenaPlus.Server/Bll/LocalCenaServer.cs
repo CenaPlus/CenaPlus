@@ -98,7 +98,7 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 IQueryable<Contest> contests = db.Contests;
-                if (CurrentUser.Role != UserRole.Manager)
+                if (CurrentUser.Role < UserRole.Manager)
                     contests = contests.Where(c => CurrentUser.AssignedContestIDs.Contains(c.ID));
                 var ids = contests.Select(c => c.ID);
                 return ids.ToList();
@@ -443,6 +443,50 @@ namespace CenaPlus.Server.Bll
                 db.SaveChanges();
 
                 return question.ID;
+            }
+        }
+
+
+        public void DeleteContest(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Contest contest = db.Contests.Find(id);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
+
+                db.Contests.Remove(contest);
+                db.SaveChanges();
+            }
+        }
+
+
+        public void UpdateContest(int id, string title,string description, DateTime? startTime, DateTime? endTime, ContestType? type)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Contest contest = db.Contests.Find(id);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
+
+                if (title != null)
+                    contest.Title = title;
+                if (startTime != null)
+                    contest.StartTime = startTime.Value;
+                if (endTime != null)
+                    contest.EndTime = endTime.Value;
+                if (contest.StartTime > contest.EndTime)
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (description != null)
+                    contest.Description = description;
+                if (type != null)
+                    contest.Type = type.Value;
+
+                db.SaveChanges();
             }
         }
     }

@@ -10,19 +10,47 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
+using FirstFloor.ModernUI.Presentation;
 
 namespace CenaPlus.Server.ServerMode.Contest
 {
     /// <summary>
     /// Interaction logic for Contest.xaml
     /// </summary>
-    public partial class Contest : UserControl
+    public partial class Contest : UserControl, IContent
     {
         public Contest()
         {
             InitializeComponent();
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+            int id = int.Parse(e.Fragment);
+            lstLinks.Links.Clear();
+            lstLinks.Links.Add(new Link { DisplayName = "General", Source = new Uri("/ServerMode/Contest/General.xaml#" + id, UriKind.Relative) });
+            lstLinks.Links.Add(new Link { DisplayName = "Description", Source = new Uri("/ServerMode/Contest/Description.xaml#" + id, UriKind.Relative) });
+            lstLinks.Links.Add(new Link { DisplayName = "Problems", Source = new Uri("/ServerMode/Contest/ProblemList.xaml#" + id, UriKind.Relative) });
+            lstLinks.Links.Add(new Link { DisplayName = "Status", Source = new Uri("/ServerMode/Contest/Status.xaml#" + id, UriKind.Relative) });
+            lstLinks.Links.Add(new Link { DisplayName = "Standings", Source = new Uri("/ServerMode/Contest/Standings.xaml#" + id, UriKind.Relative) });
+            lstLinks.Links.Add(new Link { DisplayName = "Questions", Source = new Uri("/ServerMode/Contest/Questions.xaml#" + id, UriKind.Relative) });
+            lstLinks.Links.Add(new Link { DisplayName = "Print Requests", Source = new Uri("/ServerMode/Contest/Print.xaml#" + id, UriKind.Relative) });
+            lstLinks.SelectedSource = new Uri("/ServerMode/Contest/General.xaml#" + id, UriKind.Relative);
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
         }
     }
 }
