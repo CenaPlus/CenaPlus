@@ -133,5 +133,16 @@ namespace CenaPlus.Client.Bll
         {
             return Channel.AskQuestion(contestID, description);
         }
+
+
+        public void DeleteContest(int id)
+        {
+            Channel.DeleteContest(id);
+        }
+
+        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type)
+        {
+            Channel.UpdateContest(id, title, description, startTime, endTime, type);
+        }
     }
 }

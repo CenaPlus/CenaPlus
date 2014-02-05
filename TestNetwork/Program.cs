@@ -17,9 +17,9 @@ namespace TestNetwork
 {
     class Ca : ICenaPlusServerCallback
     {
-        public void PopAd(string ad)
+
+        public void Bye()
         {
-            Console.WriteLine(ad);
         }
     }
 
