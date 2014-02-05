@@ -24,6 +24,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         public Status()
         {
             InitializeComponent();
+            RichTextEditor.HighLightEdit.HighLight(txtSource);
             for (int i = 1; i < 10; i++)
             {
                 StatusListViewItem t = new StatusListViewItem();
@@ -36,12 +37,6 @@ namespace CenaPlus.Server.ServerMode.Contest
             }
             StatusListView.ItemsSource = StatusListViewItems;
         }
-
-        private void txtSource_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RichTextEditor.HighLightEdit.HighLight(txtSource);
-        }
-
         private void StatusListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (StatusListView.SelectedItem == null)

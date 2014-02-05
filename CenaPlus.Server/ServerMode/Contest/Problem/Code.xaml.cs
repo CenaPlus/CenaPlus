@@ -23,10 +23,6 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         public Code()
         {
             InitializeComponent();
-        }
-
-        private void txtCode_TextChanged(object sender, TextChangedEventArgs e)
-        {
             RichTextEditor.HighLightEdit.HighLight(txtCode);
         }
     }

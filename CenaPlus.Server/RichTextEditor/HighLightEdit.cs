@@ -110,9 +110,14 @@ namespace CenaPlus.Server.RichTextEditor
         }
         public static void HighLight(RichTextBox rtxt)
         {
+            rtxt.TextChanged += TxtChanged;
+            
+        }
+        public static void TxtChanged(object sender, TextChangedEventArgs e)
+        {
             foreach (string s in RichTextEditor.HighLightEdit.GetKeyWords())
             {
-                ChangeColor("orange", rtxt, s);
+                ChangeColor("orange", (RichTextBox)sender, s);
             }
         }
     }
