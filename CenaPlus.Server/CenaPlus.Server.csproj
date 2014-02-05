@@ -133,6 +133,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerMode\Contest\Status.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ServerMode\CreateAUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +173,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="RichTextEditor\HighLightEdit.cs" />
     <Compile Include="RichTextEditor\Module.cs" />
     <Compile Include="ServerMode\Contest\Contest.xaml.cs">
       <DependentUpon>Contest.xaml</DependentUpon>
@@ -196,6 +201,9 @@
     </Compile>
     <Compile Include="ServerMode\Contest\Problem\TestCases.xaml.cs">
       <DependentUpon>TestCases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\Contest\Status.xaml.cs">
+      <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\CreateAUser.xaml.cs">
       <DependentUpon>CreateAUser.xaml</DependentUpon>

@@ -19,7 +19,7 @@
                 <mui:Link DisplayName="Description" Source="/ServerMode/Contest/Description.xaml" />
                 <mui:Link DisplayName="Problems" Source="/ServerMode/Contest/ProblemList.xaml"/>
                 <mui:Link DisplayName="Status" Source="/ServerMode/Contest/Status.xaml"/>
-                <mui:Link DisplayName="Rank List" Source="/ServerMode/Contest/Rank.xaml"/>
+                <mui:Link DisplayName="Standings" Source="/ServerMode/Contest/Standings.xaml"/>
                 <mui:Link DisplayName="Questions" Source="/ServerMode/Contest/Questions.xaml"/>
                 <mui:Link DisplayName="Print Requests" Source="/ServerMode/Contest/Print.xaml"/>
             </mui:ModernTab.Links>

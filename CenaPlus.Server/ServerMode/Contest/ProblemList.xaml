@@ -19,7 +19,7 @@
         </ListView>
         <WrapPanel VerticalAlignment="Bottom">
             <Button Content="Create" Margin="0,0,10,0" x:Name="btnCreate" Click="btnCreate_Click"></Button>
-            <Button Content="Modify" Margin="0,0,10,0" x:Name="btnModify"></Button>
+            <Button Content="Modify" Margin="0,0,10,0" x:Name="btnModify" Click="btnModify_Click"></Button>
             <Button Content="Delete" Margin="0,0,10,0" x:Name="btnDelete"></Button>
         </WrapPanel>
     </Grid>

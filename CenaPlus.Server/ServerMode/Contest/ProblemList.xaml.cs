@@ -52,5 +52,14 @@ namespace CenaPlus.Server.ServerMode.Contest
                 frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml", UriKind.Relative);
             }
         }
+
+        private void btnModify_Click(object sender, RoutedEventArgs e)
+        {
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml", UriKind.Relative);
+            }
+        }
     }
 }
