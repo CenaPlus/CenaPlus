@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace CenaPlus.Judge
 {
@@ -10,6 +11,7 @@ namespace CenaPlus.Judge
         public Identity Identity = new Identity();
         public RunnerInfo RunnerInfo = new RunnerInfo();
         private string xmlresult;
+        private XmlDocument xmldocument = new XmlDocument();
         public string XMLResult { get { return xmlresult; } }
         public void Start()//synchronized
         {
@@ -32,21 +34,22 @@ namespace CenaPlus.Judge
             Process.WaitForExit(3 * RunnerInfo.TimeLimit);
             xmlresult = Process.StandardOutput.ReadToEnd();
         }
-    }
-    public class Identity
-    {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public  System.Security.SecureString secPassword
+        public RunnerResult RunnerResult
         {
-            get 
+            get
             {
-                System.Security.SecureString pwd = new System.Security.SecureString();
-                foreach (char c in Password)
-                {
-                    pwd.AppendChar(c);
-                }
-                return pwd;
+                RunnerResult RunnerResult = new Judge.RunnerResult();
+                xmldocument.Load(xmlresult);
+                XmlNodeList xmlnodelist;
+                xmlnodelist = xmldocument.GetElementsByTagName("ExitCode");
+                RunnerResult.ExitCode = Convert.ToInt32(xmlnodelist[0].InnerText);
+                xmlnodelist = xmldocument.GetElementsByTagName("TimeUsed");
+                RunnerResult.TimeUsed = Convert.ToInt32(xmlnodelist[0].InnerText);
+                xmlnodelist = xmldocument.GetElementsByTagName("PagedSize");
+                RunnerResult.PagedSize = Convert.ToInt32(xmlnodelist[0].InnerText);
+                xmlnodelist = xmldocument.GetElementsByTagName("WorkingSet");
+                RunnerResult.WorkingSetSize = Convert.ToInt32(xmlnodelist[0].InnerText);
+                return RunnerResult;
             }
         }
     }
@@ -62,5 +65,12 @@ namespace CenaPlus.Judge
         public string StdErrFile { get; set; }
         public string XmlFile { get; set; }
         public string WorkingDirectory { get; set; }
+    }
+    public class RunnerResult
+    {
+        public int TimeUsed { get; set; }
+        public int PagedSize { get; set; }
+        public int ExitCode { get; set; }
+        public int WorkingSetSize { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CenaPlus.Judge
 {
-    public class Validator
+    public class StanderdProgram
     {
     }
 }

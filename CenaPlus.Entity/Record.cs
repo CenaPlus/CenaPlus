@@ -72,9 +72,10 @@ namespace CenaPlus.Entity
 
     public enum RecordStatus
     {
-        Pending, Running, Accepted,
-        CompileError, WrongAnswer, RuntimeError, PresentationError,
-        TimeLimitExceeded, MemoryLimitExceeded, OutputLimitExceeded
+        Accepted, PresentationError, WrongAnswer, OutputLimitExceeded, ValidatorError,//Validator Level
+        MemoryLimitExceeded, TimeLimitExceeded, RuntimeError, RestrictedFunction,//Runner Level
+        CompileError, SystemError,//System Level
+        Running, Pending//DB Level
     }
 
     public enum ProgrammingLanguage
