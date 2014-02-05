@@ -36,9 +36,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compiler.cs" />
+    <Compile Include="Identity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeValidator.cs" />
     <Compile Include="Runner.cs" />
-    <Compile Include="Validator.cs" />
+    <Compile Include="SpecialJudge.cs" />
+    <Compile Include="StanderdProgram.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CenaPlus.Entity\CenaPlus.Entity.csproj">
