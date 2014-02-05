@@ -7,13 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
-        <ListBox x:Name="FAQListBox" Width="400" HorizontalAlignment="Left" SelectionChanged="FAQListBox_SelectionChanged">
+        <ListBox x:Name="lstQuestion" Width="400" HorizontalAlignment="Left" SelectionChanged="lstQuestion_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Height="50">
                         <Image DockPanel.Dock="Left" Width="50" Height="50" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d\=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s\=50"></Image>
                         <StackPanel HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding Question}" FontSize="18" Style="{StaticResource Heading2}" Width="315" Margin="10,0,0,0" />
+                            <TextBlock Text="{Binding Description}" FontSize="18" Style="{StaticResource Heading2}" Width="315" Margin="10,0,0,0" />
                             <TextBlock Text="{Binding Details}" Width="315" Margin="10,0,0,0" />
                         </StackPanel>
                     </DockPanel>
@@ -31,8 +31,8 @@
         <StackPanel Height="165" Margin="420,0,0,0" VerticalAlignment="Bottom">
             <TextBlock Text="Ask a question" Style="{StaticResource Heading2}" Margin="0,0,0,10"></TextBlock>
             <TextBlock Text="Content" Margin="0,0,0,5"></TextBlock>
-            <TextBox AcceptsReturn="True" Height="75" Margin="0,0,0,10"></TextBox>
-            <Button Content="Submit"></Button>
+            <TextBox Name="txtQuestion" AcceptsReturn="True" Height="75" Margin="0,0,0,10"></TextBox>
+            <Button Name="btnSubmit" Content="Submit" IsDefault="True" Click="btnSubmit_Click"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

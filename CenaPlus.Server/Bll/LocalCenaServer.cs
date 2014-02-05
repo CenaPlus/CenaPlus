@@ -380,15 +380,10 @@ namespace CenaPlus.Server.Bll
                 if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
                     throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
-                /*
-                Contest contest = db.Contests.Find(contestID);
-                if (contest == null)
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
-                */
                 return (from q in db.Questions
                         where q.ContestID == contestID
-                        where CurrentUser.Role >= UserRole.Manager
-                            || q.AskerID == CurrentUser.ID || q.Status == QuestionStatus.Public
+                        where CurrentUser.RoleAsInt >= (int)UserRole.Manager
+                            || q.AskerID == CurrentUser.ID || q.StatusAsInt == (int)QuestionStatus.Public
                         select q.ID).ToList();
             }
         }
@@ -400,16 +395,54 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 Question question = db.Questions.Find(id);
-                if (question == null) return null;
+                if (question == null)
+                    return null;
 
-                bool accessGranted=false;
-                if (CurrentUser.Role >= UserRole.Manager)
-                    accessGranted = true;
-                if (!accessGranted && !CurrentUser.AssignedContestIDs.Contains(question.ContestID))
-                    accessGranted = false;
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(question.ContestID))
+                    return null;
 
-                //TODO Not Finished
-                return null;
+                if (CurrentUser.Role >= UserRole.Manager || question.Status == QuestionStatus.Public || question.AskerID == CurrentUser.ID)
+                {
+                    return new Question
+                    {
+                        Answer = question.Answer,
+                        AskerID = question.AskerID,
+                        AskerNickName = question.Asker.NickName,
+                        ContestID = question.ContestID,
+                        ContestName = question.ContestName,
+                        Description = question.Description,
+                        ID = question.ID,
+                        Status = question.Status,
+                        Time = question.Time
+                    };
+                }
+                else return null;
+            }
+        }
+
+
+        public int AskQuestion(int contestID, string description)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                Question question = new Question
+                {
+                    AskerID = CurrentUser.ID,
+                    ContestID = contestID,
+                    Description = description,
+                    Status = QuestionStatus.Pending,
+                    Time = DateTime.Now
+                };
+
+                db.Questions.Add(question);
+                db.SaveChanges();
+
+                return question.ID;
             }
         }
     }

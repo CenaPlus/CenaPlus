@@ -10,40 +10,33 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CenaPlus.Entity;
-
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
 namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for FAQ.xaml
     /// </summary>
-    public partial class Questions : UserControl
+    public partial class Questions : UserControl, IContent
     {
-        public List<QuestionListItem> FAQListItems = new List<QuestionListItem>();
+        private List<QuestionListItem> questionList = new List<QuestionListItem>();
+        private int contestID;
+
         public Questions()
         {
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
-            {
-                QuestionListItem t = new QuestionListItem();
-                t.Description = "int64 is %lld or %I64d? ";
-                t.Answer = "%lld test test test test test test test test test test test test test test test test test test test test test test test test test test";
-                t.Time = DateTime.Now;
-                t.Status = QuestionStatus.Public;
-                t.AskerNickName = "Gasai Yuno";
-                FAQListItems.Add(t);
-            }
-            FAQListBox.ItemsSource = FAQListItems;
+            lstQuestion.ItemsSource = questionList;
         }
 
-        private void FAQListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lstQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (FAQListBox.SelectedItem != null)
+            if (lstQuestion.SelectedIndex != -1)
             {
-                QuestionTextBlock.Text = (FAQListBox.SelectedItem as QuestionListItem).Question;
-                AnswerTextBlock.Text = (FAQListBox.SelectedItem as QuestionListItem).Answer;
+                QuestionTextBlock.Text = (lstQuestion.SelectedItem as QuestionListItem).Description;
+                AnswerTextBlock.Text = (lstQuestion.SelectedItem as QuestionListItem).Answer;
             }
             else
             {
@@ -51,19 +44,68 @@ namespace CenaPlus.Client.Remote.Contest
                 AnswerTextBlock.Text = "";
             }
         }
-    }
 
-    public class QuestionListItem : Question
-    {
-        public string Details
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            get
+            contestID = int.Parse(e.Fragment);
+            var list = from id in App.Server.GetQuestionList(contestID)
+                       let q = App.Server.GetQuestion(id)
+                       select new QuestionListItem
+                       {
+                           ID = q.ID,
+                           AskerNickName = q.AskerNickName,
+                           Status = q.Status,
+                           Time = q.Time,
+                           Answer = q.Answer,
+                           Description = q.Description
+                       };
+            questionList.Clear();
+            foreach (var item in list) questionList.Add(item);
+
+        }
+
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            int id = App.Server.AskQuestion(contestID, txtQuestion.Text);
+            txtQuestion.Text = "";
+            var question = App.Server.GetQuestion(id);
+            questionList.Add(new QuestionListItem
             {
-                if (AskerNickName != String.Empty)
-                    return String.Format("Asker: {0} / {1} @{2}", Asker, Status, Time.ToShortTimeString());
-                else
-                    return String.Format("{0} @{1}", Status, Time.ToShortTimeString());
+                ID = question.ID,
+                Answer = question.Answer,
+                AskerNickName = question.AskerNickName,
+                Description = question.Description,
+                Status = question.Status,
+                Time = question.Time
+            });
+            lstQuestion.Items.Refresh();
+            ModernDialog.ShowMessage("Done", "Message", MessageBoxButton.OK);
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+        class QuestionListItem : Question
+        {
+            public string Details
+            {
+                get
+                {
+                    return String.Format("Asker: {0} / {1} @{2}", AskerNickName, Status, Time.ToShortTimeString());
+                }
             }
         }
+
+
+
     }
 }

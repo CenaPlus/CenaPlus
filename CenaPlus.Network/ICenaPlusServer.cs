@@ -108,6 +108,11 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         Question GetQuestion(int id);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        int AskQuestion(int contestID, string description);
+
         /// <summary>
         /// List all users
         /// </summary>
