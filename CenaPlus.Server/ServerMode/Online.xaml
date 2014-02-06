@@ -16,7 +16,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Height="50">
-                        <Image DockPanel.Dock="Left" Width="50" Height="50" Source="{Binding Gravatar}"></Image>
+                        <Image DockPanel.Dock="Left" Width="50" Height="50" Source="/CenaPlus.Server;component/Resources/DefaultAvatar.jpg"></Image>
                         <StackPanel HorizontalAlignment="Left">
                             <TextBlock Margin="10,0,0,0" Text="{Binding Title}" FontSize="18" Style="{StaticResource Heading2}"/>
                             <TextBlock Margin="10,0,0,0"  Text="{Binding Details}" />

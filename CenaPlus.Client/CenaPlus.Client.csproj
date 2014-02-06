@@ -281,8 +281,9 @@
     <Folder Include="Local\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\DefaultAvatar.jpg" />
     <Content Include="Resources\CenaPlus.ico" />
-    <Content Include="Resources\CenaPlusLogo.png" />
+    <Resource Include="Resources\CenaPlusLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

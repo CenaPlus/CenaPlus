@@ -12,7 +12,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Height="50">
-                            <Image DockPanel.Dock="Left" Width="50" Height="50" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d\=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s\=50"></Image>
+                            <Image DockPanel.Dock="Left" Width="50" Height="50" Source="/CenaPlus.Client;component/Resources/DefaultAvatar.jpg"></Image>
                             <StackPanel HorizontalAlignment="Left">
                                 <TextBlock Margin="10,0,0,0" Text="{Binding Status}" FontSize="18" Foreground="{Binding StatusColor}" />
                                 <TextBlock Margin="10,0,0,0"  Text="{Binding StatusLine}" />

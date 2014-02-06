@@ -11,7 +11,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Height="34">
-                        <Image DockPanel.Dock="Left" Width="34" Height="34" Source="{Binding Gravatar}"></Image>
+                        <Image DockPanel.Dock="Left" Width="34" Height="34" Source="/CenaPlus.Server;component/Resources/DefaultAvatar.jpg"></Image>
                         <StackPanel HorizontalAlignment="Left">
                             <TextBlock Margin="10,0,0,0" Text="{Binding Title}" FontSize="13" />
                             <TextBlock Margin="10,0,0,0"  Text="{Binding Details}" FontSize="10" />
@@ -22,7 +22,7 @@
         </ListBox>
         <ScrollViewer  Margin="300,30,0,30">
             <StackPanel x:Name="ProfileDisplay" Visibility="Hidden">
-                <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="https://www.gravatar.com/avatar/159c4a0a78d0980aca8df9d781d1c755?d=https://www.SmartOJ.com/img/Non_Avatar.png&amp;s=100" Margin="0,0,0,10"></Image>
+                <Image  HorizontalAlignment="Left" Width="100" Height="100" Source="/CenaPlus.Server;component/Resources/DefaultAvatar.jpg" Margin="0,0,0,10"></Image>
                 <TextBlock HorizontalAlignment="Left" Text="Account"></TextBlock>
                 <TextBox x:Name="txtName" Margin="0,0,0,10"/>
                 <TextBlock HorizontalAlignment="Left" Text="Nick Name"></TextBlock>
@@ -31,6 +31,7 @@
                 <PasswordBox Name="txtPassword" Margin="0,0,0,10"/>
                 <TextBlock HorizontalAlignment="Left" Text="Role"></TextBlock>
                 <ComboBox Name="lstRole" Margin="0,0,0,10">
+                    <ComboBoxItem>Banned</ComboBoxItem>
                     <ComboBoxItem>Competitor</ComboBoxItem>
                     <ComboBoxItem>Manager</ComboBoxItem>
                 </ComboBox>

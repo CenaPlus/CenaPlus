@@ -298,6 +298,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\DefaultAvatar.jpg" />
     <Content Include="Resources\CenaPlus.ico" />
     <Resource Include="Resources\charactergrowfont.png" />
     <Resource Include="Resources\charactershrinkfont.png" />

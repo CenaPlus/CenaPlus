@@ -42,7 +42,6 @@
     <Compile Include="RangeValidator.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="SpecialJudge.cs" />
-    <Compile Include="StanderdProgram.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CenaPlus.Entity\CenaPlus.Entity.csproj">
