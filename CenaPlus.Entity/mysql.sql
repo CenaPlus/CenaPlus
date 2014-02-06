@@ -1,6 +1,7 @@
 drop table if exists `questions`;
 drop table if exists `user_assigned_contests`;
 drop table if exists `records`;
+drop table if exists `test_cases`;
 drop table if exists `problems`;
 drop table if exists `contests`;
 drop table if exists `users`;
@@ -30,12 +31,26 @@ CREATE TABLE `problems` (
     id int not null auto_increment,
     title varchar(50) not null,
     content mediumtext not null,
+    score int not null,
     contest_id int not null,
     primary key (id),
     foreign key (contest_id)
         references contests (id)
         on delete cascade,
     index (title)
+)  default charset=utf8;
+
+CREATE TABLE `test_cases` (
+    id int not null auto_increment,
+    problem_id int not null,
+    `type` tinyint not null,
+    input_hash binary(16) not null,
+    input mediumblob not null,
+    output mediumblob not null,
+    primary key (id),
+    foreign key (problem_id)
+        references problems (id)
+        on delete cascade
 )  default charset=utf8;
 
 CREATE TABLE `records` (

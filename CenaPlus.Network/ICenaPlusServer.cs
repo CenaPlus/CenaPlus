@@ -69,6 +69,11 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         List<int> GetProblemList(int contestID);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        int CreateProblem(int contestID, string title, string content, int score);
+
         /// <summary>
         /// Get problem by id
         /// </summary>
@@ -77,6 +82,11 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         Problem GetProblem(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void DeleteProblem(int id);
 
         /// <summary>
         /// Submit a solution.

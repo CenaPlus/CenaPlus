@@ -12,14 +12,18 @@ INSERT INTO contests (title, description, start_time, end_time, `type`) values (
 INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample CF', 'Sample CF', addtime(now(),'0:3'),addtime(now(),'0:5'),2);
 INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample TC', 'Sample TC', addtime(now(),'0:4'),addtime(now(),'0:6'),3);
 
-INSERT INTO problems (title, content, contest_id) values ('OI A+B','a+b',1); 
-INSERT INTO problems (title, content, contest_id) values ('OI C+D','c+d',1);
-INSERT INTO problems (title, content, contest_id) values ('ACM A+B','a+b',2);
-INSERT INTO problems (title, content, contest_id) values ('ACM C+D','c+d',2);
-INSERT INTO problems (title, content, contest_id) values ('CF A+B','a+b',3);
-INSERT INTO problems (title, content, contest_id) values ('CF C+D','c+d',3);
-INSERT INTO problems (title, content, contest_id) values ('TC A+B','a+b',4);
-INSERT INTO problems (title, content, contest_id) values ('TC C+D','c+d',4);
+INSERT INTO problems (title, content, contest_id,score) values ('OI A+B','a+b',1,1); 
+INSERT INTO problems (title, content, contest_id,score) values ('OI C+D','c+d',1,2);
+INSERT INTO problems (title, content, contest_id,score) values ('ACM A+B','a+b',2,1);
+INSERT INTO problems (title, content, contest_id,score) values ('ACM C+D','c+d',2,2);
+INSERT INTO problems (title, content, contest_id,score) values ('CF A+B','a+b',3,1);
+INSERT INTO problems (title, content, contest_id,score) values ('CF C+D','c+d',3,2);
+INSERT INTO problems (title, content, contest_id,score) values ('TC A+B','a+b',4,1);
+INSERT INTO problems (title, content, contest_id,score) values ('TC C+D','c+d',4,2);
+
+INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (1,0,unhex(md5('1 1')),'1 1','2');
+INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,0,unhex(md5('1 2')),'1 2','3');
+INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,1,unhex(md5('2 2')),'2 2','4');
 
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time) values (1,1,0,0,'#include<con>',now());
 

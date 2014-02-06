@@ -139,6 +139,7 @@ namespace CenaPlus.Server.Bll
 
                 return (from p in db.Problems
                         where p.ContestID == contestID
+                        orderby p.Score ascending
                         select p.ID).ToList();
             }
         }
@@ -160,8 +161,10 @@ namespace CenaPlus.Server.Bll
                     ID = problem.ID,
                     Content = problem.Content,
                     ContestID = problem.ContestID,
+                    Score = problem.Score,
                     ContestTitle = problem.Contest.Title,
-                    Title = problem.Title
+                    Title = problem.Title,
+                    TestCasesCount = problem.TestCases.Count
                 };
             }
         }
@@ -462,8 +465,22 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public void DeleteProblem(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
 
-        public void UpdateContest(int id, string title,string description, DateTime? startTime, DateTime? endTime, ContestType? type)
+                Problem problem = db.Problems.Find(id);
+                if (problem == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
+
+                db.Problems.Remove(problem);
+                db.SaveChanges();
+            }
+        }
+
+        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type)
         {
             using (DB db = new DB())
             {
@@ -487,6 +504,30 @@ namespace CenaPlus.Server.Bll
                     contest.Type = type.Value;
 
                 db.SaveChanges();
+            }
+        }
+
+        public int CreateProblem(int contestID, string title, string content, int score)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                if (db.Contests.Find(contestID) == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
+
+                Problem problem = new Problem
+                {
+                    Title = title,
+                    Content = content,
+                    Score = score,
+                    ContestID = contestID
+                };
+
+                db.Problems.Add(problem);
+                db.SaveChanges();
+
+                return problem.ID;
             }
         }
     }

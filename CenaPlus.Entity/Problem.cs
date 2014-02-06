@@ -19,6 +19,9 @@ namespace CenaPlus.Entity
         [Column("content")]
         public string Content { get; set; }
 
+        [Column("score")]
+        public int Score { get; set; }
+
         [Column("contest_id")]
         [ForeignKey("Contest")]
         public int ContestID { get; set; }//for db
@@ -28,5 +31,11 @@ namespace CenaPlus.Entity
 
         [NotMapped]
         public string ContestTitle { get; set; }//for client
+
+        [IgnoreDataMember]
+        public virtual ICollection<TestCase> TestCases { get; set; }
+
+        [NotMapped]
+        public int TestCasesCount { get; set; }
     }
 }
