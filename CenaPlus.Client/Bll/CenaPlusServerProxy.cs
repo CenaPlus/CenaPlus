@@ -144,5 +144,51 @@ namespace CenaPlus.Client.Bll
         {
             Channel.UpdateContest(id, title, description, startTime, endTime, type);
         }
+
+
+        public int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit, string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage)
+        {
+            return Channel.CreateProblem(contestID, title, content, score, timeLimit, memoryLimit, std, spj, validator, stdLanguage, spjLanguage, validatorLanguage);
+        }
+
+        public void UpdateProblem(int id, string title, string content, int? score, int? timeLimit, long? memoryLimit, string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage)
+        {
+            Channel.UpdateProblem(id,title, content, score, timeLimit, memoryLimit, std, spj, validator, stdLanguage, spjLanguage, validatorLanguage);
+        }
+
+        public void DeleteProblem(int id)
+        {
+            Channel.DeleteProblem(id);
+        }
+
+        public void Rejudge(int recordID)
+        {
+            Channel.Rejudge(recordID);
+        }
+
+        public List<int> GetTestCaseList(int problemID)
+        {
+            return Channel.GetTestCaseList(problemID);
+        }
+
+        public TestCase GetTestCase(int id)
+        {
+            return Channel.GetTestCase(id);
+        }
+
+        public void DeleteTestCase(int id)
+        {
+            Channel.DeleteTestCase(id);
+        }
+
+        public void UpdateTestCase(int id, byte[] input, byte[] output, TestCaseType? type)
+        {
+            Channel.UpdateTestCase(id, input, output, type);
+        }
+
+        public int CreateTestCase(int problemID, byte[] input, byte[] output, TestCaseType type)
+        {
+            return Channel.CreateTestCase(problemID, input, output, type);
+        }
     }
 }

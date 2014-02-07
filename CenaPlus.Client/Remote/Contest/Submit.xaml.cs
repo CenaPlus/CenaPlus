@@ -26,7 +26,7 @@ namespace CenaPlus.Client.Remote.Contest
         public Submit()
         {
             InitializeComponent();
-            lstLanguage.ItemsSource =  Enum.GetNames(typeof(ProgrammingLanguage)));
+            lstLanguage.ItemsSource =  Enum.GetNames(typeof(ProgrammingLanguage));
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
