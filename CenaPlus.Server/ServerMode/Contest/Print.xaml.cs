@@ -29,6 +29,7 @@ namespace CenaPlus.Server.ServerMode.Contest
             {
                 ServerPrintRequestListBoxItem t = new ServerPrintRequestListBoxItem();
                 t.Username = "yuno";
+                t.Nickname = "Gasai Yuno";
                 t.Time = DateTime.Now;
                 t.Copies = 3;
                 t.Length = 123;
@@ -58,6 +59,7 @@ namespace CenaPlus.Server.ServerMode.Contest
     public class ServerPrintRequestListBoxItem
     {
         public string Username { get; set; }
+        public string Nickname { get; set; }
         public int Copies { get; set; }
         public int Length { get; set; }
         public DateTime Time { get; set; }
@@ -66,6 +68,13 @@ namespace CenaPlus.Server.ServerMode.Contest
             get
             {
                 return String.Format("Length: {0}B / Copies: {1} @{2}", Length, Copies, Time);
+            }
+        }
+        public string Title
+        {
+            get
+            {
+                return String.Format("{0}({1})", Username, Nickname);
             }
         }
     }
