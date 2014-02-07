@@ -110,6 +110,11 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         List<int> GetRecordList(int contestID);
 
+        [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        [FaultContract(typeof(AccessDeniedError))]
+        void Rejudge(int recordID);
+
         /// <summary>
         /// Get record by id
         /// </summary>

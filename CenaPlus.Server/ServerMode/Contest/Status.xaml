@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
-        <ListView Margin="0,0,0,0" Width="400" x:Name="StatusListView" HorizontalAlignment="Left" SelectionChanged="StatusListView_SelectionChanged">
+        <ListView Margin="0,0,0,0" Width="400" x:Name="StatusListView" SelectedValuePath="ID" HorizontalAlignment="Left" SelectionChanged="StatusListView_SelectionChanged">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
                     <GridViewColumn Header="#" DisplayMemberBinding="{Binding ID}" Width="30"/>
-                    <GridViewColumn Header="Competitor" DisplayMemberBinding="{Binding Competitor}" Width="80"/>
+                    <GridViewColumn Header="Competitor" DisplayMemberBinding="{Binding UserNickName}" Width="80"/>
                     <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding ProblemTitle}" Width="80"/>
                     <GridViewColumn Header="Language" DisplayMemberBinding="{Binding Language}" Width="80"/>
                     <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80"/>
@@ -21,20 +21,20 @@
         <ScrollViewer Margin="420,0,0,0" x:Name="DetailsPanel" Visibility="Collapsed">
             <StackPanel>
                 <TextBlock Text="Competitor"></TextBlock>
-                <TextBlock Text="GasaiYuno(Gasai Yuno)" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Name="txtUserNickName" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Problem"></TextBlock>
-                <TextBlock Text="A: A+B Problem" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Name="txtProblemTitle" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Status"></TextBlock>
-                <TextBlock Text="Waiting" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Name="txtStatus" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Language"></TextBlock>
-                <TextBlock Text="CXX" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Name="txtLanguage" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Time used"></TextBlock>
-                <TextBlock Text="N/A" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Name="txtTimeUsage" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Memory used"></TextBlock>
-                <TextBlock Text="N/A" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Name="txtMemoryUsage" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Source"></TextBlock>
-                <RichTextBox x:Name="txtSource" AcceptsReturn="True" Height="150" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,0,0,20" IsReadOnly="True"></RichTextBox>
-                <Button Content="Rejudge"></Button>
+                <RichTextBox x:Name="txtCode" AcceptsReturn="True" Height="150" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,0,0,20" IsReadOnly="True"></RichTextBox>
+                <Button Name="btnRejudge" Content="Rejudge" Click="btnRejudge_Click"></Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

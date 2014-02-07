@@ -56,6 +56,7 @@ namespace CenaPlus.Server.Bll
                 throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "Do not have the required role.");
         }
 
+        #region Misc
         public string GetVersion()
         {
             var fileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
@@ -91,6 +92,82 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public List<int> GetOnlineList()
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+            }
+
+            lock (App.Clients)
+            {
+                return (from c in App.Clients
+                        where c.Value.CurrentUser != null && c.Value.CurrentUser.Role != UserRole.System
+                        select c.Value.CurrentUser.ID).ToList();
+            }
+        }
+
+        public void Kick(int userID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+            }
+
+            LocalCenaServer server;
+            lock (App.Clients)
+            {
+                if (!App.Clients.ContainsKey(userID))
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = userID, Type = "OnlineUser" });
+
+                server = App.Clients[userID];
+            }
+
+            server.Callback.Bye();
+            server.Context.Abort();
+        }
+        #endregion
+        #region Contest
+        public void DeleteContest(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Contest contest = db.Contests.Find(id);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
+
+                db.Contests.Remove(contest);
+                db.SaveChanges();
+            }
+        }
+        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Contest contest = db.Contests.Find(id);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
+
+                if (title != null)
+                    contest.Title = title;
+                if (startTime != null)
+                    contest.StartTime = startTime.Value;
+                if (endTime != null)
+                    contest.EndTime = endTime.Value;
+                if (contest.StartTime > contest.EndTime)
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (description != null)
+                    contest.Description = description;
+                if (type != null)
+                    contest.Type = type.Value;
+
+                db.SaveChanges();
+            }
+        }
         public List<int> GetContestList()
         {
             using (DB db = new DB())
@@ -128,6 +205,45 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        #endregion
+        #region Problem
+        public int CreateProblem(int contestID, string title, string content, int score)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                if (db.Contests.Find(contestID) == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
+
+                Problem problem = new Problem
+                {
+                    Title = title,
+                    Content = content,
+                    Score = score,
+                    ContestID = contestID
+                };
+
+                db.Problems.Add(problem);
+                db.SaveChanges();
+
+                return problem.ID;
+            }
+        }
+        public void DeleteProblem(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Problem problem = db.Problems.Find(id);
+                if (problem == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
+
+                db.Problems.Remove(problem);
+                db.SaveChanges();
+            }
+        }
         public List<int> GetProblemList(int contestID)
         {
             using (DB db = new DB())
@@ -169,6 +285,24 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        #endregion
+        #region Record
+        public void Rejudge(int recordID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Record record = db.Records.Find(recordID);
+                if (record == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = recordID, Type = "Record" });
+
+                record.Status = RecordStatus.Pending;
+                record.TimeUsage = null;
+                record.MemoryUsage = null;
+                record.Detail = null;
+                db.SaveChanges();
+            }
+        }
         public int Submit(int problemID, string code, ProgrammingLanguage language)
         {
             using (DB db = new DB())
@@ -248,6 +382,8 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        #endregion
+        #region User
 
         public List<int> GetUserList()
         {
@@ -338,42 +474,8 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-        public List<int> GetOnlineList()
-        {
-            using (DB db = new DB())
-            {
-                CheckRole(db, UserRole.Manager);
-            }
-
-            lock (App.Clients)
-            {
-                return (from c in App.Clients
-                        where c.Value.CurrentUser != null && c.Value.CurrentUser.Role != UserRole.System
-                        select c.Value.CurrentUser.ID).ToList();
-            }
-        }
-
-        public void Kick(int userID)
-        {
-            using (DB db = new DB())
-            {
-                CheckRole(db, UserRole.Manager);
-            }
-
-            LocalCenaServer server;
-            lock (App.Clients)
-            {
-                if (!App.Clients.ContainsKey(userID))
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = userID, Type = "OnlineUser" });
-
-                server = App.Clients[userID];
-            }
-
-            server.Callback.Bye();
-            server.Context.Abort();
-        }
-
-
+        #endregion
+        #region Question
         public List<int> GetQuestionList(int contestID)
         {
             using (DB db = new DB())
@@ -449,86 +551,6 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-
-        public void DeleteContest(int id)
-        {
-            using (DB db = new DB())
-            {
-                CheckRole(db, UserRole.Manager);
-
-                Contest contest = db.Contests.Find(id);
-                if (contest == null)
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
-
-                db.Contests.Remove(contest);
-                db.SaveChanges();
-            }
-        }
-
-        public void DeleteProblem(int id)
-        {
-            using (DB db = new DB())
-            {
-                CheckRole(db, UserRole.Manager);
-
-                Problem problem = db.Problems.Find(id);
-                if (problem == null)
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
-
-                db.Problems.Remove(problem);
-                db.SaveChanges();
-            }
-        }
-
-        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type)
-        {
-            using (DB db = new DB())
-            {
-                CheckRole(db, UserRole.Manager);
-
-                Contest contest = db.Contests.Find(id);
-                if (contest == null)
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Contest" });
-
-                if (title != null)
-                    contest.Title = title;
-                if (startTime != null)
-                    contest.StartTime = startTime.Value;
-                if (endTime != null)
-                    contest.EndTime = endTime.Value;
-                if (contest.StartTime > contest.EndTime)
-                    throw new FaultException<ValidationError>(new ValidationError());
-                if (description != null)
-                    contest.Description = description;
-                if (type != null)
-                    contest.Type = type.Value;
-
-                db.SaveChanges();
-            }
-        }
-
-        public int CreateProblem(int contestID, string title, string content, int score)
-        {
-            using (DB db = new DB())
-            {
-                CheckRole(db, UserRole.Manager);
-
-                if (db.Contests.Find(contestID) == null)
-                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
-
-                Problem problem = new Problem
-                {
-                    Title = title,
-                    Content = content,
-                    Score = score,
-                    ContestID = contestID
-                };
-
-                db.Problems.Add(problem);
-                db.SaveChanges();
-
-                return problem.ID;
-            }
-        }
+        #endregion
     }
 }

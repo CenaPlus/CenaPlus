@@ -26,6 +26,7 @@ INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,0,u
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,1,unhex(md5('2 2')),'2 2','4');
 
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time) values (1,1,0,0,'#include<con>',now());
+INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,time_usage,memory_usage,detail) values (2,3,4,1,'#include <iostream>\nint main(){\nreturn 0;\n}',now(),998,1024*1024*3,'Detail....');
 
 INSERT INTO user_assigned_contests (user_id,contest_id) values(3,1);
 INSERT INTO user_assigned_contests (user_id,contest_id) values(3,2);
