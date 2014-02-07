@@ -34,9 +34,9 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             tabTop.Links.Add(new Link { DisplayName = "General", Source = new Uri("/ServerMode/Contest/Problem/General.xaml#" + id, UriKind.Relative) });
             tabTop.Links.Add(new Link { DisplayName = "Content", Source = new Uri("/ServerMode/Contest/Problem/Content.xaml#" + id, UriKind.Relative) });
             tabTop.Links.Add(new Link { DisplayName = "Test cases", Source = new Uri("/ServerMode/Contest/Problem/TestCases.xaml#" + id, UriKind.Relative) });
-            tabTop.Links.Add(new Link { DisplayName = "SPJ", Source = new Uri("/ServerMode/Contest/Problem/Code.xaml#field=SPJ&id=" + id, UriKind.Relative) });
-            tabTop.Links.Add(new Link { DisplayName = "Range validator", Source = new Uri("/ServerMode/Contest/Problem/Code.xaml#field=RangeValidator&id=" + id, UriKind.Relative) });
-            tabTop.Links.Add(new Link { DisplayName = "Std source", Source = new Uri("/ServerMode/Contest/Problem/Code.xaml#field=StdSource&id=" + id, UriKind.Relative) });
+            tabTop.Links.Add(new Link { DisplayName = "SPJ", Source = new Uri("/ServerMode/Contest/Problem/Code.xaml#field=Spj&id=" + id, UriKind.Relative) });
+            tabTop.Links.Add(new Link { DisplayName = "Range validator", Source = new Uri("/ServerMode/Contest/Problem/Code.xaml#field=Validator&id=" + id, UriKind.Relative) });
+            tabTop.Links.Add(new Link { DisplayName = "Std source", Source = new Uri("/ServerMode/Contest/Problem/Code.xaml#field=Std&id=" + id, UriKind.Relative) });
             tabTop.SelectedSource = new Uri("/ServerMode/Contest/Problem/General.xaml#" + id, UriKind.Relative);
         }
 

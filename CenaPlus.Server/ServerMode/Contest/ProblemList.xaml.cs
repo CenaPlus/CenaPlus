@@ -42,10 +42,36 @@ namespace CenaPlus.Server.ServerMode.Contest
 
         private void btnModify_Click(object sender, RoutedEventArgs e)
         {
-            var frame = NavigationHelper.FindFrame(null, this);
-            if (frame != null)
+            if (ProblemListView.SelectedIndex != -1)
             {
-                frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml#"+ProblemListView.SelectedValue, UriKind.Relative);
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml#" + ProblemListView.SelectedValue, UriKind.Relative);
+                }
+            }
+        }
+
+        private void ProblemListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ProblemListView.SelectedIndex != -1)
+            {
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml#" + ProblemListView.SelectedValue, UriKind.Relative);
+                }
+            }
+        }
+        
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProblemListView.SelectedIndex != -1)
+            {
+                int id = (int)ProblemListView.SelectedValue;
+                App.Server.DeleteProblem(id);
+                ProblemListItems.RemoveAt(ProblemListView.SelectedIndex);
+                ProblemListView.Items.Refresh();
             }
         }
 
@@ -66,16 +92,6 @@ namespace CenaPlus.Server.ServerMode.Contest
             ProblemListView.Items.Refresh();
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
-        {
-            if (ProblemListView.SelectedIndex != -1)
-            {
-                int id = (int)ProblemListView.SelectedValue;
-                App.Server.DeleteProblem(id);
-                ProblemListItems.RemoveAt(ProblemListView.SelectedIndex);
-                ProblemListView.Items.Refresh();
-            }
-        }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
@@ -92,6 +108,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
         }
 
+        
 
     }
 }

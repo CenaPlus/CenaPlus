@@ -8,12 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
         <WrapPanel>
-            <ComboBox x:Name="cbLanguage">
-                
-            </ComboBox>
+            <ComboBox x:Name="cbLanguage" ></ComboBox>
+            <Button Name="btnSave" Content="Save changes" Click="btnSave_Click"/>
         </WrapPanel>
-        <RichTextBox x:Name="txtCode" AcceptsReturn="True" AcceptsTab="True" Margin="0,30,0,30" VerticalScrollBarVisibility="Auto">
-            
-        </RichTextBox>
+        <RichTextBox x:Name="txtCode" AcceptsReturn="True" AcceptsTab="True" Margin="0,30,0,30" VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </UserControl>

@@ -184,5 +184,29 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         void Kick(int userID);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        List<int> GetTestCaseList(int problemID);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        TestCase GetTestCase(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void DeleteTestCase(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void UpdateTestCase(int id, byte[] input, byte[] output, TestCaseType? type);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        int CreateTestCase(int problemID, byte[] input, byte[] output, TestCaseType type);
     }
 }

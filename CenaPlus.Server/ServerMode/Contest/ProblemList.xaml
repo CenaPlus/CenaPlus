@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
-        <ListView Margin="0,0,0,30" x:Name="ProblemListView" SelectedValuePath="ID">
+        <ListView Margin="0,0,0,30" x:Name="ProblemListView" SelectedValuePath="ID" MouseDoubleClick="ProblemListView_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
                     <GridViewColumn Header="#" DisplayMemberBinding="{Binding ID}" Width="30"/>

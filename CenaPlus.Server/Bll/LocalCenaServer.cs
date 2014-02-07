@@ -605,5 +605,96 @@ namespace CenaPlus.Server.Bll
         }
 
         #endregion
+        #region TestCase
+        public List<int> GetTestCaseList(int problemID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                return db.TestCases.Where(t => t.ProblemID == problemID).Select(t => t.ID).ToList();
+            }
+        }
+        public TestCase GetTestCase(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                TestCase testCase = db.TestCases.Find(id);
+                if (testCase == null) return null;
+
+                return new TestCase
+                {
+                    ID = testCase.ID,
+                    InputHash = testCase.InputHash,
+                    InputPreview = Encoding.UTF8.GetString(testCase.Input.Take(100).ToArray()),
+                    OutputPreview = Encoding.UTF8.GetString(testCase.Output.Take(100).ToArray()),
+                    InputSize = testCase.Input.Length,
+                    OutputSize = testCase.Output.Length,
+                    ProblemID = testCase.ProblemID,
+                    ProblemTitle = testCase.ProblemTitle,
+                    Type = testCase.Type
+                };
+            }
+        }
+        public void DeleteTestCase(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                TestCase testCase = db.TestCases.Find(id);
+                if (testCase == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "TestCase" });
+
+                db.TestCases.Remove(testCase);
+                db.SaveChanges();
+            }
+        }
+        public void UpdateTestCase(int id, byte[] input, byte[] output, TestCaseType? type)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                TestCase testCase = db.TestCases.Find(id);
+                if (testCase == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "TestCase" });
+
+                if (input != null)
+                {
+                    testCase.Input = input;
+                    testCase.InputHash = MD5.Create().ComputeHash(input);
+                }
+                if(output!=null)
+                    testCase.Output = output;
+                if(type!=null)
+                    testCase.Type = type.Value;
+
+                db.SaveChanges();
+            }
+        }
+        public int CreateTestCase(int problemID, byte[] input, byte[] output, TestCaseType type)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                TestCase testCase = new TestCase
+                {
+                    Input = input,
+                    InputHash = MD5.Create().ComputeHash(input),
+                    Output = output,
+                    ProblemID = problemID,
+                    Type = type
+                };
+                db.TestCases.Add(testCase);
+                db.SaveChanges();
+                return testCase.ID;
+            }
+        }
+        #endregion
+
+
+
     }
 }

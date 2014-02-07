@@ -44,6 +44,18 @@ namespace CenaPlus.Entity
 
         [Column("output")]
         public byte[] Output { get; set; }
+
+        [NotMapped]
+        public string InputPreview { get; set; }
+
+        [NotMapped]
+        public string OutputPreview { get; set; }
+
+        [NotMapped]
+        public int InputSize { get; set; }
+
+        [NotMapped]
+        public int OutputSize { get; set; }
     }
 
     public enum TestCaseType

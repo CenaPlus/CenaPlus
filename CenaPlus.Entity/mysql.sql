@@ -56,6 +56,7 @@ CREATE TABLE `test_cases` (
     input mediumblob not null,
     output mediumblob not null,
     primary key (id),
+    unique index (input_hash),
     foreign key (problem_id)
         references problems (id)
         on delete cascade

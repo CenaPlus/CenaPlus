@@ -7,13 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListView Margin="0,0,0,30" Width="300" x:Name="TestCasesListView" HorizontalAlignment="Left" SelectionChanged="TestCasesListView_SelectionChanged">
+        <ListView Margin="0,0,0,30" Width="300" x:Name="TestCasesListView" SelectedValuePath="ID" HorizontalAlignment="Left" SelectionChanged="TestCasesListView_SelectionChanged">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
-                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding Index}" Width="30"/>
-                    <GridViewColumn Header="Input" DisplayMemberBinding="{Binding InputSize}" Width="80"/>
-                    <GridViewColumn Header="Output" DisplayMemberBinding="{Binding OutputSize}" Width="80"/>
-                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80"/>
+                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding ID}" Width="30"/>
+                    <GridViewColumn Header="Input Size" DisplayMemberBinding="{Binding InputLength}" Width="80"/>
+                    <GridViewColumn Header="Output Size" DisplayMemberBinding="{Binding OutputLength}" Width="80"/>
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="80"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -24,19 +24,24 @@
         <ScrollViewer Margin="320,0,0,0">
             <Grid>
                 <StackPanel x:Name="SinglePanel" Visibility="Collapsed">
-                    <TextBlock Text="Input" Margin="0,0,0,5"></TextBlock>
-                    <TextBox AcceptsReturn="True" Height="80" Margin="0,0,0,20"></TextBox>
-                    <TextBlock Text="Output" Margin="0,0,0,5"></TextBlock>
-                    <TextBox AcceptsReturn="True" Height="80" Margin="0,0,0,20"></TextBox>
-                    <TextBlock>From file</TextBlock>
+                    <TextBlock Text="Input Preview" Margin="0,0,0,5"></TextBlock>
+                    <TextBox Name="txtInputPreview" IsReadOnly="True" Height="80" Margin="0,0,0,10"></TextBox>
                     <WrapPanel Margin="0,0,0,20">
-                        <TextBox Width="200" Margin="0,0,10,0"></TextBox>
-                        <Button x:Name="btnFileDialog">...</Button>
+                        <TextBlock Margin="0,0,10,0">From file:</TextBlock>
+                        <TextBox Name="txtInputFileName" Width="200" Margin="0,0,10,0" IsReadOnly="True"></TextBox>
+                        <Button x:Name="btnInputFileDialog" Click="btnInputFileDialog_Click">...</Button>
                     </WrapPanel>
-                    <TextBlock Text="Case status (CF, TC format only)" Margin="0,0,0,5"></TextBlock>
-                    <CheckBox Content="Pretest" Margin="0,0,0,20"></CheckBox>
+                    <TextBlock Text="Output Preview" Margin="0,0,0,5"></TextBlock>
+                    <TextBox Name="txtOutputPreview" IsReadOnly="True" Height="80" Margin="0,0,0,10"></TextBox>
+                    <WrapPanel Margin="0,0,0,20">
+                        <TextBlock Margin="0,0,10,0">From file:</TextBlock>
+                        <TextBox Name="txtOutputFileName" Width="200" Margin="0,0,10,0" IsReadOnly="True"></TextBox>
+                        <Button x:Name="btnOutputFileDialog" Click="btnOutputFileDialog_Click">...</Button>
+                    </WrapPanel>
+                    <TextBlock Name="lblType" Text="Type" Margin="0,0,0,5"></TextBlock>
+                    <ComboBox Name="cbType" Margin="0,0,0,20"/>
                     <Button x:Name="btnDelete" Content="Delete this case" Margin="0,0,0,10" Click="btnDelete_Click"/>
-                    <Button Content="Save changes"></Button>
+                    <Button Name="btnSave" Content="Save changes" Click="btnSave_Click"></Button>
                 </StackPanel>
                 <StackPanel x:Name="BatchPanel" Visibility="Collapsed">
                     <TextBlock Text="Floder directory" Margin="0,0,0,5"></TextBlock>
