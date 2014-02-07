@@ -10,16 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
+using FirstFloor.ModernUI.Windows.Controls;
+using CenaPlus.Entity;
 namespace CenaPlus.Server.ServerMode.Contest.Problem
 {
     /// <summary>
     /// Interaction logic for Content.xaml
     /// </summary>
-    public partial class Content : UserControl
+    public partial class Content : UserControl, IContent
     {
+        private int id;
         public Content()
         {
             InitializeComponent();
@@ -32,6 +36,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             }
             richMain.Focus();
         }
+
         private void ComboBoxFontColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!richMain.Selection.IsEmpty)
@@ -48,5 +53,39 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                 }
             }
         }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            string content;
+            using (MemoryStream mem = new MemoryStream())
+            {
+                new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd).Save(mem, DataFormats.Rtf);
+                content = Encoding.UTF8.GetString(mem.ToArray());
+            }
+            App.Server.UpdateProblem(id, null, content, null, null, null, null, null, null, null, null, null);
+            ModernDialog.ShowMessage("Saved", "Error", MessageBoxButton.OK);
+        }
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+            id = int.Parse(e.Fragment);
+            var content = App.Server.GetProblem(id).Content;
+            using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(content)))
+            {
+                new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd).Load(mem, DataFormats.Rtf);
+            }
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+
     }
 }

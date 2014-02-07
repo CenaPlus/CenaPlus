@@ -207,7 +207,8 @@ namespace CenaPlus.Server.Bll
 
         #endregion
         #region Problem
-        public int CreateProblem(int contestID, string title, string content, int score)
+        public int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit,
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage)
         {
             using (DB db = new DB())
             {
@@ -221,7 +222,15 @@ namespace CenaPlus.Server.Bll
                     Title = title,
                     Content = content,
                     Score = score,
-                    ContestID = contestID
+                    ContestID = contestID,
+                    TimeLimit = timeLimit,
+                    MemoryLimit = memoryLimit,
+                    Std = std,
+                    Spj = spj,
+                    Validator = validator,
+                    StdLanguage = stdLanguage,
+                    SpjLanguage = spjLanguage,
+                    ValidatorLanguage = validatorLanguage
                 };
 
                 db.Problems.Add(problem);
@@ -230,6 +239,42 @@ namespace CenaPlus.Server.Bll
                 return problem.ID;
             }
         }
+
+        public void UpdateProblem(int id, string title, string content, int? score, int? timeLimit, long? memoryLimit,
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Problem problem = db.Problems.Find(id);
+                if (problem == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
+
+                if (title != null)
+                    problem.Title = title;
+                if (content != null)
+                    problem.Content = content;
+                if (score != null)
+                    problem.Score = score.Value;
+                if (memoryLimit != null)
+                    problem.MemoryLimit = memoryLimit.Value;
+                if (std != null)
+                    problem.Std = std;
+                if (spj != null)
+                    problem.Spj = spj;
+                if (validator != null)
+                    problem.Validator = validator;
+                if (stdLanguage != null)
+                    problem.StdLanguage = stdLanguage;
+                if (spjLanguage != null)
+                    problem.SpjLanguage = spjLanguage;
+                if (validatorLanguage != null)
+                    problem.ValidatorLanguage = validatorLanguage;
+
+                db.SaveChanges();
+            }
+        }
+
         public void DeleteProblem(int id)
         {
             using (DB db = new DB())
@@ -280,7 +325,15 @@ namespace CenaPlus.Server.Bll
                     Score = problem.Score,
                     ContestTitle = problem.Contest.Title,
                     Title = problem.Title,
-                    TestCasesCount = problem.TestCases.Count
+                    TestCasesCount = problem.TestCases.Count,
+                    MemoryLimit = problem.MemoryLimit,
+                    TimeLimit = problem.TimeLimit,
+                    Spj = CurrentUser.Role >= UserRole.Manager ? problem.Spj : null,
+                    Std = CurrentUser.Role >= UserRole.Manager ? problem.Std : null,
+                    Validator = CurrentUser.Role >= UserRole.Manager ? problem.Validator : null,
+                    SpjLanguage = CurrentUser.Role >= UserRole.Manager ? problem.SpjLanguage : null,
+                    StdLanguage = CurrentUser.Role >= UserRole.Manager ? problem.StdLanguage : null,
+                    ValidatorLanguage = CurrentUser.Role >= UserRole.Manager ? problem.ValidatorLanguage : null
                 };
             }
         }

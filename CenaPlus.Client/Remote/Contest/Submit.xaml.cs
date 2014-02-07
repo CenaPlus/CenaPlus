@@ -26,10 +26,7 @@ namespace CenaPlus.Client.Remote.Contest
         public Submit()
         {
             InitializeComponent();
-            foreach (string lang in Enum.GetNames(typeof(ProgrammingLanguage)))
-            {
-                lstLanguage.Items.Add(new ListBoxItem { Content = lang });
-            }
+            lstLanguage.ItemsSource =  Enum.GetNames(typeof(ProgrammingLanguage)));
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -51,7 +48,7 @@ namespace CenaPlus.Client.Remote.Contest
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            int recordID = App.Server.Submit(problemID, txtCode.Text, (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), (string)lstLanguage.SelectedValue));
+            int recordID = App.Server.Submit(problemID, txtCode.Text, (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), (string)lstLanguage.SelectedItem));
             MessageBox.Show("TODO: navigate to record #" + recordID);
         }
     }

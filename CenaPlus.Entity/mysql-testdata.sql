@@ -12,14 +12,14 @@ INSERT INTO contests (title, description, start_time, end_time, `type`) values (
 INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample CF', 'Sample CF', addtime(now(),'0:3'),addtime(now(),'0:5'),2);
 INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample TC', 'Sample TC', addtime(now(),'0:4'),addtime(now(),'0:6'),3);
 
-INSERT INTO problems (title, content, contest_id,score) values ('OI A+B','a+b',1,1); 
-INSERT INTO problems (title, content, contest_id,score) values ('OI C+D','c+d',1,2);
-INSERT INTO problems (title, content, contest_id,score) values ('ACM A+B','a+b',2,1);
-INSERT INTO problems (title, content, contest_id,score) values ('ACM C+D','c+d',2,2);
-INSERT INTO problems (title, content, contest_id,score) values ('CF A+B','a+b',3,1);
-INSERT INTO problems (title, content, contest_id,score) values ('CF C+D','c+d',3,2);
-INSERT INTO problems (title, content, contest_id,score) values ('TC A+B','a+b',4,1);
-INSERT INTO problems (title, content, contest_id,score) values ('TC C+D','c+d',4,2);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('OI A+B','a+b',1,1,1000,256*1024*1024); 
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('OI C+D','c+d',1,2,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('ACM A+B','a+b',2,1,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('ACM C+D','c+d',2,2,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('CF A+B','a+b',3,1,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('CF C+D','c+d',3,2,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('TC A+B','a+b',4,1,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('TC C+D','c+d',4,2,1000,256*1024*1024);
 
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (1,0,unhex(md5('1 1')),'1 1','2');
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,0,unhex(md5('1 2')),'1 2','3');

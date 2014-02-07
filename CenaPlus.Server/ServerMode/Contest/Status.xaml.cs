@@ -69,6 +69,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                 Code = r.Code
             };
             StatusListView.Items.Refresh();
+            ModernDialog.ShowMessage("Rejudging", "Message", MessageBoxButton.OK);
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -91,7 +92,6 @@ namespace CenaPlus.Server.ServerMode.Contest
             StatusListViewItems.Clear();
             foreach (var item in list) StatusListViewItems.Add(item);
             StatusListView.Items.Refresh();
-            ModernDialog.ShowMessage("Rejudging", "Message", MessageBoxButton.OK);
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)

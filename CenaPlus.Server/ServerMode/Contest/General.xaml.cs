@@ -28,10 +28,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         public General()
         {
             InitializeComponent();
-            foreach (var type in Enum.GetNames(typeof(ContestType)))
-            {
-                cbbType.Items.Add(new ListBoxItem { Content = type });
-            }
+            cbbType.ItemsSource = Enum.GetNames(typeof(ContestType));
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -81,7 +78,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                 return;
             }
             
-            App.Server.UpdateContest(id, txtTitle.Text, null, start, end, (ContestType)cbbType.SelectedIndex);
+            App.Server.UpdateContest(id, txtTitle.Text, null, start, end, (ContestType)Enum.Parse(typeof(ProgrammingLanguage),(string)cbbType.SelectedItem));
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
 

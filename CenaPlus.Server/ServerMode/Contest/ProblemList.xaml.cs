@@ -32,7 +32,7 @@ namespace CenaPlus.Server.ServerMode.Contest
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            int id = App.Server.CreateProblem(contestID, "New Problem", "", 0);
+            int id = App.Server.CreateProblem(contestID, "New Problem", "", 0,1000,256*1024*1024,null,null,null,null,null,null);
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
@@ -45,7 +45,7 @@ namespace CenaPlus.Server.ServerMode.Contest
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
-                frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml", UriKind.Relative);
+                frame.Source = new Uri("/ServerMode/Contest/Problem/Problem.xaml#"+ProblemListView.SelectedValue, UriKind.Relative);
             }
         }
 

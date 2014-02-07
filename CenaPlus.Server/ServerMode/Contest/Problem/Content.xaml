@@ -27,7 +27,7 @@
                 <Paragraph/>
             </FlowDocument>
         </RichTextBox>
-        <Button x:Name="btnSave" Content="Save changes" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnSave" Content="Save changes" VerticalAlignment="Bottom" Click="btnSave_Click"/>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <Button Style="{StaticResource formatTextStyle}" Height="30" Command="EditingCommands.ToggleBold" ToolTip="Bold">
                 <TextBlock FontWeight="Bold"><Run Text="B"/></TextBlock>

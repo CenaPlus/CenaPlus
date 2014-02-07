@@ -7,17 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
-        <!-- TODO: set @SelectedSource -->
-        <mui:ModernTab Layout="Tab" SelectedSource="/ServerMode/Contest/Problem/General.xaml">
-            <mui:ModernTab.Links>
-                <!-- TODO: set @Source -->
-                <mui:Link DisplayName="General" Source="/ServerMode/Contest/Problem/General.xaml" />
-                <mui:Link DisplayName="Content" Source="/ServerMode/Contest/Problem/Content.xaml" />
-                <mui:Link DisplayName="Test cases" Source="/ServerMode/Contest/Problem/TestCases.xaml" />
-                <mui:Link DisplayName="SPJ" Source="/ServerMode/Contest/Problem/Code.xaml#SPJ" />
-                <mui:Link DisplayName="Range validator" Source="/ServerMode/Contest/Problem/Code.xaml#RangeValidator" />
-                <mui:Link DisplayName="Std source" Source="/ServerMode/Contest/Problem/Code.xaml#StdSource" />
-            </mui:ModernTab.Links>
+        <mui:ModernTab Name="tabTop" Layout="Tab">
         </mui:ModernTab>
     </Grid>
 </UserControl>
