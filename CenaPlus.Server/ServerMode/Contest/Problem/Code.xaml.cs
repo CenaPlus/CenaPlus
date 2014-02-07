@@ -24,6 +24,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         {
             InitializeComponent();
             RichTextEditor.HighLightEdit.HighLight(txtCode);
+            cbLanguage.ItemsSource = Enum.GetNames(typeof(Entity.ProgrammingLanguage));
         }
     }
 }
