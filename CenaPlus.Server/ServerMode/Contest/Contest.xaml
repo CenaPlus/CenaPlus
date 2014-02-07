@@ -7,10 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="27*"/>
-            <RowDefinition Height="37*"/>
-        </Grid.RowDefinitions>
         <mui:ModernTab Name="lstLinks" Layout="List" Grid.RowSpan="2">
         </mui:ModernTab>
     </Grid>
