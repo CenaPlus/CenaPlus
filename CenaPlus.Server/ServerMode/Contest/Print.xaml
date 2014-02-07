@@ -20,7 +20,7 @@
         </ListBox>
         <Grid HorizontalAlignment="Right" Width="280" x:Name="gridPrintContent" Visibility="Collapsed">
             <TextBlock Text="Print board" Style="{StaticResource Heading2}" />
-            <TextBox x:Name="txtPrintContent" AcceptsReturn="True" Margin="0,30,0,30" GotFocus="PrintTextBox_GotFocus"></TextBox>
+            <TextBox x:Name="txtPrintContent" AcceptsReturn="True" Margin="0,30,0,30"></TextBox>
             <WrapPanel VerticalAlignment="Bottom" Height="25">
                 <TextBlock Text="Copies" Margin="0,0,10,0"></TextBlock>
                 <TextBlock Text="3" Margin="0,0,10,0"></TextBlock>
