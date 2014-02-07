@@ -21,9 +21,20 @@ namespace CenaPlus.Server.ServerMode.Contest
     /// </summary>
     public partial class Print : UserControl
     {
+        public List<ServerPrintRequestListBoxItem> ServerPrintRequestListBoxItems = new List<ServerPrintRequestListBoxItem>();
         public Print()
         {
             InitializeComponent();
+            for (int i = 0; i < 10; i++)
+            {
+                ServerPrintRequestListBoxItem t = new ServerPrintRequestListBoxItem();
+                t.Username = "yuno";
+                t.Time = DateTime.Now;
+                t.Copies = 3;
+                t.Length = 123;
+                ServerPrintRequestListBoxItems.Add(t);
+            }
+            PrintRequestListBox.ItemsSource = ServerPrintRequestListBoxItems;
         }
 
         private void PrintRequestListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,7 +55,7 @@ namespace CenaPlus.Server.ServerMode.Contest
             ModernDialog.ShowMessage("Printing.", "Message", MessageBoxButton.OK);
         }
     }
-    public class ServerPrintRequestListBox
+    public class ServerPrintRequestListBoxItem
     {
         public string Username { get; set; }
         public int Copies { get; set; }
