@@ -23,6 +23,8 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <TextBlock Margin="0,0,0,5" Text="Points"></TextBlock>
+                <TextBox x:Name="txtPoints" Margin="0,0,0,20"></TextBox>
                 <Button Content="Save changes"></Button>
             </StackPanel>
         </ScrollViewer>
