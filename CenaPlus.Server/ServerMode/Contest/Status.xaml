@@ -14,7 +14,7 @@
                     <GridViewColumn Header="Competitor" DisplayMemberBinding="{Binding UserNickName}" Width="80"/>
                     <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding ProblemTitle}" Width="80"/>
                     <GridViewColumn Header="Language" DisplayMemberBinding="{Binding Language}" Width="80"/>
-                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="80"/>
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>

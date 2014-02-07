@@ -27,7 +27,7 @@ namespace CenaPlus.Server.RichTextEditor
                            };
             return res;
         }
-        public static char[] ignore = " <>;:{}[]()+-*/&~!=|^?".ToCharArray();
+        public static char[] ignore = " \r\n<>;:{}[]()+-*/&~!=|^?".ToCharArray();
         public static void ChangeColor(string l, RichTextBox richBox, string keyword)
         {
 
