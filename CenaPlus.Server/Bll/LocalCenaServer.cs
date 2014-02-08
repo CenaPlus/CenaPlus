@@ -59,8 +59,8 @@ namespace CenaPlus.Server.Bll
         #region Misc
         public string GetVersion()
         {
-            var fileVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-            return fileVersion.FileMajorPart + "." + fileVersion.FileMinorPart;
+            var version = typeof(ICenaPlusServer).Assembly.GetName().Version;
+            return version.Major + "." + version.Minor;
         }
 
         public bool Authenticate(string userName, string password)
@@ -89,6 +89,22 @@ namespace CenaPlus.Server.Bll
 
                 CurrentUser = user;
                 return true;
+            }
+        }
+
+        public User GetProfile()
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                return new User
+                {
+                    ID = CurrentUser.ID,
+                    Name = CurrentUser.Name,
+                    NickName = CurrentUser.NickName,
+                    Role = CurrentUser.Role
+                };
             }
         }
 

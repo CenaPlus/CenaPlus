@@ -41,9 +41,9 @@ namespace CenaPlus.Server.Bll
         {
             base.OnOpened();
 
-            var fileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var version = fileVersion.FileMajorPart + "." + fileVersion.FileMinorPart;
-            var ssdpMsg = Encoding.UTF8.GetBytes(string.Format(SSDP_FORMAT, version, serverName, port));
+            var version = typeof(ICenaPlusServer).Assembly.GetName().Version;
+            var versionStr = version.Major + "." + version.Minor;
+            var ssdpMsg = Encoding.UTF8.GetBytes(string.Format(SSDP_FORMAT, versionStr, serverName, port));
 
             UdpClient udp = new UdpClient();
             udp.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);

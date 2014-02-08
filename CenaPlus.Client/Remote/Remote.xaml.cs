@@ -125,14 +125,15 @@ namespace CenaPlus.Client.Remote
         {
             var serverItem = ServerListBox.SelectedItem as ServerListItem;
 
-            CenaPlusServerProxy server;
+            ICenaPlusServerChannel server;
             try
             {
-                server = new Bll.CenaPlusServerProxy(serverItem.Location, new Bll.ServerCallback());
+                server = Network.CenaPlusServerChannelFactory.CreateChannel(serverItem.Location, new Bll.ServerCallback());
             }
-            catch
+            catch(Exception err)
             {
                 ModernDialog.ShowMessage("Connection to " + serverItem.Location + " failed.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(err.ToString());
                 return;
             }
 
@@ -141,12 +142,14 @@ namespace CenaPlus.Client.Remote
                 if (!server.Authenticate(txtUserName.Text, txtPassword.Password))
                 {
                     ModernDialog.ShowMessage("Incorrect user name or password.", "Error", MessageBoxButton.OK);
+                    server.Close();
                     return;
                 }
             }
             catch (FaultException<AlreadyLoggedInError>)
             {
                 ModernDialog.ShowMessage("This account is online.", "Error", MessageBoxButton.OK);
+                server.Close();
                 return;
             }
 

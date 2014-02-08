@@ -1,3 +1,4 @@
+drop table if exists `print_requests`;
 drop table if exists `questions`;
 drop table if exists `user_assigned_contests`;
 drop table if exists `records`;
@@ -111,5 +112,22 @@ CREATE TABLE `questions` (
         on delete cascade,
     foreign key (asker_id)
         references users (id)
+        on delete cascade
+)  default charset=utf8;
+
+CREATE TABLE `print_requests` (
+    id int not null auto_increment,
+    user_id int not null,
+    contest_id int not null,
+    copies int not null,
+    content mediumtext not null,
+    `time` datetime not null,
+    `status` tinyint not null,
+    primary key (id),
+    foreign key (user_id)
+        references users (id)
+        on delete cascade,
+    foreign key (contest_id)
+        references contests (id)
         on delete cascade
 )  default charset=utf8;

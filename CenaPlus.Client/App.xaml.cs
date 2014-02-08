@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Timers;
 using CenaPlus.Client.Bll;
-
+using CenaPlus.Network;
 namespace CenaPlus.Client
 {
     /// <summary>
@@ -15,7 +15,7 @@ namespace CenaPlus.Client
     /// </summary>
     public partial class App : Application
     {
-        public static CenaPlusServerProxy Server { get; set; }
+        public static ICenaPlusServerChannel Server { get; set; }
         public static Timer HeartBeatTimer { get; set; }
 
         static App()
@@ -28,6 +28,7 @@ namespace CenaPlus.Client
                     try
                     {
                         Server.GetVersion();
+                        HeartBeatTimer.Start();
                     }
                     catch
                     {
@@ -36,7 +37,7 @@ namespace CenaPlus.Client
                         Server = null;
                         HeartBeatTimer.Stop();
                         MessageBox.Show("Disconnected from the server", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Application.Current.Shutdown();
+                        Environment.Exit(1);
                     }
                 }
                 else
@@ -44,7 +45,7 @@ namespace CenaPlus.Client
                     HeartBeatTimer.Stop();
                 }
             };
-            HeartBeatTimer.AutoReset = true;
+            HeartBeatTimer.AutoReset = false;
         }
     }
 }

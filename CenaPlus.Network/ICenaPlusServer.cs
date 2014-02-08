@@ -31,6 +31,10 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AlreadyLoggedInError))]
         bool Authenticate(string userName, string password);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        User GetProfile();
+
         /// <summary>
         /// List all contests on the server.
         /// </summary>

@@ -20,6 +20,9 @@ using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Server.Bll;
 using CenaPlus.Server.Dal;
+using CenaPlus.Network;
+using System.ServiceModel;
+using CenaPlus.Entity;
 namespace CenaPlus.Server.ServerMode
 {
     /// <summary>
@@ -155,7 +158,43 @@ namespace CenaPlus.Server.ServerMode
                 return;
             }
 
-            ModernDialog.ShowMessage("NotSupported", "Error", MessageBoxButton.OK);
+            try
+            {
+                App.Server = CenaPlusServerChannelFactory.CreateChannel(new IPEndPoint(address, port), new Bll.ServerCallback());
+            }
+            catch (Exception err)
+            {
+                ModernDialog.ShowMessage("Connection failed", "Error", MessageBoxButton.OK);
+                MessageBox.Show(err.ToString());
+                return;
+            }
+
+            try
+            {
+                if (!App.Server.Authenticate(txtAccount.Text, txtPassword.Password))
+                {
+                    ModernDialog.ShowMessage("Incorrect user name or password", "Error", MessageBoxButton.OK);
+                    return;
+                }
+            }
+            catch (FaultException<AlreadyLoggedInError>)
+            {
+                ModernDialog.ShowMessage("Your account is already online", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            if (App.Server.GetProfile().Role < UserRole.Manager) {
+                ModernDialog.ShowMessage("This account does not have management access", "Error", MessageBoxButton.OK);
+                return;
+            }
+
+            App.HeartBeatTimer.Start();
+
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/ServerMode/Online.xaml", UriKind.Relative);
+            }
         }
     }
 }

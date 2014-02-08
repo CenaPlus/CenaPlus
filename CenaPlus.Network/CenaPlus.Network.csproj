@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AccessDeniedError.cs" />
     <Compile Include="AlreadyLoggedInError.cs" />
+    <Compile Include="CenaPlusServerChannelFactory.cs" />
     <Compile Include="ConflictError.cs" />
     <Compile Include="ICenaPlusServer.cs" />
     <Compile Include="ICenaPlusServerCallbak.cs" />

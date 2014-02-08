@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
-
+using CenaPlus.Network;
 namespace CenaPlus.Client.Bll
 {
     class IntranetServer
@@ -20,8 +20,8 @@ namespace CenaPlus.Client.Bll
 
         static ServerDiscoverer()
         {
-            var fileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            versionExpected = fileVersion.FileMajorPart + "." + fileVersion.FileMinorPart;
+            var version = typeof(ICenaPlusServer).Assembly.GetName().Version;
+            versionExpected = version.Major + "." + version.Minor;
         }
 
         public event Action<IntranetServer> FoundServer;

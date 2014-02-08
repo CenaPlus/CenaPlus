@@ -89,6 +89,7 @@
     <Compile Include="Bll\CenaPlusServerHost.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
+    <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Dal\DB.cs" />
     <Compile Include="JudgeNode\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>
