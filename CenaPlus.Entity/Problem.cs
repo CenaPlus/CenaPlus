@@ -74,12 +74,29 @@ namespace CenaPlus.Entity
         [Column("contest_id")]
         [ForeignKey("Contest")]
         public int ContestID { get; set; }//for db
-        
+
         [IgnoreDataMember]
         public virtual Contest Contest { get; set; }//for navigation
 
         [NotMapped]
         public string ContestTitle { get; set; }//for client
+
+        [Column("forbidden_languages")]
+        public string ForbiddenLanguagesAsString { get; set; }
+
+        [NotMapped]
+        [IgnoreDataMember]
+        public IEnumerable<ProgrammingLanguage> ForbiddenLanguages
+        {
+            get
+            {
+                return ForbiddenLanguagesAsString.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Select(l => (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), l));
+            }
+            set
+            {
+                ForbiddenLanguagesAsString = string.Join("|", value);
+            }
+        }
 
         [IgnoreDataMember]
         public virtual ICollection<TestCase> TestCases { get; set; }

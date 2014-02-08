@@ -13,7 +13,7 @@
                 <TextBox x:Name="txtTitle" Margin="0,0,0,20"></TextBox>
                 <TextBlock Text="Time limit (ms)" Margin="0,0,0,5"/>
                 <TextBox x:Name="txtTimeLimit" Margin="0,0,0,20"></TextBox>
-                <TextBlock Text="Memory limit (KB)" Margin="0,0,0,5"/>
+                <TextBlock Text="Memory limit (MiB)" Margin="0,0,0,5"/>
                 <TextBox x:Name="txtMemoryLimit" Margin="0,0,0,20"></TextBox>
                 <TextBlock Text="Score" Margin="0,0,0,5"/>
                 <TextBox x:Name="txtScore" Margin="0,0,0,20"></TextBox>
@@ -21,7 +21,7 @@
                 <ListBox x:Name="lbLanguageForbidden" Margin="0,0,0,20">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Content="{Binding}"/>
+                            <CheckBox IsChecked="{Binding IsSelected}" Content="{Binding Content}"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

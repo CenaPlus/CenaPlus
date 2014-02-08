@@ -41,6 +41,9 @@ namespace CenaPlus.Entity
 
         [IgnoreDataMember]
         public virtual ICollection<Problem> Problems { get; set; }
+
+        [Column("printing_enabled")]
+        public bool PrintingEnabled { get; set; }
     }
 
     public enum ContestType

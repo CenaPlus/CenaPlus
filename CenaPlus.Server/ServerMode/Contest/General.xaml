@@ -23,8 +23,8 @@
                 </WrapPanel>
                 <TextBlock Text="Contest type"></TextBlock>
                 <ComboBox x:Name="cbbType" Margin="0,0,0,20"></ComboBox>
-                <TextBlock Text="Accept print requests(Not supported)" Margin="0,0,0,5" />
-                <CheckBox Content="Allow" Margin="0,0,0,20"></CheckBox>
+                <TextBlock Text="Accept print requests" Margin="0,0,0,5" />
+                <CheckBox Name="chkPrinting" Content="Allow" Margin="0,0,0,20"></CheckBox>
                 
                 <Button Name="btnSave" Content="Save changes" Click="btnSave_Click"></Button>
             </StackPanel>

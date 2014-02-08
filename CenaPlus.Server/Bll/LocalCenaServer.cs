@@ -142,7 +142,31 @@ namespace CenaPlus.Server.Bll
                 db.SaveChanges();
             }
         }
-        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type)
+        public int CreateContest(string title, string description, DateTime startTime, DateTime endTime, ContestType type, bool printingEnabled)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                if (startTime > endTime)
+                    throw new FaultException<ValidationError>(new ValidationError());
+
+                Contest contest = new Contest
+                {
+                    Description = description,
+                    EndTime = endTime,
+                    PrintingEnabled = printingEnabled,
+                    StartTime = startTime,
+                    Title = title,
+                    Type = type
+                };
+
+                db.Contests.Add(contest);
+                db.SaveChanges();
+                return contest.ID;
+            }
+        }
+        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type, bool? printingEnabled)
         {
             using (DB db = new DB())
             {
@@ -164,6 +188,8 @@ namespace CenaPlus.Server.Bll
                     contest.Description = description;
                 if (type != null)
                     contest.Type = type.Value;
+                if (printingEnabled != null)
+                    contest.PrintingEnabled = printingEnabled.Value;
 
                 db.SaveChanges();
             }
@@ -200,7 +226,8 @@ namespace CenaPlus.Server.Bll
                     EndTime = contest.EndTime,
                     StartTime = contest.StartTime,
                     Title = contest.Title,
-                    Type = contest.Type
+                    Type = contest.Type,
+                    PrintingEnabled = contest.PrintingEnabled
                 };
             }
         }
@@ -208,7 +235,7 @@ namespace CenaPlus.Server.Bll
         #endregion
         #region Problem
         public int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit,
-            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage)
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage,IEnumerable<ProgrammingLanguage> forbiddenLanguages)
         {
             using (DB db = new DB())
             {
@@ -230,7 +257,8 @@ namespace CenaPlus.Server.Bll
                     Validator = validator,
                     StdLanguage = stdLanguage,
                     SpjLanguage = spjLanguage,
-                    ValidatorLanguage = validatorLanguage
+                    ValidatorLanguage = validatorLanguage,
+                    ForbiddenLanguages = forbiddenLanguages
                 };
 
                 db.Problems.Add(problem);
@@ -241,7 +269,7 @@ namespace CenaPlus.Server.Bll
         }
 
         public void UpdateProblem(int id, string title, string content, int? score, int? timeLimit, long? memoryLimit,
-            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage)
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage,IEnumerable<ProgrammingLanguage> forbiddenLanguages)
         {
             using (DB db = new DB())
             {
@@ -270,6 +298,8 @@ namespace CenaPlus.Server.Bll
                     problem.SpjLanguage = spjLanguage;
                 if (validatorLanguage != null)
                     problem.ValidatorLanguage = validatorLanguage;
+                if (forbiddenLanguages != null)
+                    problem.ForbiddenLanguages = forbiddenLanguages;
 
                 db.SaveChanges();
             }
@@ -333,7 +363,8 @@ namespace CenaPlus.Server.Bll
                     Validator = CurrentUser.Role >= UserRole.Manager ? problem.Validator : null,
                     SpjLanguage = CurrentUser.Role >= UserRole.Manager ? problem.SpjLanguage : null,
                     StdLanguage = CurrentUser.Role >= UserRole.Manager ? problem.StdLanguage : null,
-                    ValidatorLanguage = CurrentUser.Role >= UserRole.Manager ? problem.ValidatorLanguage : null
+                    ValidatorLanguage = CurrentUser.Role >= UserRole.Manager ? problem.ValidatorLanguage : null,
+                    ForbiddenLanguages = problem.ForbiddenLanguages
                 };
             }
         }
@@ -665,9 +696,9 @@ namespace CenaPlus.Server.Bll
                     testCase.Input = input;
                     testCase.InputHash = MD5.Create().ComputeHash(input);
                 }
-                if(output!=null)
+                if (output != null)
                     testCase.Output = output;
-                if(type!=null)
+                if (type != null)
                     testCase.Type = type.Value;
 
                 db.SaveChanges();
@@ -693,8 +724,6 @@ namespace CenaPlus.Server.Bll
             }
         }
         #endregion
-
-
 
     }
 }

@@ -77,9 +77,4 @@ namespace CenaPlus.Entity
         CompileError, SystemError,//System Level
         Running, Pending//DB Level
     }
-
-    public enum ProgrammingLanguage
-    {
-        C, CXX, CXX11, Java, Pascal, Python27, Python33, Ruby
-    }
 }

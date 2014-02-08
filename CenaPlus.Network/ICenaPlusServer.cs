@@ -57,7 +57,12 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         [FaultContract(typeof(ValidationError))]
-        void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type);
+        void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type, bool? printingEnabled);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(ValidationError))]
+        int CreateContest(string title, string description, DateTime startTime, DateTime endTime, ContestType type, bool printingEnabled);
 
         /// <summary>
         /// Get problem ids of the contest
@@ -73,13 +78,13 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit,
-            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage);
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages);
 
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         void UpdateProblem(int id, string title, string content, int? score, int? timeLimit, long? memoryLimit,
-            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage);
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages);
 
         /// <summary>
         /// Get problem by id

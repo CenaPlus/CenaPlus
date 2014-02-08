@@ -7,19 +7,19 @@ INSERT INTO users (`name`,nick_name,`password`,role) values ('user4','u4',unhex(
 INSERT INTO users (`name`,nick_name,`password`,role) values ('user5','u5',unhex(sha1('user5')),1);
 INSERT INTO users (`name`,nick_name,`password`,role) values ('user6','u6',unhex(sha1('user6')),0);
 
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample OI', 'Sample OI', addtime(now(),'0:1'),addtime(now(),'0:3'),0);
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample ACM', 'Sample ACM', addtime(now(),'0:2'),addtime(now(),'0:4'),1);
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample CF', 'Sample CF', addtime(now(),'0:3'),addtime(now(),'0:5'),2);
-INSERT INTO contests (title, description, start_time, end_time, `type`) values ('Sample TC', 'Sample TC', addtime(now(),'0:4'),addtime(now(),'0:6'),3);
+INSERT INTO contests (title, description, start_time, end_time, `type`,printing_enabled) values ('Sample OI', 'Sample OI', addtime(now(),'0:1'),addtime(now(),'0:3'),0,false);
+INSERT INTO contests (title, description, start_time, end_time, `type`,printing_enabled) values ('Sample ACM', 'Sample ACM', addtime(now(),'0:2'),addtime(now(),'0:4'),1,true);
+INSERT INTO contests (title, description, start_time, end_time, `type`,printing_enabled) values ('Sample CF', 'Sample CF', addtime(now(),'0:3'),addtime(now(),'0:5'),2,true);
+INSERT INTO contests (title, description, start_time, end_time, `type`,printing_enabled) values ('Sample TC', 'Sample TC', addtime(now(),'0:4'),addtime(now(),'0:6'),3,false);
 
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('OI A+B','a+b',1,1,1000,256*1024*1024); 
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('OI C+D','c+d',1,2,1000,256*1024*1024);
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('ACM A+B','a+b',2,1,1000,256*1024*1024);
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('ACM C+D','c+d',2,2,1000,256*1024*1024);
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('CF A+B','a+b',3,1,1000,256*1024*1024);
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('CF C+D','c+d',3,2,1000,256*1024*1024);
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('TC A+B','a+b',4,1,1000,256*1024*1024);
-INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit) values ('TC C+D','c+d',4,2,1000,256*1024*1024);
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('OI A+B','a+b',1,1,1000,256*1024*1024,'C|CXX11'); 
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('OI C+D','c+d',1,2,1000,256*1024*1024,'');
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('ACM A+B','a+b',2,1,1000,256*1024*1024,'');
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('ACM C+D','c+d',2,2,1000,256*1024*1024,'');
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('CF A+B','a+b',3,1,1000,256*1024*1024,'');
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('CF C+D','c+d',3,2,1000,256*1024*1024,'');
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('TC A+B','a+b',4,1,1000,256*1024*1024,'');
+INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('TC C+D','c+d',4,2,1000,256*1024*1024,'');
 
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (1,0,unhex(md5('1 1')),'1 1','2');
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,0,unhex(md5('1 2')),'1 2','3');

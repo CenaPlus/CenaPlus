@@ -37,18 +37,18 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var code = new TextRange(txtCode.Document.ContentStart, txtCode.Document.ContentEnd).Text;
-            ProgrammingLanguage languge = (ProgrammingLanguage)cbLanguage.SelectedIndex;
+            ProgrammingLanguage language = (ProgrammingLanguage)cbLanguage.SelectedIndex;
 
             switch (field)
             {
                 case "Spj":
-                    App.Server.UpdateProblem(id, null, null, null, null, null, null, code, null, null, languge, null);
+                    App.Server.UpdateProblem(id, null, null, null, null, null, null, code, null, null, language, null,null);
                     break;
                 case "Std":
-                    App.Server.UpdateProblem(id, null, null, null, null, null, code, null, null, languge, null, null);
+                    App.Server.UpdateProblem(id, null, null, null, null, null, code, null, null, language, null, null,null);
                     break;
                 case "Validator":
-                    App.Server.UpdateProblem(id, null, null, null, null, null, null, null, code, null, null, languge);
+                    App.Server.UpdateProblem(id, null, null, null, null, null, null, null, code, null, null, language,null);
                     break;
             }
 

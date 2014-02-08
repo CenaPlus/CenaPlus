@@ -32,7 +32,7 @@ namespace CenaPlus.Server.ServerMode.Contest
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            int id = App.Server.CreateProblem(contestID, "New Problem", "", 0,1000,256*1024*1024,null,null,null,null,null,null);
+            int id = App.Server.CreateProblem(contestID, "New Problem", "Insert description here.", 0,1000,256*1024*1024,null,null,null,null,null,null,Enumerable.Empty<ProgrammingLanguage>());
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {

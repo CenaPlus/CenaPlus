@@ -18,7 +18,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <WrapPanel VerticalAlignment="Bottom">
-            <Button x:Name="btnCreate" Content="Create" Margin="0,0,10,0"></Button>
+            <Button x:Name="btnCreate" Content="Create" Margin="0,0,10,0" Click="btnCreate_Click"></Button>
             <Button x:Name="btnModify" IsEnabled="False" Content="Modify" Margin="0,0,10,0" Click="btnModify_Click"></Button>
             <Button x:Name="btnDelete" IsEnabled="False" Content="Delete" Margin="0,0,10,0" Click="btnDelete_Click"></Button>
         </WrapPanel>

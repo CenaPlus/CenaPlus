@@ -23,6 +23,7 @@ CREATE TABLE `contests` (
     start_time datetime not null,
     end_time datetime not null,
     `type` tinyint not null,
+    printing_enabled bool not null,
     primary key (id),
     index (title)
 )  default charset=utf8;
@@ -40,6 +41,7 @@ CREATE TABLE `problems` (
     std_language tinyint default null,
     spj_language tinyint default null,
     validator_language tinyint default null,
+    forbidden_languages varchar(100) not null,
     contest_id int not null,
     primary key (id),
     foreign key (contest_id)

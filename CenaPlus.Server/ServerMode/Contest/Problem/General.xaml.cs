@@ -24,22 +24,25 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
     public partial class General : UserControl, IContent
     {
         private int id;
+        private List<LanguageSelectionItem> forbiddenLanguageItems;
 
         public General()
         {
             InitializeComponent();
-            lbLanguageForbidden.ItemsSource = Enum.GetNames(typeof(ProgrammingLanguage));
+            forbiddenLanguageItems = new List<LanguageSelectionItem>(Enum.GetNames(typeof(ProgrammingLanguage)).Select(x => new LanguageSelectionItem { Content = x }));
+            lbLanguageForbidden.ItemsSource = forbiddenLanguageItems;
+
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            double memoryKB;
-            if (!double.TryParse(txtMemoryLimit.Text, out memoryKB))
+            double memoryMB;
+            if (!double.TryParse(txtMemoryLimit.Text, out memoryMB))
             {
                 ModernDialog.ShowMessage("Memory limit should be float point number", "Error", MessageBoxButton.OK);
                 return;
             }
 
-            long memoryLimit = (long)(memoryKB * 1024);
+            long memoryLimit = (long)(memoryMB * 1024 * 1024);
             int timeLimit;
             if (!int.TryParse(txtTimeLimit.Text, out timeLimit))
             {
@@ -52,7 +55,12 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                 ModernDialog.ShowMessage("Score should be integer", "Error", MessageBoxButton.OK);
                 return;
             }
-            App.Server.UpdateProblem(id, txtTitle.Text, null, score, timeLimit, memoryLimit, null, null, null, null, null, null);
+
+            var forbiddenLanguages = from item in forbiddenLanguageItems
+                                     where item.IsSelected
+                                     select (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), item.Content);
+
+            App.Server.UpdateProblem(id, txtTitle.Text, null, score, timeLimit, memoryLimit, null, null, null, null, null, null, forbiddenLanguages);
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -61,8 +69,17 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             var problem = App.Server.GetProblem(id);
             txtTitle.Text = problem.Title;
             txtTimeLimit.Text = problem.TimeLimit.ToString();
-            txtMemoryLimit.Text = (problem.MemoryLimit / 1024.0).ToString();
+            txtMemoryLimit.Text = (problem.MemoryLimit / (1024.0 * 1024.0)).ToString();
             txtScore.Text = problem.Score.ToString();
+            foreach (var item in forbiddenLanguageItems)
+            {
+                item.IsSelected = false;
+            }
+            foreach (var lang in problem.ForbiddenLanguages)
+            {
+                forbiddenLanguageItems[(int)lang].IsSelected = true;
+            }
+            lbLanguageForbidden.Items.Refresh();
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -77,6 +94,10 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         {
         }
 
-
+        class LanguageSelectionItem
+        {
+            public bool IsSelected { get; set; }
+            public string Content { get; set; }
+        }
     }
 }

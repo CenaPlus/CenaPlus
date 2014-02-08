@@ -21,7 +21,7 @@ namespace CenaPlus.Server.ServerMode.Contest
     /// <summary>
     /// Interaction logic for General.xaml
     /// </summary>
-    public partial class General : UserControl,IContent
+    public partial class General : UserControl, IContent
     {
         private int id;
 
@@ -36,13 +36,15 @@ namespace CenaPlus.Server.ServerMode.Contest
             id = int.Parse(e.Fragment);
             var contest = App.Server.GetContest(id);
             txtTitle.Text = contest.Title;
-            txtBeginTime.Text = contest.StartTime.ToString("hh:mm:ss");
-            txtEndTime.Text = contest.EndTime.ToString("hh:mm:ss");
+            txtBeginTime.Text = contest.StartTime.ToString("HH:mm:ss");
+            txtEndTime.Text = contest.EndTime.ToString("HH:mm:ss");
             dateBeginDate.SelectedDate = contest.StartTime;
             dateEndDate.SelectedDate = contest.EndTime;
             cbbType.SelectedIndex = (int)contest.Type;
+            chkPrinting.IsChecked = contest.PrintingEnabled;
+            
         }
-        
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!dateBeginDate.SelectedDate.HasValue)
@@ -72,13 +74,13 @@ namespace CenaPlus.Server.ServerMode.Contest
 
             var start = dateBeginDate.SelectedDate.Value.Add(startTime);
             var end = dateEndDate.SelectedDate.Value.Add(endTime);
-            if (startTime > endTime)
+            if (start > end)
             {
                 ModernDialog.ShowMessage("Start time should be less than end time", "Error", MessageBoxButton.OK);
                 return;
             }
-            
-            App.Server.UpdateContest(id, txtTitle.Text, null, start, end, (ContestType)Enum.Parse(typeof(ProgrammingLanguage),(string)cbbType.SelectedItem));
+
+            App.Server.UpdateContest(id, txtTitle.Text, null, start, end, (ContestType)Enum.Parse(typeof(ContestType), (string)cbbType.SelectedItem), chkPrinting.IsChecked);
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
 
@@ -94,6 +96,6 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
         }
 
-        
+
     }
 }

@@ -61,7 +61,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                 new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd).Save(mem, DataFormats.Rtf);
                 content = Encoding.UTF8.GetString(mem.ToArray());
             }
-            App.Server.UpdateProblem(id, null, content, null, null, null, null, null, null, null, null, null);
+            App.Server.UpdateProblem(id, null, content, null, null, null, null, null, null, null, null, null,null);
             ModernDialog.ShowMessage("Saved", "Error", MessageBoxButton.OK);
         }
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
