@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Client.Local
 {
@@ -54,6 +56,54 @@ namespace CenaPlus.Client.Local
         private void imgSourceDirectory_Drop(object sender, DragEventArgs e)
         {
             imgSourceDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Client;component/Resources/Box.png", UriKind.Relative));
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files.Length != 1)
+            {
+                ModernDialog.ShowMessage("You must select a single file.", "Error", MessageBoxButton.OK);
+                return;
+            }
+            else
+            {
+                if (!Extension.Contains(System.IO.Path.GetExtension(files[0])))
+                {
+                    ModernDialog.ShowMessage("The file type is not supported.", "Error", MessageBoxButton.OK);
+                    return;
+                }
+                else
+                {
+                    Static.SourceFileDirectory = System.IO.Path.GetDirectoryName(files[0]);
+                    Static.FileName = System.IO.Path.GetFileNameWithoutExtension(files[0]);
+                    Static.Extension = System.IO.Path.GetExtension(files[0]);
+                    switch (Static.Extension)
+                    { 
+                        case ".c":
+                            Static.Language = Entity.ProgrammingLanguage.C;
+                            break;
+                        case ".cpp":
+                            Static.Language = Entity.ProgrammingLanguage.CXX;
+                            break;
+                        case ".java":
+                            Static.Language = Entity.ProgrammingLanguage.Java;
+                            break;
+                        case ".pas":
+                            Static.Language = Entity.ProgrammingLanguage.Pascal;
+                            break;
+                        case ".py":
+                            Static.Language = Entity.ProgrammingLanguage.Python27;
+                            break;
+                        case ".rb":
+                            Static.Language = Entity.ProgrammingLanguage.Ruby;
+                            break;
+                        default:
+                            break;
+                    }
+                    var frame = NavigationHelper.FindFrame(null, this);
+                    if (frame != null)
+                    {
+                        frame.Source = new Uri("/Local/Configuration.xaml", UriKind.Relative);
+                    }
+                }
+            }
         }
     }
 }

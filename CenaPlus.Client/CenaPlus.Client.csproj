@@ -102,6 +102,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Local\Configuration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Local\Local.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,9 +160,13 @@
     </Page>
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServerDiscoverer.cs" />
+    <Compile Include="Local\Configuration.xaml.cs">
+      <DependentUpon>Configuration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Local\Local.xaml.cs">
       <DependentUpon>Local.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Local\Static.cs" />
     <Compile Include="Remote\Contest\Questions.xaml.cs">
       <DependentUpon>Questions.xaml</DependentUpon>
     </Compile>
