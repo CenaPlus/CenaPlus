@@ -102,6 +102,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Local\Local.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Contest\Questions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +156,9 @@
     </Page>
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServerDiscoverer.cs" />
+    <Compile Include="Local\Local.xaml.cs">
+      <DependentUpon>Local.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Remote\Contest\Questions.xaml.cs">
       <DependentUpon>Questions.xaml</DependentUpon>
     </Compile>
@@ -276,11 +283,12 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Local\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\DefaultAvatar.jpg" />
+    <Resource Include="Resources\Box.png" />
+    <Resource Include="Resources\Box_Hover.png" />
+    <Resource Include="Resources\Box_Err.png" />
     <Content Include="Resources\CenaPlus.ico" />
     <Resource Include="Resources\CenaPlusLogo.png" />
   </ItemGroup>

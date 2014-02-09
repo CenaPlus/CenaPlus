@@ -10,7 +10,7 @@
         <mui:LinkGroup DisplayName="Cena+">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Remote" Source="/Remote/Remote.xaml" />
-                <mui:Link DisplayName="Local Judge Box" Source="/Local/JudgeBox.xaml" />
+                <mui:Link DisplayName="Local Judge Box" Source="/Local/Local.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Cena+" GroupName="settings">
