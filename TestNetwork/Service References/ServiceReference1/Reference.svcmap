@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a3c80de1-a86a-485a-88df-4da10d4050dd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9999/ww" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LocalCenaServer.wsdl" MetadataType="Wsdl" ID="4390d558-87cb-41f7-bb3d-3fd31cd81f76" SourceId="1" SourceUrl="http://localhost:9999/ww" />
+    <MetadataFile FileName="ww.xsd" MetadataType="Schema" ID="c826bb2b-69f6-4ed5-9b27-9d5ec1dd4ccd" SourceId="1" SourceUrl="http://localhost:9999/ww?xsd=xsd3" />
+    <MetadataFile FileName="ww1.xsd" MetadataType="Schema" ID="9df567ab-a2e9-48dc-aed0-642db2e57462" SourceId="1" SourceUrl="http://localhost:9999/ww?xsd=xsd2" />
+    <MetadataFile FileName="ww2.xsd" MetadataType="Schema" ID="4f755350-e358-46e4-876f-ff99ed400303" SourceId="1" SourceUrl="http://localhost:9999/ww?xsd=xsd1" />
+    <MetadataFile FileName="ww3.xsd" MetadataType="Schema" ID="6e385352-1a9f-46fb-8a1f-a20a4d701b45" SourceId="1" SourceUrl="http://localhost:9999/ww?xsd=xsd4" />
+    <MetadataFile FileName="ww4.xsd" MetadataType="Schema" ID="fd64367e-41aa-4808-ac4a-3a2ced0b2d92" SourceId="1" SourceUrl="http://localhost:9999/ww?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -29,6 +29,8 @@ namespace CenaPlus.Client.Remote.Contest
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             int id = int.Parse(e.Fragment);
+            var contest = App.Server.GetContest(id);
+
             tabLeft.Links.Clear();
             tabLeft.Links.Add(new Link { DisplayName = "description", Source = new Uri("/Remote/Contest/Description.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "problems", Source = new Uri("/Remote/Contest/Problems.xaml#" + id, UriKind.Relative) });
@@ -36,7 +38,10 @@ namespace CenaPlus.Client.Remote.Contest
             tabLeft.Links.Add(new Link { DisplayName = "status", Source = new Uri("/Remote/Contest/Status.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "statistics", Source = new Uri("/Remote/Contest/Statistics.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "Q&A", Source = new Uri("/Remote/Contest/Questions.xaml#" + id, UriKind.Relative) });
-            tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Remote/Contest/Print.xaml#" + id, UriKind.Relative) });
+            if (contest.PrintingEnabled)
+            {
+                tabLeft.Links.Add(new Link { DisplayName = "print service", Source = new Uri("/Remote/Contest/Print.xaml#" + id, UriKind.Relative) });
+            }
             tabLeft.SelectedSource = new Uri("/Remote/Contest/Description.xaml#" + id, UriKind.Relative);
         }
 

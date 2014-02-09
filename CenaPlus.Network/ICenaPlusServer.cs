@@ -217,5 +217,29 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         int CreateTestCase(int problemID, byte[] input, byte[] output, TestCaseType type);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        int RequestPrinting(int contestID, string content, int copies);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        PrintRequest GetPrintRequest(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        List<int> GetPrintRequestList(int contestID);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void UpdatePrintRequest(int id, string content, int? copies, PrintRequestStatus? status);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void DeletePrintRequest(int id);
     }
 }

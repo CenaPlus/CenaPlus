@@ -51,11 +51,13 @@
     <Reference Include="MySql.Data.Entity">
       <HintPath>..\packages\Ventamatic.MySql.Data.Entity.6.6.5\lib\net40\MySql.Data.Entity.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,6 +89,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Bll\CenaPlusServerHost.cs" />
+    <Compile Include="Bll\ConfigKey.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Bll\ServerCallback.cs" />

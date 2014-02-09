@@ -66,5 +66,19 @@ namespace CenaPlus.Server
             AppearanceManager.Current.AccentColor = Color.FromRgb(0x76, 0x60, 0x8a);
             AppearanceManager.Current.ThemeSource = AppearanceManager.DarkThemeSource;
         }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string mySqlPath = Path.Combine(appPath, "mysql");
+            Process.Start(new ProcessStartInfo
+            {
+                Arguments = "--user=root --port=3311 shutdown",
+                CreateNoWindow = true,
+                FileName = Path.Combine(mySqlPath, "bin\\mysqladmin.exe"),
+                WorkingDirectory = mySqlPath,
+                WindowStyle = ProcessWindowStyle.Hidden
+            });
+        }
     }
 }

@@ -8,7 +8,7 @@
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
         <TextBlock Text="Requests" Style="{StaticResource Heading2}"></TextBlock>
-        <ListBox x:Name="PrintRequestListBox" Margin="0,30,300,30" SelectionChanged="PrintRequestListBox_SelectionChanged">
+        <ListBox x:Name="PrintRequestListBox" Margin="0,30,300,30" SelectedValuePath="ID" SelectionChanged="PrintRequestListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -19,15 +19,17 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="25">
+            <Button Name="btnCreate" Content="Create new" Click="btnCreate_Click"/>
             <Button x:Name="CancelPrintButton" Content="Cancel the request" IsEnabled="False" Click="CancelPrintButton_Click"></Button>
         </WrapPanel>
         <Grid HorizontalAlignment="Right" Width="280">
             <TextBlock Text="Print board" Style="{StaticResource Heading2}" />
-            <TextBox x:Name="PrintTextBox" AcceptsReturn="True" Margin="0,30,0,30" GotFocus="PrintTextBox_GotFocus"></TextBox>
+            <TextBox x:Name="PrintTextBox" AcceptsReturn="True" Margin="0,30,0,30"></TextBox>
             <WrapPanel VerticalAlignment="Bottom" Height="25">
                 <TextBlock Text="Copies" Margin="0,0,10,0"></TextBlock>
-                <TextBox Width="40" Margin="0,0,10,0" Text="1"></TextBox>
-                <Button Content="Print" Click="Button_Click"></Button>
+                <TextBox Name="txtCopies" Width="40" Margin="0,0,10,0" Text="1"></TextBox>
+                <Button Name="btnPrint" Content="Print" Click="btnPrint_Click"></Button>
+                <Button Name="btnSave" Content="Save changes" Click="btnSave_Click" Visibility="Collapsed"></Button>
             </WrapPanel>
         </Grid>
     </Grid>

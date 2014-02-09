@@ -251,7 +251,7 @@ namespace CenaPlus.Server.Bll
         #endregion
         #region Problem
         public int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit,
-            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage,IEnumerable<ProgrammingLanguage> forbiddenLanguages)
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages)
         {
             using (DB db = new DB())
             {
@@ -285,7 +285,7 @@ namespace CenaPlus.Server.Bll
         }
 
         public void UpdateProblem(int id, string title, string content, int? score, int? timeLimit, long? memoryLimit,
-            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage,IEnumerable<ProgrammingLanguage> forbiddenLanguages)
+            string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages)
         {
             using (DB db = new DB())
             {
@@ -740,6 +740,127 @@ namespace CenaPlus.Server.Bll
             }
         }
         #endregion
+        #region PrintRequest
+        public int RequestPrinting(int contestID, string content, int copies)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                Contest contest = db.Contests.Find(contestID);
+                if (contest == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
+
+                if (!contest.PrintingEnabled)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "printing is not enabled");
+
+                PrintRequest request = new PrintRequest
+                {
+                    Content = content,
+                    ContestID = contestID,
+                    Copies = copies,
+                    Status = PrintRequestStatus.Pending,
+                    Time = DateTime.Now,
+                    UserID = CurrentUser.ID
+                };
+                db.PrintRequests.Add(request);
+                db.SaveChanges();
+                return request.ID;
+            }
+        }
+        public PrintRequest GetPrintRequest(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                PrintRequest request = db.PrintRequests.Find(id);
+                if (request == null) return null;
+
+                if (CurrentUser.Role >= UserRole.Manager ||
+                    CurrentUser.AssignedContestIDs.Contains(request.ContestID) && CurrentUser.ID == request.ID)
+                {
+                    return new PrintRequest
+                    {
+                        ID = request.ID,
+                        Content = request.Content,
+                        ContestID = request.ContestID,
+                        ContestTitle = request.Contest.Title,
+                        Copies = request.Copies,
+                        Status = request.Status,
+                        Time = request.Time,
+                        UserID = request.UserID,
+                        UserNickName = request.User.NickName
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+        public void UpdatePrintRequest(int id, string content, int? copies, PrintRequestStatus? status)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                PrintRequest request = db.PrintRequests.Find(id);
+                if (request == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "PrintRequest" });
+                if (CurrentUser.Role < UserRole.Manager && request.Status > PrintRequestStatus.Pending)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                if (content != null)
+                    request.Content = content;
+                if (copies != null)
+                    request.Copies = copies.Value;
+                if (CurrentUser.Role >= UserRole.Manager && status != null)
+                    request.Status = status.Value;
+                db.SaveChanges();
+            }
+        }
+        public List<int> GetPrintRequestList(int contestID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                return (from r in db.PrintRequests
+                        where r.ContestID == contestID
+                            && (CurrentUser.Role >= UserRole.Manager ? true : r.UserID == CurrentUser.ID)
+                        orderby r.StatusAsInt ascending
+                        select r.ID).ToList();
+            }
+        }
+        public void DeletePrintRequest(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                PrintRequest request = db.PrintRequests.Find(id);
+                if (request == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "PrintRequest" });
+
+                if (CurrentUser.Role >= UserRole.Manager || request.UserID == CurrentUser.ID)
+                {
+                    db.PrintRequests.Remove(request);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+                }
+            }
+        }
+        #endregion
+
+
 
     }
 }

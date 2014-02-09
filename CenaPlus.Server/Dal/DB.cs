@@ -14,6 +14,7 @@ namespace CenaPlus.Server.Dal
         public DbSet<Record> Records { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<TestCase> TestCases { get; set; }
+        public DbSet<PrintRequest> PrintRequests { get; set; }
 
         public DB() :base("mysqldb") {
         }

@@ -38,5 +38,5 @@ INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) v
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (5,2,addtime(now(),'0:2'),2,'How to solve this knapsack problem?','By means of a DP algorithm.');
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (6,2,addtime(now(),'0:3'),3,'Fxxk your mother!','Keep silence or I will ban you out!');
 
-INSERT INTO print_requests (user_id, contest_id, copies, content, `time`,`status`) values (1,1,1,'Test printing', now(),3);
+INSERT INTO print_requests (user_id, contest_id, copies, content, `time`,`status`) values (1,2,1,'Test printing', now(),3);
 INSERT INTO print_requests (user_id, contest_id, copies, content, `time`,`status`) values (2,3,2,'I wanna print!', addtime(now(),'0:1'),1);

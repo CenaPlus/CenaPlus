@@ -10,11 +10,8 @@ using System.Net;
 using CenaPlus.Entity;
 namespace CenaPlus.Network
 {
-    public interface ICenaPlusServerChannel : ICenaPlusServer
+    public interface ICenaPlusServerChannel : ICenaPlusServer, IClientChannel
     {
-        void Close();
-
-        void Abort();
     }
 
     public static class CenaPlusServerChannelFactory

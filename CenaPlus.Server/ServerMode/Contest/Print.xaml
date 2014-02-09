@@ -8,24 +8,28 @@
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
         <TextBlock Text="Requests" Style="{StaticResource Heading2}"></TextBlock>
-        <ListBox x:Name="PrintRequestListBox" Margin="0,30,300,0" SelectionChanged="PrintRequestListBox_SelectionChanged">
+        <ListBox x:Name="PrintRequestListBox" Margin="0,30,300,0" SelectedValuePath="ID" SelectionChanged="PrintRequestListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Username}" Style="{StaticResource Heading2}"></TextBlock>
+                        <TextBlock Text="{Binding UserNickName}" Style="{StaticResource Heading2}"></TextBlock>
                         <TextBlock Text="{Binding Details}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid HorizontalAlignment="Right" Width="280" x:Name="gridPrintContent" Visibility="Collapsed">
+        <StackPanel HorizontalAlignment="Right" Width="280" x:Name="gridPrintContent" Visibility="Collapsed">
             <TextBlock Text="Print board" Style="{StaticResource Heading2}" />
-            <TextBox x:Name="txtPrintContent" AcceptsReturn="True" Margin="0,30,0,30" IsReadOnly="True"></TextBox>
+            <TextBox x:Name="txtPrintContent" AcceptsReturn="True" MinHeight="200" Margin="0,10,0,10"></TextBox>
             <WrapPanel VerticalAlignment="Bottom" Height="25">
                 <TextBlock Text="Copies" Margin="0,0,10,0"></TextBlock>
-                <TextBlock Text="3" Margin="0,0,10,0"></TextBlock>
-                <Button Content="Print" x:Name="btnPrint" Click="btnPrint_Click"></Button>
+                <TextBox Name="txtCopies" Text="3" Margin="0,0,10,0"/>
             </WrapPanel>
-        </Grid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Reject" Name="btnReject" Click="btnReject_Click"/>
+                <Button Content="Save" Name="btnSave" Click="btnSave_Click"/>
+                <Button Content="Save &amp; Print" x:Name="btnSavePrint" Click="btnSavePrint_Click"></Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -10,77 +10,149 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
+using CenaPlus.Entity;
 
 namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for Print.xaml
     /// </summary>
-    public partial class Print : UserControl
+    public partial class Print : UserControl, IContent
     {
-        public List<PrintRequestListItem> PrintRequestList = new List<PrintRequestListItem>();
+        private int contestID;
+        private List<PrintRequestListItem> requestList = new List<PrintRequestListItem>();
         public Print()
         {
             InitializeComponent();
-            for (int i = 1; i <= 10; i++)
-            {
-                PrintRequestListItem t = new PrintRequestListItem();
-                t.ID = i;
-                t.Status = PrintStatus.Pending;
-                t.Content = "shabi";
-                t.Time = DateTime.Now;
-                t.Copies = i % 3 + 1;
-                PrintRequestList.Add(t);
-            }
-            PrintRequestListBox.ItemsSource = PrintRequestList;
+            PrintRequestListBox.ItemsSource = requestList;
         }
 
         private void PrintRequestListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PrintRequestListBox.SelectedItem != null)
             {
-                CancelPrintButton.IsEnabled = true;
+                var request = (PrintRequestListItem)PrintRequestListBox.SelectedItem;
+                btnPrint.Visibility = System.Windows.Visibility.Collapsed;
+                btnSave.Visibility = System.Windows.Visibility.Visible;
+                if (request.Status == PrintRequestStatus.Pending)
+                {
+                    CancelPrintButton.IsEnabled = true;
+                    btnSave.IsEnabled = true;
+                    txtCopies.IsReadOnly = false;
+                    PrintTextBox.IsReadOnly = false;
+                }
+                else
+                {
+                    CancelPrintButton.IsEnabled = false;
+                    btnSave.IsEnabled = false;
+                    txtCopies.IsReadOnly = true;
+                    PrintTextBox.IsReadOnly = true;
+                }
+                PrintTextBox.Text = request.Content;
+                txtCopies.Text = request.Copies.ToString();
             }
-            else
-            {
-                CancelPrintButton.IsEnabled = false;
-            }
-        }
-
-        private void PrintTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PrintRequestListBox.SelectedIndex = -1;
-            CancelPrintButton.IsEnabled = false;
         }
 
         private void CancelPrintButton_Click(object sender, RoutedEventArgs e)
         {
+            App.Server.DeletePrintRequest((int)PrintRequestListBox.SelectedValue);
+            requestList.RemoveAt(PrintRequestListBox.SelectedIndex);
+            PrintRequestListBox.Items.Refresh();
             ModernDialog.ShowMessage("The print request has been canceled.", "Message", MessageBoxButton.OK);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
+            int copies;
+            if (!int.TryParse(txtCopies.Text, out copies))
+            {
+                ModernDialog.ShowMessage("Copies should be an integer", "Error", MessageBoxButton.OK);
+                return;
+            }
+            int id = App.Server.RequestPrinting(contestID, PrintTextBox.Text, copies);
+            requestList.Add(new PrintRequestListItem
+            {
+                ID = id,
+                Copies = copies,
+                Content = PrintTextBox.Text,
+                Time = DateTime.Now,
+                Status = PrintRequestStatus.Pending
+            });
+            PrintRequestListBox.Items.Refresh();
             ModernDialog.ShowMessage("Your request has been accepted.", "Message", MessageBoxButton.OK);
         }
-    }
-    //TODO: Move the entity into the entity layer.
-    public class PrintRequestListItem
-    {
-        public int ID { get; set; }
-        public int Copies { get; set; }
-        public string Content { get; set; }
-        public DateTime Time { get; set; }
-        public PrintStatus Status { get; set; }
-        public string Details
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            get
+            int copies;
+            if (!int.TryParse(txtCopies.Text, out copies))
             {
-                return String.Format("Length {0} B / {1} Copies / {2}", Content.Length, Copies, Status);
+                ModernDialog.ShowMessage("Copies should be an integer", "Error", MessageBoxButton.OK);
+                return;
+            }
+            App.Server.UpdatePrintRequest((int)PrintRequestListBox.SelectedValue, PrintTextBox.Text, copies, null);
+            var request = requestList[PrintRequestListBox.SelectedIndex];
+            request.Content = PrintTextBox.Text;
+            request.Copies = copies;
+            PrintRequestListBox.Items.Refresh();
+            ModernDialog.ShowMessage("Your request has been saved.", "Message", MessageBoxButton.OK);
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            txtCopies.Text = "";
+            PrintTextBox.Text = "";
+            txtCopies.IsReadOnly = false;
+            PrintTextBox.IsReadOnly = false;
+            PrintRequestListBox.SelectedIndex = -1;
+            CancelPrintButton.IsEnabled = false;
+            btnPrint.Visibility = System.Windows.Visibility.Visible;
+            btnSave.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+            contestID = int.Parse(e.Fragment);
+            var list = from id in App.Server.GetPrintRequestList(contestID)
+                       let r = App.Server.GetPrintRequest(id)
+                       select new PrintRequestListItem
+                       {
+                           ID = r.ID,
+                           Copies = r.Copies,
+                           Content = r.Content,
+                           Time = r.Time,
+                           Status = r.Status
+                       };
+            requestList.Clear();
+            requestList.AddRange(list);
+            PrintRequestListBox.Items.Refresh();
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+        class PrintRequestListItem : PrintRequest
+        {
+            public string Details
+            {
+                get
+                {
+                    return String.Format("Length {0} B / {1} Copies / {2}", Content.Length, Copies, Status);
+                }
             }
         }
+
     }
-    public enum PrintStatus { Pending, Printed, Rejected };
 }
