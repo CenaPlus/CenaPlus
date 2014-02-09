@@ -21,5 +21,19 @@ namespace CenaPlus.Client.Local
         public int Index { get; set; }
         public string Input { get; set; }
         public string Output { get; set; }
+        public string Title
+        {
+            get
+            {
+                return String.Format("Test case: #" + Index);
+            }
+        }
+        public string Details
+        {
+            get
+            {
+                return String.Format(System.IO.Path.GetFileName(Input) + " / " + System.IO.Path.GetFileName(Output));
+            }
+        }
     }
 }

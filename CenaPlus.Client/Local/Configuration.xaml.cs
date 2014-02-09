@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace CenaPlus.Client.Local
 {
@@ -20,14 +21,14 @@ namespace CenaPlus.Client.Local
     /// </summary>
     public partial class Configuration : UserControl
     {
-        public List<TestCasesListBoxItem> TestCasesListBoxItems = new List<TestCasesListBoxItem>();
         public Configuration()
         {
             InitializeComponent();
             //find test cases
             string[] files = System.IO.Directory.GetFiles(Static.SourceFileDirectory, "*.in");
-            List<TestCase> TestCases = new List<TestCase>();
             int i = 0;
+            Static.TestCases = new List<TestCase>();
+            Static.TestCases.Clear();
             foreach (string file in files)
             {
                 if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans"))
@@ -36,7 +37,7 @@ namespace CenaPlus.Client.Local
                     t.Index = i++;
                     t.Input = file;
                     t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans";
-                    TestCases.Add(t);
+                    Static.TestCases.Add(t);
                 }
                 else if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out"))
                 {
@@ -44,40 +45,44 @@ namespace CenaPlus.Client.Local
                     t.Index = i++;
                     t.Input = file;
                     t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out";
-                    TestCases.Add(t);
+                    Static.TestCases.Add(t);
                 }
             }
-            Static.TestCases = TestCases;
-            TestCasesListBoxItems.Clear();
-            foreach (var tc in TestCases)
+            TestCasesListBox.ItemsSource = Static.TestCases;
+        }
+
+        private void TestCasesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (TestCasesListBox.SelectedItem == null)
             {
-                TestCasesListBoxItem t = new TestCasesListBoxItem(tc);
-                TestCasesListBoxItems.Add(t);
+                spDetails.Visibility = Visibility.Collapsed;
             }
-            TestCasesListBox.ItemsSource = TestCasesListBoxItems;
-        }
-    }
-    public class TestCasesListBoxItem: TestCase
-    {
-        public TestCasesListBoxItem(TestCase TestCase)
-        {
-            Index = TestCase.Index;
-            Input = TestCase.Input;
-            Output = TestCase.Output;
-        }
-        public string Title
-        {
-            get
+            else
             {
-                return String.Format("Test case: #" + Index);
+                spDetails.Visibility = Visibility.Visible;
+                txtInput.Text = (TestCasesListBox.SelectedItem as TestCase).Input;
+                txtOutput.Text = (TestCasesListBox.SelectedItem as TestCase).Output;
             }
         }
-        public string Details
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            get
+            if (System.IO.File.Exists(txtInput.Text) && System.IO.File.Exists(txtOutput.Text))
             {
-                return String.Format(System.IO.Path.GetFileName(Input) + " / " + System.IO.Path.GetFileName(Output));
+                Static.TestCases[TestCasesListBox.SelectedIndex].Input = txtInput.Text;
+                Static.TestCases[TestCasesListBox.SelectedIndex].Output = txtOutput.Text;
+                TestCasesListBox.Items.Refresh();
             }
+            else
+            {
+                ModernDialog.ShowMessage("Files not found.", "Error", MessageBoxButton.OK);
+            }
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            Static.TestCases.Remove(TestCasesListBox.SelectedItem as TestCase);
+            TestCasesListBox.Items.Refresh();
         }
     }
 }

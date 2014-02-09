@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="TestCasesListBox" Width="280" HorizontalAlignment="Left">
+        <ListBox x:Name="TestCasesListBox" Width="280" HorizontalAlignment="Left" Margin="0,0,0,30" SelectionChanged="TestCasesListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -17,5 +17,17 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <ScrollViewer Margin="300,0,0,30" >
+            <StackPanel x:Name="spDetails" Visibility="Collapsed">
+                <TextBlock Text="Input file" Margin="0,0,0,5" ></TextBlock>
+                <TextBox Margin="0,0,0,20" x:Name="txtInput"></TextBox>
+                <TextBlock Text="Output file" Margin="0,0,0,5"></TextBlock>
+                <TextBox Margin="0,0,0,20" x:Name="txtOutput"></TextBox>
+                <WrapPanel>
+                    <Button x:Name="btnSave" Content="Save changes" Margin="0,0,10,0" Click="btnSave_Click"></Button>
+                    <Button x:Name="btnRemove" Content="Remove this case" Margin="0,0,10,0" Click="btnRemove_Click"></Button>
+                </WrapPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
