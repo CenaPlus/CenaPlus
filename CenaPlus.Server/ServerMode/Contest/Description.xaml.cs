@@ -48,7 +48,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                 }
                 else
                 {
-                    range.ClearAllProperties();
+                    range.ApplyPropertyValue(RichTextBox.ForegroundProperty, richMain.Foreground);
                 }
             }
         }
