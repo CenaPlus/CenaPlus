@@ -38,7 +38,7 @@ namespace CenaPlus.Client.Local
                     t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans";
                     TestCases.Add(t);
                 }
-                if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out"))
+                else if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out"))
                 {
                     TestCase t = new TestCase();
                     t.Index = i++;
