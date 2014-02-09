@@ -22,10 +22,6 @@ namespace CenaPlus.Server.Dal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.AssignedContests)
-                .WithMany()
-                .Map(m => m.MapLeftKey("user_id").MapRightKey("contest_id").ToTable("user_assigned_contests"));
         }
     }
 }

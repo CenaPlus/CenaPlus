@@ -28,11 +28,6 @@ INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,1,u
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time) values (1,1,0,0,'#include<con>',now());
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,time_usage,memory_usage,detail) values (2,3,4,1,'#include <iostream>\nint main(){\nreturn 0;\n}',now(),998,1024*1024*3,'Detail....');
 
-INSERT INTO user_assigned_contests (user_id,contest_id) values(3,1);
-INSERT INTO user_assigned_contests (user_id,contest_id) values(3,2);
-INSERT INTO user_assigned_contests (user_id,contest_id) values(4,2);
-INSERT INTO user_assigned_contests (user_id,contest_id) values(4,3);
-
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (3,2,now(),0,'How to ask a question?',null);
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (4,2,addtime(now(),'0:1'),1,'Why are these problems so easy?','Because the competitors are so weak.');
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (5,2,addtime(now(),'0:2'),2,'How to solve this knapsack problem?','By means of a DP algorithm.');

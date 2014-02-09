@@ -10,7 +10,6 @@ namespace CenaPlus.Server.Bll
     {
         public FakeSystemUser()
         {
-            this.AssignedContests = new List<Contest>();
             this.ID = 0;
             this.Name = "System";
             this.NickName = "System";

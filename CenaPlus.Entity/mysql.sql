@@ -1,6 +1,5 @@
 drop table if exists `print_requests`;
 drop table if exists `questions`;
-drop table if exists `user_assigned_contests`;
 drop table if exists `records`;
 drop table if exists `test_cases`;
 drop table if exists `problems`;
@@ -84,18 +83,6 @@ CREATE TABLE `records` (
         references problems (id)
         on delete cascade,
     index (`status`)
-)  default charset=utf8;
-
-CREATE TABLE `user_assigned_contests` (
-    user_id int not null,
-    contest_id int not null,
-    primary key (user_id , contest_id),
-    foreign key (user_id)
-        references users (id)
-        on delete cascade,
-    foreign key (contest_id)
-        references contests (id)
-        on delete cascade
 )  default charset=utf8;
 
 CREATE TABLE `questions` (

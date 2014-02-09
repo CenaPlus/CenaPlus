@@ -217,8 +217,6 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 IQueryable<Contest> contests = db.Contests;
-                if (CurrentUser.Role < UserRole.Manager)
-                    contests = contests.Where(c => CurrentUser.AssignedContestIDs.Contains(c.ID));
                 var ids = contests.Select(c => c.ID);
                 return ids.ToList();
             }
@@ -229,9 +227,6 @@ namespace CenaPlus.Server.Bll
             using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Competitor);
-
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(id))
-                    return null;
 
                 var contest = db.Contests.Find(id);
                 if (contest == null) return null;
@@ -341,9 +336,6 @@ namespace CenaPlus.Server.Bll
             {
                 CheckRole(db, UserRole.Competitor);
 
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-
                 return (from p in db.Problems
                         where p.ContestID == contestID
                         orderby p.Score ascending
@@ -359,9 +351,6 @@ namespace CenaPlus.Server.Bll
 
                 var problem = db.Problems.Find(id);
                 if (problem == null) return null;
-
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(problem.ContestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 return new Problem
                 {
@@ -413,9 +402,6 @@ namespace CenaPlus.Server.Bll
                 if (problem == null)
                     throw new FaultException<NotFoundError>(new NotFoundError { ID = problemID, Type = "Problem" });
 
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(problem.ContestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-
                 var record = new Record
                 {
                     Code = code,
@@ -438,9 +424,6 @@ namespace CenaPlus.Server.Bll
             {
                 CheckRole(db, UserRole.Competitor);
 
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-
                 var problemIDs = (from p in db.Problems
                                   where p.ContestID == contestID
                                   select p.ID).ToList();
@@ -460,9 +443,6 @@ namespace CenaPlus.Server.Bll
 
                 var record = db.Records.Find(id);
                 if (record == null) return null;
-
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(record.Problem.ContestID))
-                    return null;
 
                 return new Record
                 {
@@ -582,9 +562,6 @@ namespace CenaPlus.Server.Bll
             {
                 CheckRole(db, UserRole.Competitor);
 
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-
                 return (from q in db.Questions
                         where q.ContestID == contestID
                         where CurrentUser.RoleAsInt >= (int)UserRole.Manager
@@ -601,9 +578,6 @@ namespace CenaPlus.Server.Bll
 
                 Question question = db.Questions.Find(id);
                 if (question == null)
-                    return null;
-
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(question.ContestID))
                     return null;
 
                 if (CurrentUser.Role >= UserRole.Manager || question.Status == QuestionStatus.Public || question.AskerID == CurrentUser.ID)
@@ -631,9 +605,6 @@ namespace CenaPlus.Server.Bll
             using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Competitor);
-
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 Question question = new Question
                 {
@@ -747,9 +718,6 @@ namespace CenaPlus.Server.Bll
             {
                 CheckRole(db, UserRole.Competitor);
 
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-
                 Contest contest = db.Contests.Find(contestID);
                 if (contest == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
 
@@ -779,8 +747,7 @@ namespace CenaPlus.Server.Bll
                 PrintRequest request = db.PrintRequests.Find(id);
                 if (request == null) return null;
 
-                if (CurrentUser.Role >= UserRole.Manager ||
-                    CurrentUser.AssignedContestIDs.Contains(request.ContestID) && CurrentUser.ID == request.ID)
+                if (CurrentUser.Role >= UserRole.Manager || CurrentUser.ID == request.ID)
                 {
                     return new PrintRequest
                     {
@@ -827,9 +794,6 @@ namespace CenaPlus.Server.Bll
             using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Competitor);
-
-                if (CurrentUser.Role == UserRole.Competitor && !CurrentUser.AssignedContestIDs.Contains(contestID))
-                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 return (from r in db.PrintRequests
                         where r.ContestID == contestID
