@@ -24,9 +24,6 @@
         </Grid.Resources>
         <RichTextBox x:Name="richMain" AcceptsTab="True" Margin="0,40,0,40"
 			VerticalScrollBarVisibility="Visible" FontSize="16" >
-            <FlowDocument LineHeight="5"  >
-                <Paragraph/>
-            </FlowDocument>
         </RichTextBox>
         <Button x:Name="btnSave" Content="Save changes" VerticalAlignment="Bottom" Click="btnSave_Click"></Button>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">

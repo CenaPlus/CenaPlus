@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
     <Compile Include="Contest.cs" />
     <Compile Include="PrintRequest.cs" />
     <Compile Include="Problem.cs" />

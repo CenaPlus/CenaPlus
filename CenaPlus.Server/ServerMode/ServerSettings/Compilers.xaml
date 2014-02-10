@@ -12,22 +12,22 @@
                 <TextBlock Text="Compilers" Style="{StaticResource Heading2}" Margin="0,0,0,10" />
                 <TextBlock Margin="0,0,0,20" Text="WARNING: THE SOURCE FILENAME MUST BE SAME WITH THE BINARY FILENAME. EVERY ARGUMENTS MUST USE BINDING FILENAME EXCEPT JAVA." TextWrapping="Wrap"></TextBlock>
                 <TextBlock Text="C language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtC">gcc -O2 -o {Binding Filename}.exe -DONLINE_JUDGE -Wall -lm --static --std=c99 -fno-asm {Binding Filename}.c</TextBox>
+                <TextBox Margin="0,0,0,20" x:Name="TxtC"></TextBox>
                 <TextBlock Text="C++ language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtCxx">g++ -O2 -o {Binding Filename}.exe -DONLINE_JUDGE -Wall -lm --static --std=c++98 -fno-asm {Binding Filename}.cpp</TextBox>
+                <TextBox Margin="0,0,0,20" x:Name="TxtCXX"></TextBox>
                 <TextBlock Text="JavaC compile arguments (the source name must be Main.java, do not change!)" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,5" x:Name="TxtJavaC">javac Main.java</TextBox>
+                <TextBox Margin="0,0,0,5" x:Name="TxtJavac"></TextBox>
                 <TextBlock Text="Java virtual machine start arguments (the class name must be Main, do not change!)" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtJava">java Main</TextBox>
+                <TextBox Margin="0,0,0,20" x:Name="TxtJava"></TextBox>
                 <TextBlock Text="Pascal language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtPascal">fpc -O2 -dONLINE_JUDGE {Binding Filename}.pas</TextBox>
+                <TextBox Margin="0,0,0,20" x:Name="TxtPascal"></TextBox>
                 <TextBlock Text="Python 2.7 language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtPython27">python {Binding Filename}.py</TextBox>
+                <TextBox Margin="0,0,0,20" x:Name="TxtPython27"></TextBox>
                 <TextBlock Text="Python 3.3 language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtPython33">python {Binding Filename}.py</TextBox>
+                <TextBox Margin="0,0,0,20" x:Name="TxtPython33"></TextBox>
                 <TextBlock Text="Ruby language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
-                <TextBox Margin="0,0,0,20" x:Name="TxtRuby">ruby {Binding Filename}.rb</TextBox>
-                <Button x:Name="btnSave" Content="Save changes"></Button>
+                <TextBox Margin="0,0,0,20" x:Name="TxtRuby"></TextBox>
+                <Button x:Name="btnSave" Content="Save changes" Click="btnSave_Click"></Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

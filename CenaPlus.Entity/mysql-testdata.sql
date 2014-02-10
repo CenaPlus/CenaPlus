@@ -35,3 +35,5 @@ INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) v
 
 INSERT INTO print_requests (user_id, contest_id, copies, content, `time`,`status`) values (1,2,1,'Test printing', now(),3);
 INSERT INTO print_requests (user_id, contest_id, copies, content, `time`,`status`) values (2,3,2,'I wanna print!', addtime(now(),'0:1'),1);
+
+INSERT INTO configs(`key`,`value`) values('circular','The Cena+ server is in debug mode.');

@@ -10,14 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
+using FirstFloor.ModernUI.Windows.Controls;
+using CenaPlus.Server.Bll;
 
 namespace CenaPlus.Server.ServerMode.ServerSettings
 {
-    public partial class Circulars : UserControl
+    public partial class Circulars : UserControl, IContent
     {
         public Circulars()
         {
@@ -50,30 +53,32 @@ namespace CenaPlus.Server.ServerMode.ServerSettings
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "rich text file|*.rtf";
-            try
-            {
-                if ((bool)save.ShowDialog())
-                {
-                    SaveFile(save.FileName);
-                    MessageBox.Show("保存成功");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            MemoryStream mem = new MemoryStream();
+            new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd).Save(mem, DataFormats.Rtf);
+            string content = Encoding.UTF8.GetString(mem.ToArray());
+            App.Server.SetConfig(ConfigKey.Circular, content);
+            ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
-        private void SaveFile(string path)
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            FileStream fs = new FileStream(path, FileMode.Create);
-
-            TextRange range = new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd);
-            range.Save(fs, DataFormats.Rtf);
-            fs.Close();
         }
 
-        //http://www.csharpwin.com/csharpspace/10836r4358.shtml insert local pic
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string content = App.Server.GetConfig(ConfigKey.Circular) ?? ConfigKey.DefaultCircular;
+            MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(content));
+            new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd).Load(mem, DataFormats.Rtf);
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+        }
+
+
     }
 }

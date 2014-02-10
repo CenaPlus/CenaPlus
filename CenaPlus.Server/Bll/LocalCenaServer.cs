@@ -63,6 +63,16 @@ namespace CenaPlus.Server.Bll
             return version.Major + "." + version.Minor;
         }
 
+        public string GetCircular()
+        {
+            using (DB db = new DB())
+            {
+                var config = db.Configs.Find(ConfigKey.Circular);
+                if (config == null) return ConfigKey.DefaultCircular;
+                return config.Value;
+            }
+        }
+
         public bool Authenticate(string userName, string password)
         {
             if (CurrentUser != null)
@@ -823,8 +833,40 @@ namespace CenaPlus.Server.Bll
             }
         }
         #endregion
+        #region Config
+        public string GetConfig(string key)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
 
+                Config config = db.Configs.Find(key);
+                if (config == null) return null;
 
+                return config.Value;
+            }
+        }
+        public void SetConfig(string key, string value)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                Config config = db.Configs.Find(key);
+                if (config == null)
+                {
+                    config = new Config { Key = key, Value = value };
+                    db.Configs.Add(config);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    config.Value = value;
+                    db.SaveChanges();
+                }
+            }
+        }
+        #endregion
 
     }
 }

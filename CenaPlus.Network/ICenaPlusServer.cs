@@ -241,5 +241,16 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         void DeletePrintRequest(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        string GetConfig(string key);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        void SetConfig(string key, string value);
+
+        [OperationContract]
+        string GetCircular();
     }
 }

@@ -1,3 +1,4 @@
+drop table if exists `configs`;
 drop table if exists `print_requests`;
 drop table if exists `questions`;
 drop table if exists `records`;
@@ -117,4 +118,10 @@ CREATE TABLE `print_requests` (
     foreign key (contest_id)
         references contests (id)
         on delete cascade
+)  default charset=utf8;
+
+CREATE TABLE `configs` (
+    `key` varchar(20) not null,
+    `value` mediumtext not null,
+    primary key (`key`)
 )  default charset=utf8;
