@@ -29,5 +29,14 @@
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <TextBlock Text="Special Judge(.exe only)" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtSpecialJudge" Width="123" Margin="0,0,20,0"></TextBox>
+            <TextBlock Text="Time limit(ms)" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtTimeLimit" Width="40" Margin="0,0,20,0">1000</TextBox>
+            <TextBlock Text="Memory limit(KB)" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtMemoryLimit" Width="50" Margin="0,0,20,0">65536</TextBox>
+            <Button Content="Start" x:Name="btnStart" Click="btnStart_Click"></Button>
+        </WrapPanel>
     </Grid>
 </UserControl>

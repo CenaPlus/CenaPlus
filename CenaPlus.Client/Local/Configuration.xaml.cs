@@ -31,6 +31,10 @@ namespace CenaPlus.Client.Local
             Static.TestCases.Clear();
             foreach (string file in files)
             {
+                if (System.IO.Path.GetFileName(file).ToLower() == "spj.exe")
+                {
+                    txtSpecialJudge.Text = file;
+                }
                 if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans"))
                 {
                     TestCase t = new TestCase();
@@ -83,6 +87,58 @@ namespace CenaPlus.Client.Local
         {
             Static.TestCases.Remove(TestCasesListBox.SelectedItem as TestCase);
             TestCasesListBox.Items.Refresh();
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtSpecialJudge.Text != String.Empty && System.IO.File.Exists(txtSpecialJudge.Text))
+            {
+                ModernDialog.ShowMessage("Special Judger not found.", "Error", MessageBoxButton.OK);
+            }
+            //Begin compile
+            Static.WorkingDirectory = Environment.CurrentDirectory.ToString()+"\\Temp";
+            if (System.IO.Directory.Exists(Static.WorkingDirectory))
+                System.IO.Directory.Delete(Static.WorkingDirectory, true);
+            System.IO.Directory.CreateDirectory(Static.WorkingDirectory);
+            //System.IO.File.Copy(Environment.CurrentDirectory.ToString() + "\\Core\\CenaPlus.Core.exe", Static.WorkingDirectory + "\\CenaPlus.Core.exe");
+            Static.TimeLimit = Convert.ToInt32(txtTimeLimit.Text);
+            Static.MemoryLimit = Convert.ToInt32(txtMemoryLimit.Text);
+            if (Static.NeedCompile.Contains(Static.Language))
+            {
+                CenaPlus.Judge.Compiler Compiler = new Judge.Compiler();
+                switch (Static.Language)
+                {
+                    case Entity.ProgrammingLanguage.C:
+                        Compiler.CompileInfo.Arguments = "gcc -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static --std=c99 -fno-asm Main.c";
+                        break;
+                    case Entity.ProgrammingLanguage.CXX:
+                    case Entity.ProgrammingLanguage.CXX11:
+                        Compiler.CompileInfo.Arguments = "g++ -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static --std=c++98 -fno-asm Main.cpp";
+                        break;
+                    case Entity.ProgrammingLanguage.Java:
+                        Compiler.CompileInfo.Arguments = "javac Main.java";
+                        break;
+                    case Entity.ProgrammingLanguage.Pascal:
+                        Compiler.CompileInfo.Arguments = "fpc -O2 -dONLINE_JUDGE Main.pas";
+                        break;
+                }
+                Compiler.CompileInfo.Language = Static.Language;
+                Compiler.CompileInfo.Source = System.IO.File.ReadAllText(Static.SourceFileDirectory + "\\" + Static.FileName + Static.Extension);
+                Compiler.CompileInfo.TimeLimit = 1000;
+                Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory.ToString() + "\\Core\\CenaPlus.Core.exe";
+                Compiler.CompileInfo.WorkingDirectory = Static.WorkingDirectory;
+                Compiler.Start();
+                if (Compiler.CompileResult.CompileFailed)
+                {
+                    ModernDialog.ShowMessage(Compiler.CompileResult.CompilerOutput, "Compile Error", MessageBoxButton.OK);
+                    return;
+                }
+                else
+                {
+                    ModernDialog.ShowMessage("Compile Success", "Compile Success", MessageBoxButton.OK);
+                    return;
+                }
+            }
         }
     }
 }

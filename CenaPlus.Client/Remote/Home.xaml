@@ -9,11 +9,11 @@
     <Grid Style="{StaticResource ContentRoot}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="6"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Margin="{StaticResource SplitLeft}" Width="150">
+        <ScrollViewer Margin="{StaticResource SplitLeft}">
             <StackPanel>
                 <TextBlock Text="Profile" Style="{StaticResource Heading2}" />
                 <Image Height="100" Width="100" HorizontalAlignment="Left" Source="/CenaPlus.Client;component/Resources/DefaultAvatar.jpg"/>
@@ -25,7 +25,7 @@
                 <TextBlock Text="Nation: China"></TextBlock>
             </StackPanel>
         </ScrollViewer>
-        <GridSplitter Grid.Column="1" />
+        <GridSplitter Grid.Column="1" Margin="0,0,1,0" />
         <Grid Grid.Column="2" Margin="{StaticResource SplitRight}">
             <TextBlock Text="Server circulars" Style="{StaticResource Heading2}" />
             <RichTextBox Margin="0,30,0,0" IsReadOnly="True"></RichTextBox>

@@ -264,6 +264,10 @@
       <Project>{33fe9792-c912-42e1-994f-e920f724230b}</Project>
       <Name>CenaPlus.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CenaPlus.Judge\CenaPlus.Judge.csproj">
+      <Project>{86dc25df-cc96-4716-a9ad-179594cdcd3c}</Project>
+      <Name>CenaPlus.Judge</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CenaPlus.Network\CenaPlus.Network.csproj">
       <Project>{e5e057e8-c266-4676-b86d-48cc97e4ba60}</Project>
       <Name>CenaPlus.Network</Name>

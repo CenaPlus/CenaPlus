@@ -13,8 +13,17 @@ namespace CenaPlus.Client.Local
         public static int MemoryLimit;
         public static string FileName;
         public static string Extension;
+        public static string SPJDirectory;
         public static Entity.ProgrammingLanguage Language;
         public static List<TestCase> TestCases;
+        public readonly static Entity.ProgrammingLanguage[] NeedCompile = 
+        { 
+            Entity.ProgrammingLanguage.C,
+            Entity.ProgrammingLanguage.CXX,
+            Entity.ProgrammingLanguage.CXX11,
+            Entity.ProgrammingLanguage.Java,
+            Entity.ProgrammingLanguage.Pascal
+        };
     }
     public class TestCase
     {

@@ -20,6 +20,8 @@ namespace CenaPlus.Judge
                     return ".c";
                 case ProgrammingLanguage.CXX:
                     return ".cpp";
+                case ProgrammingLanguage.CXX11:
+                    return ".cpp";
                 case ProgrammingLanguage.Java:
                     return ".java";
                 case ProgrammingLanguage.Pascal:
@@ -38,6 +40,7 @@ namespace CenaPlus.Judge
         {
             File.WriteAllText(CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Main" + GetExtension(CompileInfo.Language), CompileInfo.Source);
             Runner = new Runner();
+            Runner.RunnerInfo.CenaCoreDirectory = CompileInfo.CenaCoreDirectory;
             Runner.RunnerInfo.Cmd = CompileInfo.Arguments;
             Runner.RunnerInfo.HighPriorityTime = 1000;
             Runner.RunnerInfo.MemoryLimit = 64 * 1024;
@@ -71,6 +74,7 @@ namespace CenaPlus.Judge
         public Entity.ProgrammingLanguage Language;
         public string Arguments { get; set; }
         public string WorkingDirectory { get; set; }
+        public string CenaCoreDirectory = "CenaPlus.Core.exe";
         public int TimeLimit { get; set; }
         //public string Identification { get; set; }
     }
