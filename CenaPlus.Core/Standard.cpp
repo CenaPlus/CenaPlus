@@ -64,6 +64,8 @@ int WA()
     char *StdPtrT = max(StdData,StdPtr - 10),*OutPtrT = max(OutData,OutPtr - 10);
     int i;
     bool flag = false;
+    cout << "Cena+ Local Judge Result" << endl;
+    cout << "========================" << endl;
     cout << "Line: " << CountLine << "" << endl;
     cout << "Answer:" << endl;
     if(StdPtrT != StdData)
@@ -91,7 +93,7 @@ int WA()
             flag = true;
             break;
         }
-    cout << "Input£º" << endl;
+    cout << "Input: " << endl;
     if(flag)
         i >>= 1;
     for(int j = 0;j < i;++j)

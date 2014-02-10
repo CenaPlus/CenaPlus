@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 
@@ -20,40 +21,11 @@ namespace CenaPlus.Client.Local
     /// <summary>
     /// Interaction logic for Configuration.xaml
     /// </summary>
-    public partial class Configuration : UserControl
+    public partial class Configuration : UserControl, IContent
     {
         public Configuration()
         {
             InitializeComponent();
-            //find test cases
-            string[] files = System.IO.Directory.GetFiles(Static.SourceFileDirectory, "*.in");
-            int i = 0;
-            Static.TestCases = new List<TestCase>();
-            Static.TestCases.Clear();
-            foreach (string file in files)
-            {
-                if (System.IO.Path.GetFileName(file).ToLower() == "spj.exe")
-                {
-                    txtSpecialJudge.Text = file;
-                }
-                if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans"))
-                {
-                    TestCase t = new TestCase();
-                    t.Index = i++;
-                    t.Input = file;
-                    t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans";
-                    Static.TestCases.Add(t);
-                }
-                else if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out"))
-                {
-                    TestCase t = new TestCase();
-                    t.Index = i++;
-                    t.Input = file;
-                    t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out";
-                    Static.TestCases.Add(t);
-                }
-            }
-            TestCasesListBox.ItemsSource = Static.TestCases;
         }
 
         private void TestCasesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -149,6 +121,54 @@ namespace CenaPlus.Client.Local
                     return;
                 }
             }
+        }
+
+        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
+        {
+
+        }
+
+        public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
+        public void OnNavigatedTo(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
+        {
+            //find test cases
+            string[] files = System.IO.Directory.GetFiles(Static.SourceFileDirectory, "*.in");
+            int i = 0;
+            Static.TestCases = new List<TestCase>();
+            Static.TestCases.Clear();
+            foreach (string file in files)
+            {
+                if (System.IO.Path.GetFileName(file).ToLower() == "spj.exe")
+                {
+                    txtSpecialJudge.Text = file;
+                }
+                if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans"))
+                {
+                    TestCase t = new TestCase();
+                    t.Index = i++;
+                    t.Input = file;
+                    t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans";
+                    Static.TestCases.Add(t);
+                }
+                else if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out"))
+                {
+                    TestCase t = new TestCase();
+                    t.Index = i++;
+                    t.Input = file;
+                    t.Output = System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out";
+                    Static.TestCases.Add(t);
+                }
+            }
+            TestCasesListBox.ItemsSource = Static.TestCases;
+        }
+
+        public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+
         }
     }
 }
