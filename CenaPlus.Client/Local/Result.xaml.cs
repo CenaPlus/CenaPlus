@@ -148,7 +148,7 @@ namespace CenaPlus.Client.Local
             }
             else
             {
-                System.IO.File.Copy(Environment.CurrentDirectory + "\\Core\\Standard.exe", Static.WorkingDirectory + "\\SPJ.exe", true);
+                System.IO.File.Copy(Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.StandardJudge.exe", Static.WorkingDirectory + "\\SPJ.exe", true);
             }
             ResultListBoxItems = null;
             GC.Collect();
