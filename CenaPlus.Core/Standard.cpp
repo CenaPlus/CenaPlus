@@ -77,7 +77,7 @@ int WA()
     if(*StdPtrT != '\0')
         cout<<"...";
     cout<<endl;
-    cout << "Your: " << endl;
+    cout << "Yours: " << endl;
     if(OutPtrT != OutData)
         cout<<"...";
     for(;OutPtrT != OutPtr;++OutPtrT)

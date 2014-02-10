@@ -31,7 +31,9 @@ namespace CenaPlus.Judge
                 Process.StartInfo.Password = Identity.secPassword;
             }
             Process.Start();
-            Process.WaitForExit(3 * RunnerInfo.TimeLimit);
+            Process.WaitForExit(4 * RunnerInfo.TimeLimit + 5000);
+            if(!Process.HasExited)
+                Process.Kill();
             xmlresult = Process.StandardOutput.ReadToEnd();
         }
         public RunnerResult RunnerResult
@@ -71,7 +73,7 @@ namespace CenaPlus.Judge
     {
         public int TimeUsed { get; set; }
         public int PagedSize { get; set; }
-        public int ExitCode { get; set; }
+        public int ExitCode = -1;
         public int WorkingSetSize { get; set; }
     }
 }

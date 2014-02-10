@@ -31,6 +31,7 @@ namespace CenaPlus.Client.Local
         public void Judge(object JudgeTask)
         {
             var jt = JudgeTask as ResultListBoxItem;
+            jt.Status = Entity.RecordStatus.SystemError;
             CenaPlus.Judge.Runner Runner = new Judge.Runner();
             switch (Static.Language)
             { 
@@ -60,24 +61,24 @@ namespace CenaPlus.Client.Local
             jt.Memory = Runner.RunnerResult.PagedSize;
             if (Static.Language == Entity.ProgrammingLanguage.Java)
                 jt.Memory = Runner.RunnerResult.WorkingSetSize;
-            if (Runner.RunnerResult.ExitCode != 0 && (Static.Language != Entity.ProgrammingLanguage.C && Runner.RunnerResult.ExitCode != 1))
+            if (jt.Time > Static.TimeLimit)
             {
-                if (jt.Time > Static.TimeLimit)
-                {
-                    jt.Status = Entity.RecordStatus.TimeLimitExceeded;
-                }
-                else
-                {
+                jt.Status = Entity.RecordStatus.TimeLimitExceeded;
+            }
+            else if (jt.Memory > Static.MemoryLimit)
+            {
+                jt.Status = Entity.RecordStatus.MemoryLimitExceeded;
+            }
+            else if (Runner.RunnerResult.ExitCode != 0)
+            {
                     jt.Status = Entity.RecordStatus.RuntimeError;
-                }
+            }
+            else if (Static.Language != Entity.ProgrammingLanguage.C && Runner.RunnerResult.ExitCode != 1 && Runner.RunnerResult.ExitCode != 0)
+            {
+                jt.Status = Entity.RecordStatus.RuntimeError;
             }
             else
             {
-                if (jt.Memory > Static.MemoryLimit)
-                {
-                    jt.Status = Entity.RecordStatus.MemoryLimitExceeded;
-                }
-                else
                 { 
                     // TODO: Validate
                     Runner = null;

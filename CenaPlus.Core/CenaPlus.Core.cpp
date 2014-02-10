@@ -136,13 +136,16 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				WorkingSetUsed = ProcessMemoryCounters.PeakWorkingSetSize / 1024;
 				DWORD ThreadExitCode;
 				GetExitCodeThread(TimeLimitValidator, &ThreadExitCode);
-				if (ThreadExitCode == 2)
-					TimeUsed = TimeLimit + 1;
 				CloseHandle(TimeLimitValidator);
 				GetExitCodeProcess(pData->ProcessHandle, &ExitCode);
 				FILETIME CreateTime, ExitTime, KernelTime, UserTime, CurrentTime;
 				GetProcessTimes(ProcessInfo.hProcess, &CreateTime, &ExitTime, &KernelTime, &UserTime);
 				TimeUsed = UserTime.dwLowDateTime / 10000;
+				if (ThreadExitCode == 2)
+				{
+					TimeUsed = TimeLimit + 1;
+					ExitCode = -1;
+				}
 				CString Convert;
 				CString Result = CString("<?xml version=\"1.0\" ?>\r\n");
 				Result += CString("<Result>\r\n");

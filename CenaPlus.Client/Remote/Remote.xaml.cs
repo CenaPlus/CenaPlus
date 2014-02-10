@@ -212,7 +212,7 @@ namespace CenaPlus.Client.Remote
             {
                 get
                 {
-                    return String.Format("{0} / Delay: {1} ms / Online: 0", Location, Delay);
+                    return String.Format("{0} / Delay: {1} / Online: 0", Location, Delay >= 999999 ? "N/A" : Delay + " ms");
                 }
             }
         }
