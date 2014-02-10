@@ -154,7 +154,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				Result += CString("    <TimeUsed>") + Convert + CString("</TimeUsed>\r\n");
 				Convert = CString("");
 				Convert.Format(L"%d", PagedUsed);
-				Result += CString("    <PagedSize>") + Convert + CString("</ PagedSize>\r\n");
+				Result += CString("    <PagedSize>") + Convert + CString("</PagedSize>\r\n");
 				Convert = CString("");
 				Convert.Format(L"%d", WorkingSetUsed);
 				Result += CString("    <WorkingSet>") + Convert + CString("</WorkingSet>\r\n");

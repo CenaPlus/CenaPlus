@@ -7,15 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="TestCasesListBox" Width="300" HorizontalAlignment="Left">
+        <ListBox x:Name="TestCasesListBox" Width="280" HorizontalAlignment="Left" Margin="0,0,0,30" SelectionChanged="TestCasesListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Title}" Style="{StaticResource Heading2}"></TextBlock>
-                        <TextBlock Text="{Binding Details}"></TextBlock>
+                        <TextBlock Text="{Binding Title}" Style="{StaticResource Heading2}" Margin="5,0,0,0"></TextBlock>
+                        <TextBlock Text="{Binding Details}" Margin="5,0,0,0"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <ScrollViewer Margin="300,0,0,30" >
+            <StackPanel x:Name="spDetails" Visibility="Collapsed">
+                <TextBlock Text="Input file" Margin="0,0,0,5" ></TextBlock>
+                <TextBox Margin="0,0,0,20" x:Name="txtInput"></TextBox>
+                <TextBlock Text="Output file" Margin="0,0,0,5"></TextBlock>
+                <TextBox Margin="0,0,0,20" x:Name="txtOutput"></TextBox>
+                <WrapPanel>
+                    <Button x:Name="btnSave" Content="Save changes" Margin="0,0,10,0" Click="btnSave_Click"></Button>
+                    <Button x:Name="btnRemove" Content="Remove this case" Margin="0,0,10,0" Click="btnRemove_Click"></Button>
+                </WrapPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <TextBlock Text="Special Judge(.exe only)" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtSpecialJudge" Width="123" Margin="0,0,20,0"></TextBox>
+            <TextBlock Text="Time limit(ms)" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtTimeLimit" Width="40" Margin="0,0,20,0">1000</TextBox>
+            <TextBlock Text="Memory limit(KB)" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtMemoryLimit" Width="50" Margin="0,0,20,0">65536</TextBox>
+            <Button Content="Start" x:Name="btnStart" Click="btnStart_Click"></Button>
+        </WrapPanel>
     </Grid>
 </UserControl>

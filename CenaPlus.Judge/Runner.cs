@@ -15,17 +15,17 @@ namespace CenaPlus.Judge
         public string XMLResult { get { return xmlresult; } }
         public void Start()//synchronized
         {
-            if (RunnerInfo == null || RunnerInfo.Cmd == null || RunnerInfo.TimeLimit == null || RunnerInfo.MemoryLimit == null || RunnerInfo.Cmd == null)
+            if (RunnerInfo == null || RunnerInfo.Cmd == null || RunnerInfo.TimeLimit == 0 || RunnerInfo.MemoryLimit == 0 || RunnerInfo.Cmd == null)
                 throw new Exception("Missing arguments");
             Process Process = new Process();
-            Process.StartInfo.FileName = "CenaPlus.Core.exe";
-            Process.StartInfo.Arguments = String.Format("\"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", RunnerInfo.Cmd.Trim('\"'), RunnerInfo.StdInFile == String.Empty ? "NULL" : RunnerInfo.StdInFile.Trim('\"'), RunnerInfo.StdOutFile == String.Empty ? "NULL" : RunnerInfo.StdOutFile.Trim('\"'), RunnerInfo.StdErrFile == String.Empty ? "NULL" : RunnerInfo.StdErrFile.Trim('\"'), RunnerInfo.TimeLimit, RunnerInfo.MemoryLimit, RunnerInfo.HighPriorityTime, RunnerInfo.APIHook==String.Empty?"NULL":RunnerInfo.APIHook.Trim('\"'), RunnerInfo.XmlFile == String.Empty ? "NULL" : RunnerInfo.XmlFile.Trim('\"'));
+            Process.StartInfo.FileName = RunnerInfo.CenaCoreDirectory;
+            Process.StartInfo.Arguments = String.Format("\"{0}\" \"{1}\" \"{2}\" \"{3}\" \"{4}\" \"{5}\" \"{6}\" \"{7}\" \"{8}\"", RunnerInfo.Cmd.Trim('\"'), RunnerInfo.StdInFile == null ? "NULL" : RunnerInfo.StdInFile.Trim('\"'), RunnerInfo.StdOutFile == null ? "NULL" : RunnerInfo.StdOutFile.Trim('\"'), RunnerInfo.StdErrFile == null ? "NULL" : RunnerInfo.StdErrFile.Trim('\"'), RunnerInfo.TimeLimit, RunnerInfo.MemoryLimit, RunnerInfo.HighPriorityTime, RunnerInfo.APIHook==null?"NULL":RunnerInfo.APIHook.Trim('\"'), RunnerInfo.XmlFile == null ? "NULL" : RunnerInfo.XmlFile.Trim('\"'));
             Process.StartInfo.CreateNoWindow = true;
             Process.StartInfo.UseShellExecute = false;
             Process.StartInfo.RedirectStandardOutput = true;
-            if(RunnerInfo.WorkingDirectory!=String.Empty)
+            if(RunnerInfo.WorkingDirectory!=null)
                 Process.StartInfo.WorkingDirectory = RunnerInfo.WorkingDirectory;
-            if (Identity.UserName != String.Empty)
+            if (Identity.UserName != null)
             {
                 Process.StartInfo.UserName = Identity.UserName;
                 Process.StartInfo.Password = Identity.secPassword;
@@ -39,7 +39,7 @@ namespace CenaPlus.Judge
             get
             {
                 RunnerResult RunnerResult = new Judge.RunnerResult();
-                xmldocument.Load(xmlresult);
+                xmldocument.LoadXml(xmlresult);
                 XmlNodeList xmlnodelist;
                 xmlnodelist = xmldocument.GetElementsByTagName("ExitCode");
                 RunnerResult.ExitCode = Convert.ToInt32(xmlnodelist[0].InnerText);
@@ -65,6 +65,7 @@ namespace CenaPlus.Judge
         public string StdErrFile { get; set; }
         public string XmlFile { get; set; }
         public string WorkingDirectory { get; set; }
+        public string CenaCoreDirectory = "CenaPlus.Core.exe";
     }
     public class RunnerResult
     {

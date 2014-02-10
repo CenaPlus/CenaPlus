@@ -156,3 +156,5 @@ $RECYCLE.BIN/
 .DS_Store
 
 
+CenaPlus.Core/Standard.exe
+CenaPlus.Core/Standard.o

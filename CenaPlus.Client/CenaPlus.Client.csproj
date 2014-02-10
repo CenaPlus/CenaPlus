@@ -110,6 +110,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Local\Result.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Contest\Questions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +169,9 @@
     </Compile>
     <Compile Include="Local\Local.xaml.cs">
       <DependentUpon>Local.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Local\Result.xaml.cs">
+      <DependentUpon>Result.xaml</DependentUpon>
     </Compile>
     <Compile Include="Local\Static.cs" />
     <Compile Include="Remote\Contest\Questions.xaml.cs">
@@ -263,6 +270,10 @@
     <ProjectReference Include="..\CenaPlus.Entity\CenaPlus.Entity.csproj">
       <Project>{33fe9792-c912-42e1-994f-e920f724230b}</Project>
       <Name>CenaPlus.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CenaPlus.Judge\CenaPlus.Judge.csproj">
+      <Project>{86dc25df-cc96-4716-a9ad-179594cdcd3c}</Project>
+      <Name>CenaPlus.Judge</Name>
     </ProjectReference>
     <ProjectReference Include="..\CenaPlus.Network\CenaPlus.Network.csproj">
       <Project>{e5e057e8-c266-4676-b86d-48cc97e4ba60}</Project>
