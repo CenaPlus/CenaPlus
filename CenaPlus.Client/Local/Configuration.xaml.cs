@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Client.Local
 {
@@ -131,11 +132,20 @@ namespace CenaPlus.Client.Local
                 if (Compiler.CompileResult.CompileFailed)
                 {
                     ModernDialog.ShowMessage(Compiler.CompileResult.CompilerOutput, "Compile Error", MessageBoxButton.OK);
+                    var frame = NavigationHelper.FindFrame(null, this);
+                    if (frame != null)
+                    {
+                        frame.Source = new Uri("/Local/Local.xaml", UriKind.Relative);
+                    }
                     return;
                 }
                 else
                 {
-                    ModernDialog.ShowMessage("Compile Success", "Compile Success", MessageBoxButton.OK);
+                    var frame = NavigationHelper.FindFrame(null, this);
+                    if (frame != null)
+                    {
+                        frame.Source = new Uri("/Local/Result.xaml", UriKind.Relative);
+                    }
                     return;
                 }
             }
