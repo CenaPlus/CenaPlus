@@ -312,6 +312,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DefaultAvatar.jpg" />
+    <Resource Include="Resources\Box.png" />
+    <Resource Include="Resources\Box_Err.png" />
+    <Resource Include="Resources\Box_Hover.png" />
     <Content Include="Resources\CenaPlus.ico" />
     <Resource Include="Resources\charactergrowfont.png" />
     <Resource Include="Resources\charactershrinkfont.png" />

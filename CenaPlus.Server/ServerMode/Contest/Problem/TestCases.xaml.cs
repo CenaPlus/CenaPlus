@@ -206,8 +206,49 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             public string OutputLength { get { return OutputSize + " b"; } }
         }
 
+        private void imgDataDirectory_DragEnter(object sender, DragEventArgs e)
+        {
+            imgDataDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box_Hover.png", UriKind.Relative));
+        }
 
+        private void imgDataDirectory_DragLeave(object sender, DragEventArgs e)
+        {
+            imgDataDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box.png", UriKind.Relative));
+        }
 
+        private void imgDataDirectory_Drop(object sender, DragEventArgs e)
+        {
+            imgDataDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box.png", UriKind.Relative));
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            //Batch insert begin
+            List<TestCase> BatchInsertList = new List<TestCase>();
+            foreach (var file in files)
+            {
+                if (System.IO.Path.GetExtension(file) == ".in")
+                {
+                    Entity.TestCase t = new TestCase();
+                    if (files.Contains(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out"))
+                    {
+                        t.Input = System.IO.File.ReadAllBytes(file);
+                        t.Output = System.IO.File.ReadAllBytes(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out");
+                        t.Type = TestCaseType.Systemtest;
+                        //TODO: other attributes
+                        //t.Problem
+                        BatchInsertList.Add(t);
+                    }
+                    else if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans"))
+                    {
+                        t.Input = System.IO.File.ReadAllBytes(file);
+                        t.Output = System.IO.File.ReadAllBytes(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans");
+                        t.Type = TestCaseType.Systemtest;
+                        //TODO: other attributes
+                        //t.Problem
+                        BatchInsertList.Add(t);
+                    }
+                }
+            }
+            //BatchInsertList to list and mysql db
+            ModernDialog.ShowMessage("Matched "+ BatchInsertList.Count +" case(s).", "Message", MessageBoxButton.OK);
+        }
     }
-
 }
