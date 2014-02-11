@@ -26,6 +26,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core", "CenaPlus.C
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core.Defender", "CenaPlus.Core.Defender\CenaPlus.Core.Defender.vcxproj", "{967DFB6E-AB63-4BC5-A7DA-6255493317DB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core.StandardJudge", "CenaPlus.Core.StandardJudge\CenaPlus.Core.StandardJudge.vcxproj", "{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,16 @@ Global
 		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Win32.ActiveCfg = Release|Win32
 		{967DFB6E-AB63-4BC5-A7DA-6255493317DB}.Release|Win32.Build.0 = Release|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Debug|Win32.Build.0 = Debug|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Win32.ActiveCfg = Release|Win32
+		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
