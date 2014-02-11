@@ -51,9 +51,6 @@ namespace CenaPlus.Server
             };
             HeartBeatTimer.AutoReset = false;
         }
-        #region Global Events
-        public event Action<Record> NewRecord;
-        #endregion
 
         protected override void OnStartup(StartupEventArgs e)
         {

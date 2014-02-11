@@ -4,6 +4,7 @@ using CenaPlus.Server.Dal;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -18,6 +19,10 @@ namespace CenaPlus.Server.Bll
         public User CurrentUser { get; set; }
         public InstanceContext Context { get; set; }
         public ICenaPlusServerCallback Callback { get; set; }
+
+        #region Events
+        public event Action<int> NewRecord;
+        #endregion
 
         public LocalCenaServer()
         {
@@ -423,6 +428,8 @@ namespace CenaPlus.Server.Bll
 
                 db.Records.Add(record);
                 db.SaveChanges();
+                if (NewRecord != null)
+                    Task.Factory.StartNew(() => NewRecord(record.ID));
                 return record.ID;
             }
         }
