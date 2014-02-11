@@ -22,6 +22,9 @@ namespace CenaPlus.Server.Bll
 
         #region Events
         public event Action<int> NewRecord;
+        public event Action<int> NewContest;
+        public event Action<int> ContestModified;
+        public event Action<int> ContestDeleted;
         #endregion
 
         public LocalCenaServer()
@@ -171,6 +174,8 @@ namespace CenaPlus.Server.Bll
 
                 db.Contests.Remove(contest);
                 db.SaveChanges();
+                if (ContestDeleted != null)
+                    Task.Factory.StartNew(() => ContestDeleted(id));
             }
         }
         public int CreateContest(string title, string description, DateTime startTime, DateTime endTime, ContestType type, bool printingEnabled)
@@ -194,6 +199,8 @@ namespace CenaPlus.Server.Bll
 
                 db.Contests.Add(contest);
                 db.SaveChanges();
+                if (NewContest != null)
+                    Task.Factory.StartNew(() => NewContest(contest.ID));
                 return contest.ID;
             }
         }
@@ -223,6 +230,8 @@ namespace CenaPlus.Server.Bll
                     contest.PrintingEnabled = printingEnabled.Value;
 
                 db.SaveChanges();
+                if (ContestModified != null)
+                    Task.Factory.StartNew(() => ContestModified(contest.ID));
             }
         }
         public List<int> GetContestList()
@@ -351,6 +360,13 @@ namespace CenaPlus.Server.Bll
             {
                 CheckRole(db, UserRole.Competitor);
 
+                var contest = db.Contests.Find(contestID);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
+
+                if (CurrentUser.Role == UserRole.Competitor && contest.StartTime > DateTime.Now)
+                    return new List<int>();
+
                 return (from p in db.Problems
                         where p.ContestID == contestID
                         orderby p.Score ascending
@@ -366,6 +382,9 @@ namespace CenaPlus.Server.Bll
 
                 var problem = db.Problems.Find(id);
                 if (problem == null) return null;
+
+                if (CurrentUser.Role == UserRole.Competitor && problem.Contest.StartTime > DateTime.Now)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
                 return new Problem
                 {
@@ -417,6 +436,9 @@ namespace CenaPlus.Server.Bll
                 if (problem == null)
                     throw new FaultException<NotFoundError>(new NotFoundError { ID = problemID, Type = "Problem" });
 
+                if (CurrentUser.Role == UserRole.Competitor && (problem.Contest.StartTime > DateTime.Now || problem.Contest.EndTime < DateTime.Now))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
                 var record = new Record
                 {
                     Code = code,
@@ -434,12 +456,19 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-
         public List<int> GetRecordList(int contestID)
         {
             using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Competitor);
+
+                var contest = db.Contests.Find(contestID);
+                if (contest == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
+
+                // competitors cannot view any record if the contest is not started.
+                if (CurrentUser.Role == UserRole.Competitor && contest.StartTime > DateTime.Now)
+                    return new List<int>();
 
                 var problemIDs = (from p in db.Problems
                                   where p.ContestID == contestID
@@ -451,7 +480,6 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-
         public Record GetRecord(int id)
         {
             using (DB db = new DB())
@@ -461,21 +489,95 @@ namespace CenaPlus.Server.Bll
                 var record = db.Records.Find(id);
                 if (record == null) return null;
 
-                return new Record
+                var contest = record.Problem.Contest;
+
+                // Managers can view all the details
+                // All records should be published when the contest ends.
+                if (CurrentUser.Role >= UserRole.Manager || contest.EndTime < DateTime.Now)
+                    return new Record
+                    {
+                        ID = record.ID,
+                        Code = record.Code,
+                        Detail = record.Detail,
+                        Language = record.Language,
+                        MemoryUsage = record.MemoryUsage,
+                        ProblemID = record.ProblemID,
+                        ProblemTitle = record.Problem.Title,
+                        Status = record.Status,
+                        SubmissionTime = record.SubmissionTime,
+                        TimeUsage = record.TimeUsage,
+                        UserID = record.UserID,
+                        UserNickName = record.User.NickName
+                    };
+
+                // If not started, competitors cannot view any records
+                if (contest.StartTime > DateTime.Now)
+                    return null;
+
+                // until now, we've got sure that the user is a competitor
+                // and the contest is in progress.
+                switch (contest.Type)
                 {
-                    ID = record.ID,
-                    Code = record.Code,
-                    Detail = record.Detail,
-                    Language = record.Language,
-                    MemoryUsage = record.MemoryUsage,
-                    ProblemID = record.ProblemID,
-                    ProblemTitle = record.Problem.Title,
-                    Status = record.Status,
-                    SubmissionTime = record.SubmissionTime,
-                    TimeUsage = record.TimeUsage,
-                    UserID = record.UserID,
-                    UserNickName = record.User.NickName
-                };
+                    case ContestType.OI:
+                        if (CurrentUser.ID == record.UserID)
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Code = record.Code,
+                                Detail = record.Status == RecordStatus.CompileError ? record.Detail : null,
+                                Language = record.Language,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status == RecordStatus.CompileError ? RecordStatus.CompileError : RecordStatus.Unknown,
+                                SubmissionTime = record.SubmissionTime,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                        else
+                            return new Record
+                            {
+                                ID = record.ID,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = RecordStatus.Unknown,
+                                SubmissionTime = record.SubmissionTime,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                    case ContestType.ACM:
+                        if (CurrentUser.ID == record.UserID)
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Code = record.Code,
+                                Detail = record.Status == RecordStatus.CompileError ? record.Detail : null,
+                                Language = record.Language,
+                                MemoryUsage = record.MemoryUsage,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status,
+                                SubmissionTime = record.SubmissionTime,
+                                TimeUsage = record.TimeUsage,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                        else
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Language = record.Language,
+                                MemoryUsage = record.MemoryUsage,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status,
+                                SubmissionTime = record.SubmissionTime,
+                                TimeUsage = record.TimeUsage,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
 
@@ -740,6 +842,9 @@ namespace CenaPlus.Server.Bll
 
                 if (!contest.PrintingEnabled)
                     throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "printing is not enabled");
+
+                if (contest.StartTime > DateTime.Now || contest.EndTime < DateTime.Now)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "Out of contest time");
 
                 PrintRequest request = new PrintRequest
                 {

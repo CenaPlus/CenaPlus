@@ -90,6 +90,7 @@
     </Page>
     <Compile Include="Bll\CenaPlusServerHost.cs" />
     <Compile Include="Bll\ConfigKey.cs" />
+    <Compile Include="Bll\ContestManager.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
