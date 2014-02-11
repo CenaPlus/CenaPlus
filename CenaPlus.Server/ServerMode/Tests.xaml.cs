@@ -115,7 +115,7 @@ namespace CenaPlus.Server.ServerMode
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            int id = App.Server.CreateContest("New Contest", "Insert description Here.", DateTime.Now.AddHours(12), DateTime.Now.AddHours(14), Entity.ContestType.OI, false);
+            int id = App.Server.CreateContest("New Contest", "Insert description Here.", DateTime.Now.AddHours(12), null, null, DateTime.Now.AddHours(14), Entity.ContestType.OI, false);
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {

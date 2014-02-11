@@ -12,6 +12,7 @@ namespace CenaPlus.Server.Dal
         public DbSet<Contest> Contests { get; set; }
         public DbSet<Problem> Problems { get; set; }
         public DbSet<Record> Records { get; set; }
+        public DbSet<Hack> Hacks { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<TestCase> TestCases { get; set; }
         public DbSet<PrintRequest> PrintRequests { get; set; }

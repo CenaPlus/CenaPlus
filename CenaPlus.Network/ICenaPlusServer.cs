@@ -61,12 +61,12 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         [FaultContract(typeof(ValidationError))]
-        void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type, bool? printingEnabled);
+        void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? restTime, DateTime? hackStartTime, DateTime? endTime, ContestType? type, bool? printingEnabled);
 
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(ValidationError))]
-        int CreateContest(string title, string description, DateTime startTime, DateTime endTime, ContestType type, bool printingEnabled);
+        int CreateContest(string title, string description, DateTime startTime, DateTime? restTime, DateTime? hackStartTime, DateTime endTime, ContestType type, bool printingEnabled);
 
         /// <summary>
         /// Get problem ids of the contest

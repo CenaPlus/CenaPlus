@@ -24,6 +24,12 @@ namespace CenaPlus.Entity
         [Column("end_time")]
         public DateTime EndTime { get; set; }
 
+        [Column("rest_time")]
+        public DateTime? RestTime  { get; set; }
+
+        [Column("hack_start_time")]
+        public DateTime? HackStartTime { get; set; }
+
         [NotMapped]
         [IgnoreDataMember]
         public TimeSpan Duration { get { return EndTime - StartTime; } }

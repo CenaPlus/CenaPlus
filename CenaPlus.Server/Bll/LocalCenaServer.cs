@@ -178,13 +178,19 @@ namespace CenaPlus.Server.Bll
                     Task.Factory.StartNew(() => ContestDeleted(id));
             }
         }
-        public int CreateContest(string title, string description, DateTime startTime, DateTime endTime, ContestType type, bool printingEnabled)
+        public int CreateContest(string title, string description, DateTime startTime, DateTime? restTime, DateTime? hackStartTime, DateTime endTime, ContestType type, bool printingEnabled)
         {
             using (DB db = new DB())
             {
                 CheckRole(db, UserRole.Manager);
 
                 if (startTime > endTime)
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (restTime != null && (restTime < startTime || restTime > endTime))
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (hackStartTime != null && (hackStartTime < startTime || hackStartTime > endTime))
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (restTime != null && hackStartTime != null && restTime > hackStartTime)
                     throw new FaultException<ValidationError>(new ValidationError());
 
                 Contest contest = new Contest
@@ -193,6 +199,8 @@ namespace CenaPlus.Server.Bll
                     EndTime = endTime,
                     PrintingEnabled = printingEnabled,
                     StartTime = startTime,
+                    RestTime = restTime,
+                    HackStartTime = hackStartTime,
                     Title = title,
                     Type = type
                 };
@@ -204,7 +212,7 @@ namespace CenaPlus.Server.Bll
                 return contest.ID;
             }
         }
-        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? endTime, ContestType? type, bool? printingEnabled)
+        public void UpdateContest(int id, string title, string description, DateTime? startTime, DateTime? restTime, DateTime? hackStartTime, DateTime? endTime, ContestType? type, bool? printingEnabled)
         {
             using (DB db = new DB())
             {
@@ -220,8 +228,20 @@ namespace CenaPlus.Server.Bll
                     contest.StartTime = startTime.Value;
                 if (endTime != null)
                     contest.EndTime = endTime.Value;
+                if (restTime != null)
+                    contest.RestTime = restTime.Value;
+                if (hackStartTime != null)
+                    contest.HackStartTime = hackStartTime.Value;
+
                 if (contest.StartTime > contest.EndTime)
                     throw new FaultException<ValidationError>(new ValidationError());
+                if (contest.RestTime != null && (contest.RestTime < contest.StartTime || contest.RestTime > contest.EndTime))
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (contest.HackStartTime != null && (contest.HackStartTime < contest.StartTime || contest.HackStartTime > contest.EndTime))
+                    throw new FaultException<ValidationError>(new ValidationError());
+                if (contest.RestTime != null && contest.HackStartTime != null && contest.RestTime > contest.HackStartTime)
+                    throw new FaultException<ValidationError>(new ValidationError());
+
                 if (description != null)
                     contest.Description = description;
                 if (type != null)
@@ -260,6 +280,8 @@ namespace CenaPlus.Server.Bll
                     Description = contest.Description,
                     EndTime = contest.EndTime,
                     StartTime = contest.StartTime,
+                    RestTime = contest.RestTime,
+                    HackStartTime = contest.HackStartTime,
                     Title = contest.Title,
                     Type = contest.Type,
                     PrintingEnabled = contest.PrintingEnabled

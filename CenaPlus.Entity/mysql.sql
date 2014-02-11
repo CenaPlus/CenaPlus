@@ -1,6 +1,7 @@
 drop table if exists `configs`;
 drop table if exists `print_requests`;
 drop table if exists `questions`;
+drop table if exists `hacks`;
 drop table if exists `records`;
 drop table if exists `test_cases`;
 drop table if exists `problems`;
@@ -23,6 +24,8 @@ CREATE TABLE `contests` (
     description mediumtext not null,
     start_time datetime not null,
     end_time datetime not null,
+    rest_time datetime default null,
+    hack_start_time datetime default null,
     `type` tinyint not null,
     printing_enabled bool not null,
     primary key (id),
@@ -83,6 +86,23 @@ CREATE TABLE `records` (
         references problems (id)
         on delete cascade,
     index (`status`)
+)  default charset=utf8;
+
+CREATE TABLE `hacks` (
+    id int not null auto_increment,
+    record_id int not null,
+    hacker_id int not null,
+    `status` int not null,
+    data_or_datamaker mediumtext not null,
+    datamaker_language tinyint default null,
+    detail mediumtext default null,
+    primary key (id),
+    foreign key (record_id)
+        references records (id)
+        on delete cascade,
+    foreign key (hacker_id)
+        references users (id)
+        on delete cascade
 )  default charset=utf8;
 
 CREATE TABLE `questions` (

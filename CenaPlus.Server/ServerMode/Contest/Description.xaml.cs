@@ -61,7 +61,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                 new TextRange(richMain.Document.ContentStart, richMain.Document.ContentEnd).Save(mem, DataFormats.Rtf);
                 desc = Encoding.UTF8.GetString(mem.ToArray());
             }
-            App.Server.UpdateContest(contestID, null, desc, null, null, null,null);
+            App.Server.UpdateContest(contestID, null, desc, null, null, null, null, null, null);
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
 

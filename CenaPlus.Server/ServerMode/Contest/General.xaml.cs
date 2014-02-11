@@ -42,7 +42,7 @@ namespace CenaPlus.Server.ServerMode.Contest
             dateEndDate.SelectedDate = contest.EndTime;
             cbbType.SelectedIndex = (int)contest.Type;
             chkPrinting.IsChecked = contest.PrintingEnabled;
-            
+
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -80,7 +80,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                 return;
             }
 
-            App.Server.UpdateContest(id, txtTitle.Text, null, start, end, (ContestType)Enum.Parse(typeof(ContestType), (string)cbbType.SelectedItem), chkPrinting.IsChecked);
+            App.Server.UpdateContest(id, txtTitle.Text, null, start, null, null, end, (ContestType)Enum.Parse(typeof(ContestType), (string)cbbType.SelectedItem), chkPrinting.IsChecked);
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
 
