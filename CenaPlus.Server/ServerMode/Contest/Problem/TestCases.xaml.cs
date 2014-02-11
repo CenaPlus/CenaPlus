@@ -38,6 +38,10 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         {
             int id = (int)TestCasesListView.SelectedValue;
             App.Server.DeleteTestCase(id);
+            for (int i = TestCasesListView.SelectedIndex + 1; i < TestCasesListItems.Count; i++)
+            {
+                TestCasesListItems[i].Index--;
+            }
             TestCasesListItems.RemoveAt(TestCasesListView.SelectedIndex);
             TestCasesListView.Items.Refresh();
         }
@@ -60,6 +64,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             int id = App.Server.CreateTestCase(problemID, new byte[0], new byte[0], TestCaseType.Pretest);
             TestCasesListItems.Add(new TestCaseListItem
             {
+                Index = TestCasesListItems.Count,
                 ID = id,
                 InputPreview = "",
                 InputSize = 0,
@@ -163,6 +168,10 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                        };
             TestCasesListItems.Clear();
             TestCasesListItems.AddRange(list);
+            for (int i = 0; i < TestCasesListItems.Count; i++)
+            {
+                TestCasesListItems[i].Index = i;
+            }
             TestCasesListView.Items.Refresh();
 
             var contestID = App.Server.GetProblem(problemID).ContestID;
@@ -192,6 +201,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
 
         class TestCaseListItem : TestCase
         {
+            public int Index { get; set; }
             public string InputLength { get { return InputSize + " b"; } }
             public string OutputLength { get { return OutputSize + " b"; } }
         }

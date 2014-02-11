@@ -10,7 +10,7 @@
         <ListView Margin="0,0,0,30" Width="300" x:Name="TestCasesListView" SelectedValuePath="ID" HorizontalAlignment="Left" SelectionChanged="TestCasesListView_SelectionChanged">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
-                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding ID}" Width="30"/>
+                    <GridViewColumn Header="#" DisplayMemberBinding="{Binding Index}" Width="30"/>
                     <GridViewColumn Header="Input Size" DisplayMemberBinding="{Binding InputLength}" Width="80"/>
                     <GridViewColumn Header="Output Size" DisplayMemberBinding="{Binding OutputLength}" Width="80"/>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="80"/>

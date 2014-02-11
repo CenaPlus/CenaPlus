@@ -70,6 +70,10 @@ namespace CenaPlus.Server.ServerMode.Contest
             {
                 int id = (int)ProblemListView.SelectedValue;
                 App.Server.DeleteProblem(id);
+                for (int i = ProblemListView.SelectedIndex + 1; i < ProblemListItems.Count; i++)
+                {
+                    ProblemListItems[i].Index--;
+                }
                 ProblemListItems.RemoveAt(ProblemListView.SelectedIndex);
                 ProblemListView.Items.Refresh();
             }
@@ -88,7 +92,11 @@ namespace CenaPlus.Server.ServerMode.Contest
                            TestCasesCount = p.TestCasesCount
                        };
             ProblemListItems.Clear();
-            foreach (var item in list) ProblemListItems.Add(item);
+            ProblemListItems.AddRange(list);
+            for (int i = 0; i < ProblemListItems.Count; i++)
+            {
+                ProblemListItems[i].Index = i;
+            }
             ProblemListView.Items.Refresh();
         }
 
@@ -106,9 +114,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         }
         class ProblemListItem : Entity.Problem
         {
+            public int Index { get; set; }
         }
-
-        
-
     }
 }
