@@ -61,7 +61,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            int id = App.Server.CreateTestCase(problemID, new byte[0], new byte[0], TestCaseType.Pretest);
+            int id = App.Server.CreateTestCase(problemID, new byte[0], new byte[0], TestCaseType.Systemtest);
             TestCasesListItems.Add(new TestCaseListItem
             {
                 Index = TestCasesListItems.Count,
@@ -151,10 +151,8 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
 
-
-        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        private void DoLoad()
         {
-            problemID = int.Parse(e.Fragment);
             var list = from id in App.Server.GetTestCaseList(problemID)
                        let t = App.Server.GetTestCase(id)
                        select new TestCaseListItem
@@ -185,6 +183,12 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                 lblType.Visibility = System.Windows.Visibility.Collapsed;
                 cbType.Visibility = System.Windows.Visibility.Collapsed;
             }
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+            problemID = int.Parse(e.Fragment);
+            DoLoad();
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -231,24 +235,25 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                     {
                         t.Input = System.IO.File.ReadAllBytes(file);
                         t.Output = System.IO.File.ReadAllBytes(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".out");
-                        t.Type = TestCaseType.Systemtest;
-                        //TODO: other attributes
-                        //t.Problem
                         BatchInsertList.Add(t);
                     }
                     else if (System.IO.File.Exists(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans"))
                     {
                         t.Input = System.IO.File.ReadAllBytes(file);
                         t.Output = System.IO.File.ReadAllBytes(System.IO.Path.GetDirectoryName(file) + "\\" + System.IO.Path.GetFileNameWithoutExtension(file) + ".ans");
-                        t.Type = TestCaseType.Systemtest;
-                        //TODO: other attributes
-                        //t.Problem
                         BatchInsertList.Add(t);
                     }
                 }
             }
             //BatchInsertList to list and mysql db
             ModernDialog.ShowMessage("Matched "+ BatchInsertList.Count +" case(s).", "Message", MessageBoxButton.OK);
+
+            foreach (var testCase in BatchInsertList)
+            {
+                App.Server.CreateTestCase(problemID, testCase.Input, testCase.Output, TestCaseType.Systemtest);
+            }
+
+            DoLoad();
         }
     }
 }
