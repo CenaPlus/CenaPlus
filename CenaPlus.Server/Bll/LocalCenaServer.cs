@@ -483,8 +483,17 @@ namespace CenaPlus.Server.Bll
                 if (problem == null)
                     throw new FaultException<NotFoundError>(new NotFoundError { ID = problemID, Type = "Problem" });
 
+                // Out of contest time
                 if (CurrentUser.Role == UserRole.Competitor && (problem.Contest.StartTime > DateTime.Now || problem.Contest.EndTime < DateTime.Now))
                     throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                // After TC rest time
+                if (problem.Contest.Type == ContestType.TopCoder && CurrentUser.Role == UserRole.Competitor && problem.Contest.RestTime < DateTime.Now)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "After tc rest time");
+
+                // CF Locked
+                if (problem.Contest.Type == ContestType.Codeforces && CurrentUser.Role == UserRole.Competitor && problem.LockedUsers.Contains(CurrentUser))
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "problem locked");
 
                 var record = new Record
                 {
@@ -537,6 +546,7 @@ namespace CenaPlus.Server.Bll
                 if (record == null) return null;
 
                 var contest = record.Problem.Contest;
+                var problem = record.Problem;
 
                 // Managers can view all the details
                 // All records should be published when the contest ends.
@@ -598,6 +608,68 @@ namespace CenaPlus.Server.Bll
                                 ID = record.ID,
                                 Code = record.Code,
                                 Detail = record.Status == RecordStatus.CompileError ? record.Detail : null,
+                                Language = record.Language,
+                                MemoryUsage = record.MemoryUsage,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status,
+                                SubmissionTime = record.SubmissionTime,
+                                TimeUsage = record.TimeUsage,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                        else
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Language = record.Language,
+                                MemoryUsage = record.MemoryUsage,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status,
+                                SubmissionTime = record.SubmissionTime,
+                                TimeUsage = record.TimeUsage,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                    case ContestType.Codeforces:
+                        if (CurrentUser.ID == record.ID || problem.LockedUsers.Contains(CurrentUser))
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Code = record.Code,
+                                Detail = record.Detail,
+                                Language = record.Language,
+                                MemoryUsage = record.MemoryUsage,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status,
+                                SubmissionTime = record.SubmissionTime,
+                                TimeUsage = record.TimeUsage,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                        else
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Language = record.Language,
+                                MemoryUsage = record.MemoryUsage,
+                                ProblemID = record.ProblemID,
+                                ProblemTitle = record.Problem.Title,
+                                Status = record.Status,
+                                SubmissionTime = record.SubmissionTime,
+                                TimeUsage = record.TimeUsage,
+                                UserID = record.UserID,
+                                UserNickName = record.User.NickName
+                            };
+                    case ContestType.TopCoder:
+                        if (CurrentUser.ID == record.ID || contest.HackStartTime < DateTime.Now)
+                            return new Record
+                            {
+                                ID = record.ID,
+                                Code = record.Code,
+                                Detail = record.Detail,
                                 Language = record.Language,
                                 MemoryUsage = record.MemoryUsage,
                                 ProblemID = record.ProblemID,

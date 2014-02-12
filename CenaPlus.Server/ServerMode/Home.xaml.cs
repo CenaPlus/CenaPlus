@@ -86,17 +86,14 @@ namespace CenaPlus.Server.ServerMode
             }
             App.ConnectionString = connectionString;
 
-            using (DB db = new DB())
-            {
-                db.Users.Find(1);
-            }
-
             host = new CenaPlusServerHost(localPort, serverName);
             host.Open();
 
             var contestManager = new ContestManager();
+            contestManager.ScheduleAll();
             var localServer = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
             localServer.ContestModified += contestManager.Reschedule;
+            localServer.ContestDeleted += contestManager.RemoveSchedule;
             App.Server = localServer;
 
             var frame = NavigationHelper.FindFrame(null, this);

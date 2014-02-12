@@ -39,6 +39,18 @@ namespace CenaPlus.Entity
 
         [IgnoreDataMember]
         public virtual ICollection<Problem> LockedProblems { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            User other = obj as User;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 
     public enum UserRole

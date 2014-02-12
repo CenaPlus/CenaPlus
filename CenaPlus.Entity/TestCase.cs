@@ -56,6 +56,18 @@ namespace CenaPlus.Entity
 
         [NotMapped]
         public int OutputSize { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            TestCase other = obj as TestCase;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 
     public enum TestCaseType

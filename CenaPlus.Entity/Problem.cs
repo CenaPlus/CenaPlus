@@ -106,5 +106,17 @@ namespace CenaPlus.Entity
 
         [IgnoreDataMember]
         public virtual ICollection<User> LockedUsers { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Problem other = obj as Problem;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 }

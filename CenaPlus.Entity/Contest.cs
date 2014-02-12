@@ -50,6 +50,18 @@ namespace CenaPlus.Entity
 
         [Column("printing_enabled")]
         public bool PrintingEnabled { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Contest other = obj as Contest;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 
     public enum ContestType

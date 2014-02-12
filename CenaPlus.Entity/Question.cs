@@ -52,6 +52,18 @@ namespace CenaPlus.Entity
 
         [Column("answer")]
         public string Answer { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Question other = obj as Question;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 
     public enum QuestionStatus

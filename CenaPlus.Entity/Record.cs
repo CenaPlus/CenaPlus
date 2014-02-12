@@ -68,6 +68,18 @@ namespace CenaPlus.Entity
 
         [Column("detail")]
         public string Detail { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Record other = obj as Record;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 
     public enum RecordStatus

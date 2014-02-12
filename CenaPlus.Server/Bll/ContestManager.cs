@@ -11,6 +11,18 @@ namespace CenaPlus.Server.Bll
     {
         private Dictionary<int, List<Timer>> timers = new Dictionary<int, List<Timer>>();
 
+        public void ScheduleAll()
+        {
+            using (DB db = new DB())
+            {
+                var ids = db.Contests.Where(c => c.EndTime > DateTime.Now).Select(c => c.ID);
+                foreach (var id in ids)
+                {
+                    Reschedule(id);
+                }
+            }
+        }
+
         public void Reschedule(int contestID)
         {
             using (DB db = new DB())
@@ -53,13 +65,30 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public void RemoveSchedule(int contestID)
+        {
+            lock (timers)
+            {
+                List<Timer> oldTimers;
+                if (timers.TryGetValue(contestID, out oldTimers))
+                {
+                    foreach (var timer in oldTimers)
+                    {
+                        timer.Stop();
+                    }
+                }
+                timers.Remove(contestID);
+            }
+        }
+
         private void WhenContestStart(int contestID)
         {
-
+            //TODO: unimplemented
         }
 
         private void WhenContestEnd(int contestID)
         {
+            //TODO: unimplemented
         }
     }
 }

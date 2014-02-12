@@ -51,6 +51,18 @@ namespace CenaPlus.Entity
             get { return (PrintRequestStatus)StatusAsInt; }
             set { StatusAsInt = (int)value; }
         }
+
+        public override bool Equals(object obj)
+        {
+            PrintRequest other = obj as PrintRequest;
+            if (other == null) return false;
+            return other.ID == this.ID;
+        }
+
+        public override int GetHashCode()
+        {
+            return ID;
+        }
     }
 
     public enum PrintRequestStatus
