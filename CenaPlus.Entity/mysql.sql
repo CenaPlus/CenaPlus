@@ -1,3 +1,4 @@
+drop table if exists `problem_locks`;
 drop table if exists `configs`;
 drop table if exists `print_requests`;
 drop table if exists `questions`;
@@ -143,4 +144,16 @@ CREATE TABLE `configs` (
     `key` varchar(20) not null,
     `value` mediumtext not null,
     primary key (`key`)
+)  default charset=utf8;
+
+CREATE TABLE `problem_locks` (
+    user_id int not null,
+    problem_id int not null,
+    primary key (user_id , problem_id),
+    foreign key (user_id)
+        references users (id)
+        on delete cascade,
+    foreign key (problem_id)
+        references problems (id)
+        on delete cascade
 )  default charset=utf8;

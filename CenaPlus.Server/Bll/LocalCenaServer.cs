@@ -362,6 +362,31 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public void LockProblem(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                Problem problem = db.Problems.Find(id);
+                if (problem == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
+
+                Contest contest = problem.Contest;
+                if (contest.Type != ContestType.Codeforces)
+                    throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Not codeforces");
+
+                bool accepted = (from r in db.Records
+                                 where r.ProblemID == id && r.UserID == CurrentUser.ID
+                                 where r.StatusAsInt == (int)RecordStatus.Accepted
+                                 select r).Any();
+                if (!accepted)
+                    throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Not accepted");
+
+                problem.LockedUsers.Add(CurrentUser);
+                db.SaveChanges();
+            }
+        }
+
         public void DeleteProblem(int id)
         {
             using (DB db = new DB())

@@ -47,6 +47,7 @@
     <Compile Include="ConflictError.cs" />
     <Compile Include="ICenaPlusServer.cs" />
     <Compile Include="ICenaPlusServerCallbak.cs" />
+    <Compile Include="InvalidOperationError.cs" />
     <Compile Include="NotFoundError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationError.cs" />

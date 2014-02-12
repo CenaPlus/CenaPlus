@@ -103,5 +103,8 @@ namespace CenaPlus.Entity
 
         [NotMapped]
         public int TestCasesCount { get; set; }
+
+        [IgnoreDataMember]
+        public virtual ICollection<User> LockedUsers { get; set; }
     }
 }

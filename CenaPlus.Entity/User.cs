@@ -36,6 +36,9 @@ namespace CenaPlus.Entity
             get { return (UserRole)RoleAsInt; }
             set { RoleAsInt = (int)value; }
         }
+
+        [IgnoreDataMember]
+        public virtual ICollection<Problem> LockedProblems { get; set; }
     }
 
     public enum UserRole

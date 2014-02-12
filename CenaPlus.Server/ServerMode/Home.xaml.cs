@@ -94,7 +94,10 @@ namespace CenaPlus.Server.ServerMode
             host = new CenaPlusServerHost(localPort, serverName);
             host.Open();
 
-            App.Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
+            var contestManager = new ContestManager();
+            var localServer = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
+            localServer.ContestModified += contestManager.Reschedule;
+            App.Server = localServer;
 
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)

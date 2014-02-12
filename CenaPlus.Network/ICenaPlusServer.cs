@@ -90,6 +90,11 @@ namespace CenaPlus.Network
         void UpdateProblem(int id, string title, string content, int? score, int? timeLimit, long? memoryLimit,
             string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        void LockProblem(int id);
+
         /// <summary>
         /// Get problem by id
         /// </summary>

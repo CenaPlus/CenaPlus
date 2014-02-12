@@ -18,12 +18,18 @@ namespace CenaPlus.Server.Dal
         public DbSet<PrintRequest> PrintRequests { get; set; }
         public DbSet<Config> Configs { get; set; }
 
-        public DB() :base("mysqldb") {
+        public DB()
+            : base("mysqldb")
+        {
         }
         public DB(string nameOrConnectionString) : base(nameOrConnectionString) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Problem>()
+                .HasMany(p => p.LockedUsers)
+                .WithMany(u => u.LockedProblems)
+                .Map(c => c.MapLeftKey("problem_id").MapRightKey("user_id").ToTable("problem_locks"));
         }
     }
 }
