@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CenaPlus>
+  <Judge>
+    <Enabled>True</Enabled>
+    <WorkingDirectory>C:\CenaPlusRunPool</WorkingDirectory>
+    <Security>
+      <UserName></UserName>
+      <Password></Password>
+    </Security>
+  </Judge>
+</CenaPlus>

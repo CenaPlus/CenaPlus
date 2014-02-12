@@ -89,6 +89,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Bll\CenaPlusServerHost.cs" />
+    <Compile Include="Bll\ConfigHelper.cs" />
     <Compile Include="Bll\ConfigKey.cs" />
     <Compile Include="Bll\ContestManager.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="JudgeNode\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Judge\FullJudge.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -295,6 +297,10 @@
       <Project>{33fe9792-c912-42e1-994f-e920f724230b}</Project>
       <Name>CenaPlus.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CenaPlus.Judge\CenaPlus.Judge.csproj">
+      <Project>{86dc25df-cc96-4716-a9ad-179594cdcd3c}</Project>
+      <Name>CenaPlus.Judge</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CenaPlus.Network\CenaPlus.Network.csproj">
       <Project>{e5e057e8-c266-4676-b86d-48cc97e4ba60}</Project>
       <Name>CenaPlus.Network</Name>
@@ -316,6 +322,9 @@
     <Resource Include="Resources\Box.png" />
     <Resource Include="Resources\Box_Err.png" />
     <Resource Include="Resources\Box_Hover.png" />
+    <Content Include="Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\CenaPlus.ico" />
     <Resource Include="Resources\charactergrowfont.png" />
     <Resource Include="Resources\charactershrinkfont.png" />

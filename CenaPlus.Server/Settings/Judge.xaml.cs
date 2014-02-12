@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Controls;
 
 namespace CenaPlus.Server.Settings
 {
@@ -23,6 +24,24 @@ namespace CenaPlus.Server.Settings
         public Judge()
         {
             InitializeComponent();
+            txtPath.Text = Bll.ConfigHelper.WorkingDirectory;
+            txtWinUser.Text = Bll.ConfigHelper.UserName;
+            txtWinPwd.Text = Bll.ConfigHelper.Password;
+            chkJudgeEnabled.IsChecked = Bll.ConfigHelper.JudgeEnabled;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)chkJudgeEnabled.IsChecked && (txtWinUser.Text == String.Empty || txtWinPwd.Text == String.Empty))
+            {
+                ModernDialog.ShowMessage("Win user cannot be null.", "Error", MessageBoxButton.OK);
+                return;
+            }
+            Bll.ConfigHelper.WorkingDirectory = txtPath.Text;
+            Bll.ConfigHelper.UserName = txtWinUser.Text;
+            Bll.ConfigHelper.Password = txtWinPwd.Text;
+            Bll.ConfigHelper.JudgeEnabled = (bool)chkJudgeEnabled.IsChecked;
+            ModernDialog.ShowMessage("Configuration has been saved.", "Message", MessageBoxButton.OK);
         }
     }
 }
