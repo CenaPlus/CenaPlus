@@ -28,6 +28,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core.Defender", "C
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CenaPlus.Core.StandardJudge", "CenaPlus.Core.StandardJudge\CenaPlus.Core.StandardJudge.vcxproj", "{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenaPlus.Cloud.Web", "CenaPlus.Cloud.Web\CenaPlus.Cloud.Web.csproj", "{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,16 @@ Global
 		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Win32.ActiveCfg = Release|Win32
 		{9457C48B-1D77-49BE-A2F5-69D92B15ECAC}.Release|Win32.Build.0 = Release|Win32
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1EBDD835-A5D5-4A39-9C6F-C5B36C0B56EF}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
