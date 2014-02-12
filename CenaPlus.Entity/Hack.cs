@@ -82,6 +82,6 @@ namespace CenaPlus.Entity
 
     public enum HackStatus
     {
-        Success, BadData, Failure, DatamakerError
+        Pending, Success, BadData, Failure, DatamakerError
     }
 }

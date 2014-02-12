@@ -701,6 +701,92 @@ namespace CenaPlus.Server.Bll
         }
 
         #endregion
+        #region Hack
+        public int HackRecord(int recordID, string dataOrDatamaker, ProgrammingLanguage? datamakerLanguage)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                Record record = db.Records.Find(recordID);
+                if (record == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = recordID, Type = "Record" });
+
+                if (record.Status != RecordStatus.Accepted)
+                    throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Only accepted records can be hacked");
+
+                Contest contest = record.Problem.Contest;
+                Problem problem = record.Problem;
+
+                if (contest.StartTime > DateTime.Now)
+                    throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Contest not started");
+                if (contest.EndTime < DateTime.Now)
+                    throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Contest has finished");
+
+                if (contest.Type == ContestType.Codeforces)
+                {
+                    if (!problem.LockedUsers.Contains(CurrentUser))
+                        throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Please lock the problem first");
+                }
+                else if (contest.Type == ContestType.TopCoder)
+                {
+                    if (contest.HackStartTime > DateTime.Now)
+                        throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Hack before hackStartTime");
+                }
+                else
+                    throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "This contest does not support hacking.");
+
+                Hack hack = new Hack
+                {
+                    DatamakerLanguage = datamakerLanguage,
+                    DataOrDatamaker = dataOrDatamaker,
+                    HackerID = CurrentUser.ID,
+                    RecordID = record.ID,
+                    Status = HackStatus.Pending
+                };
+
+                db.Hacks.Add(hack);
+                db.SaveChanges();
+                return hack.ID;
+            }
+        }
+
+        public List<int> GetHackList(int contestID)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                return (from h in db.Hacks
+                        where h.Record.Problem.ContestID == contestID
+                        select h.ID).ToList();
+            }
+        }
+
+        public Hack GetHack(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                Hack hack = db.Hacks.Find(id);
+                if (hack == null) return null;
+
+                return new Hack
+                {
+                    DatamakerLanguage = hack.DatamakerLanguage,
+                    DataOrDatamaker = hack.DataOrDatamaker,
+                    Detail = hack.Detail,
+                    HackerID = hack.HackerID,
+                    HackerNickName = hack.Hacker.NickName,
+                    HackeeNickName = hack.Record.User.NickName,
+                    HackeeID =  hack.Record.UserID,
+                    ID = hack.ID,
+                    RecordID = hack.RecordID,
+                    Status = hack.Status
+                };
+            }
+        }
+        #endregion
         #region User
 
         public List<int> GetUserList()

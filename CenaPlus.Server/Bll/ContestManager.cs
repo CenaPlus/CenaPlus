@@ -88,7 +88,20 @@ namespace CenaPlus.Server.Bll
 
         private void WhenContestEnd(int contestID)
         {
-            //TODO: unimplemented
+            using (DB db = new DB())
+            {
+                var contest = db.Contests.Find(contestID);
+
+                switch (contest.Type)
+                {
+                    case ContestType.Codeforces:
+                         //TODO: rejudge all test case including system test.
+                        break;
+                    case ContestType.TopCoder:
+                        //TODO: rejudge all test case including system test.
+                        break;
+                }
+            }
         }
     }
 }

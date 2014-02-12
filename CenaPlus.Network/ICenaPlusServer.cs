@@ -159,6 +159,20 @@ namespace CenaPlus.Network
         [FaultContract(typeof(NotFoundError))]
         int AskQuestion(int contestID, string description);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        int HackRecord(int recordID, string dataOrDatamaker, ProgrammingLanguage? datamakerLanguage);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        List<int> GetHackList(int contestID);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        Hack GetHack(int id);
+
         /// <summary>
         /// List all users
         /// </summary>
