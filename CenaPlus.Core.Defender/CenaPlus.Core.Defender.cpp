@@ -17,9 +17,9 @@ using namespace std;
 
 void Hook(PSTR szModuleName, PSTR szFunName, FARPROC pFun)
 {
-	LPVOID    pOldFunEntry, pNewFunEntry;    // 初始函数地址、HOOK后的函数地址
-	BYTE    bOldByte[5], bNewByte[5];        // 原始字节、目标字节
-	HMODULE    hMod = ::GetModuleHandleA(szModuleName);
+	LPVOID pOldFunEntry, pNewFunEntry;    // 初始函数地址、HOOK后的函数地址
+	BYTE bOldByte[5], bNewByte[5];        // 原始字节、目标字节
+	HMODULE hMod = ::GetModuleHandleA(szModuleName);
 	if (hMod != NULL)
 	{
 		pNewFunEntry = (LPVOID)pFun;
