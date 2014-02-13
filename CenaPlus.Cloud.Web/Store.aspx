@@ -1,12 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CenaPlus.Cloud.Web.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Store.aspx.cs" Inherits="CenaPlus.Cloud.Web.Store" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="Header" runat="server">
+    <style type="text/css">
+        body {
+            background: rgb(96,41,93);
+        }
+        #header-wrapper {
+            background-color: rgb(96,41,93);
+        }
+    </style>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="Context">
+        <div class="Context">
         <div id="header-featured">
             <div id="banner-wrapper">
                 <div id="banner" class="container">
-                    <h2>欢迎来到Cena+云平台</h2>
-                    <p>这里是中国地区的Cena+云平台官方网站，如果您已经注册Cena+云帐号，请点击右上角的登录按钮进行下一步操作，如果您还没有Cena+云帐号请点击这里进行注册。云平台提供用户查询所有在线的Cena+服务器提供的比赛信息以及允许出题人在Cena+云题库中寄售题目，Cena+会在月初结算您的收益，同样作为服务端使用者，您可以在Cena+服务端上购买云题库中的题目提供局域网内的用户使用。</p>
+                    <h2>Cena+ 云题库商店</h2>
+                    <p>在这里您将看到出题人发布在Cena+商店中的题目简介，简介中包括了题目考点、难度以及标程长度。当您购买了相关题目后，将可查看题目的全部内容，并且可以添加到Cena+服务端题库中供您的局域网用户使用。云题库中不仅提供高质量的付费题目，同时提供了难度较低的免费题目、以及参与云题库计划的用户自动上传的题目。Cena+也欢迎出题人将题目寄售在云题库中！</p>
                     <a href="#" class="button">注册成为Cena+云平台会员
                     </a>
                 </div>
@@ -79,6 +88,6 @@
         </div>
     </div>
     <script>
-        $("#navHomepage").addClass("current_page_item");
+        $("#navStore").addClass("current_page_item");
     </script>
 </asp:Content>

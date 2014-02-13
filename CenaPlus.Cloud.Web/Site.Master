@@ -10,6 +10,9 @@
     <link href="/css/cenaplus.css?v2014021201" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="/js/jquery.js?v2014021201"></script>
     <script type="text/javascript" src="/js/cenaplus.js?v2014021201"></script>
+    <asp:ContentPlaceHolder ID="Header" runat="server">
+        
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,11 +23,11 @@
 		        </div>
 		        <div id="menu" class="Menu-Color">
 			        <ul>
-				        <li class="current_page_item"><a href="#" accesskey="1" title="">主页</a></li>
-				        <li><a href="/Contest" accesskey="2" title="">云比赛</a></li>
-				        <li><a href="/Rating" accesskey="3" title="">积分榜</a></li>
-				        <li><a href="/Store" accesskey="4" title="">云题库</a></li>
-				        <li><a href="/Forum" accesskey="5" title="">论坛</a></li>
+				        <li id="navHomepage"><a href="#" accesskey="1" title="">主页</a></li>
+                        <li id="navStore"><a href="/Store" accesskey="2" title="">云题库</a></li>
+				        <li id="navContest"><a href="/Contest" accesskey="3" title="">云比赛</a></li>
+				        <li id="navRating"><a href="/Rating" accesskey="4" title="">积分榜</a></li>
+				        <li id="navForum"><a href="/Forum" accesskey="5" title="">论坛</a></li>
 			        </ul>
 		        </div>
 	        </div>
