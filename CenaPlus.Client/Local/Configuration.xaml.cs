@@ -76,7 +76,7 @@ namespace CenaPlus.Client.Local
             //System.IO.File.Copy(Environment.CurrentDirectory.ToString() + "\\Core\\CenaPlus.Core.exe", Static.WorkingDirectory + "\\CenaPlus.Core.exe");
             Static.TimeLimit = Convert.ToInt32(txtTimeLimit.Text);
             Static.MemoryLimit = Convert.ToInt32(txtMemoryLimit.Text);
-            if (Static.NeedCompile.Contains(Static.Language))
+            if (CenaPlus.Judge.Compiler.NeedCompile.Contains(Static.Language))
             {
                 CenaPlus.Judge.Compiler Compiler = new Judge.Compiler();
                 switch (Static.Language)

@@ -4,6 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using CenaPlus.Entity;
+using System.Linq;
 
 namespace CenaPlus.Judge
 {
@@ -36,20 +37,36 @@ namespace CenaPlus.Judge
                     return null;
             }
         }
+        public static readonly Entity.ProgrammingLanguage[] NeedCompile = 
+        { 
+            Entity.ProgrammingLanguage.C,
+            Entity.ProgrammingLanguage.CXX,
+            Entity.ProgrammingLanguage.CXX11,
+            Entity.ProgrammingLanguage.Java,
+            Entity.ProgrammingLanguage.Pascal
+        };
         public void Start()
         {
+            if (!System.IO.Directory.Exists(CompileInfo.WorkingDirectory))
+            {
+                System.IO.Directory.CreateDirectory(CompileInfo.WorkingDirectory);
+            }
             File.WriteAllText(CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Main" + GetExtension(CompileInfo.Language), CompileInfo.Source);
-            Runner = new Runner();
-            Runner.RunnerInfo.CenaCoreDirectory = CompileInfo.CenaCoreDirectory;
-            Runner.RunnerInfo.Cmd = CompileInfo.Arguments;
-            Runner.RunnerInfo.HighPriorityTime = 1000;
-            Runner.RunnerInfo.MemoryLimit = 64 * 1024;
-            Runner.RunnerInfo.StdErrFile = CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Compile.err";
-            Runner.RunnerInfo.StdOutFile = CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Compile.out";
-            Runner.RunnerInfo.TimeLimit = 3000;
-            Runner.RunnerInfo.WorkingDirectory = CompileInfo.WorkingDirectory;
-            Runner.Identity = Identity;
-            Runner.Start();
+            if (CenaPlus.Judge.Compiler.NeedCompile.Contains(CompileInfo.Language))
+            {
+                Runner = new Runner();
+                Runner.RunnerInfo.CenaCoreDirectory = CompileInfo.CenaCoreDirectory;
+                Runner.RunnerInfo.Cmd = CompileInfo.Arguments;
+                Runner.RunnerInfo.HighPriorityTime = 1000;
+                Runner.RunnerInfo.MemoryLimit = 64 * 1024;
+                Runner.RunnerInfo.StdErrFile = CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Compile.err";
+                Runner.RunnerInfo.StdOutFile = CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Compile.out";
+                Runner.RunnerInfo.TimeLimit = 3000;
+                Runner.RunnerInfo.WorkingDirectory = CompileInfo.WorkingDirectory;
+                Runner.Identity = Identity;
+                Runner.Start();
+            }
+
         }
         public CompileResult CompileResult
         {

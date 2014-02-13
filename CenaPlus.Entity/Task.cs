@@ -11,6 +11,7 @@ namespace CenaPlus.Entity
         public TaskType Type { get; set; }
         public int? TestCaseID { get; set; }
         public Problem Problem { get; set; }
+        public Hack Hack { get; set; }
     }
-    public enum TaskType {Compile, Run};
+    public enum TaskType {Compile, Run, Hack};
 }
