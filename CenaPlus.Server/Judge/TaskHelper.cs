@@ -343,7 +343,14 @@ namespace CenaPlus.Server.Judge
                 {
                     Compile();
                 }
+                
                 //TODO: Hack Logic
+                //data range validation
+
+                //run std
+
+                //run hackee
+
             }
         }
     }
