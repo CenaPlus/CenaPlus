@@ -145,7 +145,7 @@ namespace CenaPlus.Server.Judge
                 else
                 {
                     var Result = (Entity.RecordStatus)Runner.RunnerResult.ExitCode;
-                    //TODO: Send the result of this case to the center server.(validator error)
+                    //TODO: Send the result of this case to the center server.
                     return;
                 }
             }
