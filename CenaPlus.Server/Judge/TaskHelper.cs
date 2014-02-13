@@ -6,7 +6,7 @@ using CenaPlus.Judge;
 
 namespace CenaPlus.Server.Judge
 {
-    public class FullJudge
+    public class TaskHelper
     {
         public Entity.Task Task;
         public string spjOutput;
@@ -18,7 +18,7 @@ namespace CenaPlus.Server.Judge
             {
                 string ExecuteFile = WorkDirectory + "\\" + Task.Record.ID + "\\Main";
                 switch (Task.Record.Language)
-                { 
+                {
                     case Entity.ProgrammingLanguage.Java:
                         ExecuteFile += ".class";
                         break;
@@ -42,7 +42,7 @@ namespace CenaPlus.Server.Judge
 
                 }
                 else
-                { 
+                {
                     //TODO: Download test cases
                 }
                 Runner Runner = new Runner();
@@ -56,7 +56,7 @@ namespace CenaPlus.Server.Judge
                 Runner.RunnerInfo.HighPriorityTime = 1000;
                 Runner.RunnerInfo.WorkingDirectory = Environment.CurrentDirectory + "\\" + Task.Record.ID;
                 switch (Task.Record.Language)
-                { 
+                {
                     case Entity.ProgrammingLanguage.Java:
                         Runner.RunnerInfo.Cmd = App.Server.GetConfig(Bll.ConfigKey.Compiler.Java) ?? Bll.ConfigKey.Compiler.DefaultJava; break;
                     case Entity.ProgrammingLanguage.Python27:
@@ -84,7 +84,7 @@ namespace CenaPlus.Server.Judge
                     //TODO: Send the result of this case to the center server.
                     return;
                 }
-                if (Task.Record.Language == Entity.ProgrammingLanguage.C && Runner.RunnerResult.ExitCode != 0 && Runner.RunnerResult.ExitCode != 1 || Runner.RunnerResult.ExitCode!=0 && Task.Record.Language!= Entity.ProgrammingLanguage.C)
+                if (Task.Record.Language == Entity.ProgrammingLanguage.C && Runner.RunnerResult.ExitCode != 0 && Runner.RunnerResult.ExitCode != 1 || Runner.RunnerResult.ExitCode != 0 && Task.Record.Language != Entity.ProgrammingLanguage.C)
                 {
                     //TODO: Send the result of this case to the center server.
                     return;
@@ -133,7 +133,7 @@ namespace CenaPlus.Server.Judge
                     }
                     Runner.RunnerInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
                     Runner.RunnerInfo.StdOutFile = "..\\" + Task.TestCaseID + ".validator";
-                    Runner.RunnerInfo.Cmd = String.Format("{0} ..\\{1} ..\\{2}\\{3} ..\\{4}",System.IO.Path.GetFileName(CustomSPJ), Task.TestCaseID + ".out", Task.Record.ID, Task.Record.ID + "\\" + Task.TestCaseID + ".user", Task.TestCaseID + ".in");
+                    Runner.RunnerInfo.Cmd = String.Format("{0} ..\\{1} ..\\{2}\\{3} ..\\{4}", System.IO.Path.GetFileName(CustomSPJ), Task.TestCaseID + ".out", Task.Record.ID, Task.Record.ID + "\\" + Task.TestCaseID + ".user", Task.TestCaseID + ".in");
                 }
                 Runner.Start();
                 spjOutput = WorkDirectory + "\\" + Task.Record.ID + "\\" + Task.TestCaseID + ".validator";
@@ -147,6 +147,93 @@ namespace CenaPlus.Server.Judge
                     var Result = (Entity.RecordStatus)Runner.RunnerResult.ExitCode;
                     //TODO: Send the result of this case to the center server.
                     return;
+                }
+            }
+            else if (Task.Type == Entity.TaskType.Compile)
+            {
+                CenaPlus.Judge.Compiler Compiler = new Compiler();
+                Compiler.Identity.UserName = Bll.ConfigHelper.UserName;
+                Compiler.Identity.Password = Bll.ConfigHelper.Password;
+                Compiler.CompileInfo.Language = Task.Record.Language;
+                Compiler.CompileInfo.TimeLimit = 3000;
+                Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
+                Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                Compiler.CompileInfo.Source = WorkDirectory + "\\" + Task.Record.ID + "\\Main";
+                switch (Task.Record.Language)
+                {
+                    case Entity.ProgrammingLanguage.C:
+                        Compiler.CompileInfo.Source += ".c";
+                        break;
+                    case Entity.ProgrammingLanguage.CXX:
+                    case Entity.ProgrammingLanguage.CXX11:
+                        Compiler.CompileInfo.Source += ".cpp";
+                        break;
+                    case Entity.ProgrammingLanguage.Pascal:
+                        Compiler.CompileInfo.Source += ".pas";
+                        break;
+                    case Entity.ProgrammingLanguage.Java:
+                        Compiler.CompileInfo.Source += ".java";
+                        break;
+                    case Entity.ProgrammingLanguage.Python27:
+                    case Entity.ProgrammingLanguage.Python33:
+                        Compiler.CompileInfo.Source += ".py";
+                        break;
+                    case Entity.ProgrammingLanguage.Ruby:
+                        Compiler.CompileInfo.Source += ".rb";
+                        break;
+                }
+                Compiler.Start();
+                if (Compiler.CompileResult.CompileFailed)
+                {
+                    //TODO: Send the compile failed msg to the center server
+                    //Compiler.CompileResult.CompilerOutput
+                }
+                else
+                {
+                    //TODO: Send the compile success msg to the center server
+                    //check the spj version
+                    if (Task.Problem.Spj != null && true)//if the spj not exists or need update
+                    {
+                        Compiler = null;
+                        GC.Collect();
+                        Compiler = new Compiler();
+                        Compiler.CompileInfo.Source = WorkDirectory + "\\spj" + Task.Problem.ID + "\\Main";
+                        switch (Task.Record.Language)
+                        {
+                            case Entity.ProgrammingLanguage.C:
+                                Compiler.CompileInfo.Source += ".c";
+                                break;
+                            case Entity.ProgrammingLanguage.CXX:
+                            case Entity.ProgrammingLanguage.CXX11:
+                                Compiler.CompileInfo.Source += ".cpp";
+                                break;
+                            case Entity.ProgrammingLanguage.Pascal:
+                                Compiler.CompileInfo.Source += ".pas";
+                                break;
+                            case Entity.ProgrammingLanguage.Java:
+                                Compiler.CompileInfo.Source += ".java";
+                                break;
+                            case Entity.ProgrammingLanguage.Python27:
+                            case Entity.ProgrammingLanguage.Python33:
+                                Compiler.CompileInfo.Source += ".py";
+                                break;
+                            case Entity.ProgrammingLanguage.Ruby:
+                                Compiler.CompileInfo.Source += ".rb";
+                                break;
+                        }
+                        Compiler.Identity.UserName = Bll.ConfigHelper.UserName;
+                        Compiler.Identity.Password = Bll.ConfigHelper.Password;
+                        Compiler.CompileInfo.Language = Task.Record.Language;
+                        Compiler.CompileInfo.TimeLimit = 3000;
+                        Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
+                        Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                        Compiler.Start();
+                        if (Compiler.CompileResult.CompileFailed)
+                        { 
+                            //TODO: Send the validator error msg to the center server.
+                            return;
+                        }
+                    }
                 }
             }
         }

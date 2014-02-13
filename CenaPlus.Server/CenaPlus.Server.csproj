@@ -99,7 +99,7 @@
     <Compile Include="JudgeNode\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Judge\FullJudge.cs" />
+    <Compile Include="Judge\TaskHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
