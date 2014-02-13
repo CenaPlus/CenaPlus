@@ -604,13 +604,13 @@ ul.contact li a.icon-rss:before
 	}
 
 /*********************************************************************************/
-/* Copyright                                                                     */
+/* container                                                                     */
 /*********************************************************************************/
 
 #copyright
 {
 	overflow: hidden;
-	padding: 6em 0em 10em 0em;
+	padding: 2em 0em 2em 0em;
 	border-top: 1px solid rgba(255,255,255,0.08);
 }
 
