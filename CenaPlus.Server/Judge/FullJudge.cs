@@ -9,12 +9,14 @@ namespace CenaPlus.Server.Judge
     public class FullJudge
     {
         public Entity.Task Task;
+        public string spjOutput;
+        public readonly string WorkDirectory = Bll.ConfigHelper.WorkingDirectory;
         public void Start()
         {
             if (Task == null) throw new Exception("Task not found.");
             if (Task.Type == Entity.TaskType.Run)
             {
-                string ExecuteFile = Bll.ConfigHelper.WorkingDirectory + "\\" + Task.Record.ID + "\\Main";
+                string ExecuteFile = WorkDirectory + "\\" + Task.Record.ID + "\\Main";
                 switch (Task.Record.Language)
                 { 
                     case Entity.ProgrammingLanguage.Java:
@@ -32,10 +34,10 @@ namespace CenaPlus.Server.Judge
                         break;
                 }
                 if (!System.IO.File.Exists(ExecuteFile)) throw new Exception("Compiled file is not found.");
-                if (System.IO.File.Exists(Bll.ConfigHelper.WorkingDirectory + "\\" + Task.TestCaseID + ".in") && System.IO.File.Exists(Bll.ConfigHelper.WorkingDirectory + "\\" + Task.TestCaseID + ".out") && System.IO.File.Exists(Bll.ConfigHelper.WorkingDirectory + "\\" + Task.TestCaseID + ".hash.in") && System.IO.File.Exists(Bll.ConfigHelper.WorkingDirectory + "\\" + Task.TestCaseID + ".hash.out"))
+                if (System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".in") && System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".out") && System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".hash.in") && System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".hash.out"))
                 {
-                    var InputHash = System.IO.File.ReadAllText(Bll.ConfigHelper.WorkingDirectory + "\\" + Task.TestCaseID + ".in.hash");
-                    var OutputHash = System.IO.File.ReadAllText(Bll.ConfigHelper.WorkingDirectory + "\\" + Task.TestCaseID + ".out.hash");
+                    var InputHash = System.IO.File.ReadAllText(WorkDirectory + "\\" + Task.TestCaseID + ".in.hash");
+                    var OutputHash = System.IO.File.ReadAllText(WorkDirectory + "\\" + Task.TestCaseID + ".out.hash");
                     //TODO: Test case version check
 
                 }
@@ -47,7 +49,6 @@ namespace CenaPlus.Server.Judge
                 Runner.Identity.UserName = Bll.ConfigHelper.UserName;
                 Runner.Identity.Password = Bll.ConfigHelper.Password;
                 Runner.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                Runner.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
                 Runner.RunnerInfo.StdInFile = "..\\" + Task.TestCaseID + ".in";
                 Runner.RunnerInfo.StdOutFile = Task.TestCaseID + ".user";
                 Runner.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
@@ -66,6 +67,7 @@ namespace CenaPlus.Server.Judge
                         Runner.RunnerInfo.Cmd = App.Server.GetConfig(Bll.ConfigKey.Compiler.Ruby) ?? Bll.ConfigKey.Compiler.DefaultRuby; break;
                     default:
                         Runner.RunnerInfo.Cmd = "Main.exe";
+                        Runner.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
                         break;
                 }
                 Runner.Start();
@@ -88,6 +90,64 @@ namespace CenaPlus.Server.Judge
                     return;
                 }
                 //TODO: SPJ
+                Runner = null;
+                GC.Collect();
+                Runner = new Runner();
+                Runner.Identity.UserName = Bll.ConfigHelper.UserName;
+                Runner.Identity.Password = Bll.ConfigHelper.Password;
+                Runner.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                Runner.RunnerInfo.TimeLimit = 2000;
+                Runner.RunnerInfo.MemoryLimit = 128 * 1024;
+                if (Task.Problem.Spj == null)
+                {
+                    Runner.RunnerInfo.WorkingDirectory = WorkDirectory;
+                    if (!System.IO.File.Exists(WorkDirectory + "\\spj.exe"))
+                    {
+                        System.IO.File.Copy(Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Standard.exe", WorkDirectory + "\\spj.exe", true);
+                    }
+                    Runner.RunnerInfo.Cmd = String.Format("spj.exe {0} {1} {2}", Task.TestCaseID + ".out", Task.Record.ID + "\\" + Task.TestCaseID + ".user", Task.TestCaseID + ".in");
+                    Runner.RunnerInfo.StdOutFile = Task.Record.ID + "\\" + Task.TestCaseID + ".validator";
+                }
+                else
+                {
+                    var CustomSPJ = WorkDirectory + "\\spj" + Task.Problem.ID + "\\Main";
+                    switch (Task.Record.Language)
+                    {
+                        case Entity.ProgrammingLanguage.Java:
+                            CustomSPJ += ".class";
+                            break;
+                        case Entity.ProgrammingLanguage.Python27:
+                        case Entity.ProgrammingLanguage.Python33:
+                            CustomSPJ += ".py";
+                            break;
+                        case Entity.ProgrammingLanguage.Ruby:
+                            CustomSPJ += ".rb";
+                            break;
+                        default:
+                            CustomSPJ += ".exe";
+                            break;
+                    }
+                    if (!System.IO.File.Exists(CustomSPJ))
+                    {
+                        throw new Exception("Custom spj not found.");
+                    }
+                    Runner.RunnerInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
+                    Runner.RunnerInfo.StdOutFile = "..\\" + Task.TestCaseID + ".validator";
+                    Runner.RunnerInfo.Cmd = String.Format("{0} ..\\{1} ..\\{2}\\{3} ..\\{4}",System.IO.Path.GetFileName(CustomSPJ), Task.TestCaseID + ".out", Task.Record.ID, Task.Record.ID + "\\" + Task.TestCaseID + ".user", Task.TestCaseID + ".in");
+                }
+                Runner.Start();
+                spjOutput = WorkDirectory + "\\" + Task.Record.ID + "\\" + Task.TestCaseID + ".validator";
+                if (Runner.RunnerResult.ExitCode != 0 && Runner.RunnerResult.ExitCode != 1 && Runner.RunnerResult.ExitCode != 2 || Runner.RunnerResult.TimeUsed > 2000)
+                {
+                    //TODO: Send the result of this case to the center server.(validator error)
+                    return;
+                }
+                else
+                {
+                    var Result = (Entity.RecordStatus)Runner.RunnerResult.ExitCode;
+                    //TODO: Send the result of this case to the center server.(validator error)
+                    return;
+                }
             }
         }
     }
