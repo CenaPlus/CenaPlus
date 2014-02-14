@@ -10,33 +10,35 @@ namespace CenaPlus.Server.Judge
     public static class Env
     {
         public static List<Core> Cores = new List<Core>();
+
+        public static Core GetFreeCore()
+        {
+            return Cores.Where(c => c.Status == CoreStatus.Free).FirstOrDefault();
+        }
+
+        public static int GetFreeCoreCount()
+        {
+            return Cores.Where(c => c.Status == CoreStatus.Free).Count();
+        }
     }
     public class Core
     {
-        private void ExecuteTask()
+        public Entity.Task CurrentTask { get; set; }
+
+        public void Run(Entity.Task task, Action<int> callback)
         {
-            TaskHelper th = new TaskHelper();
-            th.Task = currenttask;
-            th.Start();
-            currenttask = null;
+            CurrentTask = task;
+            TaskHelper helper = new TaskHelper()
+            {
+                Task = task
+            };
+            helper.Start();
+            callback(123);
         }
-        private Entity.Task currenttask;
-        public Entity.Task CurrentTask 
+
+        public CoreStatus Status
         {
             get
-            {
-                return currenttask;
-            }
-            set
-            {
-                currenttask = value;
-                Thread t = new Thread(ExecuteTask);
-                t.Start();
-            }
-        }
-        public CoreStatus Status
-        { 
-            get 
             {
                 if (CurrentTask == null)
                     return CoreStatus.Free;
@@ -47,16 +49,16 @@ namespace CenaPlus.Server.Judge
         //display only
         public string Title
         {
-            get 
+            get
             {
                 return String.Format("Core #{0}", Index);
             }
         }
-        public string StatusStr 
+        public string StatusStr
         {
             get
             {
-                return "Status: "+Status.ToString();
+                return "Status: " + Status.ToString();
             }
         }
         public string TaskType
@@ -67,14 +69,14 @@ namespace CenaPlus.Server.Judge
                 else
                 {
                     switch (CurrentTask.Type)
-                    { 
+                    {
                         case Entity.TaskType.Compile:
                             return "Task: Compile R" + CurrentTask.Record.ID;
                         case Entity.TaskType.Run:
                             return "Task: Run R" + CurrentTask.Record.ID;
                         case Entity.TaskType.Hack:
                             return "Task: Hack R" + CurrentTask.Hack.ID;
-                        default: 
+                        default:
                             return "Task: N/A";
                     }
                 }

@@ -12,6 +12,7 @@ namespace CenaPlus.Server.Judge
         public string spjOutput;
         public readonly string WorkDirectory = Bll.ConfigHelper.WorkingDirectory;
         public readonly CenaPlus.Judge.Identity Identity = new Identity() { UserName = Bll.ConfigHelper.UserName, Password = Bll.ConfigHelper.Password };
+
         private void Run()
         {
             string ExecuteFile = WorkDirectory + "\\" + Task.Record.ID + "\\Main";

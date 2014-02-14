@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CenaPlus.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -15,7 +16,7 @@ namespace CenaPlus.Network
         [OperationContract]
         bool Authenticate(string password);
 
-        // [OperationContract]
-        // TypeFoo FuncBar(TypeBar argFoo);
+        [OperationContract]
+        void Run(Task task);
     }
 }
