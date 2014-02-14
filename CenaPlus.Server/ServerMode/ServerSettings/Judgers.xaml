@@ -7,11 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer>
-            <StackPanel MinWidth="200">
-                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Content goes here" />
-            </StackPanel>
-        </ScrollViewer>
+        <ListBox x:Name="JudgeNodeListBox" Margin="0,0,0,30" SelectionChanged="JudgeNodeListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource Heading2}" Margin="5,0,0,0"></TextBlock>
+                        <TextBlock Text="{Binding Details}" Margin="5,0,0,0"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <WrapPanel VerticalAlignment="Bottom">
+            <TextBlock Text="Judge node token" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtToken" Width="100" Margin="0,0,10,0"></TextBox>
+            <Button Content="Connect" x:Name="btnConnect" IsEnabled="False" Margin="0,0,10,0"></Button>
+            <Button Content="Disconnect" x:Name="btnDisconnect" IsEnabled="False" Margin="0,0,10,0"></Button>
+        </WrapPanel>
     </Grid>
 </UserControl>
