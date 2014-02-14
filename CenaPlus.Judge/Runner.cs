@@ -32,8 +32,25 @@ namespace CenaPlus.Judge
             }
             Process.Start();
             Process.WaitForExit(4 * RunnerInfo.TimeLimit + 5000);
-            if(!Process.HasExited)
-                Process.Kill();
+            if (!Process.HasExited) 
+            {
+                if (RunnerInfo.KillProcessTree)
+                {
+                    try
+                    {
+                        ProcessesTreeKiller ptk = new ProcessesTreeKiller();
+                        ptk.FindAndKillProcess(Process.Id);
+                    }
+                    catch
+                    {
+                    }
+                }
+                else
+                {
+                    Process.Kill();
+                }
+                
+            }
             xmlresult = Process.StandardOutput.ReadToEnd();
         }
         public RunnerResult RunnerResult
@@ -68,6 +85,7 @@ namespace CenaPlus.Judge
         public string XmlFile { get; set; }
         public string WorkingDirectory { get; set; }
         public string CenaCoreDirectory = "CenaPlus.Core.exe";
+        public bool KillProcessTree = false;
     }
     public class RunnerResult
     {

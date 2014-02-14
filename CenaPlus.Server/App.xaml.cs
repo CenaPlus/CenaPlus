@@ -12,6 +12,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Management;
 namespace CenaPlus.Server
 {
     /// <summary>
@@ -59,6 +60,21 @@ namespace CenaPlus.Server
             AppearanceManager.Current.ThemeSource = AppearanceManager.DarkThemeSource;
 
             AppDomain.CurrentDomain.UnhandledException += (obj, evt) => GlobalExceptionHandler(evt.ExceptionObject as Exception);
+       
+            //Judge cores init
+            int count = 0;
+            foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+            {
+                count += int.Parse(item["NumberOfCores"].ToString());
+            }
+            for (int i = 0; i < count; i++)
+            {
+                Judge.Core c = new Judge.Core();
+                c.Index = i;
+                c.CurrentTask = null;
+                c.Status = Judge.CoreStatus.Free;
+                Judge.Env.Cores.Add(c);
+            }
         }
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

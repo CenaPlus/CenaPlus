@@ -45,6 +45,13 @@ namespace CenaPlus.Judge
             Entity.ProgrammingLanguage.Java,
             Entity.ProgrammingLanguage.Pascal
         };
+        public static readonly Entity.ProgrammingLanguage[] RunEXE = 
+        { 
+            Entity.ProgrammingLanguage.C,
+            Entity.ProgrammingLanguage.CXX,
+            Entity.ProgrammingLanguage.CXX11,
+            Entity.ProgrammingLanguage.Pascal
+        };
         public void Start()
         {
             if (!System.IO.Directory.Exists(CompileInfo.WorkingDirectory))
@@ -64,6 +71,7 @@ namespace CenaPlus.Judge
                 Runner.RunnerInfo.TimeLimit = 3000;
                 Runner.RunnerInfo.WorkingDirectory = CompileInfo.WorkingDirectory;
                 Runner.Identity = Identity;
+                Runner.RunnerInfo.KillProcessTree = true;
                 Runner.Start();
             }
 

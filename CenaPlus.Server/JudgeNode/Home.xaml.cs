@@ -12,18 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Server.JudgeNode
 {
     /// <summary>
-    /// Interaction logic for Status.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Status : UserControl
+    public partial class Home : UserControl
     {
-        public Status()
+        public Home()
         {
             InitializeComponent();
-            TaskListBox.ItemsSource = Judge.Env.Cores;
+        }
+
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                frame.Source = new Uri("/JudgeNode/Status.xaml", UriKind.Relative);
+            }
         }
     }
 }

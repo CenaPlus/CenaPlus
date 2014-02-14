@@ -9,7 +9,7 @@
         <mui:LinkGroup DisplayName="Cena+ server">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Server Mode" Source="/ServerMode/Home.xaml" />
-                <mui:Link DisplayName="Judge Mode" Source="/JudgeMode/Home.xaml"/>
+                <mui:Link DisplayName="Judge Node" Source="/JudgeNode/Home.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Cena+ server" GroupName="ServerMode">
@@ -20,7 +20,7 @@
                 <mui:Link DisplayName="Contests Manage" Source="/ServerMode/Tests.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Cena+ Judge Node" GroupName="JudgeMode">
+        <mui:LinkGroup DisplayName="Cena+ Judge Node" GroupName="JudgeNode">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Status" Source="/JudgeNode/Status.xaml" />
             </mui:LinkGroup.Links>
