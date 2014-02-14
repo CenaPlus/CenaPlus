@@ -12,7 +12,15 @@ namespace CenaPlus.Server.Judge
     public class Core
     {
         public Entity.Task CurrentTask { get; set; }
-        public CoreStatus Status { get; set; }
+        public CoreStatus Status
+        { 
+            get 
+            {
+                if (CurrentTask == null)
+                    return CoreStatus.Free;
+                else return CoreStatus.Working;
+            }
+        }
         public int Index { get; set; }
         //display only
         public string Title
