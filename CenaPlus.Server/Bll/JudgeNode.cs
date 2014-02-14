@@ -16,6 +16,13 @@ namespace CenaPlus.Server.Bll
         public static string Password { get; set; }
 
         private bool Authenticated { get; set; }
+        private IJudgeNodeCallback Callback
+        {
+            get
+            {
+                return OperationContext.Current.GetCallbackChannel<IJudgeNodeCallback>();
+            }
+        }
 
         public string GetVersion()
         {
@@ -36,7 +43,7 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-        public void Run(Task task)
+        private Core GetFreeCore()
         {
             Core freeCore = null;
             while (freeCore == null)
@@ -44,12 +51,45 @@ namespace CenaPlus.Server.Bll
                 freeCore = Env.GetFreeCore();
                 if (freeCore == null) Thread.Sleep(500);
             }
-
-            freeCore.StartTask(task, Report);
+            return freeCore;
         }
 
-        private void Report()
+        public TaskFeedback_Compile Compile(Problem problem, Record record)
         {
+            if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+            var freeCore = GetFreeCore();
+            return freeCore.Run(new Task
+            {
+                Problem = problem,
+                Record = record,
+                Type = TaskType.Compile
+            },Callback) as TaskFeedback_Compile;
+        }
+
+        public TaskFeedback_Run Run(Problem problem, Record record, int testCaseID)
+        {
+            if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+            var freeCore = GetFreeCore();
+            return freeCore.Run(new Task
+            {
+                Problem = problem,
+                Record = record,
+                TestCaseID = testCaseID,
+                Type = TaskType.Run
+            }, Callback) as TaskFeedback_Run;
+        }
+
+        public TaskFeedback_Hack Hack(Problem problem, Record record, Hack hack)
+        {
+            if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+            var freeCore = GetFreeCore();
+            return freeCore.Run(new Task
+            {
+                Problem = problem,
+                Record = record,
+                Hack = hack,
+                Type = TaskType.Run
+            }, Callback) as TaskFeedback_Hack;
         }
     }
 }

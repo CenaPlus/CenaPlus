@@ -20,11 +20,11 @@ namespace CenaPlus.Server.Bll
             {
                 try
                 {
-                    var channel = JudgeNodeChannelFactory.CreateChannel(Location);
+                    var channel = JudgeNodeChannelFactory.CreateChannel(Location, new JudgeNodeCallback());
                     channel.Close();
                     return true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show(e.ToString());
                     return false;
@@ -34,7 +34,7 @@ namespace CenaPlus.Server.Bll
 
         public bool CheckPassword()
         {
-            using (var channel = JudgeNodeChannelFactory.CreateChannel(Location))
+            using (var channel = JudgeNodeChannelFactory.CreateChannel(Location, new JudgeNodeCallback()))
             {
                 return channel.Authenticate(Password);
             }
@@ -42,7 +42,7 @@ namespace CenaPlus.Server.Bll
 
         public IJudgeNodeChannel CreateConnection()
         {
-            return JudgeNodeChannelFactory.CreateChannel(Location);
+            return JudgeNodeChannelFactory.CreateChannel(Location, new JudgeNodeCallback());
         }
     }
 }

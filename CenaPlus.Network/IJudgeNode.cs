@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CenaPlus.Network
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IJudgeNodeCallback))]
     public interface IJudgeNode
     {
         [OperationContract]
@@ -17,6 +17,12 @@ namespace CenaPlus.Network
         bool Authenticate(string password);
 
         [OperationContract]
-        void Run(Task task);
+        TaskFeedback_Compile Compile(Problem problem, Record record);
+
+        [OperationContract]
+        TaskFeedback_Hack Hack(Problem problem, Record record, Hack hack);
+
+        [OperationContract]
+        TaskFeedback_Run Run(Problem problem, Record record, int testCaseID);
     }
 }

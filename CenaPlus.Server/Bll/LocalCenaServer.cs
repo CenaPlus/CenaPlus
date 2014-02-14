@@ -997,6 +997,7 @@ namespace CenaPlus.Server.Bll
                 {
                     ID = testCase.ID,
                     InputHash = testCase.InputHash,
+                    OutputHash = testCase.OutputHash,
                     InputPreview = Encoding.UTF8.GetString(testCase.Input.Take(100).ToArray()),
                     OutputPreview = Encoding.UTF8.GetString(testCase.Output.Take(100).ToArray()),
                     InputSize = testCase.Input.Length,
@@ -1035,7 +1036,10 @@ namespace CenaPlus.Server.Bll
                     testCase.InputHash = MD5.Create().ComputeHash(input);
                 }
                 if (output != null)
+                {
                     testCase.Output = output;
+                    testCase.OutputHash = MD5.Create().ComputeHash(output);
+                }
                 if (type != null)
                     testCase.Type = type.Value;
 
@@ -1053,6 +1057,7 @@ namespace CenaPlus.Server.Bll
                     Input = input,
                     InputHash = MD5.Create().ComputeHash(input),
                     Output = output,
+                    OutputHash = MD5.Create().ComputeHash(output),
                     ProblemID = problemID,
                     Type = type
                 };

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
+using CenaPlus.Network;
 
 namespace CenaPlus.Server.Judge
 {
@@ -25,15 +26,16 @@ namespace CenaPlus.Server.Judge
     {
         public Entity.Task CurrentTask { get; set; }
 
-        public void Run(Entity.Task task, Action<int> callback)
+        public Entity.TaskFeedback Run(Entity.Task task, IJudgeNodeCallback callback)
         {
             CurrentTask = task;
             TaskHelper helper = new TaskHelper()
             {
-                Task = task
+                Task = task,
+                CenterServer = callback
             };
             helper.Start();
-            callback(123);
+            return helper.Feedback;
         }
 
         public CoreStatus Status

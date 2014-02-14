@@ -23,10 +23,10 @@ namespace CenaPlus.Network
             return endpoint;
         }
 
-        public static IJudgeNodeChannel CreateChannel(IPEndPoint server)
+        public static IJudgeNodeChannel CreateChannel(IPEndPoint server, IJudgeNodeCallback callback)
         {
             IJudgeNodeChannel channel;
-            var factory = new ChannelFactory<IJudgeNodeChannel>(GetServiceEndPoint(server));
+            var factory = new DuplexChannelFactory<IJudgeNodeChannel>(callback, GetServiceEndPoint(server));
             channel = factory.CreateChannel();
 
             var version = typeof(IJudgeNode).Assembly.GetName().Version;

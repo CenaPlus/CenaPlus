@@ -9,6 +9,8 @@ namespace CenaPlus.Server.Judge
     public class TaskHelper
     {
         public Entity.Task Task;
+        public Entity.TaskFeedback Feedback;
+        public Network.IJudgeNodeCallback CenterServer;
         public string spjOutput;
         public readonly string WorkDirectory = Bll.ConfigHelper.WorkingDirectory;
         public readonly CenaPlus.Judge.Identity Identity = new Identity() { UserName = Bll.ConfigHelper.UserName, Password = Bll.ConfigHelper.Password };
@@ -33,17 +35,28 @@ namespace CenaPlus.Server.Judge
                     break;
             }
             if (!System.IO.File.Exists(ExecuteFile)) throw new Exception("Compiled file is not found.");
+
+            bool needDownloading;
+
             if (System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".in") && System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".out") && System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".hash.in") && System.IO.File.Exists(WorkDirectory + "\\" + Task.TestCaseID + ".hash.out"))
             {
-                var InputHash = System.IO.File.ReadAllText(WorkDirectory + "\\" + Task.TestCaseID + ".in.hash");
-                var OutputHash = System.IO.File.ReadAllText(WorkDirectory + "\\" + Task.TestCaseID + ".out.hash");
-                //TODO: Test case version check
+                var InputHash = System.IO.File.ReadAllBytes(WorkDirectory + "\\" + Task.TestCaseID + ".in.hash");
+                var OutputHash = System.IO.File.ReadAllBytes(WorkDirectory + "\\" + Task.TestCaseID + ".out.hash");
+                var correctInputHash = CenterServer.GetInputHash(Task.TestCaseID.Value);
+                var correctOutputHash = CenterServer.GetOutputHash(Task.TestCaseID.Value);
+                needDownloading = !InputHash.SequenceEqual(correctInputHash) || !OutputHash.SequenceEqual(correctOutputHash);
+            }
+            else needDownloading = true;
 
-            }
-            else
+            if (needDownloading)
             {
-                //TODO: Download test cases
+                Entity.TestCase testCase = CenterServer.GetTestCase(Task.TestCaseID.Value);
+                System.IO.File.WriteAllBytes(WorkDirectory + "\\" + Task.TestCaseID + ".in.hash",testCase.InputHash);
+                System.IO.File.WriteAllBytes(WorkDirectory + "\\" + Task.TestCaseID + ".out.hash", testCase.OutputHash);
+                System.IO.File.WriteAllBytes(WorkDirectory + "\\" + Task.TestCaseID + ".in", testCase.Input);
+                System.IO.File.WriteAllBytes(WorkDirectory + "\\" + Task.TestCaseID + ".out", testCase.Output);
             }
+
             Runner Runner = new Runner();
             Runner.Identity = Identity;
             Runner.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
@@ -71,7 +84,14 @@ namespace CenaPlus.Server.Judge
             Runner.Start();
             if (Runner.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
             {
-                //TODO: Send the result of this case to the center server.
+                Feedback = new Entity.TaskFeedback_Run
+                {
+                    MemUsage = Runner.RunnerResult.PagedSize,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.TimeLimitExceeded,
+                    TestCaseID = Task.TestCaseID.Value,
+                    TimeUsage = Runner.RunnerResult.TimeUsed
+                };
                 return;
             }
             var mem = Runner.RunnerResult.PagedSize;
@@ -79,12 +99,26 @@ namespace CenaPlus.Server.Judge
                 mem = Runner.RunnerResult.WorkingSetSize;
             if (mem > Task.Problem.MemoryLimit * 1024)
             {
-                //TODO: Send the result of this case to the center server.
+                Feedback = new Entity.TaskFeedback_Run
+                {
+                    MemUsage = Runner.RunnerResult.PagedSize,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.MemoryLimitExceeded,
+                    TestCaseID = Task.TestCaseID.Value,
+                    TimeUsage = Runner.RunnerResult.TimeUsed
+                };
                 return;
             }
             if (Task.Record.Language == Entity.ProgrammingLanguage.C && Runner.RunnerResult.ExitCode != 0 && Runner.RunnerResult.ExitCode != 1 || Runner.RunnerResult.ExitCode != 0 && Task.Record.Language != Entity.ProgrammingLanguage.C)
             {
-                //TODO: Send the result of this case to the center server.
+                Feedback = new Entity.TaskFeedback_Run
+                {
+                    MemUsage = Runner.RunnerResult.PagedSize,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.RuntimeError,
+                    TestCaseID = Task.TestCaseID.Value,
+                    TimeUsage = Runner.RunnerResult.TimeUsed
+                };
                 return;
             }
             //spj
@@ -138,19 +172,33 @@ namespace CenaPlus.Server.Judge
                 {
                     Runner.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
                 }
-                Runner.RunnerInfo.Cmd += String.Format(" ..\\{0} ..\\{1}\\{2} ..\\{3}",Task.TestCaseID + ".out", Task.Record.ID, Task.Record.ID + "\\" + Task.TestCaseID + ".user", Task.TestCaseID + ".in");
+                Runner.RunnerInfo.Cmd += String.Format(" ..\\{0} ..\\{1}\\{2} ..\\{3}", Task.TestCaseID + ".out", Task.Record.ID, Task.Record.ID + "\\" + Task.TestCaseID + ".user", Task.TestCaseID + ".in");
             }
             Runner.Start();
             spjOutput = WorkDirectory + "\\" + Task.Record.ID + "\\" + Task.TestCaseID + ".validator";
             if (Runner.RunnerResult.ExitCode != 0 && Runner.RunnerResult.ExitCode != 1 && Runner.RunnerResult.ExitCode != 2 || Runner.RunnerResult.TimeUsed > 2000)
             {
-                //TODO: Send the result of this case to the center server.(validator error)
+                Feedback = new Entity.TaskFeedback_Run
+                {
+                    MemUsage = Runner.RunnerResult.PagedSize,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.ValidatorError,
+                    TestCaseID = Task.TestCaseID.Value,
+                    TimeUsage = Runner.RunnerResult.TimeUsed
+                };
                 return;
             }
             else
             {
                 var Result = (Entity.RecordStatus)Runner.RunnerResult.ExitCode;
-                //TODO: Send the result of this case to the center server.
+                Feedback = new Entity.TaskFeedback_Run
+                {
+                    MemUsage = Runner.RunnerResult.PagedSize,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.Accepted,
+                    TestCaseID = Task.TestCaseID.Value,
+                    TimeUsage = Runner.RunnerResult.TimeUsed
+                };
                 return;
             }
         }
@@ -191,12 +239,16 @@ namespace CenaPlus.Server.Judge
             Compiler.Start();
             if (Compiler.CompileResult.CompileFailed)
             {
-                //TODO: Send the compile failed msg to the center server
-                //Compiler.CompileResult.CompilerOutput
+                Feedback = new Entity.TaskFeedback_Compile
+                {
+                    CompilerOutput = Compiler.CompileResult.CompilerOutput,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.CompileError
+                };
+                return;
             }
             else
             {
-                //TODO: Send the compile success msg to the center server
                 //check the spj version
                 if (Task.Problem.Spj != null && true)//if the spj not exists or need update
                 {
@@ -213,7 +265,12 @@ namespace CenaPlus.Server.Judge
                     Compiler.Start();
                     if (Compiler.CompileResult.CompileFailed)
                     {
-                        //TODO: Send the validator error msg to the center server.
+                        Feedback = new Entity.TaskFeedback_Compile
+                        {
+                            CompilerOutput = Compiler.CompileResult.CompilerOutput,
+                            RecordID = Task.Record.ID,
+                            RecordStatus = Entity.RecordStatus.ValidatorError
+                        };
                         return;
                     }
                 }
@@ -233,7 +290,12 @@ namespace CenaPlus.Server.Judge
                     Compiler.Start();
                     if (Compiler.CompileResult.CompileFailed)
                     {
-                        //TODO: Send the std error msg to the center server.
+                        Feedback = new Entity.TaskFeedback_Compile
+                        {
+                            CompilerOutput = Compiler.CompileResult.CompilerOutput,
+                            RecordID = Task.Record.ID,
+                            RecordStatus = Entity.RecordStatus.StdError
+                        };
                         return;
                     }
                 }
@@ -254,10 +316,22 @@ namespace CenaPlus.Server.Judge
                     Compiler.Start();
                     if (Compiler.CompileResult.CompileFailed)
                     {
-                        //TODO: Send the range validato error msg to the center server.
+                        Feedback = new Entity.TaskFeedback_Compile
+                        {
+                            CompilerOutput = Compiler.CompileResult.CompilerOutput,
+                            RecordID = Task.Record.ID,
+                            RecordStatus = Entity.RecordStatus.ValidatorError
+                        };
                         return;
                     }
                 }
+
+                Feedback = new Entity.TaskFeedback_Compile
+                {
+                    CompilerOutput = Compiler.CompileResult.CompilerOutput,
+                    RecordID = Task.Record.ID,
+                    RecordStatus = Entity.RecordStatus.Accepted
+                };
             }
         }
         private void Hack()
@@ -280,7 +354,13 @@ namespace CenaPlus.Server.Judge
                 Compiler.Start();
                 if (Compiler.CompileResult.CompileFailed)
                 {
-                    //TODO: Send the data maker error to center server
+                    Feedback = new Entity.TaskFeedback_Hack
+                    {
+                        HackData = null,
+                        HackID = Task.Hack.ID,
+                        HackStatus = Entity.HackStatus.DatamakerError,
+                        CompilerOutput = Compiler.CompileResult.CompilerOutput
+                    };
                     return;
                 }
                 else
@@ -304,7 +384,12 @@ namespace CenaPlus.Server.Judge
                     Runner.Start();
                     if (Runner.RunnerResult.ExitCode != 0 || Runner.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
                     {
-                        //TODO: Send the data maker error to center server
+                        Feedback = new Entity.TaskFeedback_Hack
+                        {
+                            HackData = null,
+                            HackID = Task.Hack.ID,
+                            HackStatus = Entity.HackStatus.DatamakerError
+                        };
                         return;
                     }
                     else
@@ -357,7 +442,12 @@ namespace CenaPlus.Server.Judge
             runRange.Start();
             if (runRange.RunnerResult.ExitCode != 0)
             {
-                //TODO: return data out of range to the center server.
+                Feedback = new Entity.TaskFeedback_Hack
+                {
+                    HackData = null,
+                    HackID = Task.Hack.ID,
+                    HackStatus = Entity.HackStatus.BadData
+                };
                 return;
             }
             //run std
@@ -381,7 +471,12 @@ namespace CenaPlus.Server.Judge
             runStd.Start();
             if (runStd.RunnerResult.ExitCode != 0 || runStd.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
             {
-                //TODO: return Unsuccessful Hacking Attempt to the center server.
+                Feedback = new Entity.TaskFeedback_Hack
+                {
+                    HackData = null,
+                    HackID = Task.Hack.ID,
+                    HackStatus = Entity.HackStatus.BadData
+                };
                 return;
             }
             //run hackee
@@ -406,9 +501,12 @@ namespace CenaPlus.Server.Judge
             HackData.Output = System.IO.File.ReadAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\StdOutput.txt");
             if (runHackee.RunnerResult.ExitCode != 0 || runHackee.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
             {
-                //TODO: return Sucessful Hacking Attempt to the center server.
-                //HackData
-                //TODO: Insert the case into database.
+                Feedback = new Entity.TaskFeedback_Hack
+                {
+                    HackData = HackData,
+                    HackID = Task.Hack.ID,
+                    HackStatus = Entity.HackStatus.Success
+                };
                 return;
             }
             else
@@ -434,21 +532,34 @@ namespace CenaPlus.Server.Judge
                 runSpj.Start();
                 if (runSpj.RunnerResult.ExitCode < 0 || runSpj.RunnerResult.ExitCode > 3 || runSpj.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
                 {
-                    //TODO: return Validator Error to the center server.
+                    Feedback = new Entity.TaskFeedback_Hack
+                    {
+                        HackData = null,
+                        HackID = Task.Hack.ID,
+                        HackStatus = Entity.HackStatus.BadData
+                    };
                     return;
                 }
                 else
                 {
                     if (runSpj.RunnerResult.ExitCode == 0)
                     {
-                        //TODO: return unsucessful Hacking Attempt to the center server.
+                        Feedback = new Entity.TaskFeedback_Hack
+                        {
+                            HackData = null,
+                            HackID = Task.Hack.ID,
+                            HackStatus = Entity.HackStatus.Failure
+                        };
                         return;
                     }
                     else
                     {
-                        //TODO: return Sucessful Hacking Attempt to the center server.
-                        //HackData
-                        //TODO: Insert the case into database.
+                        Feedback = new Entity.TaskFeedback_Hack
+                        {
+                            HackData = HackData,
+                            HackID = Task.Hack.ID,
+                            HackStatus = Entity.HackStatus.Success
+                        };
                         return;
                     }
                 }

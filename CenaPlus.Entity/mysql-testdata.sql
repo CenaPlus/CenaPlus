@@ -21,9 +21,9 @@ INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,f
 INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('TC A+B','a+b',4,1,1000,256*1024*1024,'');
 INSERT INTO problems (title, content, contest_id,score,time_limit,memory_limit,forbidden_languages) values ('TC C+D','c+d',4,2,1000,256*1024*1024,'');
 
-INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (1,0,unhex(md5('1 1')),'1 1','2');
-INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,0,unhex(md5('1 2')),'1 2','3');
-INSERT INTO test_cases (problem_id,`type`,input_hash,input,output) values (5,1,unhex(md5('2 2')),'2 2','4');
+INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) values (1,0,unhex(md5('1 1')),'1 1',unhex(md5('2')),'2');
+INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) values (5,0,unhex(md5('1 2')),'1 2',unhex(md5('3')),'3');
+INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) values (5,1,unhex(md5('2 2')),'2 2',unhex(md5('4')),'4');
 
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time) values (1,1,0,0,'#include<con>',now());
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,time_usage,memory_usage,detail) values (2,5,4,1,'#include <iostream>\nint main(){\nreturn 0;\n}',now(),998,1024*1024*3,'Detail....');

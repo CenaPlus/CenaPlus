@@ -42,6 +42,12 @@ namespace CenaPlus.Entity
         [Column("input")]
         public byte[] Input { get; set; }
 
+        /// <summary>
+        /// MD5 of output data
+        /// </summary>
+        [Column("output_hash")]
+        public byte[] OutputHash { get; set; }
+
         [Column("output")]
         public byte[] Output { get; set; }
 

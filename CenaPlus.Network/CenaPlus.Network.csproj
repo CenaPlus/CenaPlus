@@ -48,6 +48,7 @@
     <Compile Include="ICenaPlusServer.cs" />
     <Compile Include="ICenaPlusServerCallbak.cs" />
     <Compile Include="IJudgeNode.cs" />
+    <Compile Include="IJudgeNodeCallback.cs" />
     <Compile Include="InvalidOperationError.cs" />
     <Compile Include="JudgeNodeChannelFactory.cs" />
     <Compile Include="NotFoundError.cs" />
