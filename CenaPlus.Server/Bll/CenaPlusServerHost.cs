@@ -12,7 +12,7 @@ using CenaPlus.Network;
 
 namespace CenaPlus.Server.Bll
 {
-    public class CenaPlusServerHost : ServiceHost
+    class CenaPlusServerHost : ServiceHost
     {
         private ServiceBroadcaster broadcaster;
 

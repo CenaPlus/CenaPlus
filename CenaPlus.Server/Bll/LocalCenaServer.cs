@@ -178,6 +178,7 @@ namespace CenaPlus.Server.Bll
                     System.Threading.Tasks.Task.Factory.StartNew(() => ContestDeleted(id));
             }
         }
+
         public int CreateContest(string title, string description, DateTime startTime, DateTime? restTime, DateTime? hackStartTime, DateTime endTime, ContestType type, bool printingEnabled)
         {
             using (DB db = new DB())
@@ -291,6 +292,35 @@ namespace CenaPlus.Server.Bll
 
         #endregion
         #region Problem
+        public ProblemStatistics GetProblemStatistics(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                Problem problem = db.Problems.Find(id);
+                if (problem == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
+
+                if (problem.Contest.Type == ContestType.OI && CurrentUser.Role == UserRole.Competitor)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                var records = from r in db.Records
+                              where r.ProblemID == problem.ID
+                              select r;
+                return new ProblemStatistics
+                {
+                    ProblemTitle = problem.Title,
+                    AC = records.Where(r => r.StatusAsInt == (int)RecordStatus.Accepted).Count(),
+                    CE = records.Where(r => r.StatusAsInt == (int)RecordStatus.CompileError).Count(),
+                    MLE = records.Where(r => r.StatusAsInt == (int)RecordStatus.MemoryLimitExceeded).Count(),
+                    RE = records.Where(r => r.StatusAsInt == (int)RecordStatus.RuntimeError).Count(),
+                    SE = records.Where(r => r.StatusAsInt == (int)RecordStatus.SystemError).Count(),
+                    TLE = records.Where(r => r.StatusAsInt == (int)RecordStatus.TimeLimitExceeded).Count(),
+                    VE = records.Where(r => r.StatusAsInt == (int)RecordStatus.ValidatorError).Count(),
+                    WA = records.Where(r => r.StatusAsInt == (int)RecordStatus.WrongAnswer).Count(),
+                };
+            }
+        }
         public int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit,
             string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages)
         {

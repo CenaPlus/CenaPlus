@@ -99,6 +99,7 @@
     <Compile Include="Bll\ContestManager.cs" />
     <Compile Include="Bll\FakeSystemUser.cs" />
     <Compile Include="Bll\JudgeNode.cs" />
+    <Compile Include="Bll\JudgeNodeHost.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServiceBroadcaster.cs" />

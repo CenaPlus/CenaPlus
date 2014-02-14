@@ -8,6 +8,8 @@ namespace CenaPlus.Server.Bll
 {
     public class JudgeNode : IJudgeNode
     {
+        public static string Password { get; set; }
+
         public string GetVersion()
         {
             var version = typeof(IJudgeNode).Assembly.GetName().Version;

@@ -81,6 +81,11 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
+        ProblemStatistics GetProblemStatistics(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
         int CreateProblem(int contestID, string title, string content, int score, int timeLimit, long memoryLimit,
             string std, string spj, string validator, ProgrammingLanguage? stdLanguage, ProgrammingLanguage? spjLanguage, ProgrammingLanguage? validatorLanguage, IEnumerable<ProgrammingLanguage> forbiddenLanguages);
 

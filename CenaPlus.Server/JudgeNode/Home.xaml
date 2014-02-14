@@ -12,6 +12,8 @@
                 <TextBlock Text="Host a judge node" Style="{StaticResource Heading2}" />
                 <TextBlock Text="Judger name" Margin="0,0,0,5" />
                 <TextBox x:Name="txtName" Margin="0,0,0,20">Local Judge Node</TextBox>
+                <TextBlock Text="Port" Margin="0,0,0,5" />
+                <TextBox x:Name="txtPort" Text="9880" Margin="0,0,0,20"/>
                 <TextBlock Text="Password" Margin="0,0,0,5" />
                 <PasswordBox x:Name="txtPassword" Margin="0,0,0,20"></PasswordBox>
                 <Button Content="Start" x:Name="btnStart" Click="btnStart_Click"></Button>
