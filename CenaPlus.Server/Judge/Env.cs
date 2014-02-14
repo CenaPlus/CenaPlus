@@ -29,7 +29,10 @@ namespace CenaPlus.Server.Judge
             }
             set
             {
-                currenttask = value;
+                if (currenttask == null)
+                    currenttask = value;
+                else
+                    throw new Exception("The core is working.");
                 Thread t = new Thread(ExecuteTask);
                 t.Start();
             }
