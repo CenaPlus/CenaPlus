@@ -466,7 +466,7 @@ namespace CenaPlus.Server.Judge
             }
             else if (Task.Type == Entity.TaskType.Hack)
             {
-               
+                Hack();
             }
         }
     }
