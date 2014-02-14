@@ -5,22 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
-        <ScrollViewer Margin="0,0,0,30">
-            <StackPanel MinWidth="200">
-                <TextBlock Text="Center server" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Not found" Margin="0,0,0,20"/>
-                <TextBlock Text="Status" Style="{StaticResource Heading2}" />
-                <TextBlock Text="Idle" Margin="0,0,0,20"/>
-                <TextBlock Text="Pending task count" Style="{StaticResource Heading2}" />
-                <TextBlock Text="0" Margin="0,0,0,20"/>
-                <TextBlock Text="Judged count" Style="{StaticResource Heading2}" />
-                <TextBlock Text="0" Margin="0,0,0,20"/>
-                <TextBlock Text="Error count" Style="{StaticResource Heading2}" />
-                <TextBlock Text="0" Margin="0,0,0,20"/>
-            </StackPanel>
-        </ScrollViewer>
-        <Button Content="Stop service" VerticalAlignment="Bottom"></Button>
+        <ListBox x:Name="TaskListBox">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel Width="120" Height="120" Margin="0,0,20,20" Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Margin="5,0,0,0" Style="{StaticResource Heading2}" Text="{Binding Title}"></TextBlock>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding StatusStr}"></TextBlock>
+                            <TextBlock Margin="5,0,0,0" Text="{Binding TaskType}" TextWrapping="Wrap"></TextBlock>
+                        </StackPanel>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </UserControl>
