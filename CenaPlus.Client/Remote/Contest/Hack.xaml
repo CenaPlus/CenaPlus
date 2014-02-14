@@ -24,7 +24,8 @@
                 </ComboBox>
                 <Button Content="Hack"></Button>
             </WrapPanel>
-            <TextBox Margin="0,30,0,0"></TextBox>
+            <TextBox Margin="0,30,0,135"></TextBox>
+            <Image x:Name="imgDataPath" Source="/CenaPlus.Client;component/Resources/Box.png" Width="128" Height="128" VerticalAlignment="Bottom"></Image>
         </Grid>
     </Grid>
 </UserControl>

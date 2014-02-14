@@ -259,6 +259,200 @@ namespace CenaPlus.Server.Judge
                 }
             }
         }
+        private void Hack()
+        {
+            if (System.IO.Directory.Exists(WorkDirectory + "\\hack" + Task.Hack.ID))
+            {
+                System.IO.Directory.CreateDirectory(WorkDirectory + "\\hack" + Task.Hack.ID);
+            }
+            Entity.TestCase HackData = new Entity.TestCase();
+            if (Task.Hack.DatamakerLanguage != null)
+            {
+                CenaPlus.Judge.Compiler Compiler = new Compiler();
+                Compiler.CompileInfo.Source = Task.Hack.DataOrDatamaker;
+                Compiler.Identity = Identity;
+                Compiler.CompileInfo.Language = (Entity.ProgrammingLanguage)Task.Hack.DatamakerLanguage;
+                Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
+                Compiler.CompileInfo.TimeLimit = 3000;
+                Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
+                Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                Compiler.Start();
+                if (Compiler.CompileResult.CompileFailed)
+                {
+                    //TODO: Send the data maker error to center server
+                    return;
+                }
+                else
+                {
+                    CenaPlus.Judge.Runner Runner = new Runner();
+                    Runner.Identity = Compiler.Identity;
+                    Runner.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                    Runner.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
+                    Runner.RunnerInfo.MemoryLimit = (int)(Task.Problem.MemoryLimit * 1024);
+                    Runner.RunnerInfo.StdOutFile = WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt";
+                    Runner.RunnerInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
+                    Runner.RunnerInfo.HighPriorityTime = 1000;
+                    if (CenaPlus.Judge.Compiler.RunEXE.Contains(Compiler.CompileInfo.Language))
+                    {
+                        Runner.RunnerInfo.Cmd = "Main.exe";
+                    }
+                    else
+                    {
+                        Runner.RunnerInfo.Cmd = GetCommandLine(Compiler.CompileInfo.Language);
+                    }
+                    Runner.Start();
+                    if (Runner.RunnerResult.ExitCode != 0 || Runner.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
+                    {
+                        //TODO: Send the data maker error to center server
+                        return;
+                    }
+                    else
+                    {
+                        HackData.Input = System.IO.File.ReadAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt");
+                    }
+                }
+            }
+            else
+            {
+                HackData.Input = System.Text.Encoding.Default.GetBytes(Task.Hack.DataOrDatamaker);//TODO: Default Encode?
+                System.IO.File.WriteAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt", HackData.Output);
+            }
+
+            if (!System.IO.File.Exists(WorkDirectory + "\\" + Task.Record.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension(Task.Record.Language)))//这里的Record是被Hack的Record
+            {
+                Compile();
+            }
+            else if (Task.Problem.Spj != null && System.IO.File.Exists(WorkDirectory + "\\spj" + Task.Problem.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension((Entity.ProgrammingLanguage)Task.Problem.SpjLanguage)) == false)
+            {
+                Compile();
+            }
+            else if (Task.Problem.Std != null && System.IO.File.Exists(WorkDirectory + "\\std" + Task.Problem.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension((Entity.ProgrammingLanguage)Task.Problem.StdLanguage)) == false)
+            {
+                Compile();
+            }
+            else if (Task.Problem.Std != null && System.IO.File.Exists(WorkDirectory + "\\range" + Task.Problem.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage)) == false)
+            {
+                Compile();
+            }
+
+            //TODO: Hack Logic
+            //data range validation
+            CenaPlus.Judge.Runner runRange = new Runner();
+            runRange.Identity = Identity;
+            runRange.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+            runRange.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+            runRange.RunnerInfo.HighPriorityTime = 1000;
+            runRange.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
+            runRange.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
+            runRange.RunnerInfo.WorkingDirectory = WorkDirectory + "\\range" + Task.Problem.ID;
+            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+            {
+                runRange.RunnerInfo.Cmd = "Main.exe";
+            }
+            else
+            {
+                runRange.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+            }
+            runRange.Start();
+            if (runRange.RunnerResult.ExitCode != 0)
+            {
+                //TODO: return data out of range to the center server.
+                return;
+            }
+            //run std
+            CenaPlus.Judge.Runner runStd = new Runner();
+            runStd.Identity = Identity;
+            runStd.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+            runStd.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+            runStd.RunnerInfo.HighPriorityTime = 1000;
+            runStd.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
+            runStd.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
+            runStd.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\StdOutput.txt";
+            runStd.RunnerInfo.WorkingDirectory = WorkDirectory + "\\std" + Task.Problem.ID;
+            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+            {
+                runStd.RunnerInfo.Cmd = "Main.exe";
+            }
+            else
+            {
+                runStd.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+            }
+            runStd.Start();
+            if (runStd.RunnerResult.ExitCode != 0 || runStd.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
+            {
+                //TODO: return Unsuccessful Hacking Attempt to the center server.
+                return;
+            }
+            //run hackee
+            CenaPlus.Judge.Runner runHackee = new Runner();
+            runHackee.Identity = Identity;
+            runHackee.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+            runHackee.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+            runHackee.RunnerInfo.HighPriorityTime = 1000;
+            runHackee.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
+            runHackee.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
+            runHackee.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\HackeeOutput.txt";
+            runHackee.RunnerInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
+            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+            {
+                runHackee.RunnerInfo.Cmd = "Main.exe";
+            }
+            else
+            {
+                runHackee.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+            }
+            runHackee.Start();
+            HackData.Output = System.IO.File.ReadAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\StdOutput.txt");
+            if (runHackee.RunnerResult.ExitCode != 0 || runHackee.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
+            {
+                //TODO: return Sucessful Hacking Attempt to the center server.
+                //HackData
+                //TODO: Insert the case into database.
+                return;
+            }
+            else
+            {
+                CenaPlus.Judge.Runner runSpj = new Runner();
+                runSpj.Identity = Identity;
+                runSpj.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                runSpj.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+                runSpj.RunnerInfo.HighPriorityTime = 1000;
+                runSpj.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
+                //runSpj.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
+                //runSpj.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\StdOutput.txt";
+                runSpj.RunnerInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
+                if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+                {
+                    runSpj.RunnerInfo.Cmd = "Main.exe";
+                }
+                else
+                {
+                    runSpj.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+                }
+                runSpj.RunnerInfo.Cmd += String.Format(" {0} {1} {2}", "..\\hack" + Task.Hack.ID + "\\StdOutput.txt", "..\\hack" + Task.Hack.ID + "\\UserOutput.txt", "..\\hack" + Task.Hack.ID + "\\HackData.txt");
+                runSpj.Start();
+                if (runSpj.RunnerResult.ExitCode < 0 || runSpj.RunnerResult.ExitCode > 3 || runSpj.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
+                {
+                    //TODO: return Validator Error to the center server.
+                    return;
+                }
+                else
+                {
+                    if (runSpj.RunnerResult.ExitCode == 0)
+                    {
+                        //TODO: return unsucessful Hacking Attempt to the center server.
+                        return;
+                    }
+                    else
+                    {
+                        //TODO: return Sucessful Hacking Attempt to the center server.
+                        //HackData
+                        //TODO: Insert the case into database.
+                        return;
+                    }
+                }
+            }
+        }
         public void Start()
         {
             if (Task == null) throw new Exception("Task not found.");
@@ -272,197 +466,7 @@ namespace CenaPlus.Server.Judge
             }
             else if (Task.Type == Entity.TaskType.Hack)
             {
-                if (System.IO.Directory.Exists(WorkDirectory + "\\hack" + Task.Hack.ID))
-                {
-                    System.IO.Directory.CreateDirectory(WorkDirectory + "\\hack" + Task.Hack.ID);
-                }
-                Entity.TestCase HackData = new Entity.TestCase();
-                if (Task.Hack.DatamakerLanguage != null)
-                {
-                    CenaPlus.Judge.Compiler Compiler = new Compiler();
-                    Compiler.CompileInfo.Source = Task.Hack.DataOrDatamaker;
-                    Compiler.Identity = Identity;
-                    Compiler.CompileInfo.Language = (Entity.ProgrammingLanguage)Task.Hack.DatamakerLanguage;
-                    Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
-                    Compiler.CompileInfo.TimeLimit = 3000;
-                    Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
-                    Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                    Compiler.Start();
-                    if (Compiler.CompileResult.CompileFailed)
-                    { 
-                        //TODO: Send the data maker error to center server
-                        return;
-                    }
-                    else
-                    {
-                        CenaPlus.Judge.Runner Runner = new Runner();
-                        Runner.Identity = Compiler.Identity;
-                        Runner.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                        Runner.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
-                        Runner.RunnerInfo.MemoryLimit = (int)(Task.Problem.MemoryLimit * 1024);
-                        Runner.RunnerInfo.StdOutFile = WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt";
-                        Runner.RunnerInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
-                        Runner.RunnerInfo.HighPriorityTime = 1000;
-                        if (CenaPlus.Judge.Compiler.RunEXE.Contains(Compiler.CompileInfo.Language))
-                        {
-                            Runner.RunnerInfo.Cmd = "Main.exe";
-                        }
-                        else
-                        {
-                            Runner.RunnerInfo.Cmd = GetCommandLine(Compiler.CompileInfo.Language);
-                        }
-                        Runner.Start();
-                        if (Runner.RunnerResult.ExitCode != 0 || Runner.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
-                        {
-                            //TODO: Send the data maker error to center server
-                            return;
-                        }
-                        else
-                        {
-                            HackData.Input = System.IO.File.ReadAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt");
-                        }
-                    }
-                }
-                else
-                {
-                    HackData.Input = System.Text.Encoding.Default.GetBytes(Task.Hack.DataOrDatamaker);//TODO: Default Encode?
-                    System.IO.File.WriteAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt", HackData.Output);
-                }
-
-                if (!System.IO.File.Exists(WorkDirectory + "\\" + Task.Record.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension(Task.Record.Language)))//这里的Record是被Hack的Record
-                {
-                    Compile();
-                }
-                else if (Task.Problem.Spj != null && System.IO.File.Exists(WorkDirectory + "\\spj" + Task.Problem.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension((Entity.ProgrammingLanguage)Task.Problem.SpjLanguage)) == false)
-                {
-                    Compile();
-                }
-                else if (Task.Problem.Std != null && System.IO.File.Exists(WorkDirectory + "\\std" + Task.Problem.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension((Entity.ProgrammingLanguage)Task.Problem.StdLanguage)) == false)
-                {
-                    Compile();
-                }
-                else if (Task.Problem.Std != null && System.IO.File.Exists(WorkDirectory + "\\range" + Task.Problem.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage)) == false)
-                {
-                    Compile();
-                }
-                
-                //TODO: Hack Logic
-                //data range validation
-                CenaPlus.Judge.Runner runRange = new Runner();
-                runRange.Identity = Identity;
-                runRange.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                runRange.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
-                runRange.RunnerInfo.HighPriorityTime = 1000;
-                runRange.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
-                runRange.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
-                runRange.RunnerInfo.WorkingDirectory = WorkDirectory+"\\range"+Task.Problem.ID;
-                if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
-                {
-                    runRange.RunnerInfo.Cmd = "Main.exe";
-                }
-                else
-                {
-                    runRange.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
-                }
-                runRange.Start();
-                if (runRange.RunnerResult.ExitCode != 0)
-                {
-                    //TODO: return data out of range to the center server.
-                    return;
-                }
-                //run std
-                CenaPlus.Judge.Runner runStd = new Runner();
-                runStd.Identity = Identity;
-                runStd.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                runStd.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
-                runStd.RunnerInfo.HighPriorityTime = 1000;
-                runStd.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
-                runStd.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID+"\\HackData.txt";
-                runStd.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\StdOutput.txt";
-                runStd.RunnerInfo.WorkingDirectory = WorkDirectory + "\\std" + Task.Problem.ID;
-                if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
-                {
-                    runStd.RunnerInfo.Cmd = "Main.exe";
-                }
-                else
-                {
-                    runStd.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
-                }
-                runStd.Start();
-                if (runStd.RunnerResult.ExitCode != 0 || runStd.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
-                {
-                    //TODO: return Unsuccessful Hacking Attempt to the center server.
-                    return;
-                }
-                //run hackee
-                CenaPlus.Judge.Runner runHackee = new Runner();
-                runHackee.Identity = Identity;
-                runHackee.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                runHackee.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
-                runHackee.RunnerInfo.HighPriorityTime = 1000;
-                runHackee.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
-                runHackee.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
-                runHackee.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\HackeeOutput.txt";
-                runHackee.RunnerInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
-                if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
-                {
-                    runHackee.RunnerInfo.Cmd = "Main.exe";
-                }
-                else
-                {
-                    runHackee.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
-                }
-                runHackee.Start();
-                HackData.Output = System.IO.File.ReadAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\StdOutput.txt");
-                if (runHackee.RunnerResult.ExitCode != 0 || runHackee.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
-                {
-                    //TODO: return Sucessful Hacking Attempt to the center server.
-                    //HackData
-                    //TODO: Insert the case into database.
-                    return;
-                }
-                else
-                {
-                    CenaPlus.Judge.Runner runSpj = new Runner();
-                    runSpj.Identity = Identity;
-                    runSpj.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                    runSpj.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
-                    runSpj.RunnerInfo.HighPriorityTime = 1000;
-                    runSpj.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
-                    //runSpj.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
-                    //runSpj.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\StdOutput.txt";
-                    runSpj.RunnerInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
-                    if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
-                    {
-                        runSpj.RunnerInfo.Cmd = "Main.exe";
-                    }
-                    else
-                    {
-                        runSpj.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
-                    }
-                    runSpj.RunnerInfo.Cmd += String.Format(" {0} {1} {2}", "..\\hack" + Task.Hack.ID + "\\StdOutput.txt", "..\\hack" + Task.Hack.ID + "\\UserOutput.txt", "..\\hack" + Task.Hack.ID + "\\HackData.txt");
-                    runSpj.Start();
-                    if (runSpj.RunnerResult.ExitCode < 0||runSpj.RunnerResult.ExitCode > 3 || runSpj.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
-                    {
-                        //TODO: return Validator Error to the center server.
-                        return;
-                    }
-                    else
-                    {
-                        if (runSpj.RunnerResult.ExitCode == 0)
-                        {
-                            //TODO: return unsucessful Hacking Attempt to the center server.
-                            return;
-                        }
-                        else
-                        {
-                            //TODO: return Sucessful Hacking Attempt to the center server.
-                            //HackData
-                            //TODO: Insert the case into database.
-                            return;
-                        }
-                    }
-                }
+               
             }
         }
     }
