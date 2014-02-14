@@ -33,7 +33,7 @@ namespace CenaPlus.Client.Remote.Contest
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             int contestID = int.Parse(e.Fragment);
-            contestID 
+            //contestID
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)

@@ -73,7 +73,6 @@ namespace CenaPlus.Server
                 Judge.Core c = new Judge.Core();
                 c.Index = i;
                 c.CurrentTask = null;
-                c.Status = Judge.CoreStatus.Free;
                 Judge.Env.Cores.Add(c);
             }
         }

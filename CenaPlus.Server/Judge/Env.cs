@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
+using System.Threading;
 
 namespace CenaPlus.Server.Judge
 {
@@ -11,7 +13,27 @@ namespace CenaPlus.Server.Judge
     }
     public class Core
     {
-        public Entity.Task CurrentTask { get; set; }
+        private void ExecuteTask()
+        {
+            TaskHelper th = new TaskHelper();
+            th.Task = currenttask;
+            th.Start();
+            currenttask = null;
+        }
+        private Entity.Task currenttask;
+        public Entity.Task CurrentTask 
+        {
+            get
+            {
+                return currenttask;
+            }
+            set
+            {
+                currenttask = value;
+                Thread t = new Thread(ExecuteTask);
+                t.Start();
+            }
+        }
         public CoreStatus Status
         { 
             get 
