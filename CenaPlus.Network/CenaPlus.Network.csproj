@@ -47,9 +47,12 @@
     <Compile Include="ConflictError.cs" />
     <Compile Include="ICenaPlusServer.cs" />
     <Compile Include="ICenaPlusServerCallbak.cs" />
+    <Compile Include="IJudgeNode.cs" />
     <Compile Include="InvalidOperationError.cs" />
+    <Compile Include="JudgeNodeChannelFactory.cs" />
     <Compile Include="NotFoundError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerDiscoverer.cs" />
     <Compile Include="ValidationError.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -130,7 +130,7 @@ namespace CenaPlus.Client.Remote
             {
                 server = Network.CenaPlusServerChannelFactory.CreateChannel(serverItem.Location, new Bll.ServerCallback());
             }
-            catch(Exception err)
+            catch (Exception err)
             {
                 ModernDialog.ShowMessage("Connection to " + serverItem.Location + " failed.", "Error", MessageBoxButton.OK);
                 MessageBox.Show(err.ToString());
@@ -174,7 +174,7 @@ namespace CenaPlus.Client.Remote
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             foundServers = new HashSet<EndPoint>();
-            discoverer = new ServerDiscoverer();
+            discoverer = new ServerDiscoverer() { ExpectedService = typeof(ICenaPlusServer) };
             ServerListBox.Items.Clear();
 
             discoverer.FoundServer += (svr) =>

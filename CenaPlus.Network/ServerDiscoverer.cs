@@ -5,30 +5,29 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using CenaPlus.Network;
-namespace CenaPlus.Client.Bll
+namespace CenaPlus.Network
 {
-    class IntranetServer
+    public class IntranetServer
     {
         public string Name { get; set; }
         public IPEndPoint Location { get; set; }
     }
 
-    class ServerDiscoverer
+    public class ServerDiscoverer
     {
         private static readonly IPEndPoint SSDP_ENDPOINT = new IPEndPoint(IPAddress.Parse("239.255.255.250"), 1900);
-        private static string versionExpected;
 
-        static ServerDiscoverer()
-        {
-            var version = typeof(ICenaPlusServer).Assembly.GetName().Version;
-            versionExpected = version.Major + "." + version.Minor;
-        }
-
+        private string expectedSpecifier;
+        public Type ExpectedService { get; set; }
         public event Action<IntranetServer> FoundServer;
         private UdpClient client;
 
         public void Start()
         {
+            var version = ExpectedService.Assembly.GetName().Version;
+            var versionStr = version.Major + "." + version.Minor;
+            expectedSpecifier = ExpectedService.Name + ":" + versionStr;
+
             client = new UdpClient();
             client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             client.Client.Bind(new IPEndPoint(IPAddress.Any, SSDP_ENDPOINT.Port));
@@ -41,10 +40,11 @@ namespace CenaPlus.Client.Bll
         {
             UdpClient client = (UdpClient)result.AsyncState;
             IPEndPoint remote = null;
-            byte[] bytes ;
+            byte[] bytes;
             try
             {
                 bytes = client.EndReceive(result, ref remote);
+                client.BeginReceive(ProcessPackage, client);
             }
             catch (ObjectDisposedException) // Closed already
             {
@@ -58,49 +58,38 @@ namespace CenaPlus.Client.Bll
             }
             catch
             {
-                client.BeginReceive(ProcessPackage, client);
                 return;
             }
 
             string[] lines = ssdp.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-            string serverVersion = null;
-            string serverName = null;
-            int? serverPort = null;
-            foreach (var line in lines)
+            var splited = lines.Select(l => l.Split(new string[] { ": " }, 2, StringSplitOptions.None));
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            foreach (var kv in splited)
             {
-                if (line.StartsWith("NT: CenaPlusServer:"))
+                if (kv.Length == 2)
                 {
-                    serverVersion = line.Substring("NT: CenaPlusServer:".Length);
-                }
-                else if (line.StartsWith("SERVER: "))
-                {
-                    serverName = line.Substring("SERVER: ".Length);
-                }
-                else if (line.StartsWith("LOCATION: "))
-                {
-                    try
-                    {
-                        serverPort = int.Parse(line.Substring("LOCATION: ".Length));
-                    }
-                    catch
-                    {
-                        client.BeginReceive(ProcessPackage, client);
-                        return;
-                    }
+                    dict.Add(kv[0], kv[1]);
                 }
             }
 
-            if (serverVersion == versionExpected && serverName != null && serverPort != null)
-            {
-                if (FoundServer != null)
-                    FoundServer(new IntranetServer
-                    {
-                        Name = serverName,
-                        Location = new IPEndPoint(remote.Address, (int)serverPort)
-                    });
-            }
+            IntranetServer found = new IntranetServer();
 
-            client.BeginReceive(ProcessPackage, client);
+            if (!dict.ContainsKey("NT")) return;
+            if (dict["NT"] != expectedSpecifier) return;
+
+            if (!dict.ContainsKey("SERVER")) return;
+            found.Name = dict["SERVER"];
+
+            if (!dict.ContainsKey("LOCATION")) return;
+            int serverPort;
+            if (!int.TryParse(dict["LOCATION"], out serverPort)) return;
+            found.Location = new IPEndPoint(remote.Address, serverPort);
+
+            if (FoundServer != null)
+            {
+                FoundServer(found);
+            }
         }
 
         public void Stop()

@@ -160,7 +160,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Bll\ServerCallback.cs" />
-    <Compile Include="Bll\ServerDiscoverer.cs" />
     <Compile Include="Local\Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
