@@ -18,6 +18,7 @@
                 <TextBox x:Name="txtServerName" Margin="0,0,0,10" Text="Cena+ Server1"></TextBox>
                 <TextBlock Text="Cena+ port" Margin="0,0,0,5"></TextBlock>
                 <TextBox x:Name="txtLocalPort" Margin="0,0,0,10" Text="9980"></TextBox>
+                <CheckBox Name="chkStartJudgeNode" Margin="0,0,0,10" Content="With a local judge node"/>
                 <TextBlock Text="MySQL Mode" Margin="0,0,0,5"></TextBlock>
                 <ComboBox x:Name="lstMySqlMode" Margin="0,0,0,10" SelectionChanged="lstMySqlMode_SelectionChanged" SelectedIndex="0">
                     <ListBoxItem Content="Embedded"/>

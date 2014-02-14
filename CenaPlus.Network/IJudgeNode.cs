@@ -12,6 +12,9 @@ namespace CenaPlus.Network
         [OperationContract]
         string GetVersion();
 
+        [OperationContract]
+        bool Authenticate(string password);
+
         // [OperationContract]
         // TypeFoo FuncBar(TypeBar argFoo);
     }

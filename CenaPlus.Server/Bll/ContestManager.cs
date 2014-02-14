@@ -44,7 +44,7 @@ namespace CenaPlus.Server.Bll
                     List<Timer> newTimers = new List<Timer>();
                     if (contest.StartTime > DateTime.Now)
                     {
-                        var whenStart = new Timer(contest.StartTime.Millisecond - DateTime.Now.Millisecond);
+                        var whenStart = new Timer((contest.StartTime - DateTime.Now).TotalMilliseconds);
                         whenStart.AutoReset = false;
                         whenStart.Elapsed += (o, e) => WhenContestStart(contestID);
                         whenStart.Start();
@@ -53,7 +53,7 @@ namespace CenaPlus.Server.Bll
 
                     if (contest.EndTime > DateTime.Now)
                     {
-                        var whenEnd = new Timer(contest.EndTime.Millisecond - DateTime.Now.Millisecond);
+                        var whenEnd = new Timer((contest.EndTime - DateTime.Now).TotalMilliseconds);
                         whenEnd.AutoReset = false;
                         whenEnd.Elapsed += (o, e) => WhenContestEnd(contestID);
                         whenEnd.Start();
@@ -95,7 +95,7 @@ namespace CenaPlus.Server.Bll
                 switch (contest.Type)
                 {
                     case ContestType.Codeforces:
-                         //TODO: rejudge all records including system test.
+                        //TODO: rejudge all records including system test.
                         break;
                     case ContestType.TopCoder:
                         //TODO: rejudge all records including system test.

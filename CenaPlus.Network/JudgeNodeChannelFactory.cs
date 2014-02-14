@@ -16,7 +16,7 @@ namespace CenaPlus.Network
     {
         private static ServiceEndpoint GetServiceEndPoint(IPEndPoint server)
         {
-            ServiceEndpoint endpoint = new ServiceEndpoint(ContractDescription.GetContract(typeof(ICenaPlusServer)));
+            ServiceEndpoint endpoint = new ServiceEndpoint(ContractDescription.GetContract(typeof(IJudgeNode)));
             Uri address = new UriBuilder("net.tcp", server.Address.ToString(), server.Port, "/JudgeNode").Uri;
             endpoint.Address = new EndpointAddress(address);
             endpoint.Binding = new NetTcpBinding(SecurityMode.None);

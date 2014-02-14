@@ -18,10 +18,14 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <WrapPanel VerticalAlignment="Bottom">
-            <TextBlock Text="Judge node token" Margin="0,0,5,0"></TextBlock>
-            <TextBox x:Name="txtToken" Width="100" Margin="0,0,10,0"></TextBox>
-            <Button Content="Connect" x:Name="btnConnect" IsEnabled="False" Margin="0,0,10,0"></Button>
-            <Button Content="Disconnect" x:Name="btnDisconnect" IsEnabled="False" Margin="0,0,10,0"></Button>
+            <TextBlock Text="Address" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtAddr" Width="100" Margin="0,0,10,0"></TextBox>
+            <TextBlock Text="Port" Margin="0,0,5,0"></TextBlock>
+            <TextBox x:Name="txtPort" Width="100" Margin="0,0,10,0"></TextBox>
+            <TextBlock Text="Password" Margin="0,0,5,0"></TextBlock>
+            <PasswordBox x:Name="txtPassword" Width="100" Margin="0,0,10,0"></PasswordBox>
+            <Button Content="Add" x:Name="btnConnect" Margin="0,0,10,0" Click="btnConnect_Click"></Button>
+            <Button Content="Remove" x:Name="btnRemove" IsEnabled="False" Margin="0,0,10,0" Click="btnRemove_Click"></Button>
         </WrapPanel>
     </Grid>
 </UserControl>

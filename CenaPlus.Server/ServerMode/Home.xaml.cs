@@ -96,6 +96,22 @@ namespace CenaPlus.Server.ServerMode
             localServer.ContestDeleted += contestManager.RemoveSchedule;
             App.Server = localServer;
 
+            if (chkStartJudgeNode.IsChecked == true)
+            {
+                Random rnd = new Random();
+                int port = rnd.Next(2000, 10000);
+                Bll.JudgeNode.Password = rnd.NextDouble().ToString();
+                var judgeNodeHost = new JudgeNodeHost(port, serverName + " Local");
+                judgeNodeHost.Open();
+
+                App.JudgeNodes.Add(new JudgeNodeInfo
+                {
+                    Location = new IPEndPoint(IPAddress.Loopback, port),
+                    Name = serverName + " Local",
+                    Password = Bll.JudgeNode.Password
+                });
+            }
+
             var frame = NavigationHelper.FindFrame(null, this);
             if (frame != null)
             {
@@ -183,7 +199,8 @@ namespace CenaPlus.Server.ServerMode
                 return;
             }
 
-            if (App.Server.GetProfile().Role < UserRole.Manager) {
+            if (App.Server.GetProfile().Role < UserRole.Manager)
+            {
                 ModernDialog.ShowMessage("This account does not have management access", "Error", MessageBoxButton.OK);
                 return;
             }

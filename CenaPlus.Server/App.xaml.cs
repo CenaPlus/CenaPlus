@@ -23,6 +23,7 @@ namespace CenaPlus.Server
         public static string ConnectionString;
         public static ICenaPlusServer Server;
         public static Dictionary<int, LocalCenaServer> Clients = new Dictionary<int, LocalCenaServer>();
+        public static List<JudgeNodeInfo> JudgeNodes = new List<JudgeNodeInfo>();
         public static Timer HeartBeatTimer { get; set; }
 
         static App()
