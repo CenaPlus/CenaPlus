@@ -175,7 +175,7 @@ namespace CenaPlus.Server.Bll
                 db.Contests.Remove(contest);
                 db.SaveChanges();
                 if (ContestDeleted != null)
-                    Task.Factory.StartNew(() => ContestDeleted(id));
+                    System.Threading.Tasks.Task.Factory.StartNew(() => ContestDeleted(id));
             }
         }
         public int CreateContest(string title, string description, DateTime startTime, DateTime? restTime, DateTime? hackStartTime, DateTime endTime, ContestType type, bool printingEnabled)
@@ -208,7 +208,7 @@ namespace CenaPlus.Server.Bll
                 db.Contests.Add(contest);
                 db.SaveChanges();
                 if (NewContest != null)
-                    Task.Factory.StartNew(() => NewContest(contest.ID));
+                    System.Threading.Tasks.Task.Factory.StartNew(() => NewContest(contest.ID));
                 return contest.ID;
             }
         }
@@ -251,7 +251,7 @@ namespace CenaPlus.Server.Bll
 
                 db.SaveChanges();
                 if (ContestModified != null)
-                    Task.Factory.StartNew(() => ContestModified(contest.ID));
+                    System.Threading.Tasks.Task.Factory.StartNew(() => ContestModified(contest.ID));
             }
         }
         public List<int> GetContestList()
@@ -507,7 +507,7 @@ namespace CenaPlus.Server.Bll
                 db.Records.Add(record);
                 db.SaveChanges();
                 if (NewRecord != null)
-                    Task.Factory.StartNew(() => NewRecord(record.ID));
+                    System.Threading.Tasks.Task.Factory.StartNew(() => NewRecord(record.ID));
                 return record.ID;
             }
         }
@@ -522,15 +522,12 @@ namespace CenaPlus.Server.Bll
                 if (contest == null)
                     throw new FaultException<NotFoundError>(new NotFoundError { ID = contestID, Type = "Contest" });
 
-                // competitors cannot view any record if the contest is not started.
-                if (CurrentUser.Role == UserRole.Competitor && contest.StartTime > DateTime.Now)
-                    return new List<int>();
-
                 var problemIDs = (from p in db.Problems
                                   where p.ContestID == contestID
                                   select p.ID).ToList();
                 var recordIDs = from r in db.Records
                                 where problemIDs.Contains(r.ProblemID)
+                                where CurrentUser.Role >= UserRole.Manager || r.UserID == CurrentUser.ID
                                 select r.ID;
                 return recordIDs.ToList();
             }
@@ -779,7 +776,7 @@ namespace CenaPlus.Server.Bll
                     HackerID = hack.HackerID,
                     HackerNickName = hack.Hacker.NickName,
                     HackeeNickName = hack.Record.User.NickName,
-                    HackeeID =  hack.Record.UserID,
+                    HackeeID = hack.Record.UserID,
                     ID = hack.ID,
                     RecordID = hack.RecordID,
                     Status = hack.Status

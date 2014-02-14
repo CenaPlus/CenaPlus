@@ -95,10 +95,10 @@ namespace CenaPlus.Server.Bll
                 switch (contest.Type)
                 {
                     case ContestType.Codeforces:
-                         //TODO: rejudge all test case including system test.
+                         //TODO: rejudge all records including system test.
                         break;
                     case ContestType.TopCoder:
-                        //TODO: rejudge all test case including system test.
+                        //TODO: rejudge all records including system test.
                         break;
                 }
             }
