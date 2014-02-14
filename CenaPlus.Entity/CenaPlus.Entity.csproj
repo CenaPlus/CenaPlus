@@ -65,6 +65,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="Record.cs" />
     <Compile Include="Task.cs" />
+    <Compile Include="TaskFeedback.cs" />
     <Compile Include="TestCase.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
