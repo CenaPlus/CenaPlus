@@ -71,6 +71,7 @@ namespace CenaPlus.Judge
                 Runner.RunnerInfo.TimeLimit = 3000;
                 Runner.RunnerInfo.WorkingDirectory = CompileInfo.WorkingDirectory;
                 Runner.Identity = Identity;
+                Runner.RunnerInfo.KillProcessTree = true;
                 Runner.Start();
             }
 
