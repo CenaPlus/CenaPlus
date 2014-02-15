@@ -23,7 +23,13 @@ namespace CenaPlus.Server.JudgeNode
         public Status()
         {
             InitializeComponent();
+            Judge.Env.CoreStatusUpdated += Env_CoreStatusUpdated;
             TaskListBox.ItemsSource = Judge.Env.Cores;
+        }
+
+        void Env_CoreStatusUpdated(object sender, EventArgs e)
+        {
+            TaskListBox.Items.Refresh();
         }
     }
 }

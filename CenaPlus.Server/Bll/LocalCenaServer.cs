@@ -21,10 +21,12 @@ namespace CenaPlus.Server.Bll
         public ICenaPlusServerCallback Callback { get; set; }
 
         #region Events
-        public event Action<int> NewRecord;
-        public event Action<int> NewContest;
-        public event Action<int> ContestModified;
-        public event Action<int> ContestDeleted;
+        public static event Action<int> NewRecord;
+        public static event Action<int> NewHack;
+        public static event Action<int> NewContest;
+        public static event Action<int> ContestModified;
+        public static event Action<int> ContestDeleted;
+        public static event Action<int> RecordRejudged;
         #endregion
 
         public LocalCenaServer()
@@ -501,6 +503,9 @@ namespace CenaPlus.Server.Bll
                 record.MemoryUsage = null;
                 record.Detail = null;
                 db.SaveChanges();
+
+                if (RecordRejudged != null)
+                    System.Threading.Tasks.Task.Factory.StartNew(() => RecordRejudged(recordID));
             }
         }
         public int Submit(int problemID, string code, ProgrammingLanguage language)
@@ -773,6 +778,9 @@ namespace CenaPlus.Server.Bll
 
                 db.Hacks.Add(hack);
                 db.SaveChanges();
+
+                if (NewHack != null)
+                    System.Threading.Tasks.Task.Factory.StartNew(() => NewHack(hack.ID));
                 return hack.ID;
             }
         }

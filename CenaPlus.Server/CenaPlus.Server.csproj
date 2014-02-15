@@ -102,6 +102,7 @@
     <Compile Include="Bll\JudgeNodeCallback.cs" />
     <Compile Include="Bll\JudgeNodeHost.cs" />
     <Compile Include="Bll\JudgeNodeInfo.cs" />
+    <Compile Include="Bll\Judger.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServiceBroadcaster.cs" />

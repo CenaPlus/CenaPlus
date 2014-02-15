@@ -43,22 +43,16 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-        private Core GetFreeCore()
+        public int GetFreeCoreCount()
         {
-            Core freeCore = null;
-            while (freeCore == null)
-            {
-                freeCore = Env.GetFreeCore();
-                if (freeCore == null) Thread.Sleep(500);
-            }
-            return freeCore;
+            if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+            return Env.GetFreeCoreCount();
         }
 
         public TaskFeedback_Compile Compile(Problem problem, Record record)
         {
             if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-            var freeCore = GetFreeCore();
-            return freeCore.Run(new Task
+            return Env.Run(new Task
             {
                 Problem = problem,
                 Record = record,
@@ -69,8 +63,7 @@ namespace CenaPlus.Server.Bll
         public TaskFeedback_Run Run(Problem problem, Record record, int testCaseID)
         {
             if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-            var freeCore = GetFreeCore();
-            return freeCore.Run(new Task
+            return Env.Run(new Task
             {
                 Problem = problem,
                 Record = record,
@@ -82,8 +75,7 @@ namespace CenaPlus.Server.Bll
         public TaskFeedback_Hack Hack(Problem problem, Record record, Hack hack)
         {
             if (!Authenticated) throw new FaultException<AccessDeniedError>(new AccessDeniedError());
-            var freeCore = GetFreeCore();
-            return freeCore.Run(new Task
+            return Env.Run(new Task
             {
                 Problem = problem,
                 Record = record,

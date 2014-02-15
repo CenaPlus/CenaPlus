@@ -87,6 +87,7 @@ namespace CenaPlus.Entity
         Accepted, PresentationError, WrongAnswer, OutputLimitExceeded, ValidatorError, StdError,//Validator Level
         MemoryLimitExceeded, TimeLimitExceeded, RuntimeError, RestrictedFunction,//Runner Level
         CompileError, SystemError,//System Level
+        Hacked,
         Running, Pending,//DB Level
         Unknown
     }

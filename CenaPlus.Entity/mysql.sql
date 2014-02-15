@@ -60,10 +60,11 @@ CREATE TABLE `test_cases` (
     problem_id int not null,
     `type` tinyint not null,
     input_hash binary(16) not null,
-	output_hash binary(16) not null,
+    output_hash binary(16) not null,
     input mediumblob not null,
     output mediumblob not null,
     primary key (id),
+    index (input_hash),
     foreign key (problem_id)
         references problems (id)
         on delete cascade

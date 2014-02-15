@@ -11,42 +11,60 @@ namespace CenaPlus.Server.Judge
     public static class Env
     {
         public static List<Core> Cores = new List<Core>();
+        public static event EventHandler CoreStatusUpdated;
 
-        public static Core GetFreeCore()
+        private static Core GetFreeCore()
         {
-            return Cores.Where(c => c.Status == CoreStatus.Free).FirstOrDefault();
+            for (; ; )
+            {
+                lock (Cores)
+                {
+                    var freeCore = Cores.Where(c => c.Status == CoreStatus.Free).FirstOrDefault();
+                    if (freeCore != null)
+                    {
+                        freeCore.Status = CoreStatus.Working;
+                        return freeCore;
+                    }
+                }
+                Thread.Sleep(500);
+            }
         }
 
-        public static int GetFreeCoreCount()
+        public static Entity.TaskFeedback Run(Entity.Task task, IJudgeNodeCallback callback)
         {
-            return Cores.Where(c => c.Status == CoreStatus.Free).Count();
-        }
-    }
-    public class Core
-    {
-        public Entity.Task CurrentTask { get; set; }
+            var freeCore = GetFreeCore();
+            
+            if (CoreStatusUpdated != null)
+                CoreStatusUpdated(null, null);
 
-        public Entity.TaskFeedback Run(Entity.Task task, IJudgeNodeCallback callback)
-        {
-            CurrentTask = task;
+            freeCore.CurrentTask = task;
             TaskHelper helper = new TaskHelper()
             {
                 Task = task,
                 CenterServer = callback
             };
             helper.Start();
+            freeCore.Status = CoreStatus.Free;
+
+            if (CoreStatusUpdated != null)
+                CoreStatusUpdated(null, null);
             return helper.Feedback;
         }
 
-        public CoreStatus Status
+        public static int GetFreeCoreCount()
         {
-            get
+            lock (Cores)
             {
-                if (CurrentTask == null)
-                    return CoreStatus.Free;
-                else return CoreStatus.Working;
+                return Cores.Where(c => c.Status == CoreStatus.Free).Count();
             }
         }
+    }
+
+    public class Core
+    {
+        public Entity.Task CurrentTask { get; set; }
+
+        public CoreStatus Status { get; set; }
         public int Index { get; set; }
         //display only
         public string Title

@@ -17,6 +17,9 @@ namespace CenaPlus.Network
         bool Authenticate(string password);
 
         [OperationContract]
+        int GetFreeCoreCount();
+
+        [OperationContract]
         TaskFeedback_Compile Compile(Problem problem, Record record);
 
         [OperationContract]

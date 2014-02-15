@@ -42,7 +42,9 @@ namespace CenaPlus.Server.Bll
 
         public IJudgeNodeChannel CreateConnection()
         {
-            return JudgeNodeChannelFactory.CreateChannel(Location, new JudgeNodeCallback());
+            var channel = JudgeNodeChannelFactory.CreateChannel(Location, new JudgeNodeCallback());
+            channel.Authenticate(Password);
+            return channel;
         }
     }
 }

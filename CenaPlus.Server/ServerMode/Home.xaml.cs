@@ -86,15 +86,22 @@ namespace CenaPlus.Server.ServerMode
             }
             App.ConnectionString = connectionString;
 
+            var contestManager = new ContestManager();
+            contestManager.ScheduleAll();
+
+            var judger = new Judger();
+            judger.StartJudgeAllPending();
+
+            LocalCenaServer.ContestModified += contestManager.Reschedule;
+            LocalCenaServer.ContestDeleted += contestManager.RemoveSchedule;
+            LocalCenaServer.NewRecord += judger.JudgeRecord;
+            LocalCenaServer.NewHack += judger.JudgeHack;
+            LocalCenaServer.RecordRejudged += judger.JudgeRecord;
+
             host = new CenaPlusServerHost(localPort, serverName);
             host.Open();
 
-            var contestManager = new ContestManager();
-            contestManager.ScheduleAll();
-            var localServer = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
-            localServer.ContestModified += contestManager.Reschedule;
-            localServer.ContestDeleted += contestManager.RemoveSchedule;
-            App.Server = localServer;
+            App.Server = new LocalCenaServer { CurrentUser = new FakeSystemUser() };
 
             if (chkStartJudgeNode.IsChecked == true)
             {
