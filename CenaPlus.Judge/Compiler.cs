@@ -81,7 +81,7 @@ namespace CenaPlus.Judge
             get 
             {
                 CompileResult CompileResult = new CompileResult();
-                if (Runner.RunnerResult.ExitCode != 0)
+                if (Runner.RunnerResult.ExitCode != 0 || Runner.RunnerResult.TimeUsed > 3000)
                     CompileResult.CompileFailed = true;
                 CompileResult.CompilerOutput = File.ReadAllText(Runner.RunnerInfo.StdErrFile) + File.ReadAllText(Runner.RunnerInfo.StdOutFile);
                 if (Runner.RunnerResult.TimeUsed > Runner.RunnerInfo.TimeLimit)
