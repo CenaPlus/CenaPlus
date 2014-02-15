@@ -32,7 +32,7 @@ namespace CenaPlus.Judge
             }
             Process.Start();
             Process.WaitForExit(4 * RunnerInfo.TimeLimit + 5000);
-            if (!Process.HasExited) 
+            try
             {
                 if (RunnerInfo.KillProcessTree)
                 {
@@ -49,8 +49,9 @@ namespace CenaPlus.Judge
                 {
                     Process.Kill();
                 }
-                
+
             }
+            catch { }
             xmlresult = Process.StandardOutput.ReadToEnd();
         }
         public RunnerResult RunnerResult
