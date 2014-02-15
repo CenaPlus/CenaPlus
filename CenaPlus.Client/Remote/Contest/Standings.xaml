@@ -7,17 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
-        <ScrollViewer>
-            <ListView>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="#" DisplayMemberBinding="{Binding Rank}" Width="25"/>
-                        <GridViewColumn Header="Who" DisplayMemberBinding="{Binding Nickname}" Width="100"/>
-                        <GridViewColumn Header="AC(oi,acm)/Score(cf,tc)" DisplayMemberBinding="{Binding Item1}" Width="50"/>
-                        <GridViewColumn Header="Penalty(oi,acm)/Hack(cf,tc)" DisplayMemberBinding="{Binding Item2}" Width="50"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ScrollViewer>
+        <DataGrid x:Name="dgStandings" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionUnit="Cell" EnableRowVirtualization="False" Focusable="False" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding Rank}" Width="30" />
+                <DataGridTextColumn Header="Who" Width="80" Binding="{Binding Competitor}"/>
+                <DataGridTextColumn Header="Score" Width="80" Binding="{Binding MainKey}"/>
+                <DataGridTextColumn Header="Penalty" Width="80" Binding="{Binding SecKey}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

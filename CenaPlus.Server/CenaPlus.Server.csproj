@@ -333,6 +333,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\CenaPlus.ico" />
     <Resource Include="Resources\DefaultAvatar.jpg" />
     <Resource Include="Resources\Box.png" />
     <Resource Include="Resources\Box_Err.png" />
@@ -340,7 +341,6 @@
     <Content Include="Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\CenaPlus.ico" />
     <Resource Include="Resources\charactergrowfont.png" />
     <Resource Include="Resources\charactershrinkfont.png" />
     <Resource Include="Resources\editcopy.png" />

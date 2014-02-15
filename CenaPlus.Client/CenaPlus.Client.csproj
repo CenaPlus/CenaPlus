@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Remote\Contest\ProblemGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Contest\Questions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +174,9 @@
       <DependentUpon>Result.xaml</DependentUpon>
     </Compile>
     <Compile Include="Local\Static.cs" />
+    <Compile Include="Remote\Contest\ProblemGeneral.xaml.cs">
+      <DependentUpon>ProblemGeneral.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Remote\Contest\Questions.xaml.cs">
       <DependentUpon>Questions.xaml</DependentUpon>
     </Compile>
@@ -295,7 +302,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CodingBox\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DefaultAvatar.jpg" />
     <Resource Include="Resources\Box.png" />

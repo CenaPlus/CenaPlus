@@ -58,7 +58,6 @@ namespace CenaPlus.Server
         {
             //Theme Init
             AppearanceManager.Current.AccentColor = Color.FromRgb(0x76, 0x60, 0x8a);
-            AppearanceManager.Current.ThemeSource = AppearanceManager.DarkThemeSource;
 
             AppDomain.CurrentDomain.UnhandledException += (obj, evt) => GlobalExceptionHandler(evt.ExceptionObject as Exception);
        
