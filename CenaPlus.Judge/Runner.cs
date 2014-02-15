@@ -60,16 +60,24 @@ namespace CenaPlus.Judge
             get
             {
                 RunnerResult RunnerResult = new Judge.RunnerResult();
-                xmldocument.LoadXml(xmlresult);
-                XmlNodeList xmlnodelist;
-                xmlnodelist = xmldocument.GetElementsByTagName("ExitCode");
-                RunnerResult.ExitCode = Convert.ToInt32(xmlnodelist[0].InnerText);
-                xmlnodelist = xmldocument.GetElementsByTagName("TimeUsed");
-                RunnerResult.TimeUsed = Convert.ToInt32(xmlnodelist[0].InnerText);
-                xmlnodelist = xmldocument.GetElementsByTagName("PagedSize");
-                RunnerResult.PagedSize = Convert.ToInt32(xmlnodelist[0].InnerText);
-                xmlnodelist = xmldocument.GetElementsByTagName("WorkingSet");
-                RunnerResult.WorkingSetSize = Convert.ToInt32(xmlnodelist[0].InnerText);
+                if (xmlresult != null && xmlresult != String.Empty)
+                {
+                    xmldocument.LoadXml(xmlresult);
+                    XmlNodeList xmlnodelist;
+                    xmlnodelist = xmldocument.GetElementsByTagName("ExitCode");
+                    RunnerResult.ExitCode = Convert.ToInt32(xmlnodelist[0].InnerText);
+                    xmlnodelist = xmldocument.GetElementsByTagName("TimeUsed");
+                    RunnerResult.TimeUsed = Convert.ToInt32(xmlnodelist[0].InnerText);
+                    xmlnodelist = xmldocument.GetElementsByTagName("PagedSize");
+                    RunnerResult.PagedSize = Convert.ToInt32(xmlnodelist[0].InnerText);
+                    xmlnodelist = xmldocument.GetElementsByTagName("WorkingSet");
+                    RunnerResult.WorkingSetSize = Convert.ToInt32(xmlnodelist[0].InnerText);
+                }
+                else
+                {
+                    RunnerResult.ExitCode = -1;
+                    RunnerResult.TimeUsed = RunnerInfo.TimeLimit + 1;
+                }
                 return RunnerResult;
             }
         }
