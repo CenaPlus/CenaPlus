@@ -14,7 +14,9 @@ namespace CenaPlus.Server.Bll
             public const string C = "compiler.c";
             public const string DefaultC = "gcc -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -std=c99 Main.c";
             public const string CXX = "compiler.cxx";
-            public const string DefaultCXX = "g++ -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -ansi Main.cpp";
+            public const string DefaultCXX = "g++ -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -std=c++98  -ansi Main.cpp";
+            public const string CXX11 = "compiler.cxx";
+            public const string DefaultCXX11 = "g++ -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -std=c++11  -ansi Main.cpp";
             public const string Javac = "compiler.javac";
             public const string DefaultJavac = "javac Main.java";
             public const string Java ="compiler.java";
