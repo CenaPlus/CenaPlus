@@ -536,6 +536,7 @@ namespace CenaPlus.Server.Bll
                     Language = language,
                     ProblemID = problemID,
                     Status = RecordStatus.Pending,
+                    SubmissionTime = DateTime.Now,
                     UserID = CurrentUser.ID
                 };
 

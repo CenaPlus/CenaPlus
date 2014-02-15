@@ -33,7 +33,23 @@ namespace CenaPlus.Client.Remote.Contest
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             int contestID = int.Parse(e.Fragment);
-            //contestID
+            var list = from id in App.Server.GetProblemList(contestID)
+                       let s = App.Server.GetProblemStatistics(id)
+                       select new StatisticsListItem
+                       {
+                           AC = s.AC,
+                           CE = s.CE,
+                           MLE = s.MLE,
+                           ProblemTitle = s.ProblemTitle,
+                           RE = s.RE,
+                           SE = s.SE,
+                           TLE = s.TLE,
+                           VE = s.VE,
+                           WA = s.WA
+                       };
+            statisticsList.Clear();
+            statisticsList.AddRange(list);
+            StatisticsListView.Items.Refresh();
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)

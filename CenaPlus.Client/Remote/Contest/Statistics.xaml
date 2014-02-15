@@ -11,7 +11,7 @@
         <ListView Margin="0,30,0,0" x:Name="StatisticsListView">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
-                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding Problem}" Width="60"/>
+                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding ProblemTitle}" Width="60"/>
                     <GridViewColumn Header="AC" DisplayMemberBinding="{Binding AC}" Width="35"/>
                     <GridViewColumn Header="WA" DisplayMemberBinding="{Binding WA}" Width="35"/>
                     <GridViewColumn Header="RE" DisplayMemberBinding="{Binding RE}" Width="35"/>

@@ -29,7 +29,7 @@ namespace CenaPlus.Server.JudgeNode
 
         void Env_CoreStatusUpdated(object sender, EventArgs e)
         {
-            TaskListBox.Items.Refresh();
+            Dispatcher.Invoke(new Action(() => TaskListBox.Items.Refresh()));
         }
     }
 }
