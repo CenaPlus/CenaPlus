@@ -209,10 +209,9 @@ namespace CenaPlus.Server.Judge
                 case Entity.ProgrammingLanguage.C:
                     return App.Server.GetConfig(Bll.ConfigKey.Compiler.C) ?? Bll.ConfigKey.Compiler.DefaultC;
                 case Entity.ProgrammingLanguage.CXX:
-                    return App.Server.GetConfig(Bll.ConfigKey.Compiler.CXX) ?? Bll.ConfigKey.Compiler.DefaultCXX;
-                //TODO: Fix CE
-                //case Entity.ProgrammingLanguage.CXX11:
-                //    return App.Server.GetConfig(Bll.ConfigKey.Compiler.CXX11) ?? Bll.ConfigKey.Compiler.DefaultCXX11;
+                    return App.Server.GetConfig(Bll.ConfigKey.Compiler.CXX) ?? Bll.ConfigKey.Compiler.DefaultCXX; 
+                case Entity.ProgrammingLanguage.CXX11:
+                    return App.Server.GetConfig(Bll.ConfigKey.Compiler.CXX11) ?? Bll.ConfigKey.Compiler.DefaultCXX11;
                 case Entity.ProgrammingLanguage.Java:
                     return App.Server.GetConfig(Bll.ConfigKey.Compiler.Java) ?? Bll.ConfigKey.Compiler.DefaultJava;
                 case Entity.ProgrammingLanguage.Pascal:
@@ -232,6 +231,8 @@ namespace CenaPlus.Server.Judge
             Compiler.Identity = Identity;
             Compiler.CompileInfo.Language = Task.Record.Language;
             Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
+            if(Task.Record.Language == Entity.ProgrammingLanguage.Java)
+                Compiler.CompileInfo.Arguments = App.Server.GetConfig(Bll.ConfigKey.Compiler.Javac) ?? Bll.ConfigKey.Compiler.DefaultJavac;
             Compiler.CompileInfo.TimeLimit = 3000;
             Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
             Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
@@ -259,6 +260,8 @@ namespace CenaPlus.Server.Judge
                     Compiler.Identity = Identity;
                     Compiler.CompileInfo.Language = (Entity.ProgrammingLanguage)Task.Problem.SpjLanguage;
                     Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
+                    if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
+                        Compiler.CompileInfo.Arguments = App.Server.GetConfig(Bll.ConfigKey.Compiler.Javac) ?? Bll.ConfigKey.Compiler.DefaultJavac;
                     Compiler.CompileInfo.TimeLimit = 3000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
@@ -284,6 +287,8 @@ namespace CenaPlus.Server.Judge
                     Compiler.Identity = Identity;
                     Compiler.CompileInfo.Language = (Entity.ProgrammingLanguage)Task.Problem.StdLanguage;
                     Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
+                    if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
+                        Compiler.CompileInfo.Arguments = App.Server.GetConfig(Bll.ConfigKey.Compiler.Javac) ?? Bll.ConfigKey.Compiler.DefaultJavac;
                     Compiler.CompileInfo.TimeLimit = 3000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\std" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
@@ -310,6 +315,8 @@ namespace CenaPlus.Server.Judge
                     Compiler.Identity = Identity;
                     Compiler.CompileInfo.Language = (Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage;
                     Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
+                    if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
+                        Compiler.CompileInfo.Arguments = App.Server.GetConfig(Bll.ConfigKey.Compiler.Javac) ?? Bll.ConfigKey.Compiler.DefaultJavac;
                     Compiler.CompileInfo.TimeLimit = 3000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\range" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
@@ -348,6 +355,8 @@ namespace CenaPlus.Server.Judge
                 Compiler.Identity = Identity;
                 Compiler.CompileInfo.Language = (Entity.ProgrammingLanguage)Task.Hack.DatamakerLanguage;
                 Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
+                if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
+                    Compiler.CompileInfo.Arguments = App.Server.GetConfig(Bll.ConfigKey.Compiler.Javac) ?? Bll.ConfigKey.Compiler.DefaultJavac;
                 Compiler.CompileInfo.TimeLimit = 3000;
                 Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
                 Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";

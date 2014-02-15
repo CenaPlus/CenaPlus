@@ -77,7 +77,7 @@ namespace CenaPlus.Server.Bll
                     ValidatorLanguage = p.ValidatorLanguage
                 };
 
-                contest = problem.Contest;
+                contest = p.Contest;
 
                 using (var node = GetFreestNode())
                 {
