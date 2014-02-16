@@ -27,12 +27,11 @@ namespace CenaPlus.Client.Remote.Contest
             for (int i = 'A'; i <= 'D'; i++)
             {
                 DataGridTextColumn dgtc = new DataGridTextColumn();
-                dgtc.Header = (char)i + "";
+                dgtc.Header = "    "+(char)i;
                 dgtc.Binding = new Binding(String.Format("Display.[{0}]", ((int)(i - 'A'))).ToString());
-                dgtc.SortMemberPath = String.Format("Display.[{0}]", ((int)(i - 'A'))).ToString();
+                dgtc.ElementStyle = Resources["dgCell"] as Style;
                 dgStandings.Columns.Add(dgtc);
             }
-            
             for (int i = 0; i < 10; i++)
             {
                 StandingItem t = new StandingItem();
