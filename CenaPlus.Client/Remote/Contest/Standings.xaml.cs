@@ -43,10 +43,10 @@ namespace CenaPlus.Client.Remote.Contest
                 t.Type = Entity.ContestType.ACM;
                 t.Competitor = "user" + (i + 1);
                 t.Details = new StandingDetail[4];//题目个数
-                t.Details[0] = (new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 50, SecondScore = 123 });
-                t.Details[1]=(new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 100, SecondScore = 421 });
-                t.Details[2]=(new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 80, SecondScore = 46 });
-                t.Details[3]=(new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 20, SecondScore = 22 });
+                t.Details[0] = (new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 50, SecondScore = 123, RecordID = 10000 + i * 10 });
+                t.Details[1] = (new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 100, SecondScore = 421, RecordID = 10001 + i * 10 });
+                t.Details[2] = (new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 80, SecondScore = 46, RecordID = 10002 + i * 10 });
+                t.Details[3] = (new StandingDetail() { DisplayFormat = Entity.ContestType.ACM, FirstScore = 20, SecondScore = 22, RecordID = 10003 + i * 10 });
                 StandingItems.Add(t);
             }
             dgStandings.ItemsSource = StandingItems;
@@ -56,18 +56,35 @@ namespace CenaPlus.Client.Remote.Contest
             if (Type == Entity.ContestType.OI)
             {
                 dgtcMainKey.Header = "Score";
+                dgtcMainKey.Width = 80;
                 dgtcSecKey.Header = "Time";
             }
             else if (Type == Entity.ContestType.ACM)
             {
                 dgtcMainKey.Header = "AC";
+                dgtcMainKey.Width = 50;
                 dgtcSecKey.Header = "Penalty";
             }
             else
             {
                 dgtcMainKey.Header = "Score";
+                dgtcMainKey.Width = 80;
                 dgtcSecKey.Header = "Hack";
             }
+        }
+
+        private void dgStandings_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            IList<DataGridCellInfo> selectedcells = e.AddedCells;
+            if (selectedcells.Count == 1 && selectedcells[0].Column.Header.ToString().Trim(' ').Length == 1 && selectedcells[0].Column.Header.ToString().Trim(' ')[0] >= 'A' && selectedcells[0].Column.Header.ToString().Trim(' ')[0] <= 'Z')
+                btnHack.IsEnabled = true;
+            else
+                btnHack.IsEnabled = false;
+        }
+
+        private void btnHack_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((dgStandings.SelectedCells[0].Item as StandingItem).Details[(int)(dgStandings.SelectedCells[0].Column.Header.ToString().Trim(' ')[0] - 'A')].RecordID + "");
         }
     }
     public class StandingItem
@@ -167,6 +184,7 @@ namespace CenaPlus.Client.Remote.Contest
         public int FirstScore { get; set; }//OI为分数，ACM为尝试失败次数，CF、TC为分数
         public int SecondScore { get; set; }//ACM为该题目罚时(未通过罚时为0)，CF，TC为解题时间，均以秒为单位/oi耗时 毫秒
         public int ThirdScore { get; set; }//CF TC尝试失败次数
+        public int RecordID { get; set; }
         public string Display
         {
             get

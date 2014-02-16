@@ -13,13 +13,16 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <DataGrid x:Name="dgStandings" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionUnit="Cell" EnableRowVirtualization="False" Focusable="False" HeadersVisibility="Column">
+        <DataGrid Margin="0,0,0,30" x:Name="dgStandings" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionUnit="Cell" EnableRowVirtualization="False" Focusable="False" HeadersVisibility="Column" SelectedCellsChanged="dgStandings_SelectedCellsChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="dgtcRank" Binding="{Binding Rank}" Width="50" Header="#" />
-                <DataGridTextColumn x:Name="dgtcWho" Header="Who" Width="80" Binding="{Binding Competitor}" />
+                <DataGridTextColumn x:Name="dgtcWho" Header="Who" Width="100" Binding="{Binding Competitor}" />
                 <DataGridTextColumn x:Name="dgtcMainKey" Header="Score" Width="80" Binding="{Binding MainKey}"/>
                 <DataGridTextColumn x:Name="dgtcSecKey" Header="Penalty" Width="80" Binding="{Binding SecDisplay}" SortMemberPath="{Binding SecKey}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <WrapPanel x:Name="wpHack" VerticalAlignment="Bottom">
+            <Button Content="Hack" x:Name="btnHack" IsEnabled="False" Click="btnHack_Click"></Button>
+        </WrapPanel>
     </Grid>
 </UserControl>
