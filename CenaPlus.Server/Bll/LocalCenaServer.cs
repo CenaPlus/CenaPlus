@@ -453,6 +453,23 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public string GetProblemTitle(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                var problem = db.Problems.Find(id);
+                if (problem == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
+
+                if (CurrentUser.Role == UserRole.Competitor && problem.Contest.StartTime > DateTime.Now)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                return problem.Title;
+            }
+        }
+
         public Problem GetProblem(int id)
         {
             using (DB db = new DB())
@@ -464,6 +481,22 @@ namespace CenaPlus.Server.Bll
 
                 if (CurrentUser.Role == UserRole.Competitor && problem.Contest.StartTime > DateTime.Now)
                     throw new FaultException<AccessDeniedError>(new AccessDeniedError());
+
+                if (problem.Contest.Type == ContestType.TopCoder)
+                {
+                    var view = db.ProblemViews.Find(id, CurrentUser.ID);
+                    if (view == null)
+                    {
+                        view = new ProblemView
+                        {
+                            ProblemID = id,
+                            UserID = CurrentUser.ID,
+                            Time = DateTime.Now
+                        };
+                        db.ProblemViews.Add(view);
+                        db.SaveChanges();
+                    }
+                }
 
                 return new Problem
                 {

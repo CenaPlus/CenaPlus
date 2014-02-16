@@ -100,6 +100,11 @@ namespace CenaPlus.Network
         [FaultContract(typeof(NotFoundError))]
         void LockProblem(int id);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
+        string GetProblemTitle(int id);
+
         /// <summary>
         /// Get problem by id
         /// </summary>

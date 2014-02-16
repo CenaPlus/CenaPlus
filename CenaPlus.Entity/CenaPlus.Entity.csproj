@@ -60,6 +60,7 @@
     <Compile Include="Hack.cs" />
     <Compile Include="PrintRequest.cs" />
     <Compile Include="Problem.cs" />
+    <Compile Include="ProblemView.cs" />
     <Compile Include="ProgrammingLanguage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />

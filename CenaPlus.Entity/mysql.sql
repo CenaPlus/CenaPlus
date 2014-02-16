@@ -1,3 +1,4 @@
+drop table if exists `prolem_views`;
 drop table if exists `problem_locks`;
 drop table if exists `configs`;
 drop table if exists `print_requests`;
@@ -157,5 +158,18 @@ CREATE TABLE `problem_locks` (
         on delete cascade,
     foreign key (problem_id)
         references problems (id)
+        on delete cascade
+)  default charset=utf8;
+
+CREATE TABLE `problem_views` (
+    problem_id int not null,
+    user_id int not null,
+    `time` datetime not null,
+    primary key (problem_id , user_id),
+    foreign key (problem_id)
+        references problems (id)
+        on delete cascade,
+    foreign key (user_id)
+        references users (id)
         on delete cascade
 )  default charset=utf8;
