@@ -12,6 +12,9 @@ namespace CenaPlus.Server.Bll
 {
     class Judger
     {
+        public event Action<int> HackJudgeComplete;
+        public event Action<int> RecordJudgeComplete;
+
         public void StartJudgeAllPending()
         {
             List<int> pendingRecordIDs;
@@ -29,6 +32,13 @@ namespace CenaPlus.Server.Bll
         }
 
         public void JudgeRecord(int recordID)
+        {
+            DoJudgeRecord(recordID);
+            if (RecordJudgeComplete != null)
+                RecordJudgeComplete(recordID);
+        }
+
+        private void DoJudgeRecord(int recordID)
         {
             using (DB db = new DB())
             {
@@ -139,6 +149,13 @@ namespace CenaPlus.Server.Bll
         }
 
         public void JudgeHack(int hackID)
+        {
+            DoJudgeHack(hackID);
+            if (HackJudgeComplete != null)
+                HackJudgeComplete(hackID);
+        }
+
+        private void DoJudgeHack(int hackID)
         {
             using (DB db = new DB())
             {
