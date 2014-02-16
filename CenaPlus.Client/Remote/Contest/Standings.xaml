@@ -18,7 +18,7 @@
                 <DataGridTextColumn x:Name="dgtcRank" Binding="{Binding Rank}" Width="50" Header="#" />
                 <DataGridTextColumn x:Name="dgtcWho" Header="Who" Width="80" Binding="{Binding Competitor}" />
                 <DataGridTextColumn x:Name="dgtcMainKey" Header="Score" Width="80" Binding="{Binding MainKey}"/>
-                <DataGridTextColumn x:Name="dgtcSecKey" Header="Penalty" Width="80" Binding="{Binding SecKey}"/>
+                <DataGridTextColumn x:Name="dgtcSecKey" Header="Penalty" Width="80" Binding="{Binding SecDisplay}" SortMemberPath="{Binding SecKey}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
