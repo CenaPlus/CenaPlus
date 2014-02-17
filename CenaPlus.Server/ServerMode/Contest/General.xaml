@@ -21,6 +21,18 @@
                     <DatePicker x:Name="dateEndDate" Margin="0,0,10,0" Text="asdfasdf"></DatePicker>
                     <TextBox x:Name="txtEndTime" Width="80" Text="0:00"></TextBox>
                 </WrapPanel>
+                <StackPanel x:Name="TopCoderPanel" Visibility="Collapsed">
+                    <TextBlock Text="Rest begin time" Margin="0,0,0,5" />
+                    <WrapPanel Margin="0,0,0,20">
+                        <DatePicker x:Name="dateRestBeginDate" Margin="0,0,10,0" Text="asdfasdf"></DatePicker>
+                        <TextBox x:Name="txtRestBeginTime" Width="80" Text="0:00"></TextBox>
+                    </WrapPanel>
+                    <TextBlock Text="Rest end time" Margin="0,0,0,5" />
+                    <WrapPanel Margin="0,0,0,20">
+                        <DatePicker x:Name="dateRestEndDate" Margin="0,0,10,0" Text="asdfasdf"></DatePicker>
+                        <TextBox x:Name="txtRestEndTime" Width="80" Text="0:00"></TextBox>
+                    </WrapPanel>
+                </StackPanel>
                 <TextBlock Text="Contest type"></TextBlock>
                 <ComboBox x:Name="cbbType" Margin="0,0,0,20"></ComboBox>
                 <TextBlock Text="Accept print requests" Margin="0,0,0,5" />

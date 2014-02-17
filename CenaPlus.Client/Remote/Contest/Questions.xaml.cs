@@ -104,8 +104,5 @@ namespace CenaPlus.Client.Remote.Contest
                 }
             }
         }
-
-
-
     }
 }

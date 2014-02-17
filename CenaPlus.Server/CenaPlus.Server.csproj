@@ -159,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerMode\Contest\Questions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ServerMode\Contest\Status.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +234,9 @@
     </Compile>
     <Compile Include="ServerMode\Contest\Problem\TestCases.xaml.cs">
       <DependentUpon>TestCases.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\Contest\Questions.xaml.cs">
+      <DependentUpon>Questions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\Contest\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>

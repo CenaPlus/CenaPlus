@@ -28,6 +28,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         public General()
         {
             InitializeComponent();
+            //TopCoderPanel.Visibility = Visibility.Visible;
             cbbType.ItemsSource = Enum.GetNames(typeof(ContestType));
         }
 
