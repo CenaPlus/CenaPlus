@@ -963,6 +963,54 @@ namespace CenaPlus.Server.Bll
             }
         }
 
+        public void UpdateQuestion(int id, string description, string answer, QuestionStatus? status)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+
+                Question question = db.Questions.Find(id);
+                if (question == null)
+                    throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Question" });
+
+                if (CurrentUser.Role == UserRole.Competitor && question.AskerID != CurrentUser.ID)
+                    throw new FaultException<AccessDeniedError>(new AccessDeniedError(), "The question is not owned by you!");
+
+                if (description != null)
+                    question.Description = description;
+                if (CurrentUser.Role >= UserRole.Manager && answer != null)
+                    question.Answer = answer;
+                if (CurrentUser.Role >= UserRole.Manager && status != null)
+                    question.Status = status.Value;
+
+                db.SaveChanges();
+
+                Question q =  new Question
+                {
+                    Answer = question.Answer,
+                    AskerID = question.AskerID,
+                    AskerNickName = question.Asker.NickName,
+                    ContestID = question.ContestID,
+                    ContestName = question.ContestName,
+                    Description = question.Description,
+                    ID = question.ID,
+                    Status = question.Status,
+                    Time = question.Time
+                };
+                if (question.Status == QuestionStatus.Public)
+                {
+                    foreach (var client in App.Clients.Values)
+                    {
+                        System.Threading.Tasks.Task.Factory.StartNew(() => client.Callback.QuestionUpdated(q));
+                    }
+                }
+                else if (question.Status == QuestionStatus.Private)
+                {
+                    App.Clients[question.AskerID].Callback.QuestionUpdated(q);
+                }
+            }
+        }
+
         public Question GetQuestion(int id)
         {
             using (DB db = new DB())

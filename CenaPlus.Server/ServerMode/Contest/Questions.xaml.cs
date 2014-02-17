@@ -105,7 +105,6 @@ namespace CenaPlus.Server.ServerMode.Contest
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: 更新记录并推送
             var q = lstQuestion.SelectedItem as QuestionListItem;
             if (rdbtnPrivate.IsChecked == true)
                 q.Status = Entity.QuestionStatus.Private;
@@ -114,14 +113,8 @@ namespace CenaPlus.Server.ServerMode.Contest
             else
                 q.Status = Entity.QuestionStatus.Rejected;
             q.Answer = txtAnswer.Text;
-            if (q.Status == Entity.QuestionStatus.Public)
-            {
-                //TODO: 推送此条提问，使得客户端弹出MsgBox
-            }
-            else
-            { 
-                //TODO: 推送给提问者
-            }
+            App.Server.UpdateQuestion(q.ID, null, q.Answer, q.Status);
+            lstQuestion.Items.Refresh();
         }
     }
 }

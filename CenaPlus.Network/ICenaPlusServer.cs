@@ -167,6 +167,11 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
+        void UpdateQuestion(int id, string description, string answer, QuestionStatus? status);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        [FaultContract(typeof(NotFoundError))]
         int AskQuestion(int contestID, string description);
 
         [OperationContract]
