@@ -237,7 +237,7 @@ namespace CenaPlus.Server.Judge
             Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
             if (Task.Record.Language == Entity.ProgrammingLanguage.Java)
                 Compiler.CompileInfo.Arguments = Bll.ConfigHelper.Javac;
-            Compiler.CompileInfo.TimeLimit = 3000;
+            Compiler.CompileInfo.TimeLimit = 1000;
             Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
             Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
             Compiler.CompileInfo.Source = Task.Record.Code;
@@ -266,7 +266,7 @@ namespace CenaPlus.Server.Judge
                     Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
                     if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
                         Compiler.CompileInfo.Arguments = Bll.ConfigHelper.Javac;
-                    Compiler.CompileInfo.TimeLimit = 3000;
+                    Compiler.CompileInfo.TimeLimit = 1000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
                     Compiler.Start();
@@ -293,7 +293,7 @@ namespace CenaPlus.Server.Judge
                     Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
                     if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
                         Compiler.CompileInfo.Arguments = Bll.ConfigHelper.Javac;
-                    Compiler.CompileInfo.TimeLimit = 3000;
+                    Compiler.CompileInfo.TimeLimit = 1000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\std" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
                     Compiler.Start();
@@ -321,7 +321,7 @@ namespace CenaPlus.Server.Judge
                     Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
                     if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
                         Compiler.CompileInfo.Arguments = Bll.ConfigHelper.Javac;
-                    Compiler.CompileInfo.TimeLimit = 3000;
+                    Compiler.CompileInfo.TimeLimit = 1000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\range" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
                     Compiler.Start();
@@ -361,7 +361,7 @@ namespace CenaPlus.Server.Judge
                 Compiler.CompileInfo.Arguments = GetCommandLine(Compiler.CompileInfo.Language);
                 if (Compiler.CompileInfo.Language == Entity.ProgrammingLanguage.Java)
                     Compiler.CompileInfo.Arguments = Bll.ConfigHelper.Javac;
-                Compiler.CompileInfo.TimeLimit = 3000;
+                Compiler.CompileInfo.TimeLimit = 1000;
                 Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
                 Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
                 Compiler.Start();
