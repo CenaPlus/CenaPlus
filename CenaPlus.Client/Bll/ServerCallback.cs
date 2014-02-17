@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Threading;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Network;
 using CenaPlus.Entity;
@@ -15,23 +16,33 @@ namespace CenaPlus.Client.Bll
             ModernDialog.ShowMessage("You are kicked out.", "Message", MessageBoxButton.OK);
             Environment.Exit(1);
         }
-
         public void QuestionUpdated(Question question)
         {
-            new ModernDialog
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                Title = "Q&A",
-                Content = new CenaPlus.Client.Remote.Contest.AnswerPush(question)
-            }.ShowDialog();
+                App.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    new ModernDialog
+                    {
+                        Title = "Q&A",
+                        Content = new CenaPlus.Client.Remote.Contest.AnswerPush(question)
+                    }.ShowDialog();
+                }));
+            });
         }
-
         public void JudgeFinished(Record record)
         {
-            new ModernDialog
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                Title = "Your program has a new status",
-                Content = new CenaPlus.Client.Remote.Contest.ResultPush(record)
-            }.ShowDialog();
+                App.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    new ModernDialog
+                    {
+                        Title = "Your program has a new status",
+                        Content = new CenaPlus.Client.Remote.Contest.ResultPush(record)
+                    }.ShowDialog();
+                }));
+            });
         }
     }
 }
