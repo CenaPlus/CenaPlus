@@ -55,7 +55,11 @@ namespace CenaPlus.Server.ServerMode
                 txtMySQLPort.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
-
+        private void JudgeFinished(int record_id)
+        { 
+            var record = App.Server.GetRecord(record_id);
+            App.Clients[record.UserID].Callback.JudgeFinished(record);
+        }
         private void btnStartLocal_Click(object sender, RoutedEventArgs e)
         {
             string serverName = txtServerName.Text;
@@ -90,6 +94,7 @@ namespace CenaPlus.Server.ServerMode
             contestManager.ScheduleAll();
 
             var judger = new Judger();
+            judger.RecordJudgeComplete += JudgeFinished;
             judger.StartJudgeAllPending();
 
             LocalCenaServer.ContestModified += contestManager.Reschedule;

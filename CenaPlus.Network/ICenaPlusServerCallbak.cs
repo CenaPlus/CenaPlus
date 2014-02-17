@@ -20,5 +20,12 @@ namespace CenaPlus.Network
         /// </summary>
         [OperationContract(IsOneWay = true)]
         void QuestionUpdated(Question question);
+
+        /// <summary>
+        /// Tell the client a record has been judged.
+        /// </summary>
+        /// <param name="record"></param>
+        [OperationContract(IsOneWay = true)]
+        void JudgeFinished(Record record);
     }
 }

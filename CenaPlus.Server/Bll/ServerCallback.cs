@@ -16,5 +16,9 @@ namespace CenaPlus.Server.Bll
         public void QuestionUpdated(Question q)
         {
         }
+
+        public void JudgeFinished(Record record)
+        { 
+        }
     }
 }

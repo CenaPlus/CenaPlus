@@ -32,6 +32,8 @@
                 <TextBlock Name="txtTimeUsage" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Memory used"></TextBlock>
                 <TextBlock Name="txtMemoryUsage" Style="{StaticResource Heading2}" Margin="0,0,0,20"></TextBlock>
+                <TextBlock Text="Details"></TextBlock>
+                <TextBlock x:Name="tbDetail" Margin="0,0,0,20"></TextBlock>
                 <TextBlock Text="Source"></TextBlock>
                 <RichTextBox x:Name="txtCode" AcceptsReturn="True" Height="150" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,0,0,20" IsReadOnly="True"></RichTextBox>
                 <Button Name="btnRejudge" Content="Rejudge" Click="btnRejudge_Click"></Button>

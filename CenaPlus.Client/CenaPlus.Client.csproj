@@ -115,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Remote\Contest\AnswerPush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Contest\ProblemGeneral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Remote\Contest\Print.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remote\Contest\ResultPush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,6 +182,9 @@
       <DependentUpon>Result.xaml</DependentUpon>
     </Compile>
     <Compile Include="Local\Static.cs" />
+    <Compile Include="Remote\Contest\AnswerPush.xaml.cs">
+      <DependentUpon>AnswerPush.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Remote\Contest\ProblemGeneral.xaml.cs">
       <DependentUpon>ProblemGeneral.xaml</DependentUpon>
     </Compile>
@@ -182,6 +193,9 @@
     </Compile>
     <Compile Include="Remote\Contest\Print.xaml.cs">
       <DependentUpon>Print.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remote\Contest\ResultPush.xaml.cs">
+      <DependentUpon>ResultPush.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Contest\Standings.xaml.cs">
       <DependentUpon>Standings.xaml</DependentUpon>

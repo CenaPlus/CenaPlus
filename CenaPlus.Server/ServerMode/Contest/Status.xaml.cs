@@ -48,6 +48,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                 txtStatus.Text = record.Status.ToString();
                 txtTimeUsage.Text = record.TimeUsage == null ? "?" : record.TimeUsage.ToString() + " ms";
                 txtUserNickName.Text = record.UserNickName;
+                tbDetail.Text = record.Detail;
             }
         }
         private void btnRejudge_Click(object sender, RoutedEventArgs e)
@@ -85,6 +86,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                            TimeUsage = r.TimeUsage,
                            ProblemTitle = r.ProblemTitle,
                            Status = r.Status,
+                           Detail = r.Detail.Trim('\r').Trim('\n'),
                            SubmissionTime = r.SubmissionTime,
                            UserNickName = r.UserNickName,
                            Code = r.Code

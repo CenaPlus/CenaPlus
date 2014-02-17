@@ -130,7 +130,7 @@ namespace CenaPlus.Server.Bll
                     for (int i = 0; i < runs.Count; i++)
                     {
                         var result = runs[i].Result;
-                        detail.AppendFormat("{0}# {1} ({2} ms, {3} KiB)\r\n", i, result.RecordStatus, result.TimeUsage, result.MemUsage / 1024);
+                        detail.AppendFormat("#{0} {1} ({2} ms, {3} KiB)\r\n", i, result.RecordStatus, result.TimeUsage, result.MemUsage / 1024);
                         if (result.RecordStatus > finalStatus)
                         {
                             finalStatus = result.RecordStatus;

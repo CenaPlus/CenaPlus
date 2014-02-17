@@ -18,8 +18,20 @@ namespace CenaPlus.Client.Bll
 
         public void QuestionUpdated(Question question)
         {
-            string msg = string.Format("The status of '{0}' has been updated!", question.Description);
-            ModernDialog.ShowMessage(msg, "Message", MessageBoxButton.OK);
+            new ModernDialog
+            {
+                Title = "Q&A",
+                Content = new CenaPlus.Client.Remote.Contest.AnswerPush(question)
+            }.ShowDialog();
+        }
+
+        public void JudgeFinished(Record record)
+        {
+            new ModernDialog
+            {
+                Title = "Your program has a new status",
+                Content = new CenaPlus.Client.Remote.Contest.ResultPush(record)
+            }.ShowDialog();
         }
     }
 }

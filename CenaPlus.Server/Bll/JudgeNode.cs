@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace CenaPlus.Server.Bll
 {
-    [ServiceBehavior(UseSynchronizationContext = false)]
+    [ServiceBehavior(UseSynchronizationContext = false, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class JudgeNode : IJudgeNode
     {
         public static string Password { get; set; }

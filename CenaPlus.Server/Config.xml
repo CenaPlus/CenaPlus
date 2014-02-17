@@ -7,5 +7,16 @@
       <UserName></UserName>
       <Password></Password>
     </Security>
+    <Arguments>
+      <C>gcc -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -std=c99 Main.c</C>
+      <CXX>g++ -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -std=c++98  -ansi Main.cpp</CXX>
+      <CXX11>g++ -O2 -o Main.exe -DONLINE_JUDGE -Wall -lm --static -std=c++11  -ansi Main.cpp</CXX11>
+      <Java>java Main</Java>
+      <Javac>javac Main.java</Javac>
+      <Pascal>fpc -O2 -dONLINE_JUDGE Main.pas</Pascal>
+      <Python27>python2.7 Main.py</Python27>
+      <Python33>python3.3 Main.py</Python33>
+      <Ruby>ruby Main.rb</Ruby>
+    </Arguments>
   </Judge>
 </CenaPlus>
