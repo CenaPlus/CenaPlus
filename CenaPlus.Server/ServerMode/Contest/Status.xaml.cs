@@ -86,7 +86,7 @@ namespace CenaPlus.Server.ServerMode.Contest
                            TimeUsage = r.TimeUsage,
                            ProblemTitle = r.ProblemTitle,
                            Status = r.Status,
-                           Detail = r.Detail.Trim('\r').Trim('\n'),
+                           Detail = r.Detail == null ? null : r.Detail.Trim('\r').Trim('\n'),
                            SubmissionTime = r.SubmissionTime,
                            UserNickName = r.UserNickName,
                            Code = r.Code

@@ -58,7 +58,12 @@ namespace CenaPlus.Server.ServerMode
         private void JudgeFinished(int record_id)
         { 
             var record = App.Server.GetRecord(record_id);
-            App.Clients[record.UserID].Callback.JudgeFinished(record);
+            
+            LocalCenaServer client;
+            if (App.Clients.TryGetValue(record.UserID, out client))
+            {
+                client.Callback.JudgeFinished(record);
+            }
         }
         private void btnStartLocal_Click(object sender, RoutedEventArgs e)
         {
