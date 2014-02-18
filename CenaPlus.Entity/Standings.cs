@@ -118,22 +118,18 @@ namespace CenaPlus.Entity
                         }
                     case Entity.ContestType.ACM:
                         {
-                            if (SecondScore != 0)
+                            if (FirstScore == 0) break;
+                            if (SecondScore == 0)
                             {
-                                Content = new TimeSpan(0, 0, SecondScore).ToString();
-                                if (FirstScore != 0)
-                                {
-                                    Content += "\r\n";
-                                }
-                            }
-                            if (FirstScore != 0)
-                            {
-                                Content += String.Format("(-{0})", FirstScore - 1);
+                                Content = String.Format("(-{0})", FirstScore);
                             }
                             else
-                            { 
-                                if(SecondScore!=0)
-                                    Content = String.Format("(-{0})", FirstScore);
+                            {
+                                Content = new TimeSpan(0, 0, SecondScore).ToString();
+                                if (FirstScore != 1)
+                                {
+                                    Content += String.Format("\r\n(-{0})", FirstScore - 1);
+                                }
                             }
                             break;
                         }
@@ -146,7 +142,7 @@ namespace CenaPlus.Entity
                             }
                             else
                             {
-                                if (ThirdScore != 0)
+                                if (ThirdScore!=0)
                                     Content = String.Format("(-{0})", ThirdScore);
                             }
                             break;

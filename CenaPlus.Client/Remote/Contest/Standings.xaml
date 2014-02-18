@@ -10,10 +10,11 @@
         <Style x:Key="dgCell" TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <DataGrid Margin="0,0,0,30" x:Name="dgStandings" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionUnit="Cell" EnableRowVirtualization="False" Focusable="False" HeadersVisibility="Column" SelectedCellsChanged="dgStandings_SelectedCellsChanged">
+        <DataGrid Margin="0,0,0,30" x:Name="dgStandings" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionUnit="Cell" EnableRowVirtualization="False" Focusable="False" HeadersVisibility="Column" SelectedCellsChanged="dgStandings_SelectedCellsChanged" VerticalContentAlignment="Center" RowHeight="40">
         </DataGrid>
         <WrapPanel x:Name="wpHack" VerticalAlignment="Bottom">
             <Button Content="Hack" x:Name="btnHack" IsEnabled="False" Click="btnHack_Click"></Button>
