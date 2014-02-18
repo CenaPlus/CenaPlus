@@ -453,7 +453,7 @@ namespace CenaPlus.Server.Bll
             }
         }
 
-        public string GetProblemTitle(int id)
+        public Entity.ProblemGeneral GetProblemTitle(int id)
         {
             using (DB db = new DB())
             {
@@ -466,10 +466,60 @@ namespace CenaPlus.Server.Bll
                 if (CurrentUser.Role == UserRole.Competitor && problem.Contest.StartTime > DateTime.Now)
                     throw new FaultException<AccessDeniedError>(new AccessDeniedError());
 
-                return problem.Title;
+                Entity.ProblemGeneral problem_general = new ProblemGeneral();
+                problem_general.Title = problem.Title;
+                problem_general.TimeLimit = problem.TimeLimit;
+                problem_general.MemoryLimit = Convert.ToInt32(problem.MemoryLimit / 1024 / 1024);
+                problem_general.ProblemID = problem.ID;
+                problem_general.SpecialJudge = problem.Spj == null ? false : true;
+
+                var contest = db.Contests.Find(problem.ContestID);
+                var last_record = RecordHelper.GetLastRecord(CurrentUser.ID, problem.ID);
+                switch (contest.Type)
+                {
+                    case ContestType.OI:
+                        {
+                            if (last_record != null) 
+                            {
+                                problem_general.Status = ProblemGeneralStatus.Submitted;
+                                problem_general.Time = last_record.SubmissionTime;
+                            }
+                            break;
+                        }
+                    case ContestType.ACM:
+                        {
+                            if (last_record != null)
+                            {
+                                problem_general.Status = ProblemGeneralStatus.Pending;
+                                problem_general.Time = last_record.SubmissionTime;
+                            }
+                            else
+                                problem_general.Status = null;
+                            if (RecordHelper.GetFirstAcceptedRecord(CurrentUser.ID, problem.ID)!=null)
+                                problem_general.Status = ProblemGeneralStatus.Accepted;
+                            break;
+                        }
+                    case ContestType.Codeforces:
+                        {
+                            if (last_record == null)
+                                problem_general.Status = null;
+                            else
+                            {
+                                problem_general.Time = last_record.SubmissionTime;
+                                if (last_record.Status == RecordStatus.Hacked)
+                                    problem_general.Status = ProblemGeneralStatus.Hacked;
+                                else if (last_record.Status == RecordStatus.Accepted)
+                                    problem_general.Status = ProblemGeneralStatus.Accepted;
+                                else
+                                    problem_general.Status = ProblemGeneralStatus.Pending;
+                            }
+                            break;
+                        }
+                }
+                return problem_general;
             }
         }
-
+        
         public Problem GetProblem(int id)
         {
             using (DB db = new DB())
@@ -597,6 +647,7 @@ namespace CenaPlus.Server.Bll
                 var recordIDs = from r in db.Records
                                 where problemIDs.Contains(r.ProblemID)
                                 where CurrentUser.Role >= UserRole.Manager || r.UserID == CurrentUser.ID
+                                orderby r.ID descending
                                 select r.ID;
                 return recordIDs.ToList();
             }

@@ -30,8 +30,8 @@ namespace CenaPlus.Client.Remote.Contest
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             ProblemTab.Links.Clear();
-            ProblemTab.Links.Add(new Link { DisplayName = "General", Source = new Uri("/Remote/Contest/ProblemGeneral.xaml", UriKind.Relative) });
             int contestID = int.Parse(e.Fragment);
+            ProblemTab.Links.Add(new Link { DisplayName = "General", Source = new Uri("/Remote/Contest/ProblemGeneral.xaml#" + contestID, UriKind.Relative) });
             var ids = App.Server.GetProblemList(contestID);
             if (ids.Count != 0)
             {
@@ -41,7 +41,7 @@ namespace CenaPlus.Client.Remote.Contest
                     ProblemTab.Links.Add(new Link { DisplayName = c.ToString(), Source = new Uri("/Remote/Contest/Problem.xaml#" + ids[i], UriKind.Relative) });
                 }
             }
-            ProblemTab.SelectedSource = new Uri("/Remote/Contest/ProblemGeneral.xaml", UriKind.Relative);
+            ProblemTab.SelectedSource = new Uri("/Remote/Contest/ProblemGeneral.xaml#" + contestID, UriKind.Relative);
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)

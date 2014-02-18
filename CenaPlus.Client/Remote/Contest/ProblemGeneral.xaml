@@ -7,11 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
-        <ListBox x:Name="ProblemListBox">
+        <ListBox x:Name="ProblemListBox" MouseDoubleClick="ProblemListBox_MouseDoubleClick">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Margin="5,0,0,0" Text="{Binding Title}" Style="{StaticResource Heading2}"></TextBlock>
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Header}" Style="{StaticResource Heading2}"></TextBlock>
+                        <TextBlock Margin="5,0,0,0" Text="{Binding Limits}" FontSize="11"></TextBlock>
                         <TextBlock Margin="5,0,0,0" Text="{Binding Details}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>

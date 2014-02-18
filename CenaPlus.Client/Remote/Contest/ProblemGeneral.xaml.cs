@@ -12,35 +12,104 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Client.Remote.Contest
 {
     /// <summary>
     /// Interaction logic for ProblemGeneral.xaml
     /// </summary>
-    public partial class ProblemGeneral : UserControl
+    public partial class ProblemGeneral : UserControl, IContent
     {
-        public List<ProblemListBoxItem> ProblemListBoxItems = new List<ProblemListBoxItem>();
+        private List<ProblemListBoxItem> ProblemListBoxItems = new List<ProblemListBoxItem>();
         public ProblemGeneral()
         {
             InitializeComponent();
-            for (int i = 0; i < 5; i++)
+        }
+
+        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
+        {
+            int contest_id = int.Parse(e.Fragment);
+            var list = from id in App.Server.GetProblemList(contest_id)
+                       let q = App.Server.GetProblemTitle(id)
+                       select new ProblemListBoxItem
+                       {
+                           Title = q.Title,
+                           Status = q.Status,
+                           Time = q.Time,
+                           TimeLimit = q.TimeLimit,
+                           MemoryLimit = q.MemoryLimit,
+                           SpecialJudge = q.SpecialJudge,
+                           ProblemID = q.ProblemID
+                       };
+            char i = 'A';
+            ProblemListBoxItems.Clear();
+            foreach (var item in list)
             {
-                ProblemListBoxItem t = new ProblemListBoxItem();
-                t.Title = (char)(i + 'A') + ": A+B Problem";
-                if (i % 2 == 0)
-                    t.Details = "Solved @2014-2-15 18:07";
-                else
-                    t.Details = "Pending / 1s per test case / 64MB memory limit";
-                //Hacked by Gasai Yuno @2014-2-15 18:07
-                ProblemListBoxItems.Add(t);
+                item.Number = i++;
+                ProblemListBoxItems.Add(item);
             }
             ProblemListBox.ItemsSource = ProblemListBoxItems;
         }
+
+        public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
+        public void OnNavigatedTo(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
+        public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            
+        }
+
+        private void ProblemListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ProblemListBox.SelectedItem != null)
+            {
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/Remote/Contest/Problem.xaml#" + (ProblemListBox.SelectedItem as ProblemListBoxItem).ProblemID, UriKind.Relative);
+                }
+            }
+        }
     }
-    public class ProblemListBoxItem
+    public class ProblemListBoxItem: Entity.ProblemGeneral
     {
-        public string Title { get; set; }
-        public string Details { get; set; }
+        public char Number { get; set; }
+        public string Header 
+        {
+            get
+            {
+                return String.Format("{0}: {1} {2}", Number, Title, Status == Entity.ProblemGeneralStatus.Hacked ? "[Hacked]" : "");
+            }
+        }
+        public string Limits
+        {
+            get
+            {
+                return String.Format("Time limit: {0} ms / Memory limit: {1} KiB{2}", TimeLimit, MemoryLimit, SpecialJudge?" / Special judge mode":"");
+            }
+        }
+        public string Details 
+        {
+            get 
+            {
+                if (Status == null)
+                {
+                    return "You have not tried this problem.";
+                }
+                else 
+                {
+                    return String.Format("{0} @{1}", Status.ToString(), Time.ToShortTimeString());
+                }
+            }
+        }
     }
 }

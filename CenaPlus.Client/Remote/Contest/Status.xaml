@@ -12,10 +12,10 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Height="50">
-                            <Image DockPanel.Dock="Left" Width="50" Height="50" Source="/CenaPlus.Client;component/Resources/DefaultAvatar.jpg"></Image>
+                            <Image DockPanel.Dock="Left" Width="35" Height="35" Source="/CenaPlus.Client;component/Resources/DefaultAvatar.jpg"></Image>
                             <StackPanel HorizontalAlignment="Left">
-                                <TextBlock Margin="10,0,0,0" Text="{Binding Status}" FontSize="18" Foreground="{Binding StatusColor}" />
-                                <TextBlock Margin="10,0,0,0"  Text="{Binding StatusLine}" />
+                                <TextBlock Margin="10,0,0,0" Text="{Binding Status}" FontSize="14" Foreground="{Binding StatusColor}" />
+                                <TextBlock Margin="10,0,0,0"  Text="{Binding StatusLine}" FontSize="12" />
                             </StackPanel>
                         </DockPanel>
                     </DataTemplate>

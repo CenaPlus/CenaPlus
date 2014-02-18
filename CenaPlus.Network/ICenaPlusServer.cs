@@ -103,7 +103,7 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
-        string GetProblemTitle(int id);
+        Entity.ProblemGeneral GetProblemTitle(int id);
 
         /// <summary>
         /// Get problem by id
@@ -286,5 +286,6 @@ namespace CenaPlus.Network
 
         [OperationContract]
         string GetCircular();
+
     }
 }
