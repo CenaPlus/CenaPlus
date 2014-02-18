@@ -97,6 +97,25 @@ namespace CenaPlus.Server.Dal
             }
         }
         /// <summary>
+        /// 获取非0分有效记录个数
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="problem_id"></param>
+        /// <returns></returns>
+        public static int GetNoZeroPtsEffectiveCount(int user_id, int problem_id)
+        {
+            using (DB db = new DB())
+            {
+                int count = (from r in db.Records
+                             where r.UserID == user_id
+                             && r.ProblemID == problem_id
+                             && EffectiveStatus.Contains((Entity.RecordStatus)r.StatusAsInt)
+                             //&& r.Score != 0 //TODO: fix ce
+                             select r.ID).Count();
+                return count;
+            }
+        }
+        /// <summary>
         /// 获取在time前的有效记录个数
         /// </summary>
         /// <param name="user_id"></param>

@@ -66,10 +66,14 @@ namespace CenaPlus.Server.Bll
                                 }
                             case Entity.ContestType.TopCoder:
                                 {
+                                    var r = Dal.RecordHelper.GetLastRecord(uid, pid);
+                                    detail.RecordID = r.ID;
                                     break;
                                 }
                             case Entity.ContestType.Codeforces:
                                 {
+                                    var r = Dal.RecordHelper.GetLastRecord(uid, pid);
+                                    detail.RecordID = r.ID;
                                     break;
                                 }
                         }
