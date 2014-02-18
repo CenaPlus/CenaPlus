@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,7 @@ namespace CenaPlus.Client.Remote.Contest
     public partial class Standings : UserControl, IContent
     {
         private List<StandingItem> StandingItems = new List<StandingItem>();
+        private int contest_id;
         public void Sort()//排名变化了执行这个更新，最好排名数据是一个静态的，客户端收到了服务器推送的排名更新，后台就更新了，打开到这个页面自动就能看到，就是全部排名只加载一次，之后推送变化值。
         {
             StandingItems.Sort((x, y) => x.MainKey == y.MainKey ? x.SecKey - y.SecKey : y.MainKey - x.MainKey);
@@ -84,8 +86,18 @@ namespace CenaPlus.Client.Remote.Contest
             StandingItems = Bll.StandingsCache.Standings[contest.ID] as List<Entity.StandingItem>;
             Sort();
             dgStandings.ItemsSource = StandingItems;
+            contest_id = Convert.ToInt32(e.Fragment);
+            System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 30);
+            timer.Tick += Tick;
+            timer.Start();
         }
-
+        private void Tick(object sender, EventArgs e)
+        {
+            StandingItems = Bll.StandingsCache.Standings[contest_id] as List<Entity.StandingItem>;
+            Sort();
+            dgStandings.Items.Refresh();
+        }
         public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
         {
         }
