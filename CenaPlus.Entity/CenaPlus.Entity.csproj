@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Record.cs" />
+    <Compile Include="Standings.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskFeedback.cs" />
     <Compile Include="TestCase.cs" />

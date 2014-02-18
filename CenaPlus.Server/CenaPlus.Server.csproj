@@ -106,6 +106,7 @@
     <Compile Include="Bll\LocalCenaServer.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServiceBroadcaster.cs" />
+    <Compile Include="Bll\StandingsCache.cs" />
     <Compile Include="Dal\DB.cs" />
     <Compile Include="Dal\RecordHelper.cs" />
     <Compile Include="JudgeNode\Home.xaml.cs">

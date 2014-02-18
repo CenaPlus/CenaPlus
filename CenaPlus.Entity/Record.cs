@@ -69,6 +69,8 @@ namespace CenaPlus.Entity
         [Column("detail")]
         public string Detail { get; set; }
 
+        [Column("score")]
+        public int? Score { get; set; }//0~100
         public override bool Equals(object obj)
         {
             Record other = obj as Record;

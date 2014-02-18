@@ -32,6 +32,19 @@ namespace CenaPlus.Server.Bll
                     standings.Competitor = (from u in db.Users
                                            where u.ID == uid
                                            select u.NickName).FirstOrDefault();
+                    if (standings.Type == Entity.ContestType.Codeforces || standings.Type == Entity.ContestType.TopCoder)
+                    {
+                        standings.SuccessfulHack = (from h in db.Hacks
+                                           where h.HackerID == uid
+                                           && h.StatusAsInt == (int)Entity.HackStatus.Success
+                                           && problemids.Contains(h.Record.Problem.ID)
+                                           select h.ID).Count();
+                        standings.UnsuccessfulHack = (from h in db.Hacks
+                                           where h.HackerID == uid
+                                           && h.StatusAsInt == (int)Entity.HackStatus.Failure
+                                           && problemids.Contains(h.Record.Problem.ID)
+                                           select h.ID).Count();
+                    }
                     foreach (int pid in problemids)
                     {
                         Entity.StandingDetail detail = new Entity.StandingDetail();
@@ -67,13 +80,41 @@ namespace CenaPlus.Server.Bll
                             case Entity.ContestType.TopCoder:
                                 {
                                     var r = Dal.RecordHelper.GetLastRecord(uid, pid);
-                                    detail.RecordID = r.ID;
+                                    if(r!=null)
+                                    {
+                                        detail.RecordID = r.ID;
+                                    }
                                     break;
                                 }
                             case Entity.ContestType.Codeforces:
                                 {
                                     var r = Dal.RecordHelper.GetLastRecord(uid, pid);
-                                    detail.RecordID = r.ID;
+                                    if (r != null)
+                                    {
+                                        detail.RecordID = r.ID;
+                                        detail.ThirdScore = Dal.RecordHelper.GetNoZeroPtsEffectiveCount(uid, pid);
+                                        if (r.Status == Entity.RecordStatus.Accepted)
+                                        {
+                                            int problem_pts = (from p in db.Problems
+                                                               where p.ID == pid
+                                                               select p.Score).FirstOrDefault();
+                                            DateTime BeginTime = (from c in db.Contests
+                                                                  where c.ID == contest_id
+                                                                  select c.StartTime).FirstOrDefault();
+                                            int seconds = (int)(r.SubmissionTime - BeginTime).TotalSeconds;
+                                            int minutes = seconds / 60;
+                                            detail.FirstScore = Convert.ToInt32(problem_pts * (1 - 0.004 * minutes));
+                                            if(detail.FirstScore < problem_pts*0.3)
+                                                detail.FirstScore  = (int)(problem_pts*0.3);
+                                            detail.SecondScore = seconds;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        detail.FirstScore = 0;
+                                        detail.SecondScore = 0;
+                                        detail.ThirdScore = Dal.RecordHelper.GetNoZeroPtsEffectiveCount(uid, pid);
+                                    }
                                     break;
                                 }
                         }

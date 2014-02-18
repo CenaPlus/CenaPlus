@@ -82,6 +82,7 @@ CREATE TABLE `records` (
     time_usage int default null,
     memory_usage bigint default null,
     detail mediumtext default null,
+	score int not null,
     primary key (id),
     foreign key (user_id)
         references users (id)

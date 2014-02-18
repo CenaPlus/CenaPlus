@@ -25,8 +25,8 @@ INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) v
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) values (5,0,unhex(md5('1 2')),'1 2',unhex(md5('3')),'3');
 INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) values (5,1,unhex(md5('2 2')),'2 2',unhex(md5('4')),'4');
 
-INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time) values (1,1,0,0,'#include<con>',now());
-INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,time_usage,memory_usage,detail) values (2,5,4,1,'#include <iostream>\nint main(){\nreturn 0;\n}',now(),998,1024*1024*3,'Detail....');
+INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,score) values (1,1,0,0,'#include<con>',now(),0);
+INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,time_usage,memory_usage,detail,score) values (2,5,4,1,'#include <iostream>\nint main(){\nreturn 0;\n}',now(),998,1024*1024*3,'Detail....',0);
 
 INSERT INTO hacks (record_id,hacker_id,`status`,data_or_datamaker,datamaker_language,detail) values (2,1,0,'#include<con>',0,'Details...');
 

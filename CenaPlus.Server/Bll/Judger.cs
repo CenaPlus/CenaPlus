@@ -127,6 +127,7 @@ namespace CenaPlus.Server.Bll
                     RecordStatus finalStatus = RecordStatus.Accepted;
                     int totalTime = 0;
                     long maxMemory = 0;
+                    int account = 0;
                     for (int i = 0; i < runs.Count; i++)
                     {
                         var result = runs[i].Result;
@@ -135,10 +136,12 @@ namespace CenaPlus.Server.Bll
                         {
                             finalStatus = result.RecordStatus;
                         }
+                        if (result.RecordStatus == RecordStatus.Accepted)
+                            account++;
                         totalTime += result.TimeUsage;
                         maxMemory = Math.Max((long)result.MemUsage, maxMemory);
                     }
-
+                    r.Score = 100 * account / runs.Count;
                     r.Status = finalStatus;
                     r.TimeUsage = totalTime;
                     r.MemoryUsage = maxMemory;
