@@ -1360,11 +1360,16 @@ namespace CenaPlus.Server.Bll
         #region Standings
         public List<StandingItem> GetStandings(int contest_id)
         {
-            if (Bll.StandingsCache.Standings[contest_id]==null)
+            using (DB db = new DB())
             {
-                Bll.StandingsCache.Rebuild(contest_id);
+                CheckRole(db, UserRole.Competitor);
+
+                if (Bll.StandingsCache.Standings[contest_id] == null)
+                {
+                    Bll.StandingsCache.Rebuild(contest_id);
+                }
+                return (List<StandingItem>)Bll.StandingsCache.Standings[contest_id];
             }
-            return (List<StandingItem>)Bll.StandingsCache.Standings[contest_id];
         }
         #endregion
     }

@@ -287,5 +287,8 @@ namespace CenaPlus.Network
         [OperationContract]
         string GetCircular();
 
+        [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        List<StandingItem> GetStandings(int contest_id);
     }
 }

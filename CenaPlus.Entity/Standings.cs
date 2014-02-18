@@ -7,6 +7,7 @@ namespace CenaPlus.Entity
 {
     public class StandingItem
     {
+        public int Rank { get; set; }
         public Entity.ContestType Type = new Entity.ContestType();
         public string Competitor { get; set; }
         public int UserID { get; set; }
@@ -99,7 +100,6 @@ namespace CenaPlus.Entity
     public class StandingDetail
     {
         public Entity.ContestType DisplayFormat { get; set; }
-        public string Number { get; set; }
         public int FirstScore { get; set; }//OI为分数，ACM为尝试失败次数，CF、TC为分数
         public int SecondScore { get; set; }//ACM为该题目罚时(未通过罚时为0)，CF，TC为解题时间，均以秒为单位/oi耗时 毫秒
         public int ThirdScore { get; set; }//CF TC尝试失败次数
@@ -146,7 +146,8 @@ namespace CenaPlus.Entity
                             }
                             else
                             {
-                                Content = String.Format("(-{0})", ThirdScore);
+                                if (ThirdScore != 0)
+                                    Content = String.Format("(-{0})", ThirdScore);
                             }
                             break;
                         }

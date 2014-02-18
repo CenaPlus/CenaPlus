@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="480">
     <Grid>
-        <ScrollViewer Margin="0,40,0,0" VerticalAlignment="Top">
+        <ScrollViewer Margin="0,0,0,0" VerticalAlignment="Top">
             <ListBox x:Name="RecordListBox" SelectedValuePath="ID" SelectionChanged="RecordListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel Height="50">
+                        <DockPanel Height="35">
                             <Image DockPanel.Dock="Left" Width="35" Height="35" Source="/CenaPlus.Client;component/Resources/DefaultAvatar.jpg"></Image>
                             <StackPanel HorizontalAlignment="Left">
                                 <TextBlock Margin="10,0,0,0" Text="{Binding Status}" FontSize="14" Foreground="{Binding StatusColor}" />
@@ -22,8 +22,5 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </ScrollViewer>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="ProblemID" VerticalAlignment="Top" Width="120" Margin="125,0,0,0"/>
-        <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" FontSize="11" Margin="375,0,-2,0" Height="23"/>
     </Grid>
 </UserControl>

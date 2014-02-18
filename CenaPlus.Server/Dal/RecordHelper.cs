@@ -19,7 +19,7 @@ namespace CenaPlus.Server.Dal
         {
             using (DB db = new DB())
             {
-                Record record = (from r in db.Records
+                var record = (from r in db.Records
                                  where r.UserID == user_id
                                  && r.ProblemID == problem_id
                                  orderby r.SubmissionTime descending
@@ -37,7 +37,7 @@ namespace CenaPlus.Server.Dal
         {
             using (DB db = new DB())
             {
-                Record record = (from r in db.Records
+                var record = (from r in db.Records
                                  where r.UserID == user_id
                                  && r.ProblemID == problem_id
                                  && r.StatusAsInt == (int)RecordStatus.Accepted
@@ -56,7 +56,7 @@ namespace CenaPlus.Server.Dal
         {
             using (DB db = new DB())
             {
-                Record record = (from r in db.Records
+                var record = (from r in db.Records
                                  where r.UserID == user_id
                                  && r.ProblemID == problem_id
                                  && r.StatusAsInt == (int)RecordStatus.Accepted
@@ -110,7 +110,7 @@ namespace CenaPlus.Server.Dal
                              where r.UserID == user_id
                              && r.ProblemID == problem_id
                              && EffectiveStatus.Contains((Entity.RecordStatus)r.StatusAsInt)
-                             //&& r.Score != 0 //TODO: fix ce
+                             && r.Score != 0
                              select r.ID).Count();
                 return count;
             }
