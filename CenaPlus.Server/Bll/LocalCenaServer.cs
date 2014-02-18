@@ -620,7 +620,8 @@ namespace CenaPlus.Server.Bll
                     ProblemID = problemID,
                     Status = RecordStatus.Pending,
                     SubmissionTime = DateTime.Now,
-                    UserID = CurrentUser.ID
+                    UserID = CurrentUser.ID,
+                    Score = 0
                 };
 
                 db.Records.Add(record);

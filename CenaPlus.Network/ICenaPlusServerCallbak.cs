@@ -27,5 +27,13 @@ namespace CenaPlus.Network
         /// <param name="record"></param>
         [OperationContract(IsOneWay = true)]
         void JudgeFinished(Record record);
+
+        /// <summary>
+        /// Tell the client a standing item has been updated.
+        /// </summary>
+        /// <param name="contest_id"></param>
+        /// <param name="si"></param>
+        [OperationContract(IsOneWay = true)]
+        void StandingsPush(int contest_id, Entity.StandingItem si);
     }
 }

@@ -20,5 +20,9 @@ namespace CenaPlus.Server.Bll
         public void JudgeFinished(Record record)
         { 
         }
+
+        public void StandingsPush(int contest_id, Entity.StandingItem si)
+        { 
+        }
     }
 }

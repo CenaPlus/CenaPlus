@@ -44,5 +44,19 @@ namespace CenaPlus.Client.Bll
                 }));
             });
         }
+        public void StandingsPush(int contest_id, Entity.StandingItem si)
+        {
+            if (Bll.StandingsCache.Standings[contest_id] == null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => {
+                    App.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        App.Server.GetStandings(contest_id);
+                    }));
+                });
+            }
+            else
+                StandingsCache.UpdateSingleUser(contest_id, si);
+        }
     }
 }
