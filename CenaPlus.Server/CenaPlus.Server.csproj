@@ -104,6 +104,7 @@
     <Compile Include="Bll\JudgeNodeInfo.cs" />
     <Compile Include="Bll\Judger.cs" />
     <Compile Include="Bll\LocalCenaServer.cs" />
+    <Compile Include="Bll\PushingManager.cs" />
     <Compile Include="Bll\ServerCallback.cs" />
     <Compile Include="Bll\ServiceBroadcaster.cs" />
     <Compile Include="Bll\StandingsCache.cs" />

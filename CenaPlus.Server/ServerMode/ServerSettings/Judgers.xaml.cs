@@ -89,7 +89,7 @@ namespace CenaPlus.Server.ServerMode.ServerSettings
                 ModernDialog.ShowMessage("Password is not correct", "Error", MessageBoxButton.OK);
                 return;
             }
-            App.JudgeNodes.Add(info);
+            App.judgenodes.Add(info);
             Load();
             txtAddr.Text = "";
             txtPassword.Password = "";
@@ -98,13 +98,13 @@ namespace CenaPlus.Server.ServerMode.ServerSettings
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            App.JudgeNodes.RemoveAt(JudgeNodeListBox.SelectedIndex);
+            App.judgenodes.RemoveAt(JudgeNodeListBox.SelectedIndex);
             Load();
         }
 
         private void Load()
         {
-            var list = from n in App.JudgeNodes
+            var list = from n in App.judgenodes
                        select new JudgeNodeListBoxItem
                        {
                            Location = n.Location,

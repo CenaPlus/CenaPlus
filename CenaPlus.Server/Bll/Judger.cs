@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 namespace CenaPlus.Server.Bll
 {
-    class Judger
+    public class Judger
     {
         public event Action<int> HackJudgeComplete;
         public event Action<int> RecordJudgeComplete;
@@ -261,7 +261,7 @@ namespace CenaPlus.Server.Bll
         {
             IJudgeNodeChannel bestNode = null;
             int maxFreeCount = -1;
-            foreach (var node in App.JudgeNodes)
+            foreach (var node in App.judgenodes)
             {
                 IJudgeNodeChannel conn = null;
                 try

@@ -37,15 +37,19 @@ namespace CenaPlus.Server.ServerMode
             var index = onlineList.FindIndex(i => i.ID == userID);
             if (index >= 0)
             {
-                onlineList.RemoveAt(index);
-                OnlineListBox.Items.Refresh();
+                 Dispatcher.Invoke(new Action(() => {
+                     onlineList.RemoveAt(index);
+                     OnlineListBox.Items.Refresh();
+                 }));
             }
         }
 
         void LocalCenaServer_UserLoggedIn(int userID)
         {
-            onlineList.Add(new OnlineListItem(App.Server.GetUser(userID)));
-            OnlineListBox.Items.Refresh();
+            Dispatcher.Invoke(new Action(() => {
+                onlineList.Add(new OnlineListItem(App.Server.GetUser(userID)));
+                OnlineListBox.Items.Refresh();
+            }));
         }
 
         private void OnlineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
