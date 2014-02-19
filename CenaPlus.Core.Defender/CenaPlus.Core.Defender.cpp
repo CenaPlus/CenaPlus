@@ -84,6 +84,8 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			//Hook("Kernel32.dll", "SwitchToThread", NULL);
 			Hook("Kernel32.dll", "LoadLibraryExA", NULL);
 			Hook("Kernel32.dll", "LoadLibraryExW", NULL);
+			Hook("Kernel32.dll", "MessageBoxA", NULL);
+			Hook("Kernel32.dll", "MessageBoxW", NULL);
 
 			Hook("Kernel32.dll", "CreateFileA", NULL);
 			Hook("Kernel32.dll", "CreateFileW", NULL);
