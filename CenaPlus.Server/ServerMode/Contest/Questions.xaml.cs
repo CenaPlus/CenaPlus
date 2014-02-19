@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
+using CenaPlus.Server.Bll;
 
 namespace CenaPlus.Server.ServerMode.Contest
 {
@@ -27,6 +28,8 @@ namespace CenaPlus.Server.ServerMode.Contest
         public Questions()
         {
             InitializeComponent();
+            LocalCenaServer.QuestionUpdated += this.QuestionUpdated;
+            LocalCenaServer.NewQuestion += this.NewQuestion;
         }
 
         private void lstQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,7 +64,56 @@ namespace CenaPlus.Server.ServerMode.Contest
                 }
             }
         }
-
+        public void QuestionUpdated(int question_id)
+        {
+            var questionindex = QuestionListItems.FindIndex(x => x.ID == question_id);
+            if (questionindex == -1)
+                throw new Exception("Question item not found.");
+            var q = App.Server.GetQuestion(question_id);
+            Dispatcher.Invoke(new Action(() =>
+            {
+                QuestionListItems[questionindex] = new QuestionListItem()
+                {
+                    ID = q.ID,
+                    AskerID = q.AskerID,
+                    Answer = q.Answer,
+                    Asker = q.Asker,
+                    Contest = q.Contest,
+                    ContestID = q.ContestID,
+                    ContestName = q.ContestName,
+                    Description = q.Description,
+                    Status = q.Status,
+                    StatusAsInt = q.StatusAsInt,
+                    Time = q.Time,
+                    AskerNickName = q.AskerNickName
+                };
+                lstQuestion.Items.Refresh();
+            }));
+        }
+        public void NewQuestion(int question_id)
+        {
+            var q = App.Server.GetQuestion(question_id);
+            var item = new QuestionListItem()
+            {
+                ID = q.ID,
+                AskerID = q.AskerID,
+                Answer = q.Answer,
+                Asker = q.Asker,
+                Contest = q.Contest,
+                ContestID = q.ContestID,
+                ContestName = q.ContestName,
+                Description = q.Description,
+                Status = q.Status,
+                StatusAsInt = q.StatusAsInt,
+                Time = q.Time,
+                AskerNickName = q.AskerNickName
+            };
+            Dispatcher.Invoke(new Action(() =>
+            {
+                QuestionListItems.Add(item);
+                lstQuestion.Items.Refresh();
+            }));
+        }
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
             QuestionListItems.Clear();

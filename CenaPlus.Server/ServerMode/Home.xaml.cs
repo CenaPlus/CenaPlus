@@ -86,16 +86,16 @@ namespace CenaPlus.Server.ServerMode
             }
             App.ConnectionString = connectionString;
 
-            App.ContestManager.ScheduleAll();
+            App.contestmanager.ScheduleAll();
 
-            App.Judger.RecordJudgeComplete += App.PushingManager.JudgeFinished;
-            App.Judger.StartJudgeAllPending();
+            App.judger.RecordJudgeComplete += App.pushingmanager.JudgeFinished;
+            App.judger.StartJudgeAllPending();
 
-            LocalCenaServer.ContestModified += App.ContestManager.Reschedule;
-            LocalCenaServer.ContestDeleted += App.ContestManager.RemoveSchedule;
-            LocalCenaServer.NewRecord += App.Judger.JudgeRecord;
-            LocalCenaServer.NewHack += App.Judger.JudgeHack;
-            LocalCenaServer.RecordRejudged += App.Judger.JudgeRecord;
+            LocalCenaServer.ContestModified += App.contestmanager.Reschedule;
+            LocalCenaServer.ContestDeleted += App.contestmanager.RemoveSchedule;
+            LocalCenaServer.NewRecord += App.judger.JudgeRecord;
+            LocalCenaServer.NewHack += App.judger.JudgeHack;
+            LocalCenaServer.RecordRejudged += App.judger.JudgeRecord;
 
             host = new CenaPlusServerHost(localPort, serverName);
             host.Open();
@@ -110,7 +110,7 @@ namespace CenaPlus.Server.ServerMode
                 var judgeNodeHost = new JudgeNodeHost(port, serverName + " Local");
                 judgeNodeHost.Open();
 
-                App.JudgeNodes.Add(new JudgeNodeInfo
+                App.judgenodes.Add(new JudgeNodeInfo
                 {
                     Location = new IPEndPoint(IPAddress.Loopback, port),
                     Name = serverName + " Local",

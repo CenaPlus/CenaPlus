@@ -26,7 +26,7 @@
         <GridSplitter Grid.Column="1" Margin="0,0,1,0" />
         <Grid Grid.Column="2" Margin="{StaticResource SplitRight}">
             <TextBlock Text="Server circulars" Style="{StaticResource Heading2}" />
-            <RichTextBox Name="txtCircular" Margin="0,30,0,0" IsReadOnly="True"></RichTextBox>
+            <RichTextBox Name="txtCircular" Margin="0,30,0,0" IsReadOnly="True" BorderThickness="0"></RichTextBox>
         </Grid>
     </Grid>
 </UserControl>

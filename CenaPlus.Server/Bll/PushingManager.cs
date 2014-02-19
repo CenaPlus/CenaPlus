@@ -7,9 +7,8 @@ using System.Text;
 
 namespace CenaPlus.Server.Bll
 {
-    class PushingManager
+    public class PushingManager
     {
-
         public void JudgeFinished(int record_id)
         {
             using (DB db = new DB())
@@ -62,7 +61,5 @@ namespace CenaPlus.Server.Bll
                 }
             }
         }
-
-
     }
 }

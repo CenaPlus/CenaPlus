@@ -7,7 +7,7 @@ using CenaPlus.Server.Dal;
 using CenaPlus.Entity;
 namespace CenaPlus.Server.Bll
 {
-    class ContestManager
+    public class ContestManager
     {
         private Dictionary<int, List<Timer>> timers = new Dictionary<int, List<Timer>>();
 
