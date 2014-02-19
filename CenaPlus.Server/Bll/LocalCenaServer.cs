@@ -29,6 +29,8 @@ namespace CenaPlus.Server.Bll
         public static event Action<int> RecordRejudged;
         public static event Action<int> UserLoggedIn;
         public static event Action<int> UserLoggedOut;
+        public static event Action<int> NewQuestion;
+        public static event Action<int> QuestionUpdated;
         #endregion
 
         public LocalCenaServer()
@@ -1068,6 +1070,10 @@ namespace CenaPlus.Server.Bll
                 {
                     App.Clients[question.AskerID].Callback.QuestionUpdated(q);
                 }
+                if (QuestionUpdated != null) 
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => QuestionUpdated(q.ID));
+                }
             }
         }
 
@@ -1118,7 +1124,10 @@ namespace CenaPlus.Server.Bll
 
                 db.Questions.Add(question);
                 db.SaveChanges();
-
+                if (NewQuestion != null) 
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => NewQuestion(question.ID));
+                }
                 return question.ID;
             }
         }

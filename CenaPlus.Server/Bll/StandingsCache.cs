@@ -25,6 +25,13 @@ namespace CenaPlus.Server.Bll
                 return problemids.FindIndex(x => x == problem_id);
             }
         }
+        /// <summary>
+        /// 更新某用户某题的排名元素
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="problem_id"></param>
+        /// <param name="contest_id"></param>
+        /// <param name="Type"></param>
         public static void UpdateSingleDetail(int user_id, int problem_id, int contest_id, Entity.ContestType Type)
         {
             using (Dal.DB db = new Dal.DB())
@@ -129,7 +136,12 @@ namespace CenaPlus.Server.Bll
                 (Standings[contest_id] as List<Entity.StandingItem>)[userindex].Details[FindProblem(problem_id, contest_id)] = detail;
             }
         }
-
+        /// <summary>
+        /// 重构某用户的排名信息
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="contest_id"></param>
+        /// <param name="problemids"></param>
         public static void UpdateSingleUser(int user_id, int contest_id, List<int> problemids)
         {
             using (Dal.DB db = new Dal.DB())
