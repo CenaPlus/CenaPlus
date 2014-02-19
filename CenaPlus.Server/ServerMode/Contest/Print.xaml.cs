@@ -55,6 +55,12 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
             int id = (int)PrintRequestListBox.SelectedValue;
 
+            if (App.Server.GetPrintRequest(id).Status != PrintRequestStatus.Pending)
+            {
+                ModernDialog.ShowMessage("This material has been already printed.", "Message", MessageBoxButton.OK);
+                return;
+            }
+
             int copies;
             if (!int.TryParse(txtCopies.Text, out copies))
             {
