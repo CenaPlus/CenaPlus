@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Entity;
+using CenaPlus.Server.Bll;
 namespace CenaPlus.Server.ServerMode
 {
     /// <summary>
@@ -22,10 +23,29 @@ namespace CenaPlus.Server.ServerMode
     public partial class Online : UserControl, IContent
     {
         public List<OnlineListItem> onlineList = new List<OnlineListItem>();
+
         public Online()
         {
             InitializeComponent();
             OnlineListBox.ItemsSource = onlineList;
+            LocalCenaServer.UserLoggedIn += LocalCenaServer_UserLoggedIn;
+            LocalCenaServer.UserLoggedOut += LocalCenaServer_UserLoggedOut;
+        }
+
+        void LocalCenaServer_UserLoggedOut(int userID)
+        {
+            var index = onlineList.FindIndex(i => i.ID == userID);
+            if (index >= 0)
+            {
+                onlineList.RemoveAt(index);
+                OnlineListBox.Items.Refresh();
+            }
+        }
+
+        void LocalCenaServer_UserLoggedIn(int userID)
+        {
+            onlineList.Add(new OnlineListItem(App.Server.GetUser(userID)));
+            OnlineListBox.Items.Refresh();
         }
 
         private void OnlineListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -54,7 +74,7 @@ namespace CenaPlus.Server.ServerMode
 
         private void btnKick_Click(object sender, RoutedEventArgs e)
         {
-            int id =(int) OnlineListBox.SelectedValue;
+            int id = (int)OnlineListBox.SelectedValue;
             App.Server.Kick(id);
             onlineList.RemoveAt(OnlineListBox.SelectedIndex);
             OnlineListBox.Items.Refresh();
@@ -64,13 +84,7 @@ namespace CenaPlus.Server.ServerMode
         {
             var list = from id in App.Server.GetOnlineList()
                        let u = App.Server.GetUser(id)
-                       select new OnlineListItem
-                       {
-                           ID = u.ID,
-                           IP = "Unknown",
-                           Name = u.Name,
-                           NickName = u.NickName
-                       };
+                       select new OnlineListItem(u);
             onlineList.Clear();
             foreach (var item in list) onlineList.Add(item);
 
@@ -80,10 +94,18 @@ namespace CenaPlus.Server.ServerMode
         {
         }
 
-        
+
     }
     public class OnlineListItem : User
     {
+        public OnlineListItem(User u)
+        {
+            ID = u.ID;
+            IP = "Unknown";
+            Name = u.Name;
+            NickName = u.NickName;
+        }
+
         public string IP { get; set; }
         public string Gravatar
         {

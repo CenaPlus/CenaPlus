@@ -1,8 +1,0 @@
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.CenaPlusServerChannelFactory 生成存根: 类型已密封。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.JudgeNodeChannelFactory 生成存根: 类型已密封。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.ICenaPlusServer 生成填充码: 类型是一个接口。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.ICenaPlusServerChannel 生成填充码: 类型是一个接口。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.ICenaPlusServerCallback 生成填充码: 类型是一个接口。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.IJudgeNode 生成填充码: 类型是一个接口。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.IJudgeNodeCallback 生成填充码: 类型是一个接口。
-C:\Users\Gasai Yuno\Documents\GitHub\CenaPlus\CenaPlus.Server\Fakes\CenaPlus.Network.fakes : warning : 无法为 CenaPlus.Network.IJudgeNodeChannel 生成填充码: 类型是一个接口。

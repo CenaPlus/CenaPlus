@@ -24,6 +24,7 @@ namespace CenaPlus.Client
         static App()
         {
             HeartBeatTimer = new Timer(10 * 1000);
+            //HeartBeatTimer.SynchronizingObject = null;
             HeartBeatTimer.Elapsed += delegate
             {
                 if (Server != null)

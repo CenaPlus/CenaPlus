@@ -27,6 +27,8 @@ namespace CenaPlus.Server.Bll
         public static event Action<int> ContestModified;
         public static event Action<int> ContestDeleted;
         public static event Action<int> RecordRejudged;
+        public static event Action<int> UserLoggedIn;
+        public static event Action<int> UserLoggedOut;
         #endregion
 
         public LocalCenaServer()
@@ -47,6 +49,9 @@ namespace CenaPlus.Server.Bll
                 {
                     App.Clients.Remove(CurrentUser.ID);
                 }
+
+                if (UserLoggedOut != null)
+                    System.Threading.Tasks.Task.Factory.StartNew(() => UserLoggedOut(CurrentUser.ID));
             }
         }
 
@@ -108,6 +113,9 @@ namespace CenaPlus.Server.Bll
                 }
 
                 CurrentUser = user;
+
+                if (UserLoggedIn != null)
+                    System.Threading.Tasks.Task.Factory.StartNew(() => UserLoggedIn(user.ID));
                 return true;
             }
         }
