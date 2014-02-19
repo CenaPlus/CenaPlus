@@ -67,8 +67,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         public void QuestionUpdated(int question_id)
         {
             var questionindex = QuestionListItems.FindIndex(x => x.ID == question_id);
-            if (questionindex == -1)
-                throw new Exception("Question item not found.");
+            if (questionindex == -1) return;
             var q = App.Server.GetQuestion(question_id);
             Dispatcher.Invoke(new Action(() =>
             {

@@ -31,6 +31,8 @@ namespace CenaPlus.Server.Bll
         public static event Action<int> UserLoggedOut;
         public static event Action<int> NewQuestion;
         public static event Action<int> QuestionUpdated;
+        public static event Action<int> NewPrintRequest;
+        public static event Action<int> PrintRequestUpdated;
         #endregion
 
         public LocalCenaServer()
@@ -1253,6 +1255,10 @@ namespace CenaPlus.Server.Bll
                 };
                 db.PrintRequests.Add(request);
                 db.SaveChanges();
+                if (NewPrintRequest != null)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => NewPrintRequest(request.ID));
+                }
                 return request.ID;
             }
         }
@@ -1305,6 +1311,10 @@ namespace CenaPlus.Server.Bll
                 if (CurrentUser.Role >= UserRole.Manager && status != null)
                     request.Status = status.Value;
                 db.SaveChanges();
+                if (PrintRequestUpdated != null)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => PrintRequestUpdated(request.ID));
+                }
             }
         }
         public List<int> GetPrintRequestList(int contestID)

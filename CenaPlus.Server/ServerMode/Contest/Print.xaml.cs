@@ -19,6 +19,7 @@ using CenaPlus.Entity;
 using System.IO;
 using System.Printing;
 using System.Windows.Xps;
+using CenaPlus.Server.Bll;
 
 namespace CenaPlus.Server.ServerMode.Contest
 {
@@ -33,8 +34,47 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
             InitializeComponent();
             PrintRequestListBox.ItemsSource = requestList;
+            LocalCenaServer.NewPrintRequest += this.NewPrintRequest;
+            LocalCenaServer.PrintRequestUpdated += this.PrintRequestUpdated;
         }
-
+        public void PrintRequestUpdated(int request_id)
+        {
+            var requestindex = requestList.FindIndex(x => x.ID == request_id);
+            if (requestindex == -1) return;
+            var r = App.Server.GetPrintRequest(request_id);
+            var item = new PrintRequestListItem
+            {
+                ID = r.ID,
+                Copies = r.Copies,
+                Content = r.Content,
+                Time = r.Time,
+                Status = r.Status,
+                UserNickName = r.UserNickName
+            };
+            Dispatcher.Invoke(new Action(() =>
+            {
+                requestList[requestindex] = item;
+                PrintRequestListBox.Items.Refresh();
+            }));
+        }
+        public void NewPrintRequest(int request_id)
+        {
+            var r = App.Server.GetPrintRequest(request_id);
+            var item = new PrintRequestListItem
+            {
+                ID = r.ID,
+                Copies = r.Copies,
+                Content = r.Content,
+                Time = r.Time,
+                Status = r.Status,
+                UserNickName = r.UserNickName
+            };
+            Dispatcher.Invoke(new Action(() =>
+            {
+                requestList.Add(item);
+                PrintRequestListBox.Items.Refresh();
+            }));
+        }
         private void PrintRequestListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (gridPrintContent == null) return;
@@ -199,5 +239,4 @@ namespace CenaPlus.Server.ServerMode.Contest
             }
         }
     }
-
 }
