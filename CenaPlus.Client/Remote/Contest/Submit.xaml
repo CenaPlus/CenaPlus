@@ -11,6 +11,6 @@
             <ComboBox Name="lstLanguage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="25" Margin="0,0,10,0"/>
             <Button Name="btnSubmit" Content="Submit" Width="75" Click="btnSubmit_Click"/>
         </WrapPanel>
-        <TextBox Name="txtCode" Margin="0,35,0,0" AcceptsReturn="true"></TextBox>
+        <RichTextBox Name="txtCode" Margin="0,35,0,0" AcceptsReturn="true" AcceptsTab="True"></RichTextBox>
     </Grid>
 </UserControl>

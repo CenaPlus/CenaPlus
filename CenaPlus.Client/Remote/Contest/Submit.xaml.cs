@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,7 @@ namespace CenaPlus.Client.Remote.Contest
         {
             InitializeComponent();
             lstLanguage.ItemsSource =  Enum.GetNames(typeof(ProgrammingLanguage));
+            RichTextEditor.HighLightEdit.HighLight(txtCode);
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
@@ -48,8 +50,14 @@ namespace CenaPlus.Client.Remote.Contest
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            int recordID = App.Server.Submit(problemID, txtCode.Text, (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), (string)lstLanguage.SelectedItem));
-            MessageBox.Show("TODO: navigate to record #" + recordID);
+            int recordID = App.Server.Submit(problemID,  new TextRange(txtCode.Document.ContentStart, txtCode.Document.ContentEnd).Text , (ProgrammingLanguage)Enum.Parse(typeof(ProgrammingLanguage), (string)lstLanguage.SelectedItem));
+            var problem = App.Server.GetProblem(problemID);
+            var frame = NavigationHelper.FindFrame(null, this);
+            if (frame != null)
+            {
+                Thread.Sleep(200);
+                frame.Source = new Uri("/Remote/Contest/ProblemGeneral.xaml#" + problem.ContestID, UriKind.Relative);
+            }
         }
     }
 }

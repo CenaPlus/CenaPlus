@@ -94,7 +94,7 @@ namespace CenaPlus.Client.Remote.Contest
         {
             get
             {
-                return String.Format("Time limit: {0} ms / Memory limit: {1} KiB{2}", TimeLimit, MemoryLimit, SpecialJudge?" / Special judge mode":"");
+                return String.Format("Time limit: {0} ms / Memory limit: {1} MiB{2}", TimeLimit, MemoryLimit, SpecialJudge?" / Special judge mode":"");
             }
         }
         public string Details 

@@ -13,6 +13,10 @@
                 <TextBlock x:Name="tbStatusID" Text="" Margin="0,0,0,10" />
                 <TextBlock Text="Status" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="tbStatus" Text="" FontWeight="Bold" Margin="0,0,0,10" />
+                <TextBlock Text="Submittion time" Style="{StaticResource Heading2}" />
+                <TextBlock x:Name="tbSubmittion" Text="" Margin="0,0,0,10" />
+                <TextBlock Text="Language" Style="{StaticResource Heading2}" />
+                <TextBlock x:Name="tbLanguage" Text="" Margin="0,0,0,10" />
                 <TextBlock Text="Time usage" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="tbTime" Text="" Margin="0,0,0,10" />
                 <TextBlock Text="Memory usage" Style="{StaticResource Heading2}" />

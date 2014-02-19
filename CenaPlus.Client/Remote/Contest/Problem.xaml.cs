@@ -44,7 +44,7 @@ namespace CenaPlus.Client.Remote.Contest
             var problem = App.Server.GetProblem(problemID);
             txtTitle.Text = problem.Title;
             var wholePage = new TextRange(txtContent.Document.ContentStart, txtContent.Document.ContentEnd);
-            using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(problem.Title)))
+            using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(problem.Content)))
             {
                 wholePage.Load(mem, DataFormats.Rtf);
             }

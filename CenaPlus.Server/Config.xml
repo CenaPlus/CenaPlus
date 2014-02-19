@@ -14,8 +14,8 @@
       <Java>java Main</Java>
       <Javac>javac Main.java</Javac>
       <Pascal>fpc -O2 -dONLINE_JUDGE Main.pas</Pascal>
-      <Python27>python2.7 Main.py</Python27>
-      <Python33>python3.3 Main.py</Python33>
+      <Python27>python2.7.exe Main.py</Python27>
+      <Python33>python3.3.exe Main.py</Python33>
       <Ruby>ruby Main.rb</Ruby>
     </Arguments>
   </Judge>

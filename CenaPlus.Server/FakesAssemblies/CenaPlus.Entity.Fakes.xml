@@ -1,0 +1,3170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CenaPlus.Entity.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:CenaPlus.Entity.Fakes.ShimConfig">
+            <summary>CenaPlus.Entity.Config 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimConfig.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimConfig.#ctor(CenaPlus.Entity.Config)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimConfig.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimConfig.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.Constructor">
+            <summary>设置 Config.Config() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.KeyGet">
+            <summary>设置 Config.get_Key() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.KeySetString">
+            <summary>设置 Config.set_Key(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.ValueGet">
+            <summary>设置 Config.get_Value() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.ValueSetString">
+            <summary>设置 Config.set_Value(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimConfig.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.AllInstances.KeyGet">
+            <summary>设置 Config.get_Key() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.AllInstances.KeySetString">
+            <summary>设置 Config.set_Key(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.AllInstances.ValueGet">
+            <summary>设置 Config.get_Value() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimConfig.AllInstances.ValueSetString">
+            <summary>设置 Config.set_Value(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimContest">
+            <summary>CenaPlus.Entity.Contest 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimContest.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimContest.#ctor(CenaPlus.Entity.Contest)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimContest.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimContest.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.Constructor">
+            <summary>设置 Contest.Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.DescriptionGet">
+            <summary>设置 Contest.get_Description() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.DescriptionSetString">
+            <summary>设置 Contest.set_Description(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.DurationGet">
+            <summary>设置 Contest.get_Duration() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.EndTimeGet">
+            <summary>设置 Contest.get_EndTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.EndTimeSetDateTime">
+            <summary>设置 Contest.set_EndTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.EqualsObject">
+            <summary>设置 Contest.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.GetHashCode">
+            <summary>设置 Contest.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.HackStartTimeGet">
+            <summary>设置 Contest.get_HackStartTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.HackStartTimeSetNullableOfDateTime">
+            <summary>设置 Contest.set_HackStartTime(Nullable`1&lt;DateTime&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.IDGet">
+            <summary>设置 Contest.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.IDSetInt32">
+            <summary>设置 Contest.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.PrintingEnabledGet">
+            <summary>设置 Contest.get_PrintingEnabled() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.PrintingEnabledSetBoolean">
+            <summary>设置 Contest.set_PrintingEnabled(Boolean value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.ProblemsGet">
+            <summary>设置 Contest.get_Problems() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.ProblemsSetICollectionOfProblem">
+            <summary>设置 Contest.set_Problems(ICollection`1&lt;Problem&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.RestTimeGet">
+            <summary>设置 Contest.get_RestTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.RestTimeSetNullableOfDateTime">
+            <summary>设置 Contest.set_RestTime(Nullable`1&lt;DateTime&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.StartTimeGet">
+            <summary>设置 Contest.get_StartTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.StartTimeSetDateTime">
+            <summary>设置 Contest.set_StartTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.TitleGet">
+            <summary>设置 Contest.get_Title() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.TitleSetString">
+            <summary>设置 Contest.set_Title(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.TypeAsIntGet">
+            <summary>设置 Contest.get_TypeAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.TypeAsIntSetInt32">
+            <summary>设置 Contest.set_TypeAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.TypeGet">
+            <summary>设置 Contest.get_Type() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.TypeSetContestType">
+            <summary>设置 Contest.set_Type(ContestType value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimContest.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.DescriptionGet">
+            <summary>设置 Contest.get_Description() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.DescriptionSetString">
+            <summary>设置 Contest.set_Description(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.DurationGet">
+            <summary>设置 Contest.get_Duration() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.EndTimeGet">
+            <summary>设置 Contest.get_EndTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.EndTimeSetDateTime">
+            <summary>设置 Contest.set_EndTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.EqualsObject">
+            <summary>设置 Contest.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.GetHashCode01">
+            <summary>设置 Contest.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.HackStartTimeGet">
+            <summary>设置 Contest.get_HackStartTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.HackStartTimeSetNullableOfDateTime">
+            <summary>设置 Contest.set_HackStartTime(Nullable`1&lt;DateTime&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.IDGet">
+            <summary>设置 Contest.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.IDSetInt32">
+            <summary>设置 Contest.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.PrintingEnabledGet">
+            <summary>设置 Contest.get_PrintingEnabled() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.PrintingEnabledSetBoolean">
+            <summary>设置 Contest.set_PrintingEnabled(Boolean value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.ProblemsGet">
+            <summary>设置 Contest.get_Problems() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.ProblemsSetICollectionOfProblem">
+            <summary>设置 Contest.set_Problems(ICollection`1&lt;Problem&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.RestTimeGet">
+            <summary>设置 Contest.get_RestTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.RestTimeSetNullableOfDateTime">
+            <summary>设置 Contest.set_RestTime(Nullable`1&lt;DateTime&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.StartTimeGet">
+            <summary>设置 Contest.get_StartTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.StartTimeSetDateTime">
+            <summary>设置 Contest.set_StartTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.TitleGet">
+            <summary>设置 Contest.get_Title() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.TitleSetString">
+            <summary>设置 Contest.set_Title(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.TypeAsIntGet">
+            <summary>设置 Contest.get_TypeAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.TypeAsIntSetInt32">
+            <summary>设置 Contest.set_TypeAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.TypeGet">
+            <summary>设置 Contest.get_Type() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimContest.AllInstances.TypeSetContestType">
+            <summary>设置 Contest.set_Type(ContestType value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimHack">
+            <summary>CenaPlus.Entity.Hack 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimHack.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimHack.#ctor(CenaPlus.Entity.Hack)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimHack.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimHack.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.Constructor">
+            <summary>设置 Hack.Hack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DataOrDatamakerGet">
+            <summary>设置 Hack.get_DataOrDatamaker() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DataOrDatamakerSetString">
+            <summary>设置 Hack.set_DataOrDatamaker(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DatamakerLanguageAsIntGet">
+            <summary>设置 Hack.get_DatamakerLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DatamakerLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Hack.set_DatamakerLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DatamakerLanguageGet">
+            <summary>设置 Hack.get_DatamakerLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DatamakerLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Hack.set_DatamakerLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DetailGet">
+            <summary>设置 Hack.get_Detail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.DetailSetString">
+            <summary>设置 Hack.set_Detail(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.EqualsObject">
+            <summary>设置 Hack.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.GetHashCode">
+            <summary>设置 Hack.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackeeIDGet">
+            <summary>设置 Hack.get_HackeeID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackeeIDSetInt32">
+            <summary>设置 Hack.set_HackeeID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackeeNickNameGet">
+            <summary>设置 Hack.get_HackeeNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackeeNickNameSetString">
+            <summary>设置 Hack.set_HackeeNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackerGet">
+            <summary>设置 Hack.get_Hacker() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackerIDGet">
+            <summary>设置 Hack.get_HackerID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackerIDSetInt32">
+            <summary>设置 Hack.set_HackerID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackerNickNameGet">
+            <summary>设置 Hack.get_HackerNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackerNickNameSetString">
+            <summary>设置 Hack.set_HackerNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.HackerSetUser">
+            <summary>设置 Hack.set_Hacker(User value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.IDGet">
+            <summary>设置 Hack.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.IDSetInt32">
+            <summary>设置 Hack.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.RecordGet">
+            <summary>设置 Hack.get_Record() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.RecordIDGet">
+            <summary>设置 Hack.get_RecordID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.RecordIDSetInt32">
+            <summary>设置 Hack.set_RecordID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.RecordSetRecord">
+            <summary>设置 Hack.set_Record(Record value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.StatusAsIntGet">
+            <summary>设置 Hack.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.StatusAsIntSetInt32">
+            <summary>设置 Hack.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.StatusGet">
+            <summary>设置 Hack.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.StatusSetHackStatus">
+            <summary>设置 Hack.set_Status(HackStatus value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimHack.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DataOrDatamakerGet">
+            <summary>设置 Hack.get_DataOrDatamaker() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DataOrDatamakerSetString">
+            <summary>设置 Hack.set_DataOrDatamaker(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DatamakerLanguageAsIntGet">
+            <summary>设置 Hack.get_DatamakerLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DatamakerLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Hack.set_DatamakerLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DatamakerLanguageGet">
+            <summary>设置 Hack.get_DatamakerLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DatamakerLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Hack.set_DatamakerLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DetailGet">
+            <summary>设置 Hack.get_Detail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.DetailSetString">
+            <summary>设置 Hack.set_Detail(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.EqualsObject">
+            <summary>设置 Hack.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.GetHashCode01">
+            <summary>设置 Hack.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackeeIDGet">
+            <summary>设置 Hack.get_HackeeID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackeeIDSetInt32">
+            <summary>设置 Hack.set_HackeeID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackeeNickNameGet">
+            <summary>设置 Hack.get_HackeeNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackeeNickNameSetString">
+            <summary>设置 Hack.set_HackeeNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackerGet">
+            <summary>设置 Hack.get_Hacker() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackerIDGet">
+            <summary>设置 Hack.get_HackerID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackerIDSetInt32">
+            <summary>设置 Hack.set_HackerID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackerNickNameGet">
+            <summary>设置 Hack.get_HackerNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackerNickNameSetString">
+            <summary>设置 Hack.set_HackerNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.HackerSetUser">
+            <summary>设置 Hack.set_Hacker(User value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.IDGet">
+            <summary>设置 Hack.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.IDSetInt32">
+            <summary>设置 Hack.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.RecordGet">
+            <summary>设置 Hack.get_Record() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.RecordIDGet">
+            <summary>设置 Hack.get_RecordID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.RecordIDSetInt32">
+            <summary>设置 Hack.set_RecordID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.RecordSetRecord">
+            <summary>设置 Hack.set_Record(Record value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.StatusAsIntGet">
+            <summary>设置 Hack.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.StatusAsIntSetInt32">
+            <summary>设置 Hack.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.StatusGet">
+            <summary>设置 Hack.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimHack.AllInstances.StatusSetHackStatus">
+            <summary>设置 Hack.set_Status(HackStatus value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimPrintRequest">
+            <summary>CenaPlus.Entity.PrintRequest 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimPrintRequest.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimPrintRequest.#ctor(CenaPlus.Entity.PrintRequest)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimPrintRequest.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimPrintRequest.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.Constructor">
+            <summary>设置 PrintRequest.PrintRequest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContentGet">
+            <summary>设置 PrintRequest.get_Content() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContentSetString">
+            <summary>设置 PrintRequest.set_Content(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContestGet">
+            <summary>设置 PrintRequest.get_Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContestIDGet">
+            <summary>设置 PrintRequest.get_ContestID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContestIDSetInt32">
+            <summary>设置 PrintRequest.set_ContestID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContestSetContest">
+            <summary>设置 PrintRequest.set_Contest(Contest value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContestTitleGet">
+            <summary>设置 PrintRequest.get_ContestTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.ContestTitleSetString">
+            <summary>设置 PrintRequest.set_ContestTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.CopiesGet">
+            <summary>设置 PrintRequest.get_Copies() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.CopiesSetInt32">
+            <summary>设置 PrintRequest.set_Copies(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.EqualsObject">
+            <summary>设置 PrintRequest.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.GetHashCode">
+            <summary>设置 PrintRequest.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.IDGet">
+            <summary>设置 PrintRequest.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.IDSetInt32">
+            <summary>设置 PrintRequest.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.StatusAsIntGet">
+            <summary>设置 PrintRequest.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.StatusAsIntSetInt32">
+            <summary>设置 PrintRequest.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.StatusGet">
+            <summary>设置 PrintRequest.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.StatusSetPrintRequestStatus">
+            <summary>设置 PrintRequest.set_Status(PrintRequestStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.TimeGet">
+            <summary>设置 PrintRequest.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.TimeSetDateTime">
+            <summary>设置 PrintRequest.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.UserGet">
+            <summary>设置 PrintRequest.get_User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.UserIDGet">
+            <summary>设置 PrintRequest.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.UserIDSetInt32">
+            <summary>设置 PrintRequest.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.UserNickNameGet">
+            <summary>设置 PrintRequest.get_UserNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.UserNickNameSetString">
+            <summary>设置 PrintRequest.set_UserNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.UserSetUser">
+            <summary>设置 PrintRequest.set_User(User value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContentGet">
+            <summary>设置 PrintRequest.get_Content() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContentSetString">
+            <summary>设置 PrintRequest.set_Content(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContestGet">
+            <summary>设置 PrintRequest.get_Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContestIDGet">
+            <summary>设置 PrintRequest.get_ContestID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContestIDSetInt32">
+            <summary>设置 PrintRequest.set_ContestID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContestSetContest">
+            <summary>设置 PrintRequest.set_Contest(Contest value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContestTitleGet">
+            <summary>设置 PrintRequest.get_ContestTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.ContestTitleSetString">
+            <summary>设置 PrintRequest.set_ContestTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.CopiesGet">
+            <summary>设置 PrintRequest.get_Copies() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.CopiesSetInt32">
+            <summary>设置 PrintRequest.set_Copies(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.EqualsObject">
+            <summary>设置 PrintRequest.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.GetHashCode01">
+            <summary>设置 PrintRequest.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.IDGet">
+            <summary>设置 PrintRequest.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.IDSetInt32">
+            <summary>设置 PrintRequest.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.StatusAsIntGet">
+            <summary>设置 PrintRequest.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.StatusAsIntSetInt32">
+            <summary>设置 PrintRequest.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.StatusGet">
+            <summary>设置 PrintRequest.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.StatusSetPrintRequestStatus">
+            <summary>设置 PrintRequest.set_Status(PrintRequestStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.TimeGet">
+            <summary>设置 PrintRequest.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.TimeSetDateTime">
+            <summary>设置 PrintRequest.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.UserGet">
+            <summary>设置 PrintRequest.get_User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.UserIDGet">
+            <summary>设置 PrintRequest.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.UserIDSetInt32">
+            <summary>设置 PrintRequest.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.UserNickNameGet">
+            <summary>设置 PrintRequest.get_UserNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.UserNickNameSetString">
+            <summary>设置 PrintRequest.set_UserNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimPrintRequest.AllInstances.UserSetUser">
+            <summary>设置 PrintRequest.set_User(User value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblem">
+            <summary>CenaPlus.Entity.Problem 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblem.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblem.#ctor(CenaPlus.Entity.Problem)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblem.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblem.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.Constructor">
+            <summary>设置 Problem.Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContentGet">
+            <summary>设置 Problem.get_Content() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContentSetString">
+            <summary>设置 Problem.set_Content(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContestGet">
+            <summary>设置 Problem.get_Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContestIDGet">
+            <summary>设置 Problem.get_ContestID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContestIDSetInt32">
+            <summary>设置 Problem.set_ContestID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContestSetContest">
+            <summary>设置 Problem.set_Contest(Contest value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContestTitleGet">
+            <summary>设置 Problem.get_ContestTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ContestTitleSetString">
+            <summary>设置 Problem.set_ContestTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.EqualsObject">
+            <summary>设置 Problem.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ForbiddenLanguagesAsStringGet">
+            <summary>设置 Problem.get_ForbiddenLanguagesAsString() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ForbiddenLanguagesAsStringSetString">
+            <summary>设置 Problem.set_ForbiddenLanguagesAsString(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ForbiddenLanguagesGet">
+            <summary>设置 Problem.get_ForbiddenLanguages() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ForbiddenLanguagesSetIEnumerableOfProgrammingLanguage">
+            <summary>设置 Problem.set_ForbiddenLanguages(IEnumerable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.GetHashCode">
+            <summary>设置 Problem.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.IDGet">
+            <summary>设置 Problem.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.IDSetInt32">
+            <summary>设置 Problem.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.LockedUsersGet">
+            <summary>设置 Problem.get_LockedUsers() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.LockedUsersSetICollectionOfUser">
+            <summary>设置 Problem.set_LockedUsers(ICollection`1&lt;User&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.MemoryLimitGet">
+            <summary>设置 Problem.get_MemoryLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.MemoryLimitSetInt64">
+            <summary>设置 Problem.set_MemoryLimit(Int64 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ScoreGet">
+            <summary>设置 Problem.get_Score() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ScoreSetInt32">
+            <summary>设置 Problem.set_Score(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.SpjGet">
+            <summary>设置 Problem.get_Spj() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.SpjLanguageAsIntGet">
+            <summary>设置 Problem.get_SpjLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.SpjLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Problem.set_SpjLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.SpjLanguageGet">
+            <summary>设置 Problem.get_SpjLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.SpjLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Problem.set_SpjLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.SpjSetString">
+            <summary>设置 Problem.set_Spj(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.StdGet">
+            <summary>设置 Problem.get_Std() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.StdLanguageAsIntGet">
+            <summary>设置 Problem.get_StdLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.StdLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Problem.set_StdLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.StdLanguageGet">
+            <summary>设置 Problem.get_StdLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.StdLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Problem.set_StdLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.StdSetString">
+            <summary>设置 Problem.set_Std(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TestCasesCountGet">
+            <summary>设置 Problem.get_TestCasesCount() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TestCasesCountSetInt32">
+            <summary>设置 Problem.set_TestCasesCount(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TestCasesGet">
+            <summary>设置 Problem.get_TestCases() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TestCasesSetICollectionOfTestCase">
+            <summary>设置 Problem.set_TestCases(ICollection`1&lt;TestCase&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TimeLimitGet">
+            <summary>设置 Problem.get_TimeLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TimeLimitSetInt32">
+            <summary>设置 Problem.set_TimeLimit(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TitleGet">
+            <summary>设置 Problem.get_Title() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.TitleSetString">
+            <summary>设置 Problem.set_Title(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ValidatorGet">
+            <summary>设置 Problem.get_Validator() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ValidatorLanguageAsIntGet">
+            <summary>设置 Problem.get_ValidatorLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ValidatorLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Problem.set_ValidatorLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ValidatorLanguageGet">
+            <summary>设置 Problem.get_ValidatorLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ValidatorLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Problem.set_ValidatorLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.ValidatorSetString">
+            <summary>设置 Problem.set_Validator(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem._get_ForbiddenLanguagesb__0String">
+            <summary>设置 Problem.&lt;get_ForbiddenLanguages&gt;b__0(String l) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblem.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContentGet">
+            <summary>设置 Problem.get_Content() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContentSetString">
+            <summary>设置 Problem.set_Content(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContestGet">
+            <summary>设置 Problem.get_Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContestIDGet">
+            <summary>设置 Problem.get_ContestID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContestIDSetInt32">
+            <summary>设置 Problem.set_ContestID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContestSetContest">
+            <summary>设置 Problem.set_Contest(Contest value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContestTitleGet">
+            <summary>设置 Problem.get_ContestTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ContestTitleSetString">
+            <summary>设置 Problem.set_ContestTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.EqualsObject">
+            <summary>设置 Problem.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ForbiddenLanguagesAsStringGet">
+            <summary>设置 Problem.get_ForbiddenLanguagesAsString() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ForbiddenLanguagesAsStringSetString">
+            <summary>设置 Problem.set_ForbiddenLanguagesAsString(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ForbiddenLanguagesGet">
+            <summary>设置 Problem.get_ForbiddenLanguages() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ForbiddenLanguagesSetIEnumerableOfProgrammingLanguage">
+            <summary>设置 Problem.set_ForbiddenLanguages(IEnumerable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.GetHashCode01">
+            <summary>设置 Problem.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.IDGet">
+            <summary>设置 Problem.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.IDSetInt32">
+            <summary>设置 Problem.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.LockedUsersGet">
+            <summary>设置 Problem.get_LockedUsers() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.LockedUsersSetICollectionOfUser">
+            <summary>设置 Problem.set_LockedUsers(ICollection`1&lt;User&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.MemoryLimitGet">
+            <summary>设置 Problem.get_MemoryLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.MemoryLimitSetInt64">
+            <summary>设置 Problem.set_MemoryLimit(Int64 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ScoreGet">
+            <summary>设置 Problem.get_Score() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ScoreSetInt32">
+            <summary>设置 Problem.set_Score(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.SpjGet">
+            <summary>设置 Problem.get_Spj() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.SpjLanguageAsIntGet">
+            <summary>设置 Problem.get_SpjLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.SpjLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Problem.set_SpjLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.SpjLanguageGet">
+            <summary>设置 Problem.get_SpjLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.SpjLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Problem.set_SpjLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.SpjSetString">
+            <summary>设置 Problem.set_Spj(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.StdGet">
+            <summary>设置 Problem.get_Std() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.StdLanguageAsIntGet">
+            <summary>设置 Problem.get_StdLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.StdLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Problem.set_StdLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.StdLanguageGet">
+            <summary>设置 Problem.get_StdLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.StdLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Problem.set_StdLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.StdSetString">
+            <summary>设置 Problem.set_Std(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TestCasesCountGet">
+            <summary>设置 Problem.get_TestCasesCount() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TestCasesCountSetInt32">
+            <summary>设置 Problem.set_TestCasesCount(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TestCasesGet">
+            <summary>设置 Problem.get_TestCases() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TestCasesSetICollectionOfTestCase">
+            <summary>设置 Problem.set_TestCases(ICollection`1&lt;TestCase&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TimeLimitGet">
+            <summary>设置 Problem.get_TimeLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TimeLimitSetInt32">
+            <summary>设置 Problem.set_TimeLimit(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TitleGet">
+            <summary>设置 Problem.get_Title() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.TitleSetString">
+            <summary>设置 Problem.set_Title(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ValidatorGet">
+            <summary>设置 Problem.get_Validator() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ValidatorLanguageAsIntGet">
+            <summary>设置 Problem.get_ValidatorLanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ValidatorLanguageAsIntSetNullableOfInt32">
+            <summary>设置 Problem.set_ValidatorLanguageAsInt(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ValidatorLanguageGet">
+            <summary>设置 Problem.get_ValidatorLanguage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ValidatorLanguageSetNullableOfProgrammingLanguage">
+            <summary>设置 Problem.set_ValidatorLanguage(Nullable`1&lt;ProgrammingLanguage&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblem.AllInstances.ValidatorSetString">
+            <summary>设置 Problem.set_Validator(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblemGeneral">
+            <summary>CenaPlus.Entity.ProblemGeneral 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemGeneral.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemGeneral.#ctor(CenaPlus.Entity.ProblemGeneral)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemGeneral.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemGeneral.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.Constructor">
+            <summary>设置 ProblemGeneral.ProblemGeneral() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.MemoryLimitGet">
+            <summary>设置 ProblemGeneral.get_MemoryLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.MemoryLimitSetInt32">
+            <summary>设置 ProblemGeneral.set_MemoryLimit(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.ProblemIDGet">
+            <summary>设置 ProblemGeneral.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.ProblemIDSetInt32">
+            <summary>设置 ProblemGeneral.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.SpecialJudgeGet">
+            <summary>设置 ProblemGeneral.get_SpecialJudge() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.SpecialJudgeSetBoolean">
+            <summary>设置 ProblemGeneral.set_SpecialJudge(Boolean value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.StatusGet">
+            <summary>设置 ProblemGeneral.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.StatusSetNullableOfProblemGeneralStatus">
+            <summary>设置 ProblemGeneral.set_Status(Nullable`1&lt;ProblemGeneralStatus&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.TimeGet">
+            <summary>设置 ProblemGeneral.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.TimeLimitGet">
+            <summary>设置 ProblemGeneral.get_TimeLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.TimeLimitSetInt32">
+            <summary>设置 ProblemGeneral.set_TimeLimit(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.TimeSetDateTime">
+            <summary>设置 ProblemGeneral.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.TitleGet">
+            <summary>设置 ProblemGeneral.get_Title() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.TitleSetString">
+            <summary>设置 ProblemGeneral.set_Title(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.MemoryLimitGet">
+            <summary>设置 ProblemGeneral.get_MemoryLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.MemoryLimitSetInt32">
+            <summary>设置 ProblemGeneral.set_MemoryLimit(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.ProblemIDGet">
+            <summary>设置 ProblemGeneral.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.ProblemIDSetInt32">
+            <summary>设置 ProblemGeneral.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.SpecialJudgeGet">
+            <summary>设置 ProblemGeneral.get_SpecialJudge() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.SpecialJudgeSetBoolean">
+            <summary>设置 ProblemGeneral.set_SpecialJudge(Boolean value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.StatusGet">
+            <summary>设置 ProblemGeneral.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.StatusSetNullableOfProblemGeneralStatus">
+            <summary>设置 ProblemGeneral.set_Status(Nullable`1&lt;ProblemGeneralStatus&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.TimeGet">
+            <summary>设置 ProblemGeneral.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.TimeLimitGet">
+            <summary>设置 ProblemGeneral.get_TimeLimit() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.TimeLimitSetInt32">
+            <summary>设置 ProblemGeneral.set_TimeLimit(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.TimeSetDateTime">
+            <summary>设置 ProblemGeneral.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.TitleGet">
+            <summary>设置 ProblemGeneral.get_Title() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemGeneral.AllInstances.TitleSetString">
+            <summary>设置 ProblemGeneral.set_Title(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblemStatistics">
+            <summary>CenaPlus.Entity.ProblemStatistics 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemStatistics.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemStatistics.#ctor(CenaPlus.Entity.ProblemStatistics)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemStatistics.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemStatistics.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.ACGet">
+            <summary>设置 ProblemStatistics.get_AC() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.ACSetInt32">
+            <summary>设置 ProblemStatistics.set_AC(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.CEGet">
+            <summary>设置 ProblemStatistics.get_CE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.CESetInt32">
+            <summary>设置 ProblemStatistics.set_CE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.Constructor">
+            <summary>设置 ProblemStatistics.ProblemStatistics() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.MLEGet">
+            <summary>设置 ProblemStatistics.get_MLE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.MLESetInt32">
+            <summary>设置 ProblemStatistics.set_MLE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.ProblemTitleGet">
+            <summary>设置 ProblemStatistics.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.ProblemTitleSetString">
+            <summary>设置 ProblemStatistics.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.REGet">
+            <summary>设置 ProblemStatistics.get_RE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.RESetInt32">
+            <summary>设置 ProblemStatistics.set_RE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.SEGet">
+            <summary>设置 ProblemStatistics.get_SE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.SESetInt32">
+            <summary>设置 ProblemStatistics.set_SE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.TLEGet">
+            <summary>设置 ProblemStatistics.get_TLE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.TLESetInt32">
+            <summary>设置 ProblemStatistics.set_TLE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.VEGet">
+            <summary>设置 ProblemStatistics.get_VE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.VESetInt32">
+            <summary>设置 ProblemStatistics.set_VE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.WAGet">
+            <summary>设置 ProblemStatistics.get_WA() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.WASetInt32">
+            <summary>设置 ProblemStatistics.set_WA(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.ACGet">
+            <summary>设置 ProblemStatistics.get_AC() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.ACSetInt32">
+            <summary>设置 ProblemStatistics.set_AC(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.CEGet">
+            <summary>设置 ProblemStatistics.get_CE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.CESetInt32">
+            <summary>设置 ProblemStatistics.set_CE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.MLEGet">
+            <summary>设置 ProblemStatistics.get_MLE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.MLESetInt32">
+            <summary>设置 ProblemStatistics.set_MLE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.ProblemTitleGet">
+            <summary>设置 ProblemStatistics.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.ProblemTitleSetString">
+            <summary>设置 ProblemStatistics.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.REGet">
+            <summary>设置 ProblemStatistics.get_RE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.RESetInt32">
+            <summary>设置 ProblemStatistics.set_RE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.SEGet">
+            <summary>设置 ProblemStatistics.get_SE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.SESetInt32">
+            <summary>设置 ProblemStatistics.set_SE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.TLEGet">
+            <summary>设置 ProblemStatistics.get_TLE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.TLESetInt32">
+            <summary>设置 ProblemStatistics.set_TLE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.VEGet">
+            <summary>设置 ProblemStatistics.get_VE() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.VESetInt32">
+            <summary>设置 ProblemStatistics.set_VE(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.WAGet">
+            <summary>设置 ProblemStatistics.get_WA() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemStatistics.AllInstances.WASetInt32">
+            <summary>设置 ProblemStatistics.set_WA(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblemView">
+            <summary>CenaPlus.Entity.ProblemView 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemView.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemView.#ctor(CenaPlus.Entity.ProblemView)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemView.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimProblemView.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.Constructor">
+            <summary>设置 ProblemView.ProblemView() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.ProblemGet">
+            <summary>设置 ProblemView.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.ProblemIDGet">
+            <summary>设置 ProblemView.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.ProblemIDSetInt32">
+            <summary>设置 ProblemView.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.ProblemSetProblem">
+            <summary>设置 ProblemView.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.TimeGet">
+            <summary>设置 ProblemView.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.TimeSetDateTime">
+            <summary>设置 ProblemView.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.UserGet">
+            <summary>设置 ProblemView.get_User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.UserIDGet">
+            <summary>设置 ProblemView.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.UserIDSetInt32">
+            <summary>设置 ProblemView.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.UserSetUser">
+            <summary>设置 ProblemView.set_User(User value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.ProblemGet">
+            <summary>设置 ProblemView.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.ProblemIDGet">
+            <summary>设置 ProblemView.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.ProblemIDSetInt32">
+            <summary>设置 ProblemView.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.ProblemSetProblem">
+            <summary>设置 ProblemView.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.TimeGet">
+            <summary>设置 ProblemView.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.TimeSetDateTime">
+            <summary>设置 ProblemView.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.UserGet">
+            <summary>设置 ProblemView.get_User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.UserIDGet">
+            <summary>设置 ProblemView.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.UserIDSetInt32">
+            <summary>设置 ProblemView.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimProblemView.AllInstances.UserSetUser">
+            <summary>设置 ProblemView.set_User(User value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimQuestion">
+            <summary>CenaPlus.Entity.Question 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimQuestion.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimQuestion.#ctor(CenaPlus.Entity.Question)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimQuestion.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimQuestion.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AnswerGet">
+            <summary>设置 Question.get_Answer() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AnswerSetString">
+            <summary>设置 Question.set_Answer(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AskerGet">
+            <summary>设置 Question.get_Asker() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AskerIDGet">
+            <summary>设置 Question.get_AskerID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AskerIDSetInt32">
+            <summary>设置 Question.set_AskerID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AskerNickNameGet">
+            <summary>设置 Question.get_AskerNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AskerNickNameSetString">
+            <summary>设置 Question.set_AskerNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AskerSetUser">
+            <summary>设置 Question.set_Asker(User value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.Constructor">
+            <summary>设置 Question.Question() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.ContestGet">
+            <summary>设置 Question.get_Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.ContestIDGet">
+            <summary>设置 Question.get_ContestID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.ContestIDSetInt32">
+            <summary>设置 Question.set_ContestID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.ContestNameGet">
+            <summary>设置 Question.get_ContestName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.ContestNameSetString">
+            <summary>设置 Question.set_ContestName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.ContestSetContest">
+            <summary>设置 Question.set_Contest(Contest value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.DescriptionGet">
+            <summary>设置 Question.get_Description() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.DescriptionSetString">
+            <summary>设置 Question.set_Description(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.EqualsObject">
+            <summary>设置 Question.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.GetHashCode">
+            <summary>设置 Question.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.IDGet">
+            <summary>设置 Question.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.IDSetInt32">
+            <summary>设置 Question.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.StatusAsIntGet">
+            <summary>设置 Question.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.StatusAsIntSetInt32">
+            <summary>设置 Question.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.StatusGet">
+            <summary>设置 Question.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.StatusSetQuestionStatus">
+            <summary>设置 Question.set_Status(QuestionStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.TimeGet">
+            <summary>设置 Question.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.TimeSetDateTime">
+            <summary>设置 Question.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AnswerGet">
+            <summary>设置 Question.get_Answer() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AnswerSetString">
+            <summary>设置 Question.set_Answer(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AskerGet">
+            <summary>设置 Question.get_Asker() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AskerIDGet">
+            <summary>设置 Question.get_AskerID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AskerIDSetInt32">
+            <summary>设置 Question.set_AskerID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AskerNickNameGet">
+            <summary>设置 Question.get_AskerNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AskerNickNameSetString">
+            <summary>设置 Question.set_AskerNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.AskerSetUser">
+            <summary>设置 Question.set_Asker(User value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.ContestGet">
+            <summary>设置 Question.get_Contest() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.ContestIDGet">
+            <summary>设置 Question.get_ContestID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.ContestIDSetInt32">
+            <summary>设置 Question.set_ContestID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.ContestNameGet">
+            <summary>设置 Question.get_ContestName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.ContestNameSetString">
+            <summary>设置 Question.set_ContestName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.ContestSetContest">
+            <summary>设置 Question.set_Contest(Contest value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.DescriptionGet">
+            <summary>设置 Question.get_Description() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.DescriptionSetString">
+            <summary>设置 Question.set_Description(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.EqualsObject">
+            <summary>设置 Question.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.GetHashCode01">
+            <summary>设置 Question.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.IDGet">
+            <summary>设置 Question.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.IDSetInt32">
+            <summary>设置 Question.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.StatusAsIntGet">
+            <summary>设置 Question.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.StatusAsIntSetInt32">
+            <summary>设置 Question.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.StatusGet">
+            <summary>设置 Question.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.StatusSetQuestionStatus">
+            <summary>设置 Question.set_Status(QuestionStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.TimeGet">
+            <summary>设置 Question.get_Time() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimQuestion.AllInstances.TimeSetDateTime">
+            <summary>设置 Question.set_Time(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimRecord">
+            <summary>CenaPlus.Entity.Record 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimRecord.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimRecord.#ctor(CenaPlus.Entity.Record)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimRecord.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimRecord.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.CodeGet">
+            <summary>设置 Record.get_Code() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.CodeSetString">
+            <summary>设置 Record.set_Code(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.Constructor">
+            <summary>设置 Record.Record() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.DetailGet">
+            <summary>设置 Record.get_Detail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.DetailSetString">
+            <summary>设置 Record.set_Detail(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.EqualsObject">
+            <summary>设置 Record.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.GetHashCode">
+            <summary>设置 Record.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.IDGet">
+            <summary>设置 Record.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.IDSetInt32">
+            <summary>设置 Record.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.LanguageAsIntGet">
+            <summary>设置 Record.get_LanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.LanguageAsIntSetInt32">
+            <summary>设置 Record.set_LanguageAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.LanguageGet">
+            <summary>设置 Record.get_Language() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.LanguageSetProgrammingLanguage">
+            <summary>设置 Record.set_Language(ProgrammingLanguage value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.MemoryUsageGet">
+            <summary>设置 Record.get_MemoryUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.MemoryUsageSetNullableOfInt64">
+            <summary>设置 Record.set_MemoryUsage(Nullable`1&lt;Int64&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ProblemGet">
+            <summary>设置 Record.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ProblemIDGet">
+            <summary>设置 Record.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ProblemIDSetInt32">
+            <summary>设置 Record.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ProblemSetProblem">
+            <summary>设置 Record.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ProblemTitleGet">
+            <summary>设置 Record.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ProblemTitleSetString">
+            <summary>设置 Record.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ScoreGet">
+            <summary>设置 Record.get_Score() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.ScoreSetNullableOfInt32">
+            <summary>设置 Record.set_Score(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.StatusAsIntGet">
+            <summary>设置 Record.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.StatusAsIntSetInt32">
+            <summary>设置 Record.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.StatusGet">
+            <summary>设置 Record.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.StatusSetRecordStatus">
+            <summary>设置 Record.set_Status(RecordStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.SubmissionTimeGet">
+            <summary>设置 Record.get_SubmissionTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.SubmissionTimeSetDateTime">
+            <summary>设置 Record.set_SubmissionTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.TimeUsageGet">
+            <summary>设置 Record.get_TimeUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.TimeUsageSetNullableOfInt32">
+            <summary>设置 Record.set_TimeUsage(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.UserGet">
+            <summary>设置 Record.get_User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.UserIDGet">
+            <summary>设置 Record.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.UserIDSetInt32">
+            <summary>设置 Record.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.UserNickNameGet">
+            <summary>设置 Record.get_UserNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.UserNickNameSetString">
+            <summary>设置 Record.set_UserNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.UserSetUser">
+            <summary>设置 Record.set_User(User value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimRecord.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.CodeGet">
+            <summary>设置 Record.get_Code() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.CodeSetString">
+            <summary>设置 Record.set_Code(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.DetailGet">
+            <summary>设置 Record.get_Detail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.DetailSetString">
+            <summary>设置 Record.set_Detail(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.EqualsObject">
+            <summary>设置 Record.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.GetHashCode01">
+            <summary>设置 Record.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.IDGet">
+            <summary>设置 Record.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.IDSetInt32">
+            <summary>设置 Record.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.LanguageAsIntGet">
+            <summary>设置 Record.get_LanguageAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.LanguageAsIntSetInt32">
+            <summary>设置 Record.set_LanguageAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.LanguageGet">
+            <summary>设置 Record.get_Language() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.LanguageSetProgrammingLanguage">
+            <summary>设置 Record.set_Language(ProgrammingLanguage value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.MemoryUsageGet">
+            <summary>设置 Record.get_MemoryUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.MemoryUsageSetNullableOfInt64">
+            <summary>设置 Record.set_MemoryUsage(Nullable`1&lt;Int64&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ProblemGet">
+            <summary>设置 Record.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ProblemIDGet">
+            <summary>设置 Record.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ProblemIDSetInt32">
+            <summary>设置 Record.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ProblemSetProblem">
+            <summary>设置 Record.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ProblemTitleGet">
+            <summary>设置 Record.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ProblemTitleSetString">
+            <summary>设置 Record.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ScoreGet">
+            <summary>设置 Record.get_Score() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.ScoreSetNullableOfInt32">
+            <summary>设置 Record.set_Score(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.StatusAsIntGet">
+            <summary>设置 Record.get_StatusAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.StatusAsIntSetInt32">
+            <summary>设置 Record.set_StatusAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.StatusGet">
+            <summary>设置 Record.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.StatusSetRecordStatus">
+            <summary>设置 Record.set_Status(RecordStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.SubmissionTimeGet">
+            <summary>设置 Record.get_SubmissionTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.SubmissionTimeSetDateTime">
+            <summary>设置 Record.set_SubmissionTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.TimeUsageGet">
+            <summary>设置 Record.get_TimeUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.TimeUsageSetNullableOfInt32">
+            <summary>设置 Record.set_TimeUsage(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.UserGet">
+            <summary>设置 Record.get_User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.UserIDGet">
+            <summary>设置 Record.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.UserIDSetInt32">
+            <summary>设置 Record.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.UserNickNameGet">
+            <summary>设置 Record.get_UserNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.UserNickNameSetString">
+            <summary>设置 Record.set_UserNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimRecord.AllInstances.UserSetUser">
+            <summary>设置 Record.set_User(User value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimResult">
+            <summary>CenaPlus.Entity.Result 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimResult.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimResult.#ctor(CenaPlus.Entity.Result)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimResult.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimResult.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.Constructor">
+            <summary>设置 Result.Result() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.DetailGet">
+            <summary>设置 Result.get_Detail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.DetailSetString">
+            <summary>设置 Result.set_Detail(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.LanguageGet">
+            <summary>设置 Result.get_Language() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.LanguageSetProgrammingLanguage">
+            <summary>设置 Result.set_Language(ProgrammingLanguage value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.MemoryUsageGet">
+            <summary>设置 Result.get_MemoryUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.MemoryUsageSetInt32">
+            <summary>设置 Result.set_MemoryUsage(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.ProblemTitleGet">
+            <summary>设置 Result.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.ProblemTitleSetString">
+            <summary>设置 Result.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.StatusGet">
+            <summary>设置 Result.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.StatusIDGet">
+            <summary>设置 Result.get_StatusID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.StatusIDSetInt32">
+            <summary>设置 Result.set_StatusID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.StatusSetRecordStatus">
+            <summary>设置 Result.set_Status(RecordStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.SubmissionTimeGet">
+            <summary>设置 Result.get_SubmissionTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.SubmissionTimeSetDateTime">
+            <summary>设置 Result.set_SubmissionTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.TimeUsageGet">
+            <summary>设置 Result.get_TimeUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.TimeUsageSetInt32">
+            <summary>设置 Result.set_TimeUsage(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.UserIDGet">
+            <summary>设置 Result.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.UserIDSetInt32">
+            <summary>设置 Result.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.UserNickNameGet">
+            <summary>设置 Result.get_UserNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.UserNickNameSetString">
+            <summary>设置 Result.set_UserNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimResult.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.DetailGet">
+            <summary>设置 Result.get_Detail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.DetailSetString">
+            <summary>设置 Result.set_Detail(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.LanguageGet">
+            <summary>设置 Result.get_Language() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.LanguageSetProgrammingLanguage">
+            <summary>设置 Result.set_Language(ProgrammingLanguage value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.MemoryUsageGet">
+            <summary>设置 Result.get_MemoryUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.MemoryUsageSetInt32">
+            <summary>设置 Result.set_MemoryUsage(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.ProblemTitleGet">
+            <summary>设置 Result.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.ProblemTitleSetString">
+            <summary>设置 Result.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.StatusGet">
+            <summary>设置 Result.get_Status() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.StatusIDGet">
+            <summary>设置 Result.get_StatusID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.StatusIDSetInt32">
+            <summary>设置 Result.set_StatusID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.StatusSetRecordStatus">
+            <summary>设置 Result.set_Status(RecordStatus value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.SubmissionTimeGet">
+            <summary>设置 Result.get_SubmissionTime() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.SubmissionTimeSetDateTime">
+            <summary>设置 Result.set_SubmissionTime(DateTime value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.TimeUsageGet">
+            <summary>设置 Result.get_TimeUsage() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.TimeUsageSetInt32">
+            <summary>设置 Result.set_TimeUsage(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.UserIDGet">
+            <summary>设置 Result.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.UserIDSetInt32">
+            <summary>设置 Result.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.UserNickNameGet">
+            <summary>设置 Result.get_UserNickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimResult.AllInstances.UserNickNameSetString">
+            <summary>设置 Result.set_UserNickName(String value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimStandingDetail">
+            <summary>CenaPlus.Entity.StandingDetail 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingDetail.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingDetail.#ctor(CenaPlus.Entity.StandingDetail)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingDetail.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingDetail.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.Constructor">
+            <summary>设置 StandingDetail.StandingDetail() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.DisplayFormatGet">
+            <summary>设置 StandingDetail.get_DisplayFormat() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.DisplayFormatSetContestType">
+            <summary>设置 StandingDetail.set_DisplayFormat(ContestType value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.DisplayGet">
+            <summary>设置 StandingDetail.get_Display() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.FirstScoreGet">
+            <summary>设置 StandingDetail.get_FirstScore() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.FirstScoreSetInt32">
+            <summary>设置 StandingDetail.set_FirstScore(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.RecordIDGet">
+            <summary>设置 StandingDetail.get_RecordID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.RecordIDSetInt32">
+            <summary>设置 StandingDetail.set_RecordID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.SecondScoreGet">
+            <summary>设置 StandingDetail.get_SecondScore() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.SecondScoreSetInt32">
+            <summary>设置 StandingDetail.set_SecondScore(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.ThirdScoreGet">
+            <summary>设置 StandingDetail.get_ThirdScore() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.ThirdScoreSetInt32">
+            <summary>设置 StandingDetail.set_ThirdScore(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.DisplayFormatGet">
+            <summary>设置 StandingDetail.get_DisplayFormat() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.DisplayFormatSetContestType">
+            <summary>设置 StandingDetail.set_DisplayFormat(ContestType value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.DisplayGet">
+            <summary>设置 StandingDetail.get_Display() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.FirstScoreGet">
+            <summary>设置 StandingDetail.get_FirstScore() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.FirstScoreSetInt32">
+            <summary>设置 StandingDetail.set_FirstScore(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.RecordIDGet">
+            <summary>设置 StandingDetail.get_RecordID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.RecordIDSetInt32">
+            <summary>设置 StandingDetail.set_RecordID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.SecondScoreGet">
+            <summary>设置 StandingDetail.get_SecondScore() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.SecondScoreSetInt32">
+            <summary>设置 StandingDetail.set_SecondScore(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.ThirdScoreGet">
+            <summary>设置 StandingDetail.get_ThirdScore() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingDetail.AllInstances.ThirdScoreSetInt32">
+            <summary>设置 StandingDetail.set_ThirdScore(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimStandingItem">
+            <summary>CenaPlus.Entity.StandingItem 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingItem.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingItem.#ctor(CenaPlus.Entity.StandingItem)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingItem.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimStandingItem.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.CompetitorGet">
+            <summary>设置 StandingItem.get_Competitor() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.CompetitorSetString">
+            <summary>设置 StandingItem.set_Competitor(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.Constructor">
+            <summary>设置 StandingItem.StandingItem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.DisplayGet">
+            <summary>设置 StandingItem.get_Display() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.HackStrGet">
+            <summary>设置 StandingItem.get_HackStr() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.MainKeyGet">
+            <summary>设置 StandingItem.get_MainKey() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.RankGet">
+            <summary>设置 StandingItem.get_Rank() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.RankSetInt32">
+            <summary>设置 StandingItem.set_Rank(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.SecDisplayGet">
+            <summary>设置 StandingItem.get_SecDisplay() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.SecKeyGet">
+            <summary>设置 StandingItem.get_SecKey() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.SuccessfulHackGet">
+            <summary>设置 StandingItem.get_SuccessfulHack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.SuccessfulHackSetNullableOfInt32">
+            <summary>设置 StandingItem.set_SuccessfulHack(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.UnsuccessfulHackGet">
+            <summary>设置 StandingItem.get_UnsuccessfulHack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.UnsuccessfulHackSetNullableOfInt32">
+            <summary>设置 StandingItem.set_UnsuccessfulHack(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.UserIDGet">
+            <summary>设置 StandingItem.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.UserIDSetInt32">
+            <summary>设置 StandingItem.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.CompetitorGet">
+            <summary>设置 StandingItem.get_Competitor() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.CompetitorSetString">
+            <summary>设置 StandingItem.set_Competitor(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.DisplayGet">
+            <summary>设置 StandingItem.get_Display() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.HackStrGet">
+            <summary>设置 StandingItem.get_HackStr() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.MainKeyGet">
+            <summary>设置 StandingItem.get_MainKey() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.RankGet">
+            <summary>设置 StandingItem.get_Rank() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.RankSetInt32">
+            <summary>设置 StandingItem.set_Rank(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.SecDisplayGet">
+            <summary>设置 StandingItem.get_SecDisplay() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.SecKeyGet">
+            <summary>设置 StandingItem.get_SecKey() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.SuccessfulHackGet">
+            <summary>设置 StandingItem.get_SuccessfulHack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.SuccessfulHackSetNullableOfInt32">
+            <summary>设置 StandingItem.set_SuccessfulHack(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.UnsuccessfulHackGet">
+            <summary>设置 StandingItem.get_UnsuccessfulHack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.UnsuccessfulHackSetNullableOfInt32">
+            <summary>设置 StandingItem.set_UnsuccessfulHack(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.UserIDGet">
+            <summary>设置 StandingItem.get_UserID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimStandingItem.AllInstances.UserIDSetInt32">
+            <summary>设置 StandingItem.set_UserID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTask">
+            <summary>CenaPlus.Entity.Task 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTask.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTask.#ctor(CenaPlus.Entity.Task)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTask.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTask.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.Constructor">
+            <summary>设置 Task.Task() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.HackGet">
+            <summary>设置 Task.get_Hack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.HackSetHack">
+            <summary>设置 Task.set_Hack(Hack value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.ProblemGet">
+            <summary>设置 Task.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.ProblemSetProblem">
+            <summary>设置 Task.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.RecordGet">
+            <summary>设置 Task.get_Record() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.RecordSetRecord">
+            <summary>设置 Task.set_Record(Record value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.TestCaseIDGet">
+            <summary>设置 Task.get_TestCaseID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.TestCaseIDSetNullableOfInt32">
+            <summary>设置 Task.set_TestCaseID(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.TypeGet">
+            <summary>设置 Task.get_Type() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.TypeSetTaskType">
+            <summary>设置 Task.set_Type(TaskType value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTask.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.HackGet">
+            <summary>设置 Task.get_Hack() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.HackSetHack">
+            <summary>设置 Task.set_Hack(Hack value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.ProblemGet">
+            <summary>设置 Task.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.ProblemSetProblem">
+            <summary>设置 Task.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.RecordGet">
+            <summary>设置 Task.get_Record() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.RecordSetRecord">
+            <summary>设置 Task.set_Record(Record value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.TestCaseIDGet">
+            <summary>设置 Task.get_TestCaseID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.TestCaseIDSetNullableOfInt32">
+            <summary>设置 Task.set_TestCaseID(Nullable`1&lt;Int32&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.TypeGet">
+            <summary>设置 Task.get_Type() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTask.AllInstances.TypeSetTaskType">
+            <summary>设置 Task.set_Type(TaskType value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback">
+            <summary>CenaPlus.Entity.TaskFeedback 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback.#ctor(CenaPlus.Entity.TaskFeedback)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback.Constructor">
+            <summary>设置 TaskFeedback.TaskFeedback() 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile">
+            <summary>CenaPlus.Entity.TaskFeedback_Compile 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.#ctor(CenaPlus.Entity.TaskFeedback_Compile)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.Constructor">
+            <summary>设置 TaskFeedback_Compile.TaskFeedback_Compile() 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback_Compile.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack">
+            <summary>CenaPlus.Entity.TaskFeedback_Hack 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.#ctor(CenaPlus.Entity.TaskFeedback_Hack)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.Constructor">
+            <summary>设置 TaskFeedback_Hack.TaskFeedback_Hack() 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback_Hack.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run">
+            <summary>CenaPlus.Entity.TaskFeedback_Run 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.#ctor(CenaPlus.Entity.TaskFeedback_Run)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.Constructor">
+            <summary>设置 TaskFeedback_Run.TaskFeedback_Run() 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTaskFeedback_Run.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTestCase">
+            <summary>CenaPlus.Entity.TestCase 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTestCase.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTestCase.#ctor(CenaPlus.Entity.TestCase)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTestCase.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimTestCase.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.Constructor">
+            <summary>设置 TestCase.TestCase() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.EqualsObject">
+            <summary>设置 TestCase.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.GetHashCode">
+            <summary>设置 TestCase.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.IDGet">
+            <summary>设置 TestCase.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.IDSetInt32">
+            <summary>设置 TestCase.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputGet">
+            <summary>设置 TestCase.get_Input() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputHashGet">
+            <summary>设置 TestCase.get_InputHash() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputHashSetByteArray">
+            <summary>设置 TestCase.set_InputHash(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputPreviewGet">
+            <summary>设置 TestCase.get_InputPreview() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputPreviewSetString">
+            <summary>设置 TestCase.set_InputPreview(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputSetByteArray">
+            <summary>设置 TestCase.set_Input(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputSizeGet">
+            <summary>设置 TestCase.get_InputSize() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.InputSizeSetInt32">
+            <summary>设置 TestCase.set_InputSize(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputGet">
+            <summary>设置 TestCase.get_Output() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputHashGet">
+            <summary>设置 TestCase.get_OutputHash() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputHashSetByteArray">
+            <summary>设置 TestCase.set_OutputHash(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputPreviewGet">
+            <summary>设置 TestCase.get_OutputPreview() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputPreviewSetString">
+            <summary>设置 TestCase.set_OutputPreview(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputSetByteArray">
+            <summary>设置 TestCase.set_Output(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputSizeGet">
+            <summary>设置 TestCase.get_OutputSize() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.OutputSizeSetInt32">
+            <summary>设置 TestCase.set_OutputSize(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.ProblemGet">
+            <summary>设置 TestCase.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.ProblemIDGet">
+            <summary>设置 TestCase.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.ProblemIDSetInt32">
+            <summary>设置 TestCase.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.ProblemSetProblem">
+            <summary>设置 TestCase.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.ProblemTitleGet">
+            <summary>设置 TestCase.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.ProblemTitleSetString">
+            <summary>设置 TestCase.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.TypeAsIntGet">
+            <summary>设置 TestCase.get_TypeAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.TypeAsIntSetInt32">
+            <summary>设置 TestCase.set_TypeAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.TypeGet">
+            <summary>设置 TestCase.get_Type() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.TypeSetTestCaseType">
+            <summary>设置 TestCase.set_Type(TestCaseType value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.EqualsObject">
+            <summary>设置 TestCase.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.GetHashCode01">
+            <summary>设置 TestCase.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.IDGet">
+            <summary>设置 TestCase.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.IDSetInt32">
+            <summary>设置 TestCase.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputGet">
+            <summary>设置 TestCase.get_Input() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputHashGet">
+            <summary>设置 TestCase.get_InputHash() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputHashSetByteArray">
+            <summary>设置 TestCase.set_InputHash(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputPreviewGet">
+            <summary>设置 TestCase.get_InputPreview() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputPreviewSetString">
+            <summary>设置 TestCase.set_InputPreview(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputSetByteArray">
+            <summary>设置 TestCase.set_Input(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputSizeGet">
+            <summary>设置 TestCase.get_InputSize() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.InputSizeSetInt32">
+            <summary>设置 TestCase.set_InputSize(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputGet">
+            <summary>设置 TestCase.get_Output() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputHashGet">
+            <summary>设置 TestCase.get_OutputHash() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputHashSetByteArray">
+            <summary>设置 TestCase.set_OutputHash(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputPreviewGet">
+            <summary>设置 TestCase.get_OutputPreview() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputPreviewSetString">
+            <summary>设置 TestCase.set_OutputPreview(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputSetByteArray">
+            <summary>设置 TestCase.set_Output(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputSizeGet">
+            <summary>设置 TestCase.get_OutputSize() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.OutputSizeSetInt32">
+            <summary>设置 TestCase.set_OutputSize(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.ProblemGet">
+            <summary>设置 TestCase.get_Problem() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.ProblemIDGet">
+            <summary>设置 TestCase.get_ProblemID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.ProblemIDSetInt32">
+            <summary>设置 TestCase.set_ProblemID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.ProblemSetProblem">
+            <summary>设置 TestCase.set_Problem(Problem value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.ProblemTitleGet">
+            <summary>设置 TestCase.get_ProblemTitle() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.ProblemTitleSetString">
+            <summary>设置 TestCase.set_ProblemTitle(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.TypeAsIntGet">
+            <summary>设置 TestCase.get_TypeAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.TypeAsIntSetInt32">
+            <summary>设置 TestCase.set_TypeAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.TypeGet">
+            <summary>设置 TestCase.get_Type() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimTestCase.AllInstances.TypeSetTestCaseType">
+            <summary>设置 TestCase.set_Type(TestCaseType value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimUser">
+            <summary>CenaPlus.Entity.User 的填充码类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimUser.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimUser.#ctor(CenaPlus.Entity.User)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimUser.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.ShimUser.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.Constructor">
+            <summary>设置 User.User() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.EqualsObject">
+            <summary>设置 User.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.GetHashCode">
+            <summary>设置 User.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.IDGet">
+            <summary>设置 User.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.IDSetInt32">
+            <summary>设置 User.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.LockedProblemsGet">
+            <summary>设置 User.get_LockedProblems() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.LockedProblemsSetICollectionOfProblem">
+            <summary>设置 User.set_LockedProblems(ICollection`1&lt;Problem&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.NameGet">
+            <summary>设置 User.get_Name() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.NameSetString">
+            <summary>设置 User.set_Name(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.NickNameGet">
+            <summary>设置 User.get_NickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.NickNameSetString">
+            <summary>设置 User.set_NickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.PasswordGet">
+            <summary>设置 User.get_Password() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.PasswordSetByteArray">
+            <summary>设置 User.set_Password(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.RoleAsIntGet">
+            <summary>设置 User.get_RoleAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.RoleAsIntSetInt32">
+            <summary>设置 User.set_RoleAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.RoleGet">
+            <summary>设置 User.get_Role() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.RoleSetUserRole">
+            <summary>设置 User.set_Role(UserRole value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.ShimUser.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.EqualsObject">
+            <summary>设置 User.Equals(Object obj) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.GetHashCode01">
+            <summary>设置 User.GetHashCode() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.IDGet">
+            <summary>设置 User.get_ID() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.IDSetInt32">
+            <summary>设置 User.set_ID(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.LockedProblemsGet">
+            <summary>设置 User.get_LockedProblems() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.LockedProblemsSetICollectionOfProblem">
+            <summary>设置 User.set_LockedProblems(ICollection`1&lt;Problem&gt; value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.NameGet">
+            <summary>设置 User.get_Name() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.NameSetString">
+            <summary>设置 User.set_Name(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.NickNameGet">
+            <summary>设置 User.get_NickName() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.NickNameSetString">
+            <summary>设置 User.set_NickName(String value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.PasswordGet">
+            <summary>设置 User.get_Password() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.PasswordSetByteArray">
+            <summary>设置 User.set_Password(Byte[] value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.RoleAsIntGet">
+            <summary>设置 User.get_RoleAsInt() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.RoleAsIntSetInt32">
+            <summary>设置 User.set_RoleAsInt(Int32 value) 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.RoleGet">
+            <summary>设置 User.get_Role() 的 填充码</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.ShimUser.AllInstances.RoleSetUserRole">
+            <summary>设置 User.set_Role(UserRole value) 的 填充码</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubConfig">
+            <summary>CenaPlus.Entity.Config 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubConfig.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubConfig.InitializeStub">
+            <summary>初始化 type StubConfig 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubConfig.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubConfig.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubConfig.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubContest">
+            <summary>CenaPlus.Entity.Contest 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubContest.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubContest.AttachBackingFieldToProblems">
+            <summary>附加委托以将 StubContest.Problems 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubContest.Equals(System.Object)">
+            <summary>设置 Contest.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubContest.EqualsObject">
+            <summary>设置 Contest.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubContest.GetHashCode">
+            <summary>设置 Contest.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubContest.GetHashCode01">
+            <summary>设置 Contest.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubContest.InitializeStub">
+            <summary>初始化 type StubContest 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubContest.ProblemsGet">
+            <summary>设置 Contest.get_Problems() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubContest.ProblemsSetICollectionOfProblem">
+            <summary>设置 Contest.set_Problems(ICollection`1&lt;Problem&gt; value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubContest.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubContest.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubContest.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubContest.Problems">
+            <summary>设置 Contest.get_Problems() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubHack">
+            <summary>CenaPlus.Entity.Hack 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubHack.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubHack.AttachBackingFieldToHacker">
+            <summary>附加委托以将 StubHack.Hacker 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubHack.AttachBackingFieldToRecord">
+            <summary>附加委托以将 StubHack.Record 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubHack.Equals(System.Object)">
+            <summary>设置 Hack.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubHack.EqualsObject">
+            <summary>设置 Hack.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubHack.GetHashCode">
+            <summary>设置 Hack.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubHack.GetHashCode01">
+            <summary>设置 Hack.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubHack.HackerGet">
+            <summary>设置 Hack.get_Hacker() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubHack.HackerSetUser">
+            <summary>设置 Hack.set_Hacker(User value) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubHack.InitializeStub">
+            <summary>初始化 type StubHack 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubHack.RecordGet">
+            <summary>设置 Hack.get_Record() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubHack.RecordSetRecord">
+            <summary>设置 Hack.set_Record(Record value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubHack.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubHack.Hacker">
+            <summary>设置 Hack.get_Hacker() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubHack.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubHack.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubHack.Record">
+            <summary>设置 Hack.get_Record() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubPrintRequest">
+            <summary>CenaPlus.Entity.PrintRequest 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubPrintRequest.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubPrintRequest.AttachBackingFieldToContest">
+            <summary>附加委托以将 StubPrintRequest.Contest 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubPrintRequest.AttachBackingFieldToUser">
+            <summary>附加委托以将 StubPrintRequest.User 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubPrintRequest.ContestGet">
+            <summary>设置 PrintRequest.get_Contest() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubPrintRequest.ContestSetContest">
+            <summary>设置 PrintRequest.set_Contest(Contest value) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubPrintRequest.Equals(System.Object)">
+            <summary>设置 PrintRequest.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubPrintRequest.EqualsObject">
+            <summary>设置 PrintRequest.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubPrintRequest.GetHashCode">
+            <summary>设置 PrintRequest.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubPrintRequest.GetHashCode01">
+            <summary>设置 PrintRequest.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubPrintRequest.InitializeStub">
+            <summary>初始化 type StubPrintRequest 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubPrintRequest.UserGet">
+            <summary>设置 PrintRequest.get_User() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubPrintRequest.UserSetUser">
+            <summary>设置 PrintRequest.set_User(User value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubPrintRequest.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubPrintRequest.Contest">
+            <summary>设置 PrintRequest.get_Contest() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubPrintRequest.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubPrintRequest.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubPrintRequest.User">
+            <summary>设置 PrintRequest.get_User() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubProblem">
+            <summary>CenaPlus.Entity.Problem 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.AttachBackingFieldToContest">
+            <summary>附加委托以将 StubProblem.Contest 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.AttachBackingFieldToLockedUsers">
+            <summary>附加委托以将 StubProblem.LockedUsers 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.AttachBackingFieldToTestCases">
+            <summary>附加委托以将 StubProblem.TestCases 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.ContestGet">
+            <summary>设置 Problem.get_Contest() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.ContestSetContest">
+            <summary>设置 Problem.set_Contest(Contest value) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.Equals(System.Object)">
+            <summary>设置 Problem.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.EqualsObject">
+            <summary>设置 Problem.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.GetHashCode">
+            <summary>设置 Problem.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.GetHashCode01">
+            <summary>设置 Problem.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblem.InitializeStub">
+            <summary>初始化 type StubProblem 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.LockedUsersGet">
+            <summary>设置 Problem.get_LockedUsers() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.LockedUsersSetICollectionOfUser">
+            <summary>设置 Problem.set_LockedUsers(ICollection`1&lt;User&gt; value) 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.TestCasesGet">
+            <summary>设置 Problem.get_TestCases() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblem.TestCasesSetICollectionOfTestCase">
+            <summary>设置 Problem.set_TestCases(ICollection`1&lt;TestCase&gt; value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblem.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblem.Contest">
+            <summary>设置 Problem.get_Contest() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblem.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblem.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblem.LockedUsers">
+            <summary>设置 Problem.get_LockedUsers() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblem.TestCases">
+            <summary>设置 Problem.get_TestCases() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubProblemGeneral">
+            <summary>CenaPlus.Entity.ProblemGeneral 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemGeneral.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemGeneral.InitializeStub">
+            <summary>初始化 type StubProblemGeneral 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemGeneral.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemGeneral.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemGeneral.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubProblemStatistics">
+            <summary>CenaPlus.Entity.ProblemStatistics 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemStatistics.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemStatistics.InitializeStub">
+            <summary>初始化 type StubProblemStatistics 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemStatistics.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemStatistics.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemStatistics.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubProblemView">
+            <summary>CenaPlus.Entity.ProblemView 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemView.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemView.AttachBackingFieldToProblem">
+            <summary>附加委托以将 StubProblemView.Problem 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemView.AttachBackingFieldToUser">
+            <summary>附加委托以将 StubProblemView.User 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubProblemView.InitializeStub">
+            <summary>初始化 type StubProblemView 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblemView.ProblemGet">
+            <summary>设置 ProblemView.get_Problem() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblemView.ProblemSetProblem">
+            <summary>设置 ProblemView.set_Problem(Problem value) 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblemView.UserGet">
+            <summary>设置 ProblemView.get_User() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubProblemView.UserSetUser">
+            <summary>设置 ProblemView.set_User(User value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemView.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemView.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemView.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemView.Problem">
+            <summary>设置 ProblemView.get_Problem() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubProblemView.User">
+            <summary>设置 ProblemView.get_User() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubQuestion">
+            <summary>CenaPlus.Entity.Question 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubQuestion.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubQuestion.AskerGet">
+            <summary>设置 Question.get_Asker() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubQuestion.AskerSetUser">
+            <summary>设置 Question.set_Asker(User value) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubQuestion.AttachBackingFieldToAsker">
+            <summary>附加委托以将 StubQuestion.Asker 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubQuestion.AttachBackingFieldToContest">
+            <summary>附加委托以将 StubQuestion.Contest 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubQuestion.ContestGet">
+            <summary>设置 Question.get_Contest() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubQuestion.ContestSetContest">
+            <summary>设置 Question.set_Contest(Contest value) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubQuestion.Equals(System.Object)">
+            <summary>设置 Question.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubQuestion.EqualsObject">
+            <summary>设置 Question.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubQuestion.GetHashCode">
+            <summary>设置 Question.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubQuestion.GetHashCode01">
+            <summary>设置 Question.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubQuestion.InitializeStub">
+            <summary>初始化 type StubQuestion 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubQuestion.Asker">
+            <summary>设置 Question.get_Asker() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubQuestion.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubQuestion.Contest">
+            <summary>设置 Question.get_Contest() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubQuestion.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubQuestion.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubRecord">
+            <summary>CenaPlus.Entity.Record 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubRecord.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubRecord.AttachBackingFieldToProblem">
+            <summary>附加委托以将 StubRecord.Problem 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubRecord.AttachBackingFieldToUser">
+            <summary>附加委托以将 StubRecord.User 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubRecord.Equals(System.Object)">
+            <summary>设置 Record.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubRecord.EqualsObject">
+            <summary>设置 Record.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubRecord.GetHashCode">
+            <summary>设置 Record.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubRecord.GetHashCode01">
+            <summary>设置 Record.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubRecord.InitializeStub">
+            <summary>初始化 type StubRecord 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubRecord.ProblemGet">
+            <summary>设置 Record.get_Problem() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubRecord.ProblemSetProblem">
+            <summary>设置 Record.set_Problem(Problem value) 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubRecord.UserGet">
+            <summary>设置 Record.get_User() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubRecord.UserSetUser">
+            <summary>设置 Record.set_User(User value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubRecord.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubRecord.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubRecord.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubRecord.Problem">
+            <summary>设置 Record.get_Problem() 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubRecord.User">
+            <summary>设置 Record.get_User() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubResult">
+            <summary>CenaPlus.Entity.Result 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubResult.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubResult.InitializeStub">
+            <summary>初始化 type StubResult 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubResult.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubResult.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubResult.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubStandingDetail">
+            <summary>CenaPlus.Entity.StandingDetail 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubStandingDetail.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubStandingDetail.InitializeStub">
+            <summary>初始化 type StubStandingDetail 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubStandingDetail.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubStandingDetail.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubStandingDetail.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubStandingItem">
+            <summary>CenaPlus.Entity.StandingItem 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubStandingItem.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubStandingItem.InitializeStub">
+            <summary>初始化 type StubStandingItem 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubStandingItem.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubStandingItem.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubStandingItem.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubTask">
+            <summary>CenaPlus.Entity.Task 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTask.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTask.InitializeStub">
+            <summary>初始化 type StubTask 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTask.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTask.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTask.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubTaskFeedback">
+            <summary>CenaPlus.Entity.TaskFeedback 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback.InitializeStub">
+            <summary>初始化 type StubTaskFeedback 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubTaskFeedback_Compile">
+            <summary>CenaPlus.Entity.TaskFeedback_Compile 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback_Compile.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback_Compile.InitializeStub">
+            <summary>初始化 type StubTaskFeedback_Compile 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Compile.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Compile.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Compile.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubTaskFeedback_Hack">
+            <summary>CenaPlus.Entity.TaskFeedback_Hack 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback_Hack.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback_Hack.InitializeStub">
+            <summary>初始化 type StubTaskFeedback_Hack 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Hack.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Hack.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Hack.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubTaskFeedback_Run">
+            <summary>CenaPlus.Entity.TaskFeedback_Run 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback_Run.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTaskFeedback_Run.InitializeStub">
+            <summary>初始化 type StubTaskFeedback_Run 的新实例</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Run.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Run.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTaskFeedback_Run.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubTestCase">
+            <summary>CenaPlus.Entity.TestCase 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTestCase.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTestCase.AttachBackingFieldToProblem">
+            <summary>附加委托以将 StubTestCase.Problem 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTestCase.Equals(System.Object)">
+            <summary>设置 TestCase.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubTestCase.EqualsObject">
+            <summary>设置 TestCase.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTestCase.GetHashCode">
+            <summary>设置 TestCase.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubTestCase.GetHashCode01">
+            <summary>设置 TestCase.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubTestCase.InitializeStub">
+            <summary>初始化 type StubTestCase 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubTestCase.ProblemGet">
+            <summary>设置 TestCase.get_Problem() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubTestCase.ProblemSetProblem">
+            <summary>设置 TestCase.set_Problem(Problem value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTestCase.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTestCase.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTestCase.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubTestCase.Problem">
+            <summary>设置 TestCase.get_Problem() 的 stub</summary>
+        </member>
+        <member name="T:CenaPlus.Entity.Fakes.StubUser">
+            <summary>CenaPlus.Entity.User 的存根类型</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubUser.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubUser.AttachBackingFieldToLockedProblems">
+            <summary>附加委托以将 StubUser.LockedProblems 作为具有支持字段的属性进行模拟。</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubUser.Equals(System.Object)">
+            <summary>设置 User.Equals(Object obj) 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubUser.EqualsObject">
+            <summary>设置 User.Equals(Object obj) 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubUser.GetHashCode">
+            <summary>设置 User.GetHashCode() 的 存根</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubUser.GetHashCode01">
+            <summary>设置 User.GetHashCode() 的 stub</summary>
+        </member>
+        <member name="M:CenaPlus.Entity.Fakes.StubUser.InitializeStub">
+            <summary>初始化 type StubUser 的新实例</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubUser.LockedProblemsGet">
+            <summary>设置 User.get_LockedProblems() 的 stub</summary>
+        </member>
+        <member name="F:CenaPlus.Entity.Fakes.StubUser.LockedProblemsSetICollectionOfProblem">
+            <summary>设置 User.set_LockedProblems(ICollection`1&lt;Problem&gt; value) 的 stub</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubUser.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubUser.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubUser.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="P:CenaPlus.Entity.Fakes.StubUser.LockedProblems">
+            <summary>设置 User.get_LockedProblems() 的 stub</summary>
+        </member>
+    </members>
+</doc>

@@ -69,13 +69,14 @@ namespace CenaPlus.Server.Judge
             switch (Task.Record.Language)
             {
                 case Entity.ProgrammingLanguage.Java:
-                    Runner.RunnerInfo.Cmd = App.Server.GetConfig(Bll.ConfigKey.Compiler.Java) ?? Bll.ConfigKey.Compiler.DefaultJava; break;
+                    Runner.RunnerInfo.Cmd = Bll.ConfigHelper.Java;
+                    break;
                 case Entity.ProgrammingLanguage.Python27:
-                    Runner.RunnerInfo.Cmd = App.Server.GetConfig(Bll.ConfigKey.Compiler.Python27) ?? Bll.ConfigKey.Compiler.DefaultPython27; break;
+                    Runner.RunnerInfo.Cmd =  Bll.ConfigHelper.Python27; break;
                 case Entity.ProgrammingLanguage.Python33:
-                    Runner.RunnerInfo.Cmd = App.Server.GetConfig(Bll.ConfigKey.Compiler.Python33) ?? Bll.ConfigKey.Compiler.DefaultPython33; break;
+                    Runner.RunnerInfo.Cmd =  Bll.ConfigHelper.Python33; break;
                 case Entity.ProgrammingLanguage.Ruby:
-                    Runner.RunnerInfo.Cmd = App.Server.GetConfig(Bll.ConfigKey.Compiler.Ruby) ?? Bll.ConfigKey.Compiler.DefaultRuby; break;
+                    Runner.RunnerInfo.Cmd =  Bll.ConfigHelper.Ruby; break;
                 default:
                     Runner.RunnerInfo.Cmd = "Main.exe";
                     Runner.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";

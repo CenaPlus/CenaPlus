@@ -10,7 +10,7 @@
         <ScrollViewer>
             <StackPanel MinWidth="200">
                 <TextBlock Text="Question" Style="{StaticResource Heading2}" />
-                <TextBlock x:Name="lbQuestion" Text="" TextWrapping="Wrap" />
+                <TextBlock x:Name="lbQuestion" Text="" TextWrapping="Wrap" Margin="0,0,0,10" />
                 <TextBlock Text="Answer" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="lbAnswer" Text="" TextWrapping="Wrap" />
             </StackPanel>

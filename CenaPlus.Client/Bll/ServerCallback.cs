@@ -30,7 +30,7 @@ namespace CenaPlus.Client.Bll
                 }));
             });
         }
-        public void JudgeFinished(Record record)
+        public void JudgeFinished(Result result)
         {
             System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
@@ -39,7 +39,7 @@ namespace CenaPlus.Client.Bll
                     new ModernDialog
                     {
                         Title = "Your program has a new status",
-                        Content = new CenaPlus.Client.Remote.Contest.ResultPush(record)
+                        Content = new CenaPlus.Client.Remote.Contest.ResultPush(result)
                     }.ShowDialog();
                 }));
             });

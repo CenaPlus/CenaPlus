@@ -26,7 +26,7 @@ namespace CenaPlus.Network
         /// </summary>
         /// <param name="record"></param>
         [OperationContract(IsOneWay = true)]
-        void JudgeFinished(Record record);
+        void JudgeFinished(Result result);
 
         /// <summary>
         /// Tell the client a standing item has been updated.

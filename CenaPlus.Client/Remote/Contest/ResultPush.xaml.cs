@@ -21,18 +21,20 @@ namespace CenaPlus.Client.Remote.Contest
     /// </summary>
     public partial class ResultPush : UserControl
     {
-        public ResultPush(Entity.Record record)
+        public ResultPush(Entity.Result result)
         {
             InitializeComponent();
-            tbStatusID.Text = record.ID.ToString();
-            tbTime.Text = record.TimeUsage != null ? record.TimeUsage.ToString() + " ms" : "??";
-            tbMemory.Text = record.MemoryUsage != null ? (Convert.ToInt32(record.MemoryUsage / 1024)).ToString() + " KiB" : "??";
-            tbStatus.Text = record.Status.ToString();
-            if (record.Status == Entity.RecordStatus.Accepted)
+            tbStatusID.Text = result.StatusID.ToString();
+            tbLanguage.Text = result.Language.ToString();
+            tbSubmittion.Text = result.SubmissionTime.ToString();
+            tbTime.Text = result.TimeUsage != null ? result.TimeUsage.ToString() + " ms" : "??";
+            tbMemory.Text = result.MemoryUsage != null ? (Convert.ToInt32(result.MemoryUsage / 1024)).ToString() + " KiB" : "??";
+            tbStatus.Text = result.Status.ToString();
+            if (result.Status == Entity.RecordStatus.Accepted)
             {
                 tbStatus.Foreground = new SolidColorBrush(Colors.Green);
             }
-            else if (record.Status == Entity.RecordStatus.SystemError || record.Status == Entity.RecordStatus.ValidatorError || record.Status == Entity.RecordStatus.CompileError)
+            else if (result.Status == Entity.RecordStatus.SystemError || result.Status == Entity.RecordStatus.ValidatorError || result.Status == Entity.RecordStatus.CompileError)
             {
                 tbStatus.Foreground = new SolidColorBrush(Colors.Orange);
             }
@@ -40,7 +42,7 @@ namespace CenaPlus.Client.Remote.Contest
             {
                 tbStatus.Foreground = new SolidColorBrush(Colors.Red);
             }
-            tbDetail.Text = record.Detail.Trim('\r').Trim('\n');
+            tbDetail.Text = result.Detail.Trim('\r').Trim('\n');
         }
     }
 }

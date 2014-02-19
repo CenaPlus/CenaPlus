@@ -62,16 +62,18 @@ namespace CenaPlus.Server.ServerMode
                 Record record = (from r in db.Records
                             where r.ID == record_id
                             select r).FirstOrDefault();
-                Record re = new Record() 
+                Result re = new Result() 
                 { 
-                    ID=record.ID,
+                    StatusID=record.ID,
                     Status = record.Status,
                     TimeUsage = record.TimeUsage,
                     MemoryUsage = record.MemoryUsage,
                     UserID = record.UserID,
                     SubmissionTime = record.SubmissionTime,
                     UserNickName = record.UserNickName,
-                    Detail = record.Detail
+                    Detail = record.Detail,
+                    Language = record.Language,
+                    ProblemTitle = record.Problem.Title
                 };
                 var Type = record.Problem.Contest.Type;
                 if (Type == ContestType.OI) return;

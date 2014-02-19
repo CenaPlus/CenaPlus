@@ -57,6 +57,7 @@ namespace CenaPlus.Judge
             if (!System.IO.Directory.Exists(CompileInfo.WorkingDirectory))
             {
                 System.IO.Directory.CreateDirectory(CompileInfo.WorkingDirectory);
+                Runner Runner = new Judge.Runner();
             }
             File.WriteAllText(CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Main" + GetExtension(CompileInfo.Language), CompileInfo.Source);
             if (CenaPlus.Judge.Compiler.NeedCompile.Contains(CompileInfo.Language))
@@ -80,16 +81,24 @@ namespace CenaPlus.Judge
         {
             get 
             {
-                CompileResult CompileResult = new CompileResult();
-                if (Runner.RunnerResult.ExitCode != 0 || Runner.RunnerResult.TimeUsed > 3000)
-                    CompileResult.CompileFailed = true;
-                CompileResult.CompilerOutput = File.ReadAllText(Runner.RunnerInfo.StdErrFile) + File.ReadAllText(Runner.RunnerInfo.StdOutFile);
-                if (Runner.RunnerResult.TimeUsed > Runner.RunnerInfo.TimeLimit)
+                if (CompileInfo.Language == ProgrammingLanguage.Python27 || CompileInfo.Language == ProgrammingLanguage.Python33 || CompileInfo.Language == ProgrammingLanguage.Ruby)
                 {
-                    CompileResult.CompileFailed = true;
-                    CompileResult.CompilerOutput = "Cena+: Compiler time limit exceeded.";
+                    CompileResult CompileResult = new CompileResult();
+                    return CompileResult;
                 }
-                return CompileResult;
+                else
+                {
+                    CompileResult CompileResult = new CompileResult();
+                    if (Runner.RunnerResult.ExitCode != 0 || Runner.RunnerResult.TimeUsed > 3000)
+                        CompileResult.CompileFailed = true;
+                    CompileResult.CompilerOutput = File.ReadAllText(Runner.RunnerInfo.StdErrFile) + File.ReadAllText(Runner.RunnerInfo.StdOutFile);
+                    if (Runner.RunnerResult.TimeUsed > Runner.RunnerInfo.TimeLimit)
+                    {
+                        CompileResult.CompileFailed = true;
+                        CompileResult.CompilerOutput = "Cena+: Compiler time limit exceeded.";
+                    }
+                    return CompileResult;
+                }
             }
         }
     }

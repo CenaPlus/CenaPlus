@@ -230,6 +230,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="RichTextEditor\HighLightEdit.cs" />
     <Compile Include="Settings\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
