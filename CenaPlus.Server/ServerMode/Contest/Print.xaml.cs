@@ -36,6 +36,16 @@ namespace CenaPlus.Server.ServerMode.Contest
             PrintRequestListBox.ItemsSource = requestList;
             LocalCenaServer.NewPrintRequest += this.NewPrintRequest;
             LocalCenaServer.PrintRequestUpdated += this.PrintRequestUpdated;
+            LocalCenaServer.PrintRequestDeleted += this.PrintRequestDeleted;
+        }
+        public void PrintRequestDeleted(int request_id)
+        {
+            var requestindex = requestList.FindIndex(x => x.ID == request_id);
+            if (requestindex == -1) return;
+            Dispatcher.Invoke(new Action(() => {
+                requestList.RemoveAt(requestindex);
+                PrintRequestListBox.Items.Refresh();
+            }));
         }
         public void PrintRequestUpdated(int request_id)
         {

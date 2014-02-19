@@ -33,6 +33,7 @@ namespace CenaPlus.Server.Bll
         public static event Action<int> QuestionUpdated;
         public static event Action<int> NewPrintRequest;
         public static event Action<int> PrintRequestUpdated;
+        public static event Action<int> PrintRequestDeleted;
         #endregion
 
         public LocalCenaServer()
@@ -1341,8 +1342,14 @@ namespace CenaPlus.Server.Bll
 
                 if (CurrentUser.Role >= UserRole.Manager || request.UserID == CurrentUser.ID)
                 {
+                    if (request.UserID == CurrentUser.ID && CurrentUser.Role == UserRole.Competitor && request.Status != PrintRequestStatus.Pending)
+                        return;
                     db.PrintRequests.Remove(request);
                     db.SaveChanges();
+                    if (PrintRequestDeleted != null)
+                    {
+                        System.Threading.Tasks.Task.Factory.StartNew(() => PrintRequestDeleted(id));
+                    }
                 }
                 else
                 {
