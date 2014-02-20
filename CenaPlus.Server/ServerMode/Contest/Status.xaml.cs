@@ -15,6 +15,7 @@ using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Navigation;
 using FirstFloor.ModernUI.Windows.Controls;
 using CenaPlus.Entity;
+using CenaPlus.Server.Bll;
 
 namespace CenaPlus.Server.ServerMode.Contest
 {
@@ -24,11 +25,60 @@ namespace CenaPlus.Server.ServerMode.Contest
     public partial class Status : UserControl, IContent
     {
         private List<StatusListViewItem> StatusListViewItems = new List<StatusListViewItem>();
+        private int contestID;
         public Status()
         {
             InitializeComponent();
             RichTextEditor.HighLightEdit.HighLight(txtCode);
             StatusListView.ItemsSource = StatusListViewItems;
+            LocalCenaServer.NewRecord += this.NewRecord;
+            App.judger.RecordJudgeComplete += this.RecordUpdated;
+        }
+        public void NewRecord(int record_id)
+        {
+            var r = App.Server.GetRecord(record_id);
+            if (r == null) return;
+            if (App.Server.GetProblemRelatedContest(r.ProblemID) != contestID) return;
+            var item = new StatusListViewItem
+            {
+                ID = r.ID,
+                Language = r.Language,
+                MemoryUsage = r.MemoryUsage,
+                TimeUsage = r.TimeUsage,
+                ProblemTitle = r.ProblemTitle,
+                Status = r.Status,
+                SubmissionTime = r.SubmissionTime,
+                UserNickName = r.UserNickName,
+                Code = r.Code
+            };
+            Dispatcher.Invoke(new Action(() => {
+                StatusListViewItems.Add(item);
+                StatusListView.Items.Refresh();
+            }));
+        }
+        public void RecordUpdated(int record_id)
+        {
+            var r = App.Server.GetRecord(record_id);
+            if (r == null) return;
+            int recordindex = StatusListViewItems.FindIndex(x=>x.ID == record_id);
+            if (recordindex == -1) return;
+            var item = new StatusListViewItem
+            {
+                ID = r.ID,
+                Language = r.Language,
+                MemoryUsage = r.MemoryUsage,
+                TimeUsage = r.TimeUsage,
+                ProblemTitle = r.ProblemTitle,
+                Status = r.Status,
+                SubmissionTime = r.SubmissionTime,
+                UserNickName = r.UserNickName,
+                Code = r.Code
+            };
+            Dispatcher.Invoke(new Action(() =>
+            {
+                StatusListViewItems[recordindex] = item;
+                StatusListView.Items.Refresh();
+            }));
         }
         private void StatusListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -70,12 +120,11 @@ namespace CenaPlus.Server.ServerMode.Contest
                 Code = r.Code
             };
             StatusListView.Items.Refresh();
-            ModernDialog.ShowMessage("Rejudging", "Message", MessageBoxButton.OK);
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
-            int contestID = int.Parse(e.Fragment);
+            contestID = int.Parse(e.Fragment);
             var list = from id in App.Server.GetRecordList(contestID)
                        let r = App.Server.GetRecord(id)
                        select new StatusListViewItem

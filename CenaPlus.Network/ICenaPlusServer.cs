@@ -290,5 +290,9 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(NotFoundError))]
         List<StandingItem> GetStandings(int contest_id);
+
+        [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        int GetProblemRelatedContest(int id);
     }
 }

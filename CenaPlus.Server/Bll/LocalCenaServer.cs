@@ -307,6 +307,17 @@ namespace CenaPlus.Server.Bll
 
         #endregion
         #region Problem
+        public int GetProblemRelatedContest(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
+                var cid = (from p in db.Problems
+                           where p.ID == id
+                           select p.ContestID).FirstOrDefault();
+                return cid;
+            }
+        }
         public ProblemStatistics GetProblemStatistics(int id)
         {
             using (DB db = new DB())

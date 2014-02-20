@@ -52,6 +52,8 @@ namespace CenaPlus.Server.ServerMode.Contest
             var requestindex = requestList.FindIndex(x => x.ID == request_id);
             if (requestindex == -1) return;
             var r = App.Server.GetPrintRequest(request_id);
+            if (r == null) return;
+            if (r.ContestID != contestID) return;
             var item = new PrintRequestListItem
             {
                 ID = r.ID,

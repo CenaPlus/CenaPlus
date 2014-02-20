@@ -25,6 +25,7 @@ namespace CenaPlus.Server.ServerMode.Contest
     public partial class Questions : UserControl, IContent
     {
         private List<QuestionListItem> QuestionListItems = new List<QuestionListItem>();
+        private int contestID;
         public Questions()
         {
             InitializeComponent();
@@ -92,6 +93,8 @@ namespace CenaPlus.Server.ServerMode.Contest
         public void NewQuestion(int question_id)
         {
             var q = App.Server.GetQuestion(question_id);
+            if (q == null) return;
+            if (q.ContestID != contestID) return;
             var item = new QuestionListItem()
             {
                 ID = q.ID,
@@ -116,8 +119,8 @@ namespace CenaPlus.Server.ServerMode.Contest
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
             QuestionListItems.Clear();
-            var contest_id = int.Parse(e.Fragment);
-            var list = from id in App.Server.GetQuestionList(contest_id)
+            contestID = int.Parse(e.Fragment);
+            var list = from id in App.Server.GetQuestionList(contestID)
                        let q = App.Server.GetQuestion(id)
                        select new QuestionListItem
                        {
