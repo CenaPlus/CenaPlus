@@ -32,8 +32,9 @@ namespace CenaPlus.Server.ServerMode.Contest
             RichTextEditor.HighLightEdit.HighLight(txtCode);
             StatusListView.ItemsSource = StatusListViewItems;
             LocalCenaServer.NewRecord += id => this.NewRecord(App.Server.GetRecord(id));
-            App.RemoteCallback.OnNewRecord += NewRecord;
+            App.RemoteCallback.OnNewRecord += this.NewRecord;
             App.judger.RecordJudgeComplete += this.RecordUpdated;
+            App.RemoteCallback.OnRecordUpdated += this.RecordUpdated;
         }
         public void NewRecord(Record r)
         {
@@ -53,7 +54,7 @@ namespace CenaPlus.Server.ServerMode.Contest
             };
             Dispatcher.Invoke(new Action(() =>
             {
-                StatusListViewItems.Add(item);
+                StatusListViewItems.Insert(0, item);
                 StatusListView.Items.Refresh();
             }));
         }

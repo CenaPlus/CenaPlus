@@ -64,6 +64,11 @@ namespace CenaPlus.Server.Bll
 
                 if (UserLoggedOut != null)
                     System.Threading.Tasks.Task.Factory.StartNew(() => UserLoggedOut(CurrentUser.ID));
+
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.UserLogout(CurrentUser.ID));
+                }
             }
         }
 
@@ -128,6 +133,11 @@ namespace CenaPlus.Server.Bll
 
                 if (UserLoggedIn != null)
                     System.Threading.Tasks.Task.Factory.StartNew(() => UserLoggedIn(user.ID));
+
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.UserLogin(user.ID));
+                }
                 return true;
             }
         }
@@ -662,6 +672,7 @@ namespace CenaPlus.Server.Bll
                     Status = RecordStatus.Pending,
                     SubmissionTime = DateTime.Now,
                     UserID = CurrentUser.ID,
+                    UserNickName = CurrentUser.NickName,
                     Score = 0
                 };
 
@@ -1158,6 +1169,10 @@ namespace CenaPlus.Server.Bll
                 if (NewQuestion != null)
                 {
                     System.Threading.Tasks.Task.Factory.StartNew(() => NewQuestion(question.ID));
+                }
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.NewQuestion(question.ID));
                 }
                 return question.ID;
             }

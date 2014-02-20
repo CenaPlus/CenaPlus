@@ -29,7 +29,9 @@ namespace CenaPlus.Server.ServerMode
             InitializeComponent();
             OnlineListBox.ItemsSource = onlineList;
             LocalCenaServer.UserLoggedIn += LocalCenaServer_UserLoggedIn;
+            App.RemoteCallback.OnLogin += LocalCenaServer_UserLoggedIn;
             LocalCenaServer.UserLoggedOut += LocalCenaServer_UserLoggedOut;
+            App.RemoteCallback.OnLogout += LocalCenaServer_UserLoggedOut;
         }
 
         void LocalCenaServer_UserLoggedOut(int userID)

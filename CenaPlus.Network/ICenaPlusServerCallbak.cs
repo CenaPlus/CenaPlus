@@ -52,5 +52,14 @@ namespace CenaPlus.Network
 
         [OperationContract(IsOneWay = true)]
         void NewRecord(Record record);
+
+        [OperationContract(IsOneWay = true)]
+        void NewQuestion(int question_id);
+
+        [OperationContract(IsOneWay = true)]
+        void UserLogin(int user_id);
+
+        [OperationContract(IsOneWay = true)]
+        void UserLogout(int user_id);
     }
 }

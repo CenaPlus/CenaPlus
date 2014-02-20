@@ -30,7 +30,9 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
             InitializeComponent();
             LocalCenaServer.QuestionUpdated += this.QuestionUpdated;
+            App.RemoteCallback.OnQuestionUpdated += this.QuestionUpdated;
             LocalCenaServer.NewQuestion += this.NewQuestion;
+            App.RemoteCallback.OnNewQuestion += this.NewQuestion;
         }
 
         private void lstQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
