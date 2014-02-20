@@ -31,9 +31,10 @@ namespace CenaPlus.Judge
                 Process.StartInfo.Password = Identity.secPassword;
             }
             Process.Start();
-            Process.WaitForExit(2 * RunnerInfo.TimeLimit);
+            Process.WaitForExit(2 * RunnerInfo.TimeLimit + 1000);
             try
             {
+                if (!Process.HasExited) RunnerInfo.KillProcessTree = true;
                 Process.Kill();
                 if (RunnerInfo.KillProcessTree)
                 {
