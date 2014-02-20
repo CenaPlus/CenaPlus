@@ -5,12 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid Style="{StaticResource ContentRoot}">
         <WrapPanel MinWidth="200" HorizontalAlignment="Left">
             <ComboBox Name="lstLanguage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0" Height="25" Margin="0,0,10,0"/>
             <Button Name="btnSubmit" Content="Submit" Width="75" Click="btnSubmit_Click"/>
         </WrapPanel>
-        <RichTextBox Name="txtCode" Margin="0,35,0,0" AcceptsReturn="true" AcceptsTab="True"></RichTextBox>
+        <RichTextBox Name="txtCode" Margin="0,35,160,0" AcceptsReturn="true" AcceptsTab="True"></RichTextBox>
+        <StackPanel Width="150" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Image AllowDrop="True" x:Name="imgSourcePath" Source="/CenaPlus.Client;component/Resources/Box.png" DragEnter="imgSourcePath_DragEnter" DragLeave="imgSourcePath_DragLeave" Drop="imgSourcePath_Drop"></Image>
+            <TextBlock Text="You can drag your source file into above box." TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

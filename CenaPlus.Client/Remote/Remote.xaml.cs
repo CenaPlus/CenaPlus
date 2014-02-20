@@ -182,13 +182,15 @@ namespace CenaPlus.Client.Remote
             {
                 IPEndPoint endpoint = new IPEndPoint(Dns.GetHostAddresses("www.cenaplus.org")[0], 9980);
                 //int delay = GetDelay(endpoint);
-                ServerListBox.Items.Add(new ServerListItem
-                {
-                    Name = "Cena+ Official Server",
-                    Location = endpoint,
-                    Delay = 999999
-                });
-                ServerListBox.Items.Refresh();
+                Dispatcher.Invoke(new Action(() => {
+                    ServerListBox.Items.Add(new ServerListItem
+                    {
+                        Name = "Cena+ Official Server",
+                        Location = endpoint,
+                        Delay = 999999
+                    });
+                    ServerListBox.Items.Refresh();
+                }));
             });
 
             discoverer.FoundServer += (svr) =>

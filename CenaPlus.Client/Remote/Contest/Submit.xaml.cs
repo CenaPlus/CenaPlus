@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 using CenaPlus.Entity;
 namespace CenaPlus.Client.Remote.Contest
@@ -57,6 +58,40 @@ namespace CenaPlus.Client.Remote.Contest
             {
                 Thread.Sleep(200);
                 frame.Source = new Uri("/Remote/Contest/ProblemGeneral.xaml#" + problem.ContestID, UriKind.Relative);
+            }
+        }
+
+        private void imgSourcePath_DragEnter(object sender, DragEventArgs e)
+        {
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files.Length != 1)
+            {
+                imgSourcePath.Source = new BitmapImage(new Uri("/CenaPlus.Client;component/Resources/Box_Err.png", UriKind.Relative));
+            }
+            else
+            {
+                imgSourcePath.Source = new BitmapImage(new Uri("/CenaPlus.Client;component/Resources/Box_Hover.png", UriKind.Relative));
+            }
+        }
+
+        private void imgSourcePath_DragLeave(object sender, DragEventArgs e)
+        {
+            imgSourcePath.Source = new BitmapImage(new Uri("/CenaPlus.Client;component/Resources/Box.png", UriKind.Relative));
+        }
+
+        private void imgSourcePath_Drop(object sender, DragEventArgs e)
+        {
+            imgSourcePath.Source = new BitmapImage(new Uri("/CenaPlus.Client;component/Resources/Box.png", UriKind.Relative));
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files.Length != 1)
+            {
+                ModernDialog.ShowMessage("You must select a single file.", "Error", MessageBoxButton.OK);
+                return;
+            }
+            else
+            {
+                txtCode.Document.Blocks.Clear();
+                txtCode.Document.Blocks.Add(new Paragraph(new Run(System.IO.File.ReadAllText(files[0]))));
             }
         }
     }
