@@ -41,13 +41,5 @@ namespace CenaPlus.Server.Bll
             if (OnNewRecord != null)
                 System.Threading.Tasks.Task.Factory.StartNew(() => OnNewRecord(record));
         }
-
-        public void HackResultPush(Entity.HackResult result)
-        { 
-        }
-
-        public void BeHackedPush(Entity.HackResult result)
-        { 
-        }
     }
 }

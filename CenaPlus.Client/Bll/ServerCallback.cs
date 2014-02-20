@@ -88,5 +88,8 @@ namespace CenaPlus.Client.Bll
                 }));
             });
         }
+        public void NewRecord(Entity.Record record)
+        { 
+        }
     }
 }
