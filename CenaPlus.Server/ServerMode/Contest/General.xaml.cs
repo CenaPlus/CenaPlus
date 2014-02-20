@@ -81,7 +81,34 @@ namespace CenaPlus.Server.ServerMode.Contest
                 return;
             }
 
-            App.Server.UpdateContest(id, txtTitle.Text, null, start, null, null, end, (ContestType)Enum.Parse(typeof(ContestType), (string)cbbType.SelectedItem), chkPrinting.IsChecked);
+            DateTime? r_start = null, r_end = null;
+
+            if (cbbType.SelectedIndex == (int)Entity.ContestType.TopCoder)
+            {
+                TimeSpan r_startTime, r_endTime;
+
+                if (!TimeSpan.TryParse(txtRestBeginTime.Text, out r_startTime))
+                {
+                    ModernDialog.ShowMessage("Invalid start time", "Error", MessageBoxButton.OK);
+                    return;
+                }
+                if (!TimeSpan.TryParse(txtRestEndTime.Text, out r_endTime))
+                {
+                    ModernDialog.ShowMessage("Invalid end time", "Error", MessageBoxButton.OK);
+                    return;
+                }
+
+                r_start = dateRestBeginDate.SelectedDate.Value.Add(r_startTime);
+                r_end = dateRestEndDate.SelectedDate.Value.Add(r_endTime);
+
+                if (!(start < r_start && r_start < r_end && r_end < end))
+                {
+                    ModernDialog.ShowMessage("The rest time is incorrect.", "Error", MessageBoxButton.OK);
+                    return;
+                }
+            }
+
+            App.Server.UpdateContest(id, txtTitle.Text, null, start, r_start, r_end, end, (ContestType)Enum.Parse(typeof(ContestType), (string)cbbType.SelectedItem), chkPrinting.IsChecked);
             ModernDialog.ShowMessage("Saved", "Message", MessageBoxButton.OK);
         }
 
@@ -95,6 +122,18 @@ namespace CenaPlus.Server.ServerMode.Contest
 
         public void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+        }
+
+        private void cbbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbbType.SelectedItem != null && cbbType.SelectedIndex == (int)Entity.ContestType.TopCoder)
+            {
+                TopCoderPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TopCoderPanel.Visibility = Visibility.Collapsed;
+            }
         }
 
 

@@ -11,6 +11,8 @@
             <StackPanel MinWidth="200">
                 <TextBlock Text="Contest title" Margin="0,0,0,5" />
                 <TextBox x:Name="txtTitle" Margin="0,0,0,20"></TextBox>
+                <TextBlock Text="Contest type"></TextBlock>
+                <ComboBox x:Name="cbbType" Margin="0,0,0,20" SelectionChanged="cbbType_SelectionChanged"></ComboBox>
                 <TextBlock Text="Begin time" Margin="0,0,0,5" />
                 <WrapPanel Margin="0,0,0,20">
                     <DatePicker x:Name="dateBeginDate" Margin="0,0,10,0"></DatePicker>
@@ -33,8 +35,6 @@
                         <TextBox x:Name="txtRestEndTime" Width="80" Text="0:00"></TextBox>
                     </WrapPanel>
                 </StackPanel>
-                <TextBlock Text="Contest type"></TextBlock>
-                <ComboBox x:Name="cbbType" Margin="0,0,0,20"></ComboBox>
                 <TextBlock Text="Accept print requests" Margin="0,0,0,5" />
                 <CheckBox Name="chkPrinting" Content="Allow" Margin="0,0,0,20"></CheckBox>
                 

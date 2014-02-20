@@ -24,5 +24,13 @@ namespace CenaPlus.Server.Bll
         public void StandingsPush(int contest_id, Entity.StandingItem si)
         { 
         }
+
+        public void HackResultPush(Entity.HackResult result)
+        { 
+        }
+
+        public void BeHackedPush(Entity.HackResult result)
+        { 
+        }
     }
 }
