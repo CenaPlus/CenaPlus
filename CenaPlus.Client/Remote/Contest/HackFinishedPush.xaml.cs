@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CenaPlus.Entity;
 
 namespace CenaPlus.Client.Remote.Contest
 {
@@ -20,9 +21,31 @@ namespace CenaPlus.Client.Remote.Contest
     /// </summary>
     public partial class HackFinishedPush : UserControl
     {
-        public HackFinishedPush()
+        public HackFinishedPush(Entity.HackResult result)
         {
             InitializeComponent();
+            tbHackID.Text = result.HackID.ToString();
+            tbHacker.Text = result.HackerUserNickName;
+            tbDefender.Text = result.DefenderUserNickName;
+            tbProblem.Text = result.ProblemTitle;
+            tbStatus.Text = result.Status.ToString();
+            tbTime.Text = result.Time.ToString();
+            switch (result.Status)
+            {
+                case HackStatus.BadData:
+                case HackStatus.DatamakerError:
+                    tbStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    break;
+                case HackStatus.Failure:
+                    tbStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    break;
+                case HackStatus.Success:
+                    tbStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    break;
+                default:
+                    tbStatus.Foreground = new SolidColorBrush(Colors.SkyBlue);
+                    break;
+            }
         }
     }
 }

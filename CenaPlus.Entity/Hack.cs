@@ -39,6 +39,9 @@ namespace CenaPlus.Entity
         [Column("status")]
         public int StatusAsInt { get; set; }
 
+        [Column("time")]
+        public DateTime Time { get; set; }
+
         [NotMapped]
         [IgnoreDataMember]
         public HackStatus Status

@@ -28,7 +28,7 @@ INSERT INTO test_cases (problem_id,`type`,input_hash,input,output_hash,output) v
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,score) values (1,1,0,0,'#include<con>',now(),0);
 INSERT INTO records (user_id, problem_id, `status`,`language`,`code`,submission_time,time_usage,memory_usage,detail,score) values (2,5,4,1,'#include <iostream>\nint main(){\nreturn 0;\n}',now(),998,1024*1024*3,'Detail....',0);
 
-INSERT INTO hacks (record_id,hacker_id,`status`,data_or_datamaker,datamaker_language,detail) values (2,1,0,'#include<con>',0,'Details...');
+INSERT INTO hacks (record_id,hacker_id,`status`,data_or_datamaker,datamaker_language,detail,`time`) values (2,1,0,'#include<con>',0,'Details...',now());
 
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (3,2,now(),0,'How to ask a question?',null);
 INSERT INTO questions (asker_id,contest_id,`time`,`status`,description,answer) values (4,2,addtime(now(),'0:1'),1,'Why are these problems so easy?','Because the competitors are so weak.');

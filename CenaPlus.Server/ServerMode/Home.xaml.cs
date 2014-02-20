@@ -89,6 +89,7 @@ namespace CenaPlus.Server.ServerMode
             App.contestmanager.ScheduleAll();
 
             App.judger.RecordJudgeComplete += App.pushingmanager.JudgeFinished;
+            App.judger.HackJudgeComplete += App.pushingmanager.HackFinished;
             App.judger.StartJudgeAllPending();
 
             LocalCenaServer.ContestModified += App.contestmanager.Reschedule;

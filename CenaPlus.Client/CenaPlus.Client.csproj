@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Remote\Contest\HackFinishedPush.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Contest\HackPush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +197,9 @@
     <Compile Include="Local\Static.cs" />
     <Compile Include="Remote\Contest\AnswerPush.xaml.cs">
       <DependentUpon>AnswerPush.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remote\Contest\HackFinishedPush.xaml.cs">
+      <DependentUpon>HackFinishedPush.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Contest\HackPush.xaml.cs">
       <DependentUpon>HackPush.xaml</DependentUpon>

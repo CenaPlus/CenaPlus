@@ -97,6 +97,7 @@ CREATE TABLE `hacks` (
     id int not null auto_increment,
     record_id int not null,
     hacker_id int not null,
+	time datetime not null,
     `status` int not null,
     data_or_datamaker mediumtext not null,
     datamaker_language tinyint default null,

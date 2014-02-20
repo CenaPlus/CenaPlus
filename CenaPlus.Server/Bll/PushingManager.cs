@@ -9,6 +9,46 @@ namespace CenaPlus.Server.Bll
 {
     public class PushingManager
     {
+        public void HackFinished(int hack_id)
+        {
+            using (DB db = new DB())
+            {
+                Hack hack = (from h in db.Hacks
+                             where h.ID == hack_id
+                             select h).FirstOrDefault();
+                HackResult re = new HackResult()
+                {
+                    HackID = hack.ID,
+                    DefenderUserID = hack.HackeeID,
+                    DefenderUserNickName = hack.HackeeNickName,
+                    HackerUserID = hack.HackerID,
+                    HackerUserNickName = hack.HackerNickName,
+                    Status = hack.Status,
+                    RecordID = hack.RecordID,
+                    ProblemTitle = hack.Record.ProblemTitle,
+                    Time = hack.Time
+                };
+                if (hack.Status == HackStatus.Success)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() =>
+                    {
+                        LocalCenaServer client;
+                        if (App.Clients.TryGetValue(hack.HackeeID, out client))
+                        {
+                            client.Callback.BeHackedPush(re);
+                        }
+                    });
+                }
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    LocalCenaServer client;
+                    if (App.Clients.TryGetValue(hack.HackerID, out client))
+                    {
+                        client.Callback.HackResultPush(re);
+                    }
+                });
+            }
+        }
         public void JudgeFinished(int record_id)
         {
             using (DB db = new DB())

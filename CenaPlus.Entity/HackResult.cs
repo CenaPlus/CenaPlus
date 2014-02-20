@@ -15,5 +15,6 @@ namespace CenaPlus.Entity
         public int RecordID { get; set; }
         public DateTime Time { get; set; }
         public string ProblemTitle { get; set; }
+        public int HackID { get; set; }
     }
 }
