@@ -115,7 +115,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 					CreateProcessAsUser(hNewToken, NULL, argv[1], NULL, NULL, FALSE, 0, NULL, NULL, (LPSTARTUPINFOW)(&StartupInfo), &ProcessInfo);
 				*/
 				CreateProcess(NULL, argv[1], NULL, NULL, TRUE, CREATE_SUSPENDED, NULL, NULL, (LPSTARTUPINFOW)(&StartupInfo), &ProcessInfo);
-				if (CString(argv[8]) != CString(L"NULL"))
+				if (CString(argv[8]) != CString("NULL"))
 					LoadRemoteDLL(ProcessInfo.dwProcessId, argv[8]);
 				LPTHREAD_PARAM pData;
 				pData = (LPTHREAD_PARAM)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(THREAD_PARAM));

@@ -79,7 +79,7 @@ namespace CenaPlus.Server.Judge
                     Runner.RunnerInfo.Cmd =  Bll.ConfigHelper.Ruby; break;
                 default:
                     Runner.RunnerInfo.Cmd = "Main.exe";
-                    Runner.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+                    Runner.RunnerInfo.APIHook = "..\\safe.dll";
                     break;
             }
             Runner.Start();
@@ -229,6 +229,14 @@ namespace CenaPlus.Server.Judge
                 try
                 {
                     System.IO.File.Copy(Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.StandardJudge.exe", WorkDirectory + "\\spj.exe", true);
+                }
+                catch { }
+            }
+            if (!System.IO.File.Exists(WorkDirectory + "\\safe.dll"))
+            {
+                try
+                {
+                    System.IO.File.Copy(Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll", WorkDirectory + "\\safe.dll", true);
                 }
                 catch { }
             }
@@ -440,7 +448,7 @@ namespace CenaPlus.Server.Judge
             CenaPlus.Judge.Runner runRange = new Runner();
             runRange.Identity = Identity;
             runRange.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-            runRange.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+            runRange.RunnerInfo.APIHook = "..\\safe.dll";
             runRange.RunnerInfo.HighPriorityTime = 1000;
             runRange.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
             runRange.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
@@ -468,7 +476,7 @@ namespace CenaPlus.Server.Judge
             CenaPlus.Judge.Runner runStd = new Runner();
             runStd.Identity = Identity;
             runStd.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-            runStd.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+            runStd.RunnerInfo.APIHook = "..\\safe.dll";
             runStd.RunnerInfo.HighPriorityTime = 1000;
             runStd.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
             runStd.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
@@ -497,7 +505,7 @@ namespace CenaPlus.Server.Judge
             CenaPlus.Judge.Runner runHackee = new Runner();
             runHackee.Identity = Identity;
             runHackee.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-            runHackee.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+            runHackee.RunnerInfo.APIHook = "..\\safe.dll";
             runHackee.RunnerInfo.HighPriorityTime = 1000;
             runHackee.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
             runHackee.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
@@ -528,7 +536,7 @@ namespace CenaPlus.Server.Judge
                 CenaPlus.Judge.Runner runSpj = new Runner();
                 runSpj.Identity = Identity;
                 runSpj.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
-                runSpj.RunnerInfo.APIHook = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.Defender.dll";
+                runSpj.RunnerInfo.APIHook = "..\\safe.dll";
                 runSpj.RunnerInfo.HighPriorityTime = 1000;
                 runSpj.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
                 //runSpj.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
