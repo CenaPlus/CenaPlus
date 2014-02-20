@@ -14,6 +14,9 @@ namespace CenaPlus.Server.Bll
         public event Action<int> OnQuestionUpdated;
         public event Action<int> OnLogin;
         public event Action<int> OnLogout;
+        public event Action<int> OnNewPrint;
+        public event Action<int> OnPrintDeleted;
+        public event Action<int> OnPrintUpdated;
 
         public void Bye()
         {
@@ -63,6 +66,21 @@ namespace CenaPlus.Server.Bll
         {
             if (OnLogout != null)
                 System.Threading.Tasks.Task.Factory.StartNew(() => OnLogout(user_id));
+        }
+        public void NewPrint(int print_id)
+        {
+            if (OnNewPrint != null)
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnNewPrint(print_id));
+        }
+        public void PrintDeleted(int print_id)
+        {
+            if (OnPrintDeleted != null)
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnPrintDeleted(print_id));
+        }
+        public void PrintUpdated(int print_id)
+        {
+            if (OnPrintUpdated != null)
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnPrintUpdated(print_id));
         }
     }
 }

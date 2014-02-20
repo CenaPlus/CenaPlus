@@ -61,5 +61,14 @@ namespace CenaPlus.Network
 
         [OperationContract(IsOneWay = true)]
         void UserLogout(int user_id);
+
+        [OperationContract(IsOneWay = true)]
+        void NewPrint(int print_id);
+
+        [OperationContract(IsOneWay = true)]
+        void PrintDeleted(int print_id);
+
+        [OperationContract(IsOneWay = true)]
+        void PrintUpdated(int print_id);
     }
 }

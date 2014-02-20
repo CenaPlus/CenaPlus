@@ -41,9 +41,13 @@ namespace CenaPlus.Server.ServerMode.Contest
             txtEndTime.Text = contest.EndTime.ToString("HH:mm:ss");
             dateBeginDate.SelectedDate = contest.StartTime;
             dateEndDate.SelectedDate = contest.EndTime;
+            if (contest.Type == ContestType.TopCoder)
+            {
+                txtRestBeginTime.Text = contest.RestTime.GetValueOrDefault().ToString("HH:mm:ss");
+                txtRestEndTime.Text = contest.HackStartTime.GetValueOrDefault().ToString("HH:mm:ss");
+            }
             cbbType.SelectedIndex = (int)contest.Type;
             chkPrinting.IsChecked = contest.PrintingEnabled;
-
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

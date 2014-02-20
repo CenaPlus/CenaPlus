@@ -35,8 +35,11 @@ namespace CenaPlus.Server.ServerMode.Contest
             InitializeComponent();
             PrintRequestListBox.ItemsSource = requestList;
             LocalCenaServer.NewPrintRequest += this.NewPrintRequest;
+            App.RemoteCallback.OnNewPrint += this.NewPrintRequest;
             LocalCenaServer.PrintRequestUpdated += this.PrintRequestUpdated;
+            App.RemoteCallback.OnPrintUpdated += this.PrintRequestUpdated;
             LocalCenaServer.PrintRequestDeleted += this.PrintRequestDeleted;
+            App.RemoteCallback.OnPrintDeleted += this.PrintRequestDeleted;
         }
         public void PrintRequestDeleted(int request_id)
         {

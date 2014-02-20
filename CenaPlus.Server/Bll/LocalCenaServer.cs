@@ -19,14 +19,11 @@ namespace CenaPlus.Server.Bll
         public User CurrentUser { get; set; }
         public InstanceContext Context { get; set; }
         public ICenaPlusServerCallback Callback { get; set; }
-
         public enum SessionType
         {
             Client, Server
         }
-
         public SessionType SessionMode = SessionType.Client;
-
         #region Events
         public static event Action<int> NewRecord;
         public static event Action<int> NewHack;
@@ -42,7 +39,6 @@ namespace CenaPlus.Server.Bll
         public static event Action<int> PrintRequestUpdated;
         public static event Action<int> PrintRequestDeleted;
         #endregion
-
         public LocalCenaServer()
         {
             if (OperationContext.Current != null)
@@ -52,7 +48,6 @@ namespace CenaPlus.Server.Bll
                 Context.Closed += InstanceContext_Closed;
             }
         }
-
         void InstanceContext_Closed(object sender, EventArgs e)
         {
             if (CurrentUser != null)
@@ -71,7 +66,6 @@ namespace CenaPlus.Server.Bll
                 }
             }
         }
-
         private void CheckRole(DB db, UserRole leastRole)
         {
             if (CurrentUser == null)
@@ -1303,6 +1297,10 @@ namespace CenaPlus.Server.Bll
                 {
                     System.Threading.Tasks.Task.Factory.StartNew(() => NewPrintRequest(request.ID));
                 }
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.NewPrint(request.ID));
+                }
                 return request.ID;
             }
         }
@@ -1359,6 +1357,10 @@ namespace CenaPlus.Server.Bll
                 {
                     System.Threading.Tasks.Task.Factory.StartNew(() => PrintRequestUpdated(request.ID));
                 }
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.PrintUpdated(request.ID));
+                }
             }
         }
         public List<int> GetPrintRequestList(int contestID)
@@ -1392,6 +1394,10 @@ namespace CenaPlus.Server.Bll
                     if (PrintRequestDeleted != null)
                     {
                         System.Threading.Tasks.Task.Factory.StartNew(() => PrintRequestDeleted(id));
+                    }
+                    foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                    {
+                        System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.PrintDeleted(request.ID));
                     }
                 }
                 else
