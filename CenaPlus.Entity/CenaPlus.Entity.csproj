@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Contest.cs" />
+    <Compile Include="HackResult.cs" />
     <Compile Include="ProblemGeneral.cs" />
     <Compile Include="ProblemStatistics.cs" />
     <Compile Include="Hack.cs" />

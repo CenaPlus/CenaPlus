@@ -98,7 +98,7 @@ namespace CenaPlus.Client.Remote.Contest
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {
-                    frame.Source = new Uri("/Remote/Contest/Hack.xaml#"+(RecordListBox.SelectedItem as RecordListItem).ID, UriKind.Relative);
+                    frame.Source = new Uri("/Remote/Contest/ViewSource.xaml#"+(RecordListBox.SelectedItem as RecordListItem).ID, UriKind.Relative);
                 }
             }
         }

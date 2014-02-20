@@ -44,6 +44,7 @@ namespace CenaPlus.Client.Bll
                 }));
             });
         }
+
         public void StandingsPush(int contest_id, Entity.StandingItem si)
         {
             if (Bll.StandingsCache.Standings[contest_id] == null)
@@ -57,6 +58,35 @@ namespace CenaPlus.Client.Bll
             }
             else
                 StandingsCache.UpdateSingleUser(contest_id, si);
+        }
+
+        public void BeHackedPush(HackResult result)
+        {
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                App.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    new ModernDialog
+                    {
+                        Title = "Your program has been hacked",
+                        Content = new CenaPlus.Client.Remote.Contest.HackPush(result)
+                    }.ShowDialog();
+                }));
+            });
+        }
+        public void HackResultPush(HackResult result)
+        {
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
+            {
+                App.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    new ModernDialog
+                    {
+                        Title = "Your program has been hacked",
+                        Content = new CenaPlus.Client.Remote.Contest.HackPush(result)
+                    }.ShowDialog();
+                }));
+            });
         }
     }
 }

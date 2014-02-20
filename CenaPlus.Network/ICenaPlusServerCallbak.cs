@@ -35,5 +35,19 @@ namespace CenaPlus.Network
         /// <param name="si"></param>
         [OperationContract(IsOneWay = true)]
         void StandingsPush(int contest_id, Entity.StandingItem si);
+
+        /// <summary>
+        /// Tell the user his(her) program has been hacked.
+        /// </summary>
+        /// <param name="result"></param>
+        [OperationContract(IsOneWay = true)]
+        void BeHackedPush(HackResult result);
+
+        /// <summary>
+        /// Tell the user his(her) program has been hacked.
+        /// </summary>
+        /// <param name="result"></param>
+        [OperationContract(IsOneWay = true)]
+        void HackResultPush(HackResult result);
     }
 }
