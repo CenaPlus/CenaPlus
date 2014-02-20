@@ -27,6 +27,7 @@ namespace CenaPlus.Server
         public static ContestManager contestmanager = new ContestManager();
         public static PushingManager pushingmanager = new PushingManager();
         public static Judger judger = new Judger();
+        public static ServerCallback RemoteCallback = new ServerCallback();
         public static Timer HeartBeatTimer { get; set; }
 
         static App()

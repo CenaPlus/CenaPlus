@@ -94,6 +94,7 @@ namespace CenaPlus.Server.ServerMode
 
             LocalCenaServer.ContestModified += App.contestmanager.Reschedule;
             LocalCenaServer.ContestDeleted += App.contestmanager.RemoveSchedule;
+            LocalCenaServer.NewRecord += App.pushingmanager.NewRecord;
             LocalCenaServer.NewRecord += App.judger.JudgeRecord;
             LocalCenaServer.NewHack += App.judger.JudgeHack;
             LocalCenaServer.RecordRejudged += App.judger.JudgeRecord;
@@ -183,7 +184,7 @@ namespace CenaPlus.Server.ServerMode
 
             try
             {
-                App.Server = CenaPlusServerChannelFactory.CreateChannel(new IPEndPoint(address, port), new Bll.ServerCallback());
+                App.Server = CenaPlusServerChannelFactory.CreateChannel(new IPEndPoint(address, port), App.RemoteCallback);
             }
             catch (Exception err)
             {
@@ -211,6 +212,8 @@ namespace CenaPlus.Server.ServerMode
                 ModernDialog.ShowMessage("This account does not have management access", "Error", MessageBoxButton.OK);
                 return;
             }
+
+            App.Server.ChangeToServerMode();
 
             App.HeartBeatTimer.Start();
 

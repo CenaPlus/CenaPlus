@@ -49,5 +49,8 @@ namespace CenaPlus.Network
         /// <param name="result"></param>
         [OperationContract(IsOneWay = true)]
         void HackResultPush(HackResult result);
+
+        [OperationContract(IsOneWay = true)]
+        void NewRecord(Record record);
     }
 }

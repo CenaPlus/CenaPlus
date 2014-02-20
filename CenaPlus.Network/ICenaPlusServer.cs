@@ -31,6 +31,13 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AlreadyLoggedInError))]
         bool Authenticate(string userName, string password);
 
+        /// <summary>
+        /// Mark me as a remote management server.
+        /// </summary>
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        void ChangeToServerMode();
+
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
         User GetProfile();

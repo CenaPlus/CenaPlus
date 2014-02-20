@@ -9,6 +9,35 @@ namespace CenaPlus.Server.Bll
 {
     public class PushingManager
     {
+        public void NewRecord(int recordID)
+        {
+            using (DB db = new DB())
+            {
+                Record record = db.Records.Find(recordID);
+                Record r = new Record
+                {
+                    ID = record.ID,
+                    Code = record.Code,
+                    Detail = record.Detail,
+                    Language = record.Language,
+                    MemoryUsage = record.MemoryUsage,
+                    ProblemID = record.ProblemID,
+                    ProblemTitle = record.Problem.Title,
+                    Score = record.Score,
+                    Status = record.Status,
+                    SubmissionTime = record.SubmissionTime,
+                    TimeUsage = record.TimeUsage,
+                    UserID = record.UserID,
+                    UserNickName = record.UserNickName
+                };
+
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.NewRecord(r));
+                }
+            }
+        }
+
         public void HackFinished(int hack_id)
         {
             using (DB db = new DB())
@@ -79,6 +108,13 @@ namespace CenaPlus.Server.Bll
                         client.Callback.JudgeFinished(re);
                     }
                 });
+
+                // Push to remote management servers
+                foreach (var s in App.Clients.Values.Where(s => s.SessionMode == LocalCenaServer.SessionType.Server))
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => s.Callback.JudgeFinished(re));
+                }
+
                 if (StandingsCache.Standings[record.Problem.ContestID] == null)
                 {
                     StandingsCache.Rebuild(record.Problem.ContestID);

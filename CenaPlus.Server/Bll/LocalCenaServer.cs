@@ -20,6 +20,13 @@ namespace CenaPlus.Server.Bll
         public InstanceContext Context { get; set; }
         public ICenaPlusServerCallback Callback { get; set; }
 
+        public enum SessionType
+        {
+            Client, Server
+        }
+
+        public SessionType SessionMode = SessionType.Client;
+
         #region Events
         public static event Action<int> NewRecord;
         public static event Action<int> NewHack;
@@ -122,6 +129,16 @@ namespace CenaPlus.Server.Bll
                 if (UserLoggedIn != null)
                     System.Threading.Tasks.Task.Factory.StartNew(() => UserLoggedIn(user.ID));
                 return true;
+            }
+        }
+
+        public void ChangeToServerMode()
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                SessionMode = SessionType.Server;
             }
         }
 
@@ -503,7 +520,7 @@ namespace CenaPlus.Server.Bll
                 {
                     case ContestType.OI:
                         {
-                            if (last_record != null) 
+                            if (last_record != null)
                             {
                                 problem_general.Status = ProblemGeneralStatus.Submitted;
                                 problem_general.Time = last_record.SubmissionTime;
@@ -519,7 +536,7 @@ namespace CenaPlus.Server.Bll
                             }
                             else
                                 problem_general.Status = null;
-                            if (RecordHelper.GetFirstAcceptedRecord(CurrentUser.ID, problem.ID)!=null)
+                            if (RecordHelper.GetFirstAcceptedRecord(CurrentUser.ID, problem.ID) != null)
                                 problem_general.Status = ProblemGeneralStatus.Accepted;
                             break;
                         }
@@ -543,7 +560,7 @@ namespace CenaPlus.Server.Bll
                 return problem_general;
             }
         }
-        
+
         public Problem GetProblem(int id)
         {
             using (DB db = new DB())
@@ -1061,7 +1078,7 @@ namespace CenaPlus.Server.Bll
 
                 db.SaveChanges();
 
-                Question q =  new Question
+                Question q = new Question
                 {
                     Answer = question.Answer,
                     AskerID = question.AskerID,
@@ -1084,7 +1101,7 @@ namespace CenaPlus.Server.Bll
                 {
                     App.Clients[question.AskerID].Callback.QuestionUpdated(q);
                 }
-                if (QuestionUpdated != null) 
+                if (QuestionUpdated != null)
                 {
                     System.Threading.Tasks.Task.Factory.StartNew(() => QuestionUpdated(q.ID));
                 }
@@ -1138,7 +1155,7 @@ namespace CenaPlus.Server.Bll
 
                 db.Questions.Add(question);
                 db.SaveChanges();
-                if (NewQuestion != null) 
+                if (NewQuestion != null)
                 {
                     System.Threading.Tasks.Task.Factory.StartNew(() => NewQuestion(question.ID));
                 }

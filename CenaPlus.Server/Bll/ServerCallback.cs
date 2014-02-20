@@ -6,8 +6,10 @@ using CenaPlus.Network;
 using CenaPlus.Entity;
 namespace CenaPlus.Server.Bll
 {
-    class ServerCallback:ICenaPlusServerCallback
+    public class ServerCallback : ICenaPlusServerCallback
     {
+        public event Action<Record> OnNewRecord;
+
         public void Bye()
         {
 
@@ -18,11 +20,26 @@ namespace CenaPlus.Server.Bll
         }
 
         public void JudgeFinished(Result result)
-        { 
+        {
+            //TODO: Refreshing
         }
 
         public void StandingsPush(int contest_id, Entity.StandingItem si)
-        { 
+        {
+        }
+
+        public void BeHackedPush(HackResult result)
+        {
+        }
+
+        public void HackResultPush(HackResult result)
+        {
+        }
+
+        public void NewRecord(Record record)
+        {
+            if (OnNewRecord != null)
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnNewRecord(record));
         }
     }
 }

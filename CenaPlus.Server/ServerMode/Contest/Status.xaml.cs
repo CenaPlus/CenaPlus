@@ -31,12 +31,12 @@ namespace CenaPlus.Server.ServerMode.Contest
             InitializeComponent();
             RichTextEditor.HighLightEdit.HighLight(txtCode);
             StatusListView.ItemsSource = StatusListViewItems;
-            LocalCenaServer.NewRecord += this.NewRecord;
+            LocalCenaServer.NewRecord += id => this.NewRecord(App.Server.GetRecord(id));
+            App.RemoteCallback.OnNewRecord += NewRecord;
             App.judger.RecordJudgeComplete += this.RecordUpdated;
         }
-        public void NewRecord(int record_id)
+        public void NewRecord(Record r)
         {
-            var r = App.Server.GetRecord(record_id);
             if (r == null) return;
             if (App.Server.GetProblemRelatedContest(r.ProblemID) != contestID) return;
             var item = new StatusListViewItem
@@ -51,7 +51,8 @@ namespace CenaPlus.Server.ServerMode.Contest
                 UserNickName = r.UserNickName,
                 Code = r.Code
             };
-            Dispatcher.Invoke(new Action(() => {
+            Dispatcher.Invoke(new Action(() =>
+            {
                 StatusListViewItems.Add(item);
                 StatusListView.Items.Refresh();
             }));
@@ -60,7 +61,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
             var r = App.Server.GetRecord(record_id);
             if (r == null) return;
-            int recordindex = StatusListViewItems.FindIndex(x=>x.ID == record_id);
+            int recordindex = StatusListViewItems.FindIndex(x => x.ID == record_id);
             if (recordindex == -1) return;
             var item = new StatusListViewItem
             {
