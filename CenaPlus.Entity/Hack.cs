@@ -20,6 +20,13 @@ namespace CenaPlus.Entity
         [IgnoreDataMember]
         public virtual Record Record { get; set; }
 
+        [Column("generated_test_case_id")]
+        [ForeignKey("GeneratedTestCaseID")]
+        public int? GeneratedTestCaseID { get; set; }
+
+        [IgnoreDataMember]
+        public virtual TestCase GeneratedTestCase { get; set; }
+
         [Column("hacker_id")]
         [ForeignKey("Hacker")]
         public int HackerID { get; set; }

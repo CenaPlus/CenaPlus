@@ -105,9 +105,17 @@ namespace CenaPlus.Server.Bll
                     var testCases = from t in db.TestCases
                                     where t.ProblemID == problem.ID
                                     select t;
-                    if ((contest.TypeAsInt == (int)ContestType.Codeforces || contest.TypeAsInt == (int)ContestType.TopCoder) && contest.EndTime > DateTime.Now)
+
+                    if ((contest.Type == ContestType.Codeforces || contest.Type == ContestType.TopCoder) && contest.EndTime > DateTime.Now)
                     {
                         testCases = testCases.Where(t => t.TypeAsInt == (int)TestCaseType.Pretest);
+                        testCases = testCases.Union(from h in db.Hacks
+                                                    where h.Record.UserID == record.UserID
+                                                        && h.StatusAsInt == (int)HackStatus.Success
+                                                        && h.GeneratedTestCase != null
+                                                        && h.GeneratedTestCase.ProblemID == problem.ID
+                                                    select h.GeneratedTestCase);
+
                     }
 
                     var testCaseIDs = testCases.Select(t => t.ID);
@@ -241,7 +249,7 @@ namespace CenaPlus.Server.Bll
                                         select t).Any();
                         if (!existed)
                         {
-                            db.TestCases.Add(new TestCase
+                            var hackTestCase = new TestCase
                             {
                                 Input = ret.HackData.Input,
                                 InputHash = inputHash,
@@ -249,7 +257,10 @@ namespace CenaPlus.Server.Bll
                                 OutputHash = outputHash,
                                 ProblemID = p.ID,
                                 Type = TestCaseType.Systemtest
-                            });
+                            };
+                            db.TestCases.Add(hackTestCase);
+                            db.SaveChanges();
+                            hack.GeneratedTestCaseID = hackTestCase.ID;
                         }
                     }
                     else

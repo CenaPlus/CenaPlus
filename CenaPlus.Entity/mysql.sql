@@ -1,4 +1,4 @@
-drop table if exists `prolem_views`;
+drop table if exists `problem_views`;
 drop table if exists `problem_locks`;
 drop table if exists `configs`;
 drop table if exists `print_requests`;
@@ -82,7 +82,7 @@ CREATE TABLE `records` (
     time_usage int default null,
     memory_usage bigint default null,
     detail mediumtext default null,
-	score int not null,
+    score int not null,
     primary key (id),
     foreign key (user_id)
         references users (id)
@@ -97,7 +97,8 @@ CREATE TABLE `hacks` (
     id int not null auto_increment,
     record_id int not null,
     hacker_id int not null,
-	time datetime not null,
+    time datetime not null,
+    generated_test_case_id int default null,
     `status` int not null,
     data_or_datamaker mediumtext not null,
     datamaker_language tinyint default null,
@@ -106,6 +107,9 @@ CREATE TABLE `hacks` (
     foreign key (record_id)
         references records (id)
         on delete cascade,
+    foreign key (generated_test_case_id)
+        references test_cases (id)
+        on delete set null,
     foreign key (hacker_id)
         references users (id)
         on delete cascade
