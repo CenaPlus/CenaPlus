@@ -12,7 +12,7 @@
                 <TextBlock Text="Hack id" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="tbHackID" Margin="0,0,0,10" />
                 <TextBlock Text="Status" Style="{StaticResource Heading2}" />
-                <TextBlock x:Name="tbStatus" Margin="0,0,0,10" />
+                <TextBlock x:Name="tbStatus" Margin="0,0,0,10" FontWeight="Bold" />
                 <TextBlock Text="Problem" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="tbProblem" Margin="0,0,0,10" />
                 <TextBlock Text="Hacker" Style="{StaticResource Heading2}" />

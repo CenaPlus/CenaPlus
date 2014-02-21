@@ -49,12 +49,12 @@ namespace CenaPlus.Server.Bll
                 {
                     HackID = hack.ID,
                     DefenderUserID = hack.HackeeID,
-                    DefenderUserNickName = hack.HackeeNickName,
+                    DefenderUserNickName = hack.Record.User.NickName,
                     HackerUserID = hack.HackerID,
-                    HackerUserNickName = hack.HackerNickName,
+                    HackerUserNickName = (from u in db.Users where u.ID == hack.HackerID select u.NickName).FirstOrDefault(),
                     Status = hack.Status,
                     RecordID = hack.RecordID,
-                    ProblemTitle = hack.Record.ProblemTitle,
+                    ProblemTitle = hack.Record.Problem.Title,
                     Time = hack.Time
                 };
                 if (hack.Status == HackStatus.Success)
