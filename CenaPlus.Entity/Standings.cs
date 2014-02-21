@@ -143,7 +143,7 @@ namespace CenaPlus.Entity
                         {
                             if (FirstScore != 0)
                             {
-                                Content = String.Format("{0}\r\n({1}:{2})", FirstScore, SecondScore / 60 / 60, SecondScore / 60 % 60);
+                                Content = String.Format("{0}\r\n({1}:{2})", FirstScore, SecondScore / 60 / 60, SecondScore / 60 % 60 < 10 ? "0" + SecondScore / 60 % 60 : SecondScore / 60 % 60 + "");
                             }
                             else
                             {

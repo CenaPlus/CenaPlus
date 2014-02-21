@@ -62,9 +62,14 @@ namespace CenaPlus.Client.Remote.Contest
             if (selectedcells.Count == 1 && selectedcells[0].Column.Header.ToString().Trim(' ').Length == 1 && selectedcells[0].Column.Header.ToString().Trim(' ')[0] >= 'A' && selectedcells[0].Column.Header.ToString().Trim(' ')[0] <= 'Z')
             {
                 if (LockList.Contains(selectedcells[0].Column.Header.ToString().Trim(' ')[0]))
-                    btnHack.IsEnabled = true;
+                {
+                    if (selectedcells[0].Item.ToString().IndexOf(":") >= 0)
+                        btnHack.IsEnabled = true;
+                }
                 else
+                {
                     btnHack.IsEnabled = false;
+                }
             }
             else 
             {
