@@ -44,11 +44,11 @@ namespace CenaPlus.Client.Bll
                         Content = new CenaPlus.Client.Remote.Contest.ResultPush(result)
                     }.ShowDialog();
                 }));
-                if (OnJudgeFinished != null)
-                {
-                    System.Threading.Tasks.Task.Factory.StartNew(() => OnJudgeFinished(result.StatusID));
-                }
             });
+            if (OnJudgeFinished != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnJudgeFinished(result.StatusID));
+            }
         }
         public void StandingsPush(int contest_id, Entity.StandingItem si)
         {
@@ -119,6 +119,10 @@ namespace CenaPlus.Client.Bll
         }
         public void UserLogout(int user_id)
         {
+        }
+        public void RebuildStandings(int contest_id, List<StandingItem> standings)
+        {
+            Bll.StandingsCache.Standings[contest_id] = standings;
         }
     }
 }

@@ -398,6 +398,11 @@ namespace CenaPlus.Server.Bll
                 db.Problems.Add(problem);
                 db.SaveChanges();
 
+                Bll.StandingsCache.Rebuild(problem.ContestID);//添加或删除题目后需要重新构建排名,这里必须是一个同步事件
+                foreach (var client in App.Clients.Values)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => client.Callback.RebuildStandings(problem.ContestID, StandingsCache.Standings[contestID] as List<Entity.StandingItem>));
+                }
                 return problem.ID;
             }
         }

@@ -70,5 +70,8 @@ namespace CenaPlus.Network
 
         [OperationContract(IsOneWay = true)]
         void PrintUpdated(int print_id);
+
+        [OperationContract(IsOneWay = true)]
+        void RebuildStandings(int contest_id, List<StandingItem> standings);
     }
 }

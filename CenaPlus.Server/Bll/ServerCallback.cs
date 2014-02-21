@@ -82,5 +82,9 @@ namespace CenaPlus.Server.Bll
             if (OnPrintUpdated != null)
                 System.Threading.Tasks.Task.Factory.StartNew(() => OnPrintUpdated(print_id));
         }
+        public void RebuildStandings(int contest_id, List<StandingItem> standings)
+        {
+            Bll.StandingsCache.Standings[contest_id] = standings;
+        }
     }
 }

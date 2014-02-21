@@ -29,44 +29,52 @@ namespace CenaPlus.Client.Remote.Contest
         public ProblemGeneral()
         {
             InitializeComponent();
+            ProblemListBox.ItemsSource = ProblemListBoxItems;
             Bll.ServerCallback.OnBeHacked += Refresh;
             Bll.ServerCallback.OnJudgeFinished += Refresh;
         }
         public void Refresh(int tmp)
         {
-            if (Type != Entity.ContestType.Codeforces)
-                btnLock.Visibility = Visibility.Collapsed;
-            else
-                btnLock.Visibility = Visibility.Visible;
-            var list = from id in App.Server.GetProblemList(contest_id)
-                       let q = App.Server.GetProblemTitle(id)
-                       select new ProblemListBoxItem
-                       {
-                           Title = q.Title,
-                           Status = q.Status,
-                           Time = q.Time,
-                           TimeLimit = q.TimeLimit,
-                           MemoryLimit = q.MemoryLimit,
-                           SpecialJudge = q.SpecialJudge,
-                           ProblemID = q.ProblemID
-                       };
-            char i = 'A';
-            ProblemListBoxItems.Clear();
-            foreach (var item in list)
-            {
-                item.Number = i++;
-                if (App.Server.GetLockStatus(item.ProblemID))
-                    item.Title += " [LOCKED]";
-                ProblemListBoxItems.Add(item);
-            }
-            ProblemListBox.Items.Refresh();
+            var contest = App.Server.GetContest(contest_id);
+            Type = contest.Type;
+            Dispatcher.Invoke(new Action(() => {
+                if (Type != Entity.ContestType.Codeforces)
+                    btnLock.Visibility = Visibility.Collapsed;
+                else
+                    btnLock.Visibility = Visibility.Visible;
+            }));
+            System.Threading.Tasks.Task.Factory.StartNew(() => {
+                var list = from id in App.Server.GetProblemList(contest_id)
+                           let q = App.Server.GetProblemTitle(id)
+                           select new ProblemListBoxItem
+                           {
+                               Title = q.Title,
+                               Status = q.Status,
+                               Time = q.Time,
+                               TimeLimit = q.TimeLimit,
+                               MemoryLimit = q.MemoryLimit,
+                               SpecialJudge = q.SpecialJudge,
+                               ProblemID = q.ProblemID
+                           };
+                char i = 'A';
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    ProblemListBoxItems.Clear();
+                    foreach (var item in list)
+                    {
+                        item.Number = i++;
+                        if (App.Server.GetLockStatus(item.ProblemID))
+                            item.Title += " [LOCKED]";
+                        ProblemListBoxItems.Add(item);
+                    }
+                    ProblemListBox.ItemsSource = ProblemListBoxItems;
+                    ProblemListBox.Items.Refresh();
+                }));
+            });
         }
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
             contest_id = int.Parse(e.Fragment);
-            var contest = App.Server.GetContest(contest_id);
-            Type = contest.Type;
-            ProblemListBox.ItemsSource = ProblemListBoxItems;
             Refresh(1);
         }
 
@@ -109,7 +117,8 @@ namespace CenaPlus.Client.Remote.Contest
                 else
                 {
                     App.Server.LockProblem(item.ProblemID);
-                    ProblemListBoxItems[ProblemListBoxItems.FindIndex(x => x.ProblemID == item.ProblemID)].Title += " [LOCKED]";
+                    if (ProblemListBoxItems[ProblemListBoxItems.FindIndex(x => x.ProblemID == item.ProblemID)].Title.IndexOf(" [LOCKED]") < 0)
+                        ProblemListBoxItems[ProblemListBoxItems.FindIndex(x => x.ProblemID == item.ProblemID)].Title += " [LOCKED]";
                     ProblemListBox.Items.Refresh();
                     ModernDialog.ShowMessage("Problem has been locked.", "Message", MessageBoxButton.OK);
                 }
