@@ -8,24 +8,23 @@
              d:DesignHeight="480" d:DesignWidth="800">
     <Grid>
         <ScrollViewer Margin="0,0,300,0">
-            <RichTextBox IsEnabled="False" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" x:Name="txtsrc"></RichTextBox>
+            <RichTextBox IsEnabled="False" AcceptsTab="True" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" x:Name="txtSource"></RichTextBox>
         </ScrollViewer>
         <Grid HorizontalAlignment="Right" Margin="0,0,0,0" Width="280">
-            <WrapPanel Margin="0,0,0,0" Height="30" VerticalAlignment="Top">
+            <WrapPanel Margin="0,0,0,10" Height="30" VerticalAlignment="Top">
                 <ComboBox x:Name="HackModeComboBox" Width="80" SelectedIndex="0" Margin="0,0,10,0" SelectionChanged="HackModeComboBox_SelectionChanged">
                     <ListBoxItem Content="Data"/>
                     <ListBoxItem Content="Data maker"/>
                 </ComboBox>
-                <ComboBox x:Name="LanguageComboBox" Width="80" SelectedIndex="0" Margin="0,0,10,0" Visibility="Collapsed">
-                    <ListBoxItem Content="C"/>
-                    <ListBoxItem Content="C++"/>
-                    <ListBoxItem Content="Java"/>
-                    <ListBoxItem Content="Pascal"/>
+                <ComboBox x:Name="cbbLanguage" Width="80" SelectedIndex="0" Margin="0,0,10,0" Visibility="Collapsed">
                 </ComboBox>
-                <Button Content="Hack"></Button>
+                <Button x:Name="btnHack" Content="Hack" Click="btnHack_Click"></Button>
             </WrapPanel>
-            <TextBox Margin="0,30,0,135"></TextBox>
-            <Image x:Name="imgDataPath" Source="/CenaPlus.Client;component/Resources/Box.png" Width="128" Height="128" VerticalAlignment="Bottom"></Image>
+            <RichTextBox x:Name="txtData" Margin="0,30,0,180" AcceptsReturn="True" AcceptsTab="True"></RichTextBox>
+            <StackPanel VerticalAlignment="Bottom">
+                <Image AllowDrop="True" x:Name="imgDataPath" Source="/CenaPlus.Client;component/Resources/Box.png" Width="128" Height="128" VerticalAlignment="Bottom" Margin="0,0,0,10" DragEnter="imgDataPath_DragEnter" DragLeave="imgDataPath_DragLeave" Drop="imgDataPath_Drop"></Image>
+                <TextBlock TextWrapping="Wrap" Text="Drag your data file or data maker source into above box."></TextBlock>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>

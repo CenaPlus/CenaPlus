@@ -179,6 +179,7 @@ namespace CenaPlus.Server.Bll
 
                 hack = new Hack
                 {
+                    ID = h.ID,
                     DatamakerLanguage = h.DatamakerLanguage,
                     DataOrDatamaker = h.DataOrDatamaker,
                     HackeeID = h.Record.UserID,

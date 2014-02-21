@@ -91,7 +91,7 @@ namespace CenaPlus.Client.Bll
                     new ModernDialog
                     {
                         Title = "Your program has been hacked",
-                        Content = new CenaPlus.Client.Remote.Contest.HackPush(result)
+                        Content = new CenaPlus.Client.Remote.Contest.HackFinishedPush(result)
                     }.ShowDialog();
                 }));
             });

@@ -356,7 +356,7 @@ namespace CenaPlus.Server.Judge
         }
         private void Hack()
         {
-            if (System.IO.Directory.Exists(WorkDirectory + "\\hack" + Task.Hack.ID))
+            if (!System.IO.Directory.Exists(WorkDirectory + "\\hack" + Task.Hack.ID))
             {
                 System.IO.Directory.CreateDirectory(WorkDirectory + "\\hack" + Task.Hack.ID);
             }
@@ -423,7 +423,7 @@ namespace CenaPlus.Server.Judge
             else
             {
                 HackData.Input = System.Text.Encoding.Default.GetBytes(Task.Hack.DataOrDatamaker);//TODO: Default Encode?
-                System.IO.File.WriteAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt", HackData.Output);
+                System.IO.File.WriteAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\HackData.txt", HackData.Input);
             }
 
             if (!System.IO.File.Exists(WorkDirectory + "\\" + Task.Record.ID + "\\Main" + CenaPlus.Judge.Compiler.GetExtension(Task.Record.Language)))//这里的Record是被Hack的Record
@@ -449,6 +449,7 @@ namespace CenaPlus.Server.Judge
             runRange.Identity = Identity;
             runRange.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
             runRange.RunnerInfo.APIHook = "..\\safe.dll";
+            runRange.RunnerInfo.MemoryLimit = (int)(Task.Problem.MemoryLimit / 1024);
             runRange.RunnerInfo.HighPriorityTime = 1000;
             runRange.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
             runRange.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
@@ -478,17 +479,18 @@ namespace CenaPlus.Server.Judge
             runStd.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
             runStd.RunnerInfo.APIHook = "..\\safe.dll";
             runStd.RunnerInfo.HighPriorityTime = 1000;
+            runStd.RunnerInfo.MemoryLimit = (int)(Task.Problem.MemoryLimit / 1024);
             runStd.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
             runStd.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
             runStd.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\StdOutput.txt";
             runStd.RunnerInfo.WorkingDirectory = WorkDirectory + "\\std" + Task.Problem.ID;
-            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.StdLanguage))
             {
                 runStd.RunnerInfo.Cmd = "Main.exe";
             }
             else
             {
-                runStd.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+                runStd.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.StdLanguage);
             }
             runStd.Start();
             if (runStd.RunnerResult.ExitCode != 0 || runStd.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
@@ -507,17 +509,18 @@ namespace CenaPlus.Server.Judge
             runHackee.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
             runHackee.RunnerInfo.APIHook = "..\\safe.dll";
             runHackee.RunnerInfo.HighPriorityTime = 1000;
+            runHackee.RunnerInfo.MemoryLimit = (int)(Task.Problem.MemoryLimit / 1024);
             runHackee.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
             runHackee.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
             runHackee.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\HackeeOutput.txt";
             runHackee.RunnerInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
-            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+            if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Record.Language))
             {
                 runHackee.RunnerInfo.Cmd = "Main.exe";
             }
             else
             {
-                runHackee.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+                runHackee.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Record.Language);
             }
             runHackee.Start();
             HackData.Output = System.IO.File.ReadAllBytes(WorkDirectory + "\\hack" + Task.Hack.ID + "\\StdOutput.txt");
@@ -538,19 +541,28 @@ namespace CenaPlus.Server.Judge
                 runSpj.RunnerInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
                 runSpj.RunnerInfo.APIHook = "..\\safe.dll";
                 runSpj.RunnerInfo.HighPriorityTime = 1000;
+                runSpj.RunnerInfo.MemoryLimit = (int)(Task.Problem.MemoryLimit / 1024);
                 runSpj.RunnerInfo.TimeLimit = Task.Problem.TimeLimit;
                 //runSpj.RunnerInfo.StdInFile = "..\\hack" + Task.Hack.ID + "\\HackData.txt";
                 //runSpj.RunnerInfo.StdOutFile = "..\\hack" + Task.Hack.ID + "\\StdOutput.txt";
-                runSpj.RunnerInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
-                if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage))
+                if (Task.Problem.SpjLanguage == null)
                 {
-                    runSpj.RunnerInfo.Cmd = "Main.exe";
+                    runSpj.RunnerInfo.WorkingDirectory = WorkDirectory;
+                    runSpj.RunnerInfo.Cmd = String.Format("spj.exe {0} {1} {2}", "hack" + Task.Hack.ID + "\\StdOutput.txt", "hack" + Task.Hack.ID + "\\UserOutput.txt", "hack" + Task.Hack.ID + "\\HackData.txt");
                 }
                 else
                 {
-                    runSpj.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.ValidatorLanguage);
+                    runSpj.RunnerInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
+                    if (CenaPlus.Judge.Compiler.RunEXE.Contains((Entity.ProgrammingLanguage)Task.Problem.SpjLanguage))
+                    {
+                        runSpj.RunnerInfo.Cmd = "Main.exe";
+                    }
+                    else
+                    {
+                        runSpj.RunnerInfo.Cmd = GetCommandLine((Entity.ProgrammingLanguage)Task.Problem.SpjLanguage);
+                    }
+                    runSpj.RunnerInfo.Cmd += String.Format(" {0} {1} {2}", "..\\hack" + Task.Hack.ID + "\\StdOutput.txt", "..\\hack" + Task.Hack.ID + "\\UserOutput.txt", "..\\hack" + Task.Hack.ID + "\\HackData.txt");
                 }
-                runSpj.RunnerInfo.Cmd += String.Format(" {0} {1} {2}", "..\\hack" + Task.Hack.ID + "\\StdOutput.txt", "..\\hack" + Task.Hack.ID + "\\UserOutput.txt", "..\\hack" + Task.Hack.ID + "\\HackData.txt");
                 runSpj.Start();
                 if (runSpj.RunnerResult.ExitCode < 0 || runSpj.RunnerResult.ExitCode > 3 || runSpj.RunnerResult.TimeUsed > Task.Problem.TimeLimit)
                 {

@@ -80,7 +80,7 @@ namespace CenaPlus.Server.Bll
                 Problem = problem,
                 Record = record,
                 Hack = hack,
-                Type = TaskType.Run
+                Type = TaskType.Hack
             }, Callback) as TaskFeedback_Hack;
         }
     }

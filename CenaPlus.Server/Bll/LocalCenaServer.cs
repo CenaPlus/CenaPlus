@@ -910,7 +910,8 @@ namespace CenaPlus.Server.Bll
                     DataOrDatamaker = dataOrDatamaker,
                     HackerID = CurrentUser.ID,
                     RecordID = record.ID,
-                    Status = HackStatus.Pending
+                    Status = HackStatus.Pending,
+                    Time = DateTime.Now
                 };
 
                 db.Hacks.Add(hack);

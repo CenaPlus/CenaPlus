@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CenaPlus.Entity;
 using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Client.Remote.Contest
 {
@@ -24,7 +25,22 @@ namespace CenaPlus.Client.Remote.Contest
     public partial class Standings : UserControl, IContent
     {
         private List<StandingItem> StandingItems = new List<StandingItem>();
+        private List<char> LockList = new List<char>();
         private int contest_id;
+        public void RebuildLockList(int n)
+        {
+            var list = App.Server.GetProblemList(contest_id);
+            char i = 'A';
+            Dispatcher.Invoke(new Action(() => {
+                LockList.Clear();
+                foreach (int pid in list)
+                {
+                    if (App.Server.GetLockStatus(pid))
+                        LockList.Add(i);
+                    i++;
+                }
+            }));
+        }
         public void Sort()//排名变化了执行这个更新，最好排名数据是一个静态的，客户端收到了服务器推送的排名更新，后台就更新了，打开到这个页面自动就能看到，就是全部排名只加载一次，之后推送变化值。
         {
             StandingItems.Sort((x, y) => x.MainKey == y.MainKey ? x.SecKey - y.SecKey : y.MainKey - x.MainKey);
@@ -37,25 +53,48 @@ namespace CenaPlus.Client.Remote.Contest
         public Standings()
         {
             InitializeComponent();
+            Bll.ServerCallback.OnJudgeFinished += RebuildLockList;
         }
 
         private void dgStandings_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             IList<DataGridCellInfo> selectedcells = e.AddedCells;
             if (selectedcells.Count == 1 && selectedcells[0].Column.Header.ToString().Trim(' ').Length == 1 && selectedcells[0].Column.Header.ToString().Trim(' ')[0] >= 'A' && selectedcells[0].Column.Header.ToString().Trim(' ')[0] <= 'Z')
-                btnHack.IsEnabled = true;
-            else
+            {
+                if (LockList.Contains(selectedcells[0].Column.Header.ToString().Trim(' ')[0]))
+                    btnHack.IsEnabled = true;
+                else
+                    btnHack.IsEnabled = false;
+            }
+            else 
+            {
                 btnHack.IsEnabled = false;
+            }
         }
 
         private void btnHack_Click(object sender, RoutedEventArgs e)
         {
+            if (!LockList.Contains(dgStandings.SelectedCells[0].Column.Header.ToString().Trim(' ')[0]))
+            {
+                FirstFloor.ModernUI.Windows.Controls.ModernDialog.ShowMessage("Please lock the problem first.", "Error", MessageBoxButton.OK);
+                return;
+            }
+            else
+            {
+                var frame = NavigationHelper.FindFrame(null, this);
+                if (frame != null)
+                {
+                    frame.Source = new Uri("/Remote/Contest/Hack.xaml#" + (dgStandings.SelectedCells[0].Item as StandingItem).Details[(int)(dgStandings.SelectedCells[0].Column.Header.ToString().Trim(' ')[0] - 'A')].RecordID, UriKind.Relative);
+                }
+            }
         }
 
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
             dgStandings.Columns.Clear();
             var contest = App.Server.GetContest(int.Parse(e.Fragment));
+            contest_id = contest.ID;
+            RebuildLockList(1);
             dgStandings.Columns.Add(new DataGridTextColumn() { Header = "    #", Width = 60, ElementStyle = Resources["dgCell"] as Style, Binding = new Binding("Rank") });
             dgStandings.Columns.Add(new DataGridTextColumn() { Header = "    Who", Width = 100, ElementStyle = Resources["dgCell"] as Style, Binding = new Binding("Competitor") });
             switch(contest.Type)
