@@ -36,6 +36,10 @@ namespace CenaPlus.Client.Remote.Contest
             tabLeft.Links.Add(new Link { DisplayName = "problems", Source = new Uri("/Remote/Contest/Problems.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "standings", Source = new Uri("/Remote/Contest/Standings.xaml#" + id, UriKind.Relative) });
             tabLeft.Links.Add(new Link { DisplayName = "status", Source = new Uri("/Remote/Contest/Status.xaml#" + id, UriKind.Relative) });
+            if (contest.Type == Entity.ContestType.Codeforces || contest.Type == Entity.ContestType.TopCoder)
+            {
+                tabLeft.Links.Add(new Link { DisplayName = "hacks", Source = new Uri("/Remote/Contest/HackList.xaml#" + id, UriKind.Relative) });
+            }
             if (contest.Type != Entity.ContestType.OI)
             {
                 tabLeft.Links.Add(new Link { DisplayName = "statistics", Source = new Uri("/Remote/Contest/Statistics.xaml#" + id, UriKind.Relative) });

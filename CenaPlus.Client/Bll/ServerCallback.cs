@@ -13,6 +13,7 @@ namespace CenaPlus.Client.Bll
     {
         public static event Action<int> OnJudgeFinished;
         public static event Action<int> OnBeHacked;
+        public static event Action<HackResult> OnHackFinished;
         public void Bye()
         {
             ModernDialog.ShowMessage("You are kicked out.", "Message", MessageBoxButton.OK);
@@ -86,15 +87,22 @@ namespace CenaPlus.Client.Bll
         {
             System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                App.Current.Dispatcher.Invoke(new Action(() =>
+                if (result.HackerUserID == App.Server.GetProfile().ID)
                 {
-                    new ModernDialog
+                    App.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        Title = "Your program has been hacked",
-                        Content = new CenaPlus.Client.Remote.Contest.HackFinishedPush(result)
-                    }.ShowDialog();
-                }));
+                        new ModernDialog
+                        {
+                            Title = "Your hack action has a new status.",
+                            Content = new CenaPlus.Client.Remote.Contest.HackFinishedPush(result)
+                        }.ShowDialog();
+                    }));
+                }
             });
+            if (OnHackFinished != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnHackFinished(result));
+            }
         }
         public void NewRecord(Entity.Record record)
         { 

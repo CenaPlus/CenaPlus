@@ -123,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Remote\Contest\HackList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Remote\Contest\HackPush.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +204,9 @@
     </Compile>
     <Compile Include="Remote\Contest\HackFinishedPush.xaml.cs">
       <DependentUpon>HackFinishedPush.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Remote\Contest\HackList.xaml.cs">
+      <DependentUpon>HackList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Remote\Contest\HackPush.xaml.cs">
       <DependentUpon>HackPush.xaml</DependentUpon>

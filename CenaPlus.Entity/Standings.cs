@@ -27,6 +27,11 @@ namespace CenaPlus.Entity
                         if (t.SecondScore != 0) mainkey++;
                     }
                 }
+                if (Type == Entity.ContestType.Codeforces || Type == Entity.ContestType.TopCoder)
+                {
+                    mainkey += SuccessfulHack.GetValueOrDefault() * 100;
+                    mainkey -= UnsuccessfulHack.GetValueOrDefault() * 50;
+                }
                 return mainkey;
             }
         }//OI为分数，ACM为AC数，CF、TC为总分数

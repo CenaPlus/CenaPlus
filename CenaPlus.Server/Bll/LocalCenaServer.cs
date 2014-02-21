@@ -922,7 +922,6 @@ namespace CenaPlus.Server.Bll
                 return hack.ID;
             }
         }
-
         public List<int> GetHackList(int contestID)
         {
             using (DB db = new DB())
@@ -934,7 +933,6 @@ namespace CenaPlus.Server.Bll
                         select h.ID).ToList();
             }
         }
-
         public Hack GetHack(int id)
         {
             using (DB db = new DB())
@@ -959,7 +957,27 @@ namespace CenaPlus.Server.Bll
                 };
             }
         }
+        public HackResult GetHackGeneral(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Competitor);
 
+                Hack hack = db.Hacks.Find(id);
+                if (hack == null) return null;
+
+                return new HackResult
+                {
+                    ProblemTitle = hack.Record.Problem.Title,
+                    HackerUserNickName = hack.Hacker.NickName,
+                    DefenderUserNickName = hack.Record.User.NickName,
+                    HackID = hack.ID,
+                    RecordID = hack.RecordID,
+                    Status = hack.Status,
+                    Time = hack.Time
+                };
+            }
+        }
         public bool GetLockStatus(int problem_id)
         {
             using (DB db = new DB())

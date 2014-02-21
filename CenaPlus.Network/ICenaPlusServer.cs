@@ -195,6 +195,10 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         Hack GetHack(int id);
 
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
+        HackResult GetHackGeneral(int id);
+
         /// <summary>
         /// List all users
         /// </summary>

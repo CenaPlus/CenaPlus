@@ -37,7 +37,6 @@ namespace CenaPlus.Server.Bll
                 }
             }
         }
-
         public void HackFinished(int hack_id)
         {
             using (DB db = new DB())
@@ -57,6 +56,7 @@ namespace CenaPlus.Server.Bll
                     ProblemTitle = hack.Record.Problem.Title,
                     Time = hack.Time
                 };
+                var contest_id = hack.Record.Problem.ContestID;
                 if (hack.Status == HackStatus.Success)
                 {
                     System.Threading.Tasks.Task.Factory.StartNew(() =>
@@ -67,15 +67,36 @@ namespace CenaPlus.Server.Bll
                             client.Callback.BeHackedPush(re);
                         }
                     });
+                    StandingsCache.UpdateSingleDetail(hack.HackeeID, hack.Record.ProblemID, contest_id, hack.Record.Problem.Contest.Type);
+                    foreach (var client in App.Clients.Values)
+                    {
+                        System.Threading.Tasks.Task.Factory.StartNew(() =>
+                        {
+                            client.Callback.StandingsPush(contest_id, (StandingsCache.Standings[contest_id] as List<Entity.StandingItem>).Find(x => x.UserID == hack.HackeeID));
+                        });
+                    }
                 }
-                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                if (hack.Status == HackStatus.Success || hack.Status == HackStatus.Failure)
                 {
-                    LocalCenaServer client;
-                    if (App.Clients.TryGetValue(hack.HackerID, out client))
+                    StandingsCache.UpdateSingleUser(hack.HackerID, contest_id, (from p in db.Problems
+                                                                                where p.ContestID == contest_id
+                                                                                orderby p.Score ascending
+                                                                                select p.ID).ToList());
+                    foreach (var client in App.Clients.Values)
+                    {
+                        System.Threading.Tasks.Task.Factory.StartNew(() =>
+                        {
+                            client.Callback.StandingsPush(contest_id, (StandingsCache.Standings[contest_id] as List<Entity.StandingItem>).Find(x => x.UserID == hack.HackerID));
+                        });
+                    }
+                }
+                foreach (var client in App.Clients.Values)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() =>
                     {
                         client.Callback.HackResultPush(re);
-                    }
-                });
+                    });
+                }
             }
         }
         public void JudgeFinished(int record_id)

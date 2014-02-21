@@ -582,7 +582,7 @@ namespace CenaPlus.Server.Judge
                         {
                             HackData = null,
                             HackID = Task.Hack.ID,
-                            HackStatus = Entity.HackStatus.Failure
+                            HackStatus = Entity.HackStatus.Success
                         };
                         return;
                     }
@@ -592,7 +592,7 @@ namespace CenaPlus.Server.Judge
                         {
                             HackData = HackData,
                             HackID = Task.Hack.ID,
-                            HackStatus = Entity.HackStatus.Success
+                            HackStatus = Entity.HackStatus.Failure
                         };
                         return;
                     }

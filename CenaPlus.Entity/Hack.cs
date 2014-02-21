@@ -21,7 +21,6 @@ namespace CenaPlus.Entity
         public virtual Record Record { get; set; }
 
         [Column("generated_test_case_id")]
-        [ForeignKey("GeneratedTestCaseID")]
         public int? GeneratedTestCaseID { get; set; }
 
         [IgnoreDataMember]
