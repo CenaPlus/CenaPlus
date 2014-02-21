@@ -449,7 +449,7 @@ namespace CenaPlus.Server.Bll
                 if (problem == null) throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
 
                 Contest contest = problem.Contest;
-                if (contest.Type != ContestType.Codeforces)
+                if (contest.TypeAsInt != (int)ContestType.Codeforces)
                     throw new FaultException<InvalidOperationError>(new InvalidOperationError(), "Not codeforces");
 
                 bool accepted = (from r in db.Records
@@ -951,6 +951,17 @@ namespace CenaPlus.Server.Bll
                     RecordID = hack.RecordID,
                     Status = hack.Status
                 };
+            }
+        }
+
+        public bool GetLockStatus(int problem_id)
+        {
+            using (DB db = new DB())
+            {
+                var p = db.Problems.Find(problem_id);
+                if (p.LockedUsers.Contains(CurrentUser))
+                    return true;
+                else return false;
             }
         }
         #endregion

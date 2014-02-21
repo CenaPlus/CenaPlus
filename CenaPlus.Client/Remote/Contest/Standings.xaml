@@ -17,6 +17,7 @@
         <DataGrid Margin="0,0,0,30" x:Name="dgStandings" IsReadOnly="True" AutoGenerateColumns="False" GridLinesVisibility="None" SelectionUnit="Cell" EnableRowVirtualization="False" Focusable="False" HeadersVisibility="Column" SelectedCellsChanged="dgStandings_SelectedCellsChanged" VerticalContentAlignment="Center" RowHeight="40">
         </DataGrid>
         <WrapPanel x:Name="wpHack" VerticalAlignment="Bottom">
+            <Button Content="Lock" x:Name="btnLock" IsEnabled="False" Click="btnHack_Click" Margin="0,0,10,0"></Button>
             <Button Content="Hack" x:Name="btnHack" IsEnabled="False" Click="btnHack_Click"></Button>
         </WrapPanel>
     </Grid>

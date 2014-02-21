@@ -105,9 +105,9 @@ namespace CenaPlus.Server.Bll
                     var testCases = from t in db.TestCases
                                     where t.ProblemID == problem.ID
                                     select t;
-                    if ((contest.Type == ContestType.Codeforces || contest.Type == ContestType.TopCoder) && contest.EndTime > DateTime.Now)
+                    if ((contest.TypeAsInt == (int)ContestType.Codeforces || contest.TypeAsInt == (int)ContestType.TopCoder) && contest.EndTime > DateTime.Now)
                     {
-                        testCases = testCases.Where(t => t.Type == TestCaseType.Systemtest);
+                        testCases = testCases.Where(t => t.TypeAsInt == (int)TestCaseType.Pretest);
                     }
 
                     var testCaseIDs = testCases.Select(t => t.ID);
@@ -141,7 +141,10 @@ namespace CenaPlus.Server.Bll
                         totalTime += result.TimeUsage;
                         maxMemory = Math.Max((long)result.MemUsage, maxMemory);
                     }
-                    r.Score = 100 * account / runs.Count;
+                    if ((contest.TypeAsInt == (int)ContestType.Codeforces || contest.TypeAsInt == (int)ContestType.TopCoder) && contest.EndTime > DateTime.Now)
+                        r.Score = 100 * account / testCases.Where(t => t.TypeAsInt == (int)TestCaseType.Pretest).Count();
+                    else
+                        r.Score = 100 * account / testCases.Count();
                     r.Status = finalStatus;
                     r.TimeUsage = totalTime;
                     r.MemoryUsage = maxMemory;

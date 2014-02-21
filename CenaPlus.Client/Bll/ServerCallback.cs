@@ -11,6 +11,8 @@ namespace CenaPlus.Client.Bll
 {
     class ServerCallback : ICenaPlusServerCallback
     {
+        public static event Action<int> OnJudgeFinished;
+        public static event Action<int> OnBeHacked;
         public void Bye()
         {
             ModernDialog.ShowMessage("You are kicked out.", "Message", MessageBoxButton.OK);
@@ -42,6 +44,10 @@ namespace CenaPlus.Client.Bll
                         Content = new CenaPlus.Client.Remote.Contest.ResultPush(result)
                     }.ShowDialog();
                 }));
+                if (OnJudgeFinished != null)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => OnJudgeFinished(result.StatusID));
+                }
             });
         }
         public void StandingsPush(int contest_id, Entity.StandingItem si)
@@ -71,6 +77,10 @@ namespace CenaPlus.Client.Bll
                     }.ShowDialog();
                 }));
             });
+            if (OnBeHacked != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnBeHacked(result.RecordID));
+            }
         }
         public void HackResultPush(HackResult result)
         {

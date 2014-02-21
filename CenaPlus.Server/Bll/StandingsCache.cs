@@ -86,7 +86,7 @@ namespace CenaPlus.Server.Bll
                                                           select pv.Time).FirstOrDefault();
                                     int seconds = (int)(r.SubmissionTime - BeginTime).TotalSeconds;
                                     int minutes = seconds / 60;
-                                    detail.FirstScore = Convert.ToInt32(problem_pts * (1 - 0.004 * minutes * minutes));//Topcoder动态分数计算公式
+                                    detail.FirstScore = Convert.ToInt32(problem_pts * (1 - 0.004 * minutes * minutes)) - 50 * detail.ThirdScore;//Topcoder动态分数计算公式
                                     if (detail.FirstScore < problem_pts * 0.3)
                                         detail.FirstScore = (int)(problem_pts * 0.3);
                                     detail.SecondScore = seconds;
@@ -117,7 +117,7 @@ namespace CenaPlus.Server.Bll
                                                           select c.StartTime).FirstOrDefault();
                                     int seconds = (int)(r.SubmissionTime - BeginTime).TotalSeconds;
                                     int minutes = seconds / 60;
-                                    detail.FirstScore = Convert.ToInt32(problem_pts * (1 - 0.004 * minutes));//Codeforces动态分数计算公式
+                                    detail.FirstScore = Convert.ToInt32(problem_pts * (1 - 0.004 * minutes)) - 50 * detail.ThirdScore;//Codeforces动态分数计算公式
                                     if (detail.FirstScore < problem_pts * 0.3)
                                         detail.FirstScore = (int)(problem_pts * 0.3);
                                     detail.SecondScore = seconds;

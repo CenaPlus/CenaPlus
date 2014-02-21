@@ -18,6 +18,7 @@ namespace CenaPlus.Server.Dal
         public DbSet<PrintRequest> PrintRequests { get; set; }
         public DbSet<Config> Configs { get; set; }
         public DbSet<ProblemView> ProblemViews { get; set; }
+        //public DbSet<ProblemLocks> ProblemLocks { get; set; }
 
         public DB()
             : base("mysqldb")

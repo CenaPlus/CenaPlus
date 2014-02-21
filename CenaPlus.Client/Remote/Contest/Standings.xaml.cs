@@ -74,6 +74,14 @@ namespace CenaPlus.Client.Remote.Contest
                     dgStandings.Columns.Add(new DataGridTextColumn() { Header = "    Hack", Width = 95, ElementStyle = Resources["dgCell"] as Style, Binding = new Binding("SecDisplay") });
                     break;
             }
+            if (contest.Type == ContestType.Codeforces || contest.Type == ContestType.TopCoder && contest.HackStartTime <= DateTime.Now && DateTime.Now <= contest.EndTime)
+            {
+                btnHack.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnHack.Visibility = Visibility.Collapsed;
+            }
             var problems = App.Server.GetProblemList(contest.ID);
             for (int i = 0; i < problems.Count; i++)
             {

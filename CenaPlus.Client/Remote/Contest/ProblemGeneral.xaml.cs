@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
 
 namespace CenaPlus.Client.Remote.Contest
@@ -23,14 +24,20 @@ namespace CenaPlus.Client.Remote.Contest
     public partial class ProblemGeneral : UserControl, IContent
     {
         private List<ProblemListBoxItem> ProblemListBoxItems = new List<ProblemListBoxItem>();
+        private int contest_id;
+        private Entity.ContestType Type;
         public ProblemGeneral()
         {
             InitializeComponent();
+            Bll.ServerCallback.OnBeHacked += Refresh;
+            Bll.ServerCallback.OnJudgeFinished += Refresh;
         }
-
-        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
+        public void Refresh(int tmp)
         {
-            int contest_id = int.Parse(e.Fragment);
+            if (Type != Entity.ContestType.Codeforces)
+                btnLock.Visibility = Visibility.Collapsed;
+            else
+                btnLock.Visibility = Visibility.Visible;
             var list = from id in App.Server.GetProblemList(contest_id)
                        let q = App.Server.GetProblemTitle(id)
                        select new ProblemListBoxItem
@@ -48,9 +55,19 @@ namespace CenaPlus.Client.Remote.Contest
             foreach (var item in list)
             {
                 item.Number = i++;
+                if (App.Server.GetLockStatus(item.ProblemID))
+                    item.Title += " [LOCKED]";
                 ProblemListBoxItems.Add(item);
             }
+            ProblemListBox.Items.Refresh();
+        }
+        public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
+        {
+            contest_id = int.Parse(e.Fragment);
+            var contest = App.Server.GetContest(contest_id);
+            Type = contest.Type;
             ProblemListBox.ItemsSource = ProblemListBoxItems;
+            Refresh(1);
         }
 
         public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
@@ -65,7 +82,7 @@ namespace CenaPlus.Client.Remote.Contest
 
         public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-            
+
         }
 
         private void ProblemListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -79,11 +96,54 @@ namespace CenaPlus.Client.Remote.Contest
                 }
             }
         }
+
+        private void btnLock_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProblemListBox.SelectedItem != null)
+            {
+                var item = ProblemListBox.SelectedItem as ProblemListBoxItem;
+                if (item.Status.GetValueOrDefault() != Entity.ProblemGeneralStatus.Accepted)
+                {
+                    ModernDialog.ShowMessage("You should make your program pretest passed first.", "Error", MessageBoxButton.OK);
+                }
+                else
+                {
+                    App.Server.LockProblem(item.ProblemID);
+                    ProblemListBoxItems[ProblemListBoxItems.FindIndex(x => x.ProblemID == item.ProblemID)].Title += " [LOCKED]";
+                    ProblemListBox.Items.Refresh();
+                    ModernDialog.ShowMessage("Problem has been locked.", "Message", MessageBoxButton.OK);
+                }
+            }
+            else
+            {
+                btnLock.IsEnabled = false;
+            }
+        }
+
+        private void ProblemListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProblemListBox.SelectedItem != null)
+            {
+                var item = ProblemListBox.SelectedItem as ProblemListBoxItem;
+                if (item.Status.GetValueOrDefault() != Entity.ProblemGeneralStatus.Accepted)
+                {
+                    btnLock.IsEnabled = false;
+                }
+                else
+                {
+                    btnLock.IsEnabled = true;
+                }
+            }
+            else
+            {
+                btnLock.IsEnabled = false;
+            }
+        }
     }
-    public class ProblemListBoxItem: Entity.ProblemGeneral
+    public class ProblemListBoxItem : Entity.ProblemGeneral
     {
         public char Number { get; set; }
-        public string Header 
+        public string Header
         {
             get
             {
@@ -94,18 +154,18 @@ namespace CenaPlus.Client.Remote.Contest
         {
             get
             {
-                return String.Format("Time limit: {0} ms / Memory limit: {1} MiB{2}", TimeLimit, MemoryLimit, SpecialJudge?" / Special judge mode":"");
+                return String.Format("Time limit: {0} ms / Memory limit: {1} MiB{2}", TimeLimit, MemoryLimit, SpecialJudge ? " / Special judge mode" : "");
             }
         }
-        public string Details 
+        public string Details
         {
-            get 
+            get
             {
                 if (Status == null)
                 {
                     return "You have not tried this problem.";
                 }
-                else 
+                else
                 {
                     return String.Format("{0} @{1}", Status.ToString(), Time.ToShortTimeString());
                 }
