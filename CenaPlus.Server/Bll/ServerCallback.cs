@@ -17,12 +17,14 @@ namespace CenaPlus.Server.Bll
         public event Action<int> OnNewPrint;
         public event Action<int> OnPrintDeleted;
         public event Action<int> OnPrintUpdated;
+        public event Action<int, StandingItem> OnStandingPushed;
+        public event Action<Entity.HackResult> OnHackFinished;
+        public event Action<int> OnRebuildStandings;
 
         public void Bye()
         {
 
         }
-
         public void QuestionUpdated(Question q)
         {
             if (OnQuestionUpdated != null)
@@ -33,25 +35,40 @@ namespace CenaPlus.Server.Bll
             if (OnNewQuestion != null)
                 System.Threading.Tasks.Task.Factory.StartNew(() => OnQuestionUpdated(question_id));
         }
-
         public void JudgeFinished(Result result)
         {
             if(OnRecordUpdated!=null)
                 System.Threading.Tasks.Task.Factory.StartNew(() => OnRecordUpdated(result.StatusID));
         }
-
         public void StandingsPush(int contest_id, Entity.StandingItem si)
         {
+            if (Bll.StandingsCache.Standings[contest_id] == null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    App.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        App.Server.GetStandings(contest_id);
+                    }));
+                });
+            }
+            else
+                StandingsCache.UpdateSingleUser(contest_id, si);
+            if (OnStandingPushed != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnStandingPushed(contest_id, si));
+            }
         }
-
         public void BeHackedPush(HackResult result)
         {
         }
-
         public void HackResultPush(HackResult result)
         {
+            if (OnHackFinished != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnHackFinished(result));
+            }
         }
-
         public void NewRecord(Record record)
         {
             if (OnNewRecord != null)
@@ -85,6 +102,10 @@ namespace CenaPlus.Server.Bll
         public void RebuildStandings(int contest_id, List<StandingItem> standings)
         {
             Bll.StandingsCache.Standings[contest_id] = standings;
+            if (OnRebuildStandings != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnRebuildStandings(contest_id));
+            }
         }
     }
 }

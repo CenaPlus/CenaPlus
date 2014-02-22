@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FirstFloor.ModernUI.Windows;
 
-namespace CenaPlus.Client.Remote.Contest
+namespace CenaPlus.Server.ServerMode.Contest
 {
     /// <summary>
     /// Interaction logic for HackList.xaml
@@ -27,7 +27,7 @@ namespace CenaPlus.Client.Remote.Contest
         {
             InitializeComponent();
             lstHack.ItemsSource = HackListBoxItems;
-            Bll.ServerCallback.OnHackFinished += this.Refresh;
+            App.RemoteCallback.OnHackFinished += this.Refresh;
         }
         public void Refresh(Entity.HackResult result)
         {
@@ -55,6 +55,42 @@ namespace CenaPlus.Client.Remote.Contest
                 lstHack.Items.Refresh();
             }));
         }
+        public class HackListBoxItem : Entity.HackResult
+        {
+            public string Title
+            {
+                get
+                {
+                    return String.Format("{0} -> {1}", HackerUserNickName, DefenderUserNickName);
+                }
+            }
+            public string Details
+            {
+                get
+                {
+                    return String.Format("{0} / {1} @{2}", Status.ToString(), ProblemTitle, Time);
+                }
+            }
+            public string Color
+            {
+                get
+                {
+                    switch (Status)
+                    {
+                        case Entity.HackStatus.BadData:
+                        case Entity.HackStatus.DatamakerError:
+                            return "Orange";
+                        case Entity.HackStatus.Failure:
+                            return "Red";
+                        case Entity.HackStatus.Success:
+                            return "Green";
+                        default:
+                            return "SkyBlue";
+                    }
+                }
+            }
+        }
+
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
             contest_id = int.Parse(e.Fragment);
@@ -88,41 +124,6 @@ namespace CenaPlus.Client.Remote.Contest
 
         public void OnNavigatingFrom(FirstFloor.ModernUI.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-        }
-    }
-    public class HackListBoxItem: Entity.HackResult
-    {
-        public string Title
-        {
-            get 
-            {
-                return String.Format("{0} -> {1}", HackerUserNickName, DefenderUserNickName);
-            }
-        }
-        public string Details
-        {
-            get
-            {
-                return String.Format("{0} / {1} @{2}", Status.ToString(), ProblemTitle, Time);
-            }
-        }
-        public string Color
-        {
-            get
-            {
-                switch (Status)
-                { 
-                    case Entity.HackStatus.BadData:
-                    case Entity.HackStatus.DatamakerError:
-                        return "Orange";
-                    case Entity.HackStatus.Failure:
-                        return "Red";
-                    case Entity.HackStatus.Success:
-                        return "Green";
-                    default:
-                        return "SkyBlue";
-                }
-            }
         }
     }
 }

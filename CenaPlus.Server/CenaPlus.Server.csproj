@@ -134,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerMode\Contest\HackList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ServerMode\Contest\Print.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ServerMode\Contest\Questions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerMode\Contest\Standings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,6 +225,9 @@
     <Compile Include="ServerMode\Contest\General.xaml.cs">
       <DependentUpon>General.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ServerMode\Contest\HackList.xaml.cs">
+      <DependentUpon>HackList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ServerMode\Contest\Print.xaml.cs">
       <DependentUpon>Print.xaml</DependentUpon>
     </Compile>
@@ -240,6 +251,9 @@
     </Compile>
     <Compile Include="ServerMode\Contest\Questions.xaml.cs">
       <DependentUpon>Questions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\Contest\Standings.xaml.cs">
+      <DependentUpon>Standings.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\Contest\Status.xaml.cs">
       <DependentUpon>Status.xaml</DependentUpon>

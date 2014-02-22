@@ -36,6 +36,9 @@ namespace CenaPlus.Server.ServerMode.Contest
             lstLinks.Links.Add(new Link { DisplayName = "Problems", Source = new Uri("/ServerMode/Contest/ProblemList.xaml#" + id, UriKind.Relative) });
             lstLinks.Links.Add(new Link { DisplayName = "Status", Source = new Uri("/ServerMode/Contest/Status.xaml#" + id, UriKind.Relative) });
             lstLinks.Links.Add(new Link { DisplayName = "Standings", Source = new Uri("/ServerMode/Contest/Standings.xaml#" + id, UriKind.Relative) });
+            var contest = App.Server.GetContest(id);
+            if (contest.Type == Entity.ContestType.Codeforces || contest.Type == Entity.ContestType.TopCoder)
+                lstLinks.Links.Add(new Link { DisplayName = "Hacks", Source = new Uri("/ServerMode/Contest/HackList.xaml#" + id, UriKind.Relative) });
             lstLinks.Links.Add(new Link { DisplayName = "Questions", Source = new Uri("/ServerMode/Contest/Questions.xaml#" + id, UriKind.Relative) });
             lstLinks.Links.Add(new Link { DisplayName = "Print Requests", Source = new Uri("/ServerMode/Contest/Print.xaml#" + id, UriKind.Relative) });
             lstLinks.SelectedSource = new Uri("/ServerMode/Contest/General.xaml#" + id, UriKind.Relative);

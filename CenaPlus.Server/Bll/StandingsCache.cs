@@ -136,6 +136,18 @@ namespace CenaPlus.Server.Bll
                 (Standings[contest_id] as List<Entity.StandingItem>)[userindex].Details[FindProblem(problem_id, contest_id)] = detail;
             }
         }
+        public static void UpdateSingleUser(int contest_id, Entity.StandingItem si)
+        {
+            var userindex = (Standings[contest_id] as List<Entity.StandingItem>).FindIndex(x => x.UserID == si.UserID);
+            if (userindex == -1)
+            {
+                (Standings[contest_id] as List<Entity.StandingItem>).Add(si);
+            }
+            else
+            {
+                (Standings[contest_id] as List<Entity.StandingItem>)[userindex] = si;
+            }
+        }
         /// <summary>
         /// 重构某用户的排名信息
         /// </summary>

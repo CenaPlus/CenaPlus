@@ -448,7 +448,6 @@ namespace CenaPlus.Server.Bll
                 }
             }
         }
-
         public void LockProblem(int id)
         {
             using (DB db = new DB())
@@ -473,7 +472,6 @@ namespace CenaPlus.Server.Bll
                 db.SaveChanges();
             }
         }
-
         public void DeleteProblem(int id)
         {
             using (DB db = new DB())
@@ -511,7 +509,6 @@ namespace CenaPlus.Server.Bll
                         select p.ID).ToList();
             }
         }
-
         public Entity.ProblemGeneral GetProblemTitle(int id)
         {
             using (DB db = new DB())
@@ -578,7 +575,6 @@ namespace CenaPlus.Server.Bll
                 return problem_general;
             }
         }
-
         public Problem GetProblem(int id)
         {
             using (DB db = new DB())
@@ -631,6 +627,45 @@ namespace CenaPlus.Server.Bll
 
         #endregion
         #region Record
+        public void SystemTest(int contest_id)
+        {
+            using (DB db = new DB())
+            {
+                var problemids = (from p in db.Problems
+                                  where p.ContestID == contest_id
+                                  select p.ID).ToList();
+                var recordids = (from r in db.Records
+                                 where (r.StatusAsInt == (int)RecordStatus.Accepted || r.StatusAsInt == (int)RecordStatus.Pending || r.StatusAsInt == (int)RecordStatus.Running)
+                                 && problemids.Contains(r.ProblemID)
+                                 select r.ID).ToList();
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    foreach (var rid in recordids)
+                    {
+                        Rejudge(rid);
+                    }
+                });
+            }
+        }
+        public void RejudgeAll(int contest_id)
+        {
+            using (DB db = new DB())
+            {
+                var problemids = (from p in db.Problems
+                                  where p.ContestID == contest_id
+                                  select p.ID).ToList();
+                var recordids = (from r in db.Records
+                                 where  problemids.Contains(r.ProblemID)
+                                 select r.ID).ToList();
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    foreach (var rid in recordids)
+                    {
+                        Rejudge(rid);
+                    }
+                });
+            }
+        }
         public void Rejudge(int recordID)
         {
             using (DB db = new DB())
@@ -691,7 +726,6 @@ namespace CenaPlus.Server.Bll
                 return record.ID;
             }
         }
-
         public List<int> GetRecordList(int contestID)
         {
             using (DB db = new DB())
@@ -713,7 +747,6 @@ namespace CenaPlus.Server.Bll
                 return recordIDs.ToList();
             }
         }
-
         public Record GetRecord(int id)
         {
             using (DB db = new DB())

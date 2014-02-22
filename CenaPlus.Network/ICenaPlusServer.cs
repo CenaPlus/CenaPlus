@@ -309,5 +309,13 @@ namespace CenaPlus.Network
         [OperationContract]
         [FaultContract(typeof(NotFoundError))]
         bool GetLockStatus(int problem_id);
+
+        [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        void SystemTest(int contest_id);
+
+        [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        void RejudgeAll(int contest_id);
     }
 }

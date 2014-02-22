@@ -59,7 +59,8 @@ namespace CenaPlus.Judge
                 System.IO.Directory.CreateDirectory(CompileInfo.WorkingDirectory);
                 Runner Runner = new Judge.Runner();
             }
-            File.WriteAllText(CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Main" + GetExtension(CompileInfo.Language), CompileInfo.Source);
+            if (!System.IO.File.Exists(CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Main" + GetExtension(CompileInfo.Language)))
+                File.WriteAllText(CompileInfo.WorkingDirectory.TrimEnd('\\') + "\\Main" + GetExtension(CompileInfo.Language), CompileInfo.Source);
             if (CenaPlus.Judge.Compiler.NeedCompile.Contains(CompileInfo.Language))
             {
                 Runner = new Runner();

@@ -161,6 +161,18 @@ namespace CenaPlus.Server.ServerMode.Contest
         class StatusListViewItem : Record
         {
         }
+
+        private void btnRejudgeAll_Click(object sender, RoutedEventArgs e)
+        {
+            App.Server.RejudgeAll(contestID);
+            ModernDialog.ShowMessage("Rejudging.", "Message", MessageBoxButton.OK);
+        }
+
+        private void btnRejudgeAllAC_Click(object sender, RoutedEventArgs e)
+        {
+            App.Server.SystemTest(contestID);
+            ModernDialog.ShowMessage("System testing.", "Message", MessageBoxButton.OK);
+        }
     }
 
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,11 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CenaPlus.Entity;
 using FirstFloor.ModernUI.Windows;
-using FirstFloor.ModernUI.Windows.Navigation;
+using CenaPlus.Entity;
 
-namespace CenaPlus.Client.Remote.Contest
+namespace CenaPlus.Server.ServerMode.Contest
 {
     /// <summary>
     /// Interaction logic for Standings.xaml
@@ -28,24 +26,15 @@ namespace CenaPlus.Client.Remote.Contest
         private List<char> LockList = new List<char>();
         private int contest_id;
         private Entity.Contest contest;
-        public void RebuildLockList(int n)
+        public Standings()
         {
-            var list = App.Server.GetProblemList(contest_id);
-            char i = 'A';
-            Dispatcher.Invoke(new Action(() => {
-                LockList.Clear();
-                foreach (int pid in list)
-                {
-                    if (App.Server.GetLockStatus(pid))
-                        LockList.Add(i);
-                    i++;
-                }
-            }));
+            InitializeComponent();
+            App.RemoteCallback.OnStandingPushed += this.Refresh;
+            App.RemoteCallback.OnRebuildStandings += this.RebuildColumn;
         }
         public void Refresh(int contest_id, Entity.StandingItem si)
         {
-            Dispatcher.Invoke(new Action(() =>
-            {
+            Dispatcher.Invoke(new Action(() => {
                 if (contest_id == this.contest_id)
                 {
                     var standingindex = StandingItems.FindIndex(x => x.UserID == si.UserID);
@@ -60,6 +49,18 @@ namespace CenaPlus.Client.Remote.Contest
                     Sort();
                     dgStandings.Items.Refresh();
                 }
+            }));
+        }
+        public void Sort()//排名变化了执行这个更新，最好排名数据是一个静态的，客户端收到了服务器推送的排名更新，后台就更新了，打开到这个页面自动就能看到，就是全部排名只加载一次，之后推送变化值。
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                StandingItems.Sort((x, y) => x.MainKey == y.MainKey ? x.SecKey - y.SecKey : y.MainKey - x.MainKey);
+                for (int i = 0; i < StandingItems.Count; i++)
+                {
+                    StandingItems[i].Rank = i + 1;
+                }
+                dgStandings.Items.Refresh();
             }));
         }
         public void RebuildColumn(int contest_id)
@@ -87,14 +88,6 @@ namespace CenaPlus.Client.Remote.Contest
                             dgStandings.Columns.Add(new DataGridTextColumn() { Header = "    Hack", Width = 95, ElementStyle = Resources["dgCell"] as Style, Binding = new Binding("SecDisplay") });
                             break;
                     }
-                    if (contest.Type == ContestType.Codeforces || contest.Type == ContestType.TopCoder && contest.HackStartTime <= DateTime.Now && DateTime.Now <= contest.EndTime)
-                    {
-                        btnHack.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        btnHack.Visibility = Visibility.Collapsed;
-                    }
                     var problems = App.Server.GetProblemList(contest.ID);
                     for (int i = 0; i < problems.Count; i++)
                     {
@@ -109,76 +102,18 @@ namespace CenaPlus.Client.Remote.Contest
                 }
             }));
         }
-        public void Sort()//排名变化了执行这个更新，最好排名数据是一个静态的，客户端收到了服务器推送的排名更新，后台就更新了，打开到这个页面自动就能看到，就是全部排名只加载一次，之后推送变化值。
-        {
-            Dispatcher.Invoke(new Action(() => {
-                StandingItems.Sort((x, y) => x.MainKey == y.MainKey ? x.SecKey - y.SecKey : y.MainKey - x.MainKey);
-                for (int i = 0; i < StandingItems.Count; i++)
-                {
-                    StandingItems[i].Rank = i + 1;
-                }
-                dgStandings.Items.Refresh();
-            }));
-        }
-        public Standings()
-        {
-            InitializeComponent();
-            Bll.ServerCallback.OnJudgeFinished += RebuildLockList;
-            Bll.ServerCallback.OnRebuildStandings += RebuildColumn;
-            Bll.ServerCallback.OnStandingPushed += Refresh;
-        }
-
-        private void dgStandings_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            IList<DataGridCellInfo> selectedcells = e.AddedCells;
-            if (selectedcells.Count == 1 && selectedcells[0].Column.Header.ToString().Trim(' ').Length == 1 && selectedcells[0].Column.Header.ToString().Trim(' ')[0] >= 'A' && selectedcells[0].Column.Header.ToString().Trim(' ')[0] <= 'Z')
-            {
-                if (LockList.Contains(selectedcells[0].Column.Header.ToString().Trim(' ')[0]))
-                {
-                    if ((dgStandings.SelectedCells[0].Item as StandingItem).Details[(int)(dgStandings.SelectedCells[0].Column.Header.ToString().Trim(' ')[0] - 'A')].Display.IndexOf(":") >= 0)
-                        btnHack.IsEnabled = true;
-                    else
-                        btnHack.IsEnabled = false;
-                }
-                else
-                {
-                    btnHack.IsEnabled = false;
-                }
-            }
-            else 
-            {
-                btnHack.IsEnabled = false;
-            }
-        }
-
-        private void btnHack_Click(object sender, RoutedEventArgs e)
-        {
-            if (!LockList.Contains(dgStandings.SelectedCells[0].Column.Header.ToString().Trim(' ')[0]))
-            {
-                FirstFloor.ModernUI.Windows.Controls.ModernDialog.ShowMessage("Please lock the problem first.", "Error", MessageBoxButton.OK);
-                return;
-            }
-            else
-            {
-                var frame = NavigationHelper.FindFrame(null, this);
-                if (frame != null)
-                {
-                    frame.Source = new Uri("/Remote/Contest/Hack.xaml#" + (dgStandings.SelectedCells[0].Item as StandingItem).Details[(int)(dgStandings.SelectedCells[0].Column.Header.ToString().Trim(' ')[0] - 'A')].RecordID, UriKind.Relative);
-                }
-            }
-        }
 
         public void OnFragmentNavigation(FirstFloor.ModernUI.Windows.Navigation.FragmentNavigationEventArgs e)
         {
             contest = App.Server.GetContest(int.Parse(e.Fragment));
             contest_id = contest.ID;
-            RebuildLockList(1);
             RebuildColumn(contest_id);
             StandingItems = Bll.StandingsCache.Standings[contest_id] as List<Entity.StandingItem>;
             Sort();
             dgStandings.ItemsSource = StandingItems;
             dgStandings.Items.Refresh();
         }
+
         public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
         {
         }
