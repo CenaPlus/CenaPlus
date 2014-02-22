@@ -602,17 +602,25 @@ namespace CenaPlus.Server.Judge
         public void Start()
         {
             if (Task == null) throw new Exception("Task not found.");
-            if (Task.Type == Entity.TaskType.Run)
+            try
             {
-                Run();
+                if (Task.Type == Entity.TaskType.Run)
+                {
+                    Run();
+                }
+                else if (Task.Type == Entity.TaskType.Compile)
+                {
+                    Compile();
+                }
+                else if (Task.Type == Entity.TaskType.Hack)
+                {
+                    Hack();
+                }
             }
-            else if (Task.Type == Entity.TaskType.Compile)
+            catch 
             {
-                Compile();
-            }
-            else if (Task.Type == Entity.TaskType.Hack)
-            {
-                Hack();
+                if(Task.Type != Entity.TaskType.Hack)
+                    App.Server.Rejudge(Task.Record.ID);
             }
         }
     }
