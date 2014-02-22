@@ -441,6 +441,11 @@ namespace CenaPlus.Server.Bll
                     problem.ForbiddenLanguages = forbiddenLanguages;
 
                 db.SaveChanges();
+
+                foreach (var client in App.Clients.Values)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => client.Callback.RebuildStandings(problem.ContestID, StandingsCache.Standings[problem.ContestID] as List<Entity.StandingItem>));
+                }
             }
         }
 
@@ -478,9 +483,13 @@ namespace CenaPlus.Server.Bll
                 Problem problem = db.Problems.Find(id);
                 if (problem == null)
                     throw new FaultException<NotFoundError>(new NotFoundError { ID = id, Type = "Problem" });
-
+                var contest_id = problem.ContestID;
                 db.Problems.Remove(problem);
                 db.SaveChanges();
+                foreach (var client in App.Clients.Values)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => client.Callback.RebuildStandings(contest_id, StandingsCache.Standings[problem.ContestID] as List<Entity.StandingItem>));
+                }
             }
         }
         public List<int> GetProblemList(int contestID)

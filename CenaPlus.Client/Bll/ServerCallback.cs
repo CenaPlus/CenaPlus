@@ -13,7 +13,9 @@ namespace CenaPlus.Client.Bll
     {
         public static event Action<int> OnJudgeFinished;
         public static event Action<int> OnBeHacked;
+        public static event Action<int> OnRebuildStandings;
         public static event Action<HackResult> OnHackFinished;
+        public static event Action<int, StandingItem> OnStandingPushed;
         public void Bye()
         {
             ModernDialog.ShowMessage("You are kicked out.", "Message", MessageBoxButton.OK);
@@ -64,6 +66,10 @@ namespace CenaPlus.Client.Bll
             }
             else
                 StandingsCache.UpdateSingleUser(contest_id, si);
+            if (OnStandingPushed != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnStandingPushed(contest_id, si));
+            }
         }
         public void BeHackedPush(HackResult result)
         {
@@ -131,6 +137,10 @@ namespace CenaPlus.Client.Bll
         public void RebuildStandings(int contest_id, List<StandingItem> standings)
         {
             Bll.StandingsCache.Standings[contest_id] = standings;
+            if (OnRebuildStandings != null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() => OnRebuildStandings(contest_id));
+            }
         }
     }
 }

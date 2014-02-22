@@ -149,11 +149,16 @@ namespace CenaPlus.Server.Bll
                         totalTime += result.TimeUsage;
                         maxMemory = Math.Max((long)result.MemUsage, maxMemory);
                     }
-                    if ((contest.TypeAsInt == (int)ContestType.Codeforces || contest.TypeAsInt == (int)ContestType.TopCoder) && contest.EndTime > DateTime.Now)
-                        r.Score = 100 * account / testCases.Where(t => t.TypeAsInt == (int)TestCaseType.Pretest).Count();
-                    else
-                        r.Score = 100 * account / testCases.Count();
                     r.Status = finalStatus;
+                    if (finalStatus == RecordStatus.Accepted)
+                    {
+                        r.Score = 100;
+                    }
+                    else
+                    {
+                        if (testCases.Count() == 0) r.Score = 0;
+                        else r.Score = 100 * account / testCases.Count();
+                    }
                     r.TimeUsage = totalTime;
                     r.MemoryUsage = maxMemory;
                     r.Detail = detail.ToString();
