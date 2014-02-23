@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.SendMail.aspx.cs" Inherits="CenaPlus.Cloud.Web.Ajax.Register_SendMail" %>

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.EmailAuthentication.aspx.cs" Inherits="CenaPlus.Cloud.Web.Ajax.Register_EmailAuthentication" %>

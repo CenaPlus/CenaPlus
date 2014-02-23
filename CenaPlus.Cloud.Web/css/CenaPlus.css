@@ -56,7 +56,7 @@ a:hover
 .container
 {
 	margin: 0px auto;
-	width: 1200px;
+	width: 90%;
 }
 
 /*********************************************************************************/
@@ -386,7 +386,7 @@ ul.contact li a.icon-rss:before
 #logo
 {
 	float: left;
-	width: 400px;
+	width: 200px;
 }
 
 #logo h1
@@ -494,7 +494,7 @@ ul.contact li a.icon-rss:before
 #banner
 {
 	overflow: hidden;
-	width: 1000px;
+	width: 90%;
 	text-align: center;
 	color: rgba(255,255,255,.7);
 	font-size: 1.5em;

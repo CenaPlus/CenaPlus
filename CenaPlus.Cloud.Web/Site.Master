@@ -28,6 +28,7 @@
 				        <li id="navContest"><a href="/Contest" accesskey="3" title="">云比赛</a></li>
 				        <li id="navRating"><a href="/Rating" accesskey="4" title="">积分榜</a></li>
 				        <li id="navForum"><a href="/Forum" accesskey="5" title="">论坛</a></li>
+                        <%=LoginStr %>
 			        </ul>
 		        </div>
 	        </div>

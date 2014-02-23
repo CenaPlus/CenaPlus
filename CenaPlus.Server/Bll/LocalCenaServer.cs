@@ -298,8 +298,12 @@ namespace CenaPlus.Server.Bll
                 CheckRole(db, UserRole.Competitor);
 
                 IQueryable<Contest> contests = db.Contests;
-                var ids = contests.Select(c => c.ID);
-                return ids.ToList();
+                var ids = (from c in db.Contests
+                           let status = (c.StartTime <= DateTime.Now && DateTime.Now < c.EndTime) ? 0 : (DateTime.Now < c.StartTime ? 1 : 2)
+                           orderby status ascending, 
+                           c.StartTime descending
+                           select c.ID).ToList();
+                return ids;
             }
         }
 
@@ -528,6 +532,8 @@ namespace CenaPlus.Server.Bll
                 problem_general.MemoryLimit = Convert.ToInt32(problem.MemoryLimit / 1024 / 1024);
                 problem_general.ProblemID = problem.ID;
                 problem_general.SpecialJudge = problem.Spj == null ? false : true;
+                if (problem.Contest.Type == ContestType.Codeforces || problem.Contest.Type == ContestType.TopCoder)
+                    problem_general.Points = problem.Score;
 
                 var contest = db.Contests.Find(problem.ContestID);
                 var last_record = RecordHelper.GetLastRecord(CurrentUser.ID, problem.ID);

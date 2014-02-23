@@ -40,7 +40,7 @@ namespace CenaPlus.Client.Remote
         //TODO: Change the class name to 'ContestListItem'
         public class ContestList : CenaPlus.Entity.Contest
         {
-            private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
+            private const string DetailTemplate = "{0} / {1} hrs / {2} Format";
             public string Detail
             {
                 get
@@ -65,7 +65,7 @@ namespace CenaPlus.Client.Remote
                        select new ContestList
                        {
                            ID = c.ID,
-                           Title = c.Title,
+                           Title = c.StartTime <= DateTime.Now && DateTime.Now <= c.EndTime ? "[Live]" + c.Title : c.Title,
                            StartTime = c.StartTime,
                            EndTime = c.EndTime,
                            Type = c.Type

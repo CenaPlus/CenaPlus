@@ -14,6 +14,7 @@ namespace CenaPlus.Entity
         public int MemoryLimit { get; set; }
         public int ProblemID { get; set; }
         public bool SpecialJudge { get; set; }
+        public int? Points { get; set; }
     }
     public enum ProblemGeneralStatus {Pending, Hacked, Accepted, Submitted};
 }

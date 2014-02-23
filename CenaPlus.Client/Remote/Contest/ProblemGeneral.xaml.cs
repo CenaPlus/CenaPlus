@@ -54,7 +54,8 @@ namespace CenaPlus.Client.Remote.Contest
                                TimeLimit = q.TimeLimit,
                                MemoryLimit = q.MemoryLimit,
                                SpecialJudge = q.SpecialJudge,
-                               ProblemID = q.ProblemID
+                               ProblemID = q.ProblemID,
+                               Points = q.Points
                            };
                 char i = 'A';
                 Dispatcher.Invoke(new Action(() =>
@@ -163,7 +164,7 @@ namespace CenaPlus.Client.Remote.Contest
         {
             get
             {
-                return String.Format("Time limit: {0} ms / Memory limit: {1} MiB{2}", TimeLimit, MemoryLimit, SpecialJudge ? " / Special judge mode" : "");
+                return String.Format("Time limit: {0} ms / Memory limit: {1} MiB{2}{3}", TimeLimit, MemoryLimit, SpecialJudge ? " / Special judge mode" : "", Points == null ? "" : String.Format(" / {0} Pts.",Points));
             }
         }
         public string Details

@@ -110,7 +110,7 @@ namespace CenaPlus.Server.RichTextEditor
         }
         public static void HighLight(RichTextBox rtxt)
         {
-            rtxt.TextChanged += TxtChanged;
+            //rtxt.TextChanged += TxtChanged;
             
         }
         public static void TxtChanged(object sender, TextChangedEventArgs e)
