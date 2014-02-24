@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Server.ContestRefresh.aspx.cs" Inherits="CenaPlus.Cloud.Web.Ajax.Server_ContestRefresh" %>

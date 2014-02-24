@@ -5,10 +5,11 @@
         <div id="header-featured">
             <div id="banner-wrapper">
                 <div id="banner" class="container">
-                    <h2>欢迎来到Cena+云平台</h2>
-                    <p>这里是中国地区的Cena+云平台官方网站，如果您已经注册Cena+云帐号，请点击右上角的登录按钮进行下一步操作，如果您还没有Cena+云帐号请点击这里进行注册。云平台提供用户查询所有在线的Cena+服务器提供的比赛信息以及允许出题人在Cena+云题库中寄售题目，Cena+会在月初结算您的收益，同样作为服务端使用者，您可以在Cena+服务端上购买云题库中的题目提供局域网内的用户使用。</p>
-                    <a href="#" class="button">注册成为Cena+云平台会员
-                    </a>
+                    <div id="Main">
+                        <h2>欢迎来到Cena+云平台</h2>
+                        <p>这里是中国地区的Cena+云平台官方网站，如果您已经注册Cena+云帐号，请点击右上角的登录按钮进行下一步操作，如果您还没有Cena+云帐号请点击这里进行注册。云平台提供用户查询所有在线的Cena+服务器提供的比赛信息以及允许出题人在Cena+云题库中寄售题目，Cena+会在月初结算您的收益，同样作为服务端使用者，您可以在Cena+服务端上购买云题库中的题目提供局域网内的用户使用。</p>
+                        <a href="javascript:void(0);" class="button">注册成为Cena+云平台会员</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,5 +81,9 @@
     </div>
     <script>
         $("#navHomepage").addClass("current_page_item");
+        $(document).ready(function () {
+            $("#Main").hide();
+            $("#Main").fadeIn();
+        });
     </script>
 </asp:Content>

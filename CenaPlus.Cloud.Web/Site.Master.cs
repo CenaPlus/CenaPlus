@@ -15,12 +15,12 @@ namespace CenaPlus.Cloud.Web
             if (Session["User"] != null)
             {
                 LoginStr = "<li id=\"navUserCenter\"><a href=\"/UserCenter\" accesskey=\"6\" title=\"\">用户中心</a></li>";
-                LoginStr += "<li id=\"navLogout\"><a href=\"/UserCenter\" accesskey=\"7\" title=\"\">注销</a></li>";
+                LoginStr += "<li id=\"navLogout\"><a href=\"/Logout\" accesskey=\"7\" title=\"\">注销</a></li>";
             }
             else
             {
-                LoginStr = "<li id=\"navLogin\"><a href=\"/UserCenter\" accesskey=\"6\" title=\"\">登录</a></li>\r\n";
-                LoginStr += "<li id=\"navRegister\"><a href=\"/UserCenter\" accesskey=\"7\" title=\"\">注册</a></li>";
+                LoginStr = "<li id=\"navLogin\"><a href=\"/Login\" accesskey=\"6\" title=\"\">登录</a></li>\r\n";
+                LoginStr += "<li id=\"navRegister\"><a href=\"/Register\" accesskey=\"7\" title=\"\">注册</a></li>";
             }
         }
     }

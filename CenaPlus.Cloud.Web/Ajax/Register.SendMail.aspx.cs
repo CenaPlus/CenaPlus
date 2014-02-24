@@ -22,7 +22,7 @@ namespace CenaPlus.Cloud.Web.Ajax
             var area = (email.Split('@'))[1].ToLower();
             using (Dal.Cloud db = new Dal.Cloud())
             {
-                bool IsForbidden = (from f in db.EmailForbidden
+                bool IsForbidden = (from f in db.EmailForbiddens
                                     where f.Address.ToLower() == area
                                     select f.ID).Count() == 0 ? false : true;
                 if (IsForbidden)

@@ -72,23 +72,48 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="UrlRewriter">
+      <HintPath>..\..\..\工作\SmartOnlineJudge\SmartOnlineJudge.UI.New\bin\UrlRewriter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ajax\Contests.GetList.aspx" />
+    <Content Include="Ajax\Login.aspx" />
     <Content Include="Ajax\Register.EmailAuthentication.aspx" />
     <Content Include="Ajax\Register.Finish.aspx" />
     <Content Include="Ajax\Register.SendMail.aspx" />
+    <Content Include="Ajax\Server.ContestRefresh.aspx" />
+    <Content Include="Contests.aspx" />
     <Content Include="css\CenaPlus.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="images\pic01.jpg" />
     <Content Include="images\Logo.png" />
     <Content Include="js\CenaPlus.js" />
     <Content Include="js\JQuery.js" />
+    <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Store.aspx" />
     <Content Include="test.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ajax\Contests.GetList.aspx.cs">
+      <DependentUpon>Contests.GetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ajax\Contests.GetList.aspx.designer.cs">
+      <DependentUpon>Contests.GetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ajax\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ajax\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Ajax\Register.EmailAuthentication.aspx.cs">
       <DependentUpon>Register.EmailAuthentication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -110,7 +135,22 @@
     <Compile Include="Ajax\Register.SendMail.aspx.designer.cs">
       <DependentUpon>Register.SendMail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Ajax\Server.ContestRefresh.aspx.cs">
+      <DependentUpon>Server.ContestRefresh.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ajax\Server.ContestRefresh.aspx.designer.cs">
+      <DependentUpon>Server.ContestRefresh.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bll\ContestHelper.cs" />
     <Compile Include="Bll\SMTPHelper.cs" />
+    <Compile Include="Contests.aspx.cs">
+      <DependentUpon>Contests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contests.aspx.designer.cs">
+      <DependentUpon>Contests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Dal\Cena.cs" />
     <Compile Include="Dal\Cloud.cs" />
     <Compile Include="Default.aspx.cs">
@@ -119,6 +159,16 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">

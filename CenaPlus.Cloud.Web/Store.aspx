@@ -10,7 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div class="Context">
+    <div class="Context">
         <div id="header-featured">
             <div id="banner-wrapper">
                 <div id="banner" class="container">
@@ -32,7 +32,8 @@
                         <img src="images/pic01.jpg" alt="" class="image image-full" />
                     </p>
                     <p>Cena+分为服务端和客户端两部分，可以承载OI、ACM、Codeforces以及TopCoder四种赛制的比赛，该系统完全按照线下赛的需求设计，其中包括了赛场打印服务及在线答疑等功能，使得比赛更加贴近真实的效果。Cena+推出三种平台的服务端及客户端，分别支持Windows、Linux、Mac OS。</p>
-                    <p>Cena+分为试用版、普及版和旗舰版，分别针对不同类型客户，试用版允许最大在线连接10人；普及版最大在线人数限制为50人，适合大学、中学以及培训机构使用；旗舰版不限制最大在线人数（具体人数因网络环境而定），适合大赛承办方使用。
+                    <p>
+                        Cena+分为试用版、普及版和旗舰版，分别针对不同类型客户，试用版允许最大在线连接10人；普及版最大在线人数限制为50人，适合大学、中学以及培训机构使用；旗舰版不限制最大在线人数（具体人数因网络环境而定），适合大赛承办方使用。
                     </p>
                 </div>
                 <div id="sidebar">

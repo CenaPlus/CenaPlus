@@ -480,7 +480,6 @@ ul.contact li a.icon-rss:before
 	#header-featured
 	{
 		padding: 10em 0em;
-		background-size: cover;
 		background-image: url(/images/texture.png);
 		background-repeat: repeat;
 	}

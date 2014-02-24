@@ -1,5 +1,8 @@
-drop table if exists `users`;
 drop table if exists `email_forbiddens`;
+drop table if exists `cloud_servers`;
+drop table if exists `contests`;
+drop table if exists `ratings`;
+drop table if exists `users`;
 
 CREATE TABLE `users` (
     id int not null auto_increment,
@@ -20,4 +23,44 @@ CREATE TABLE `email_forbiddens` (
     `address` varchar(50) not null,
     primary key (id),
     unique index (`address`)
+)  default charset=utf8;
+
+CREATE TABLE `cloud_servers` (
+    id int not null auto_increment,
+    `address` varchar(80) not null,
+	client_secret varchar(80) not null,
+	port int not null,
+	name varchar(80) not null,
+	`status` tinyint not null,
+	expired_time datetime not null,
+    primary key (id),
+    unique index (`address`)
+)  default charset=utf8;
+
+CREATE TABLE `contests` (
+    id int not null auto_increment,
+    `title` varchar(80) not null,
+	begin_time datetime not null,
+	end_time datetime not null,
+	`type` tinyint not null,
+	cloud_server_id int not null,
+	primary key (id),
+	foreign key (cloud_server_id)
+        references cloud_servers (id)
+        on delete cascade
+)  default charset=utf8;
+
+CREATE TABLE `ratings` (
+    id int not null auto_increment,
+    `time` datetime not null,
+	contest_id int not null,
+	`user_id` int not null,
+	`rating` int not null,
+	primary key (id),
+	foreign key (contest_id)
+        references contests (id)
+        on delete cascade,
+	foreign key (user_id)
+        references users (id)
+        on delete cascade
 )  default charset=utf8;

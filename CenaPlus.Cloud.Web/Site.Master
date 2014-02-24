@@ -23,9 +23,9 @@
 		        </div>
 		        <div id="menu" class="Menu-Color">
 			        <ul>
-				        <li id="navHomepage"><a href="#" accesskey="1" title="">主页</a></li>
+				        <li id="navHomepage"><a href="/" accesskey="1" title="">主页</a></li>
                         <li id="navStore"><a href="/Store" accesskey="2" title="">云题库</a></li>
-				        <li id="navContest"><a href="/Contest" accesskey="3" title="">云比赛</a></li>
+				        <li id="navContests"><a href="/Contests" accesskey="3" title="">云比赛</a></li>
 				        <li id="navRating"><a href="/Rating" accesskey="4" title="">积分榜</a></li>
 				        <li id="navForum"><a href="/Forum" accesskey="5" title="">论坛</a></li>
                         <%=LoginStr %>

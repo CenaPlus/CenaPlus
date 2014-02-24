@@ -47,7 +47,7 @@
                         <p style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本协议签订地为中华人民共和国广东省深圳市南山区。本协议的成立、生效、履行、解释及纠纷解决，适用中华人民共和国大陆地区法律（不包括冲突法）。若您和Cena+之间发生任何纠纷或争议，首先应友好协商解决；协商不成的，您同意将纠纷或争议提交本协议签订地有管辖权的人民法院管辖。本协议所有条款的标题仅为阅读方便，本身并无实际涵义，不能作为本协议涵义解释的依据。本协议条款无论因何种原因部分无效或不可执行，其余条款仍有效，对双方具有约束力。</p>
                         <p>协议的生效与变更</p>
                         <p style="text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您使用Cena+的服务即视为您已阅读本协议并接受本协议的约束。Cena+有权在必要时修改本协议条款。您可以在相关服务页面查阅最新版本的协议条款。本协议条款变更后，如果您继续使用Cena+提供的软件或服务，即视为您已接受修改后的协议。如果您不接受修改后的协议，应当停止使用Cena+提供的软件或服务。</p>
-                        <a href="#" class="button" id="To_Step_2">接受服务条款</a>
+                        <a href="javascript: void(0);" class="button" id="To_Step_2">接受服务条款</a>
                     </div>
                     <div id="Register_Step_2" class="Register">
                         <h2>开始注册</h2>
@@ -55,7 +55,7 @@
                         <p>
                             <input id="Email" type="text" style="height: 50px; width: 480px; font-size: 36px; text-align: center;" />
                         </p>
-                        <a href="#" class="button" id="To_Step_3">下一步
+                        <a href="javascript: void(0);" class="button" id="To_Step_3">下一步
                         </a>
                     </div>
                     <div id="Register_Step_3" class="Register">
@@ -64,7 +64,7 @@
                         <p>
                             <input id="EmailCode" type="text" style="height: 50px; width: 480px; font-size: 36px; text-align: center;" />
                         </p>
-                        <a href="#" class="button" id="To_Step_4">下一步
+                        <a href="javascript: void(0);" class="button" id="To_Step_4">下一步
                         </a>
                     </div>
                     <div id="Register_Step_4" class="Register">
@@ -81,7 +81,7 @@
                         <p>
                             <input type="password" id="Confirm" style="height: 50px; width: 480px; font-size: 36px; text-align: center;" />
                         </p>
-                        <a href="#" class="button" id="To_Finish">完成注册
+                        <a href="javascript: void(0);" class="button" id="To_Finish">完成注册
                         </a>
                     </div>
                     <div id="Info" class="Register">
@@ -93,8 +93,15 @@
         </div>
     </div>
     <script>
+        function checkemail(str) {
+            var sReg = /[_a-zA-Z\d\-\.]+@[_a-zA-Z\d\-]+(\.[_a-zA-Z\d\-]+)+$/;
+            if (!sReg.test(str)) {
+                return false;
+            }
+            return true;
+        }
         $("#navRegister").addClass("current_page_item");
-        function Waiting(header, content)
+        function CastInfo(header, content)
         {
             $(".Register").hide();
             $("#Info_Header").html(header);
@@ -110,20 +117,29 @@
             $("#Register_Step_2").fadeIn();
         });
         $("#To_Step_3").click(function () {
-            Waiting("请稍候...", "");
+            if (!checkemail($("#Email").val()))
+            {
+                CastInfo("错误", "您填写的Email地址不合法，请重新尝试。");
+                setTimeout(function () {
+                    $(".Register").hide();
+                    $("#Register_Step_2").fadeIn();
+                }, 3000);
+                return;
+            }
+            CastInfo("请稍候...", "");
             $.post("/Ajax/Register.SendMail.aspx", {
                 Email : $("#Email").val()
             }, function (feedback) {
                 if (feedback == "Failed")
                 {
-                    Waiting("错误", "您在短时间内尝试了过多次数的帐号注册操作");
+                    CastInfo("错误", "您在短时间内尝试了过多次数的帐号注册操作");
                 }
                 else if (feedback == "Existed")
                 {
-                    Waiting("错误", "您输入的电子邮箱已经注册过Cena+了");
+                    CastInfo("错误", "您输入的电子邮箱已经注册过Cena+了");
                 }
                 else if (feedback == "WrongAddress") {
-                    Waiting("错误", "您输入的Email地址不合法，可能是您使用GMail中的'+'地址或使用临时邮箱导致的");
+                    CastInfo("错误", "您输入的Email地址不合法，可能是您使用GMail中的'+'地址或使用临时邮箱导致的");
                 }
                 else {
                     $(".Register").hide();
@@ -132,7 +148,7 @@
             });
         });
         $("#To_Step_4").click(function () {
-            Waiting("请稍候...", "");
+            CastInfo("请稍候...", "");
             $.post("/Ajax/Register.EmailAuthentication.aspx", {
                 Code: $("#EmailCode").val()
             }, function (data) {
@@ -141,15 +157,19 @@
                     $("#Register_Step_4").fadeIn();
                 }
                 else {
-                    Waiting("错误", "电子邮箱验证失败，请使用正确的邮箱地址再次尝试。");
+                    CastInfo("错误", "电子邮箱验证失败，请使用正确的邮箱地址再次尝试。");
+                    setTimeout(function () {
+                        $(".Register").hide();
+                        $("#Register_Step_3").fadeIn();
+                    }, 3000);
                 }
             });
             $("#To_Finish").click(function () {
                 if ($("#Password").val() != $("#Confirm").val()) {
-                    Waiting("错误", "密码与密码重复不一致，请返回修改！");
+                    CastInfo("错误", "密码与密码重复不一致，请返回修改！");
                     setTimeout(function () {
                         $(".Register").hide();
-                        $("#Register_Step_3").fadeIn();
+                        $("#Register_Step_4").fadeIn();
                     }, 3000);
                     return;
                 }
@@ -158,16 +178,16 @@
                     Password: $("#Password").val()
                 }, function (data) {
                     if (data == "OK") {
-                        Waiting("谢谢您", "感谢您注册成为Cena+会员，请点击右上方的登录以进行更多操作。");
+                        CastInfo("谢谢您", "感谢您注册成为Cena+会员，请点击右上方的登录以进行更多操作。");
                     }
                     else if (data == "Error") {
-                        Waiting("错误", "注册过程中发生错误，请重试！");
+                        CastInfo("错误", "注册过程中发生错误，请重试！");
                     }
                     else if (data == "Existed") {
-                        Waiting("错误", "您注册的用户名已经存在，请返回重试！");
+                        CastInfo("错误", "您注册的用户名已经存在，请返回重试！");
                         setTimeout(function () {
                             $(".Register").hide();
-                            $("#Register_Step_3").fadeIn();
+                            $("#Register_Step_4").fadeIn();
                         }, 3000);
                     }
                 });
