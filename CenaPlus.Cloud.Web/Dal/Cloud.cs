@@ -18,5 +18,11 @@ namespace CenaPlus.Cloud.Web.Dal
             : base("mysqldb")
         { 
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+               .HasMany(u => u.Ratings)
+               .WithRequired(r => r.User);
+        }
     }
 }

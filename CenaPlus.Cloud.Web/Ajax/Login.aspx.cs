@@ -17,7 +17,7 @@ namespace CenaPlus.Cloud.Web.Ajax
             { 
                 var user = (from u in db.Users
                                 where u.Name == Request.Form["Username"]
-                                && u.Password == SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(Request.Form["Password"])
+                                && u.Password == SHA1.Create().ComputeHash(Encoding.UTF8.GetBytes(Request.Form["Password"]))
                                 select u).FirstOrDefault();
                 if(user == null)
                 {

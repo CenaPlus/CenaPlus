@@ -47,6 +47,8 @@ namespace CenaPlus.Cloud.Entity
             set { RoleAsInt = (int)value; }
         }
 
+        public virtual ICollection<Rating> Ratings { get; set; }
+
         public override bool Equals(object obj)
         {
             User other = obj as User;
