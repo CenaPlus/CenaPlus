@@ -175,7 +175,7 @@ namespace CenaPlus.Client.Local
         {
             get
             {
-                return String.Format("#{0} : {1} ms / {2} KB", TestCase.Index, Time, Memory);
+                return String.Format("#{0} : {1} / {2} ms / {3} KB", TestCase.Index, System.IO.Path.GetFileNameWithoutExtension(TestCase.Input), Time, Memory);
             }
         }
         public TestCase TestCase = new TestCase();

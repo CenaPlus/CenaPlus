@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
@@ -54,6 +55,12 @@ namespace CenaPlus.Cloud.Entity
             User other = obj as User;
             if (other == null) return false;
             return other.ID == this.ID;
+        }
+
+        public string GetGravatar()
+        {
+            var email_hash = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(Gravatar, "MD5").ToLower();
+            return String.Format("http://www.gravatar.com/avatar/{0}?d=http://www.cenaplus.org/images/Default.png", Gravatar);
         }
 
         public override int GetHashCode()

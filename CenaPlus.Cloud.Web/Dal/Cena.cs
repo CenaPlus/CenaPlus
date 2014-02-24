@@ -29,6 +29,7 @@ namespace CenaPlus.Cloud.Web.Dal
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Problem>()
                 .HasMany(p => p.LockedUsers)
                 .WithMany(u => u.LockedProblems)

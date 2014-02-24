@@ -79,6 +79,7 @@
   <ItemGroup>
     <Content Include="Ajax\Contests.GetList.aspx" />
     <Content Include="Ajax\Login.aspx" />
+    <Content Include="Ajax\Rating.GetList.aspx" />
     <Content Include="Ajax\Register.EmailAuthentication.aspx" />
     <Content Include="Ajax\Register.Finish.aspx" />
     <Content Include="Ajax\Register.SendMail.aspx" />
@@ -92,6 +93,7 @@
     <Content Include="js\CenaPlus.js" />
     <Content Include="js\JQuery.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Rating.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Store.aspx" />
     <Content Include="test.html" />
@@ -113,6 +115,13 @@
     </Compile>
     <Compile Include="Ajax\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ajax\Rating.GetList.aspx.cs">
+      <DependentUpon>Rating.GetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ajax\Rating.GetList.aspx.designer.cs">
+      <DependentUpon>Rating.GetList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ajax\Register.EmailAuthentication.aspx.cs">
       <DependentUpon>Register.EmailAuthentication.aspx</DependentUpon>
@@ -171,6 +180,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rating.aspx.cs">
+      <DependentUpon>Rating.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rating.aspx.designer.cs">
+      <DependentUpon>Rating.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

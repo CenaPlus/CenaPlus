@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Rating.GetList.aspx.cs" Inherits="CenaPlus.Cloud.Web.Ajax.Rating_GetList" %>

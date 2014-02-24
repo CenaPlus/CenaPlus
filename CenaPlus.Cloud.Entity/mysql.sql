@@ -55,7 +55,7 @@ CREATE TABLE `ratings` (
     `time` datetime not null,
 	contest_id int not null,
 	`user_id` int not null,
-	`rating` int not null,
+	`rating_change` int not null,
 	primary key (id),
 	foreign key (contest_id)
         references contests (id)

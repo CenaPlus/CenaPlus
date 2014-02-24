@@ -12,7 +12,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Context">
-        <div id="header-featured">
+        <div id="header-featured" class="Banner_Frame">
             <div id="banner-wrapper">
                 <div id="banner" class="container">
                     <div id="Main">
@@ -53,6 +53,9 @@
             $("#Main").fadeIn();
             LoadContests(page);
             page++;
+            setTimeout(function(){
+                $(".Banner_Frame").slideUp("slow");
+            },3000);
         });
         function LoadContests(page_index)
         {
@@ -75,5 +78,9 @@
                 });
             });
         }
+        $(window).bind("beforeunload",function () {
+            $("#Main").hide();
+            $("#Main").slideDown();
+        });
     </script>
 </asp:Content>

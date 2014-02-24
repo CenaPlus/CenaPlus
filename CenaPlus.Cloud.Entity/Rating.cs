@@ -23,8 +23,8 @@ namespace CenaPlus.Cloud.Entity
 
         public virtual Contest Contest { get; set; }
 
-        [Column("rating")]
-        public int Rating { get; set; }
+        [Column("rating_change")]
+        public int RatingChange { get; set; }
 
         [Column("user_id")]
         [ForeignKey("User")]
