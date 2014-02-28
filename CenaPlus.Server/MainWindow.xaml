@@ -9,6 +9,7 @@
         <mui:LinkGroup DisplayName="Cena+ server">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="Server Mode" Source="/ServerMode/Home.xaml" />
+                <mui:Link DisplayName="Remote Manage" Source="/ServerMode/RemoteManage.xaml" />
                 <mui:Link DisplayName="Judge Node" Source="/JudgeNode/Home.xaml"/>
             </mui:LinkGroup.Links>
         </mui:LinkGroup>

@@ -617,9 +617,34 @@ namespace CenaPlus.Server.Judge
                     Hack();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                
+                switch(Task.Type)
+                {
+                    case Entity.TaskType.Compile:
+                        this.Feedback = new Entity.TaskFeedback_Compile
+                        {
+                            RecordID = Task.Record.ID,
+                            RecordStatus = Entity.RecordStatus.SystemError,
+                        };
+                        break;
+                    case Entity.TaskType.Run:
+                         this.Feedback = new Entity.TaskFeedback_Run
+                        {
+                            RecordID = Task.Record.ID,
+                            RecordStatus = Entity.RecordStatus.SystemError,
+                        };
+                        break;
+                    case Entity.TaskType.Hack:
+                        this.Feedback = new Entity.TaskFeedback_Hack
+                        {
+                            HackData = null,
+                            HackID = Task.Hack.ID,
+                            HackStatus = Entity.HackStatus.BadData
+                        };
+                        break;
+                    default:break;
+                }
             }
         }
     }

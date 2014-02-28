@@ -112,6 +112,38 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         {
         }
 
+        private void imgSourceDirectory_DragEnter(object sender, DragEventArgs e)
+        {
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files.Length != 1)
+            {
+                imgSourceDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box_Err.png", UriKind.Relative));
+            }
+            else
+            {
+                imgSourceDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box_Hover.png", UriKind.Relative));
+            }
+        }
 
+        private void imgSourceDirectory_DragLeave(object sender, DragEventArgs e)
+        {
+            imgSourceDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box.png", UriKind.Relative));
+        }
+
+        private void imgSourceDirectory_Drop(object sender, DragEventArgs e)
+        {
+            imgSourceDirectory.Source = new BitmapImage(new Uri("/CenaPlus.Server;component/Resources/Box.png", UriKind.Relative));
+            var files = e.Data.GetData(DataFormats.FileDrop) as string[];
+            if (files.Length != 1)
+            {
+                ModernDialog.ShowMessage("You must select a single file.", "Error", MessageBoxButton.OK);
+                return;
+            }
+            else
+            {
+                txtCode.Document.Blocks.Clear();
+                txtCode.Document.Blocks.Add(new Paragraph(new Run(System.IO.File.ReadAllText(files[0]))));
+            }
+        }
     }
 }

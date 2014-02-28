@@ -13,7 +13,6 @@ namespace CenaPlus.Server.Bll
             workingdirectory = null;
             username = null;
             password = null;
-            judgeenabled = null;
             c = null;
             cxx = null;
             cxx11 = null;
@@ -23,6 +22,8 @@ namespace CenaPlus.Server.Bll
             python27 = null;
             python33 = null;
             ruby = null;
+            servername = null;
+            serverport = null;
         }
         private static string workingdirectory;
         public static string WorkingDirectory
@@ -50,6 +51,61 @@ namespace CenaPlus.Server.Bll
                 workingdirectory = value;
             }
         }
+
+        private static string servername;
+        public static string ServerName
+        {
+            get
+            {
+                if (servername == null || servername == String.Empty)
+                {
+                    XmlDocument xml = new XmlDocument();
+                    xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                    XmlNodeList node;
+                    node = xml.GetElementsByTagName("ServerName");
+                    servername = node[0].InnerText;
+                }
+                return servername;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("ServerName");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+                servername = value;
+            }
+        }
+
+        private static int? serverport;
+        public static int? ServerPort
+        {
+            get
+            {
+                if (serverport == null)
+                {
+                    XmlDocument xml = new XmlDocument();
+                    xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                    XmlNodeList node;
+                    node = xml.GetElementsByTagName("ServerPort");
+                    serverport = Convert.ToInt32(node[0].InnerText);
+                }
+                return serverport;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("ServerPort");
+                node[0].InnerText = value.ToString();
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+                serverport = Convert.ToInt32(value);
+            }
+        }
+
         private static string username;
         public static string UserName
         {
@@ -102,32 +158,7 @@ namespace CenaPlus.Server.Bll
                 password = value;
             }
         }
-        private static bool? judgeenabled;
-        public static bool JudgeEnabled
-        {
-            get
-            {
-                if (judgeenabled == null)
-                {
-                    XmlDocument xml = new XmlDocument();
-                    xml.Load(Environment.CurrentDirectory + "\\Config.xml");
-                    XmlNodeList node;
-                    node = xml.GetElementsByTagName("Enabled");
-                    judgeenabled = Convert.ToBoolean(node[0].InnerText);
-                }
-                return (bool)judgeenabled;
-            }
-            set
-            {
-                XmlDocument xml = new XmlDocument();
-                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
-                XmlNodeList node;
-                node = xml.GetElementsByTagName("Enabled");
-                node[0].InnerText = value ? "True" : "False";
-                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
-                judgeenabled = value;
-            }
-        }
+
         private static string c;
         public static string C
         {

@@ -130,7 +130,9 @@ namespace CenaPlus.Server.ServerMode.Contest
             request.Content = txtPrintContent.Text;
 
             string docName = string.Format("{1}@{2}(len:{0})", request.Content.Length, request.UserNickName, request.Time.ToShortTimeString());
-            PrintPlaintext(request.Content, docName, request.Copies);
+
+            var user = App.Server.GetUser(request.UserID);
+            PrintPlaintext(user.Name + "(" + user.NickName + ")\r\n" + request.Content, docName, request.Copies);
 
             App.Server.UpdatePrintRequest(id, null, null, PrintRequestStatus.Done);
 

@@ -27,12 +27,11 @@ namespace CenaPlus.Server.Settings
             txtPath.Text = Bll.ConfigHelper.WorkingDirectory;
             txtWinUser.Text = Bll.ConfigHelper.UserName;
             txtWinPwd.Text = Bll.ConfigHelper.Password;
-            chkJudgeEnabled.IsChecked = Bll.ConfigHelper.JudgeEnabled;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)chkJudgeEnabled.IsChecked && (txtWinUser.Text == String.Empty || txtWinPwd.Text == String.Empty))
+            if (txtWinUser.Text == String.Empty || txtWinPwd.Text == String.Empty)
             {
                 ModernDialog.ShowMessage("Win user cannot be null.", "Error", MessageBoxButton.OK);
                 return;
@@ -40,7 +39,6 @@ namespace CenaPlus.Server.Settings
             Bll.ConfigHelper.WorkingDirectory = txtPath.Text;
             Bll.ConfigHelper.UserName = txtWinUser.Text;
             Bll.ConfigHelper.Password = txtWinPwd.Text;
-            Bll.ConfigHelper.JudgeEnabled = (bool)chkJudgeEnabled.IsChecked;
             ModernDialog.ShowMessage("Configuration has been saved.", "Message", MessageBoxButton.OK);
         }
     }

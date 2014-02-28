@@ -9,7 +9,6 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel x:Name="spJudgeNode">
-                <CheckBox x:Name="chkJudgeEnabled" IsChecked="True" Content="Enable provide judge service" Margin="0,0,0,20"></CheckBox>
                 <TextBlock Text="You need a low power windows-account to run the program that uploaded by competitors." TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
                 <TextBlock Text="Username" TextWrapping="Wrap" Margin="0,0,0,5"></TextBlock>
                 <TextBox x:Name="txtWinUser" Margin="0,0,0,10"></TextBox>

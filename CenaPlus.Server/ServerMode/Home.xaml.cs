@@ -31,10 +31,13 @@ namespace CenaPlus.Server.ServerMode
     public partial class Home : UserControl
     {
         private CenaPlusServerHost host;
+        private const string ConnectionStr = "Server=localhost;Port={0};Database={1};Uid={2};Password={3};Charset=utf8;";
 
         public Home()
         {
             InitializeComponent();
+            txtServerName.Text = ConfigHelper.ServerName;
+            txtLocalPort.Text = ConfigHelper.ServerPort.ToString();
         }
 
         private void lstMySqlMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,8 +47,14 @@ namespace CenaPlus.Server.ServerMode
             {
                 lblMySQLAddr.Visibility = System.Windows.Visibility.Visible;
                 lblMySQLPort.Visibility = System.Windows.Visibility.Visible;
+                lblMySQLDBName.Visibility = System.Windows.Visibility.Visible;
+                lblMySQLUsername.Visibility = System.Windows.Visibility.Visible;
+                lblMySQLPassword.Visibility = System.Windows.Visibility.Visible;
                 txtMySQLAddr.Visibility = System.Windows.Visibility.Visible;
                 txtMySQLPort.Visibility = System.Windows.Visibility.Visible;
+                txtMySQLDBName.Visibility = System.Windows.Visibility.Visible;
+                txtMySQLUsername.Visibility = System.Windows.Visibility.Visible;
+                txtMySQLPassword.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
@@ -58,6 +67,9 @@ namespace CenaPlus.Server.ServerMode
 
         private void btnStartLocal_Click(object sender, RoutedEventArgs e)
         {
+            ConfigHelper.ServerName = txtServerName.Text;
+            ConfigHelper.ServerPort = Convert.ToInt32(txtLocalPort.Text);
+
             string serverName = txtServerName.Text;
 
             int localPort;
@@ -77,12 +89,15 @@ namespace CenaPlus.Server.ServerMode
             if (lstMySqlMode.SelectedIndex == 0)
             {
                 StartEmbeddedMySQL();
-                connectionString = "Server = localhost; Port = 3311; Database = cenaplus; Uid = root;";
+                connectionString = "Server = localhost; Port = 3311; Database = cenaplus; Uid = root; Charset=utf8";
             }
             else
             {
-                ModernDialog.ShowMessage("Not Supported", "", MessageBoxButton.OK);
-                return;
+                connectionString = String.Format(ConnectionStr,
+                    txtMySQLPort.Text,
+                    txtMySQLDBName.Text,
+                    txtMySQLUsername.Text,
+                    txtMySQLPassword.Password);
             }
             App.ConnectionString = connectionString;
 
@@ -159,68 +174,6 @@ namespace CenaPlus.Server.ServerMode
                     WorkingDirectory = mySqlPath,
                     WindowStyle = ProcessWindowStyle.Hidden
                 });
-            }
-        }
-
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
-        {
-            IPAddress address;
-            try
-            {
-                address = Dns.GetHostAddresses(txtAddr.Text)[0];
-            }
-            catch
-            {
-                ModernDialog.ShowMessage("Incorrect server address", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            int port;
-            if (!int.TryParse(txtRemotePort.Text, out port))
-            {
-                ModernDialog.ShowMessage("Port must be an integer", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            try
-            {
-                App.Server = CenaPlusServerChannelFactory.CreateChannel(new IPEndPoint(address, port), App.RemoteCallback);
-            }
-            catch (Exception err)
-            {
-                ModernDialog.ShowMessage("Connection failed", "Error", MessageBoxButton.OK);
-                MessageBox.Show(err.ToString());
-                return;
-            }
-
-            try
-            {
-                if (!App.Server.Authenticate(txtAccount.Text, txtPassword.Password))
-                {
-                    ModernDialog.ShowMessage("Incorrect user name or password", "Error", MessageBoxButton.OK);
-                    return;
-                }
-            }
-            catch (FaultException<AlreadyLoggedInError>)
-            {
-                ModernDialog.ShowMessage("Your account is already online", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            if (App.Server.GetProfile().Role < UserRole.Manager)
-            {
-                ModernDialog.ShowMessage("This account does not have management access", "Error", MessageBoxButton.OK);
-                return;
-            }
-
-            App.Server.ChangeToServerMode();
-
-            App.HeartBeatTimer.Start();
-
-            var frame = NavigationHelper.FindFrame(null, this);
-            if (frame != null)
-            {
-                frame.Source = new Uri("/ServerMode/Online.xaml", UriKind.Relative);
             }
         }
     }

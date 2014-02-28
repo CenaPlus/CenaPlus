@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CenaPlus>
   <Judge>
-    <Enabled>True</Enabled>
     <WorkingDirectory>C:\CenaPlusRunPool</WorkingDirectory>
     <Security>
       <UserName></UserName>
@@ -19,4 +18,8 @@
       <Ruby>ruby Main.rb</Ruby>
     </Arguments>
   </Judge>
+  <Server>
+    <ServerName>Local Cena+ Server</ServerName>
+    <ServerPort>9980</ServerPort>
+  </Server>
 </CenaPlus>

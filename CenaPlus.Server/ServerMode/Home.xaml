@@ -7,10 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <ScrollViewer>
             <StackPanel MinWidth="200" Margin="0,0,5,0">
                 <TextBlock Text="Host a new server" Style="{StaticResource Heading2}"/>
@@ -28,21 +24,13 @@
                 <TextBox x:Name="txtMySQLAddr" Margin="0,0,0,10" Text="localhost" Visibility="Collapsed"></TextBox>
                 <TextBlock Name="lblMySQLPort" Text="MySQL port" Margin="0,0,0,5" Visibility="Collapsed"></TextBlock>
                 <TextBox x:Name="txtMySQLPort" Margin="0,0,0,10" Text="3306" Visibility="Collapsed"></TextBox>
+                <TextBlock Name="lblMySQLDBName" Text="MySQL db name" Margin="0,0,0,5" Visibility="Collapsed"></TextBlock>
+                <TextBox x:Name="txtMySQLDBName" Margin="0,0,0,10" Text="cenaplus" Visibility="Collapsed"></TextBox>
+                <TextBlock Name="lblMySQLUsername" Text="MySQL username" Margin="0,0,0,5" Visibility="Collapsed"></TextBlock>
+                <TextBox x:Name="txtMySQLUsername" Margin="0,0,0,10" Text="" Visibility="Collapsed"></TextBox>
+                <TextBlock Name="lblMySQLPassword" Text="MySQL password" Margin="0,0,0,5" Visibility="Collapsed"></TextBlock>
+                <PasswordBox x:Name="txtMySQLPassword" Margin="0,0,0,10" Visibility="Collapsed"></PasswordBox>
                 <Button x:Name="btnStartLocal" Content="Start" Click="btnStartLocal_Click"/>
-            </StackPanel>
-        </ScrollViewer>
-        <ScrollViewer Grid.Column="1">
-            <StackPanel MinWidth="200" Margin="5,0,0,0">
-                <TextBlock Text="Connect to an existing server" Style="{StaticResource Heading2}"/>
-                <TextBlock Text="Address" Margin="0,0,0,5"></TextBlock>
-                <TextBox Name="txtAddr"  Margin="0,0,0,10" Text="localhost"></TextBox>
-                <TextBlock Text="Port" Margin="0,0,0,5"></TextBlock>
-                <TextBox Name="txtRemotePort" Margin="0,0,0,10" Text="9980"></TextBox>
-                <TextBlock Text="Manager Account" Margin="0,0,0,5"></TextBlock>
-                <TextBox Name="txtAccount" Margin="0,0,0,10"></TextBox>
-                <TextBlock Margin="0,0,0,5" Text="Password"></TextBlock>
-                <PasswordBox Name="txtPassword" Margin="0,0,0,10"/>
-                <Button Name="btnConnect" Content="Connect" Click="btnConnect_Click"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

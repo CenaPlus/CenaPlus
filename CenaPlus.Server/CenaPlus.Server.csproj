@@ -186,6 +186,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerMode\RemoteManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ServerMode\Online.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -263,6 +267,9 @@
     </Compile>
     <Compile Include="ServerMode\CreateUsers.xaml.cs">
       <DependentUpon>CreateUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerMode\RemoteManage.xaml.cs">
+      <DependentUpon>RemoteManage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ServerMode\Online.xaml.cs">
       <DependentUpon>Online.xaml</DependentUpon>
@@ -364,6 +371,7 @@
     <Resource Include="Resources\Box_Hover.png" />
     <Content Include="Config.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Resource Include="Resources\charactergrowfont.png" />
     <Resource Include="Resources\charactershrinkfont.png" />

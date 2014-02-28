@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="CenaPlus.Server.ServerMode.RemoteManage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Style="{StaticResource ContentRoot}">
+        <ScrollViewer>
+            <StackPanel MinWidth="200" Margin="5,0,0,0">
+                <TextBlock Text="Connect to an existing server" Style="{StaticResource Heading2}"/>
+                <TextBlock Text="Address" Margin="0,0,0,5"></TextBlock>
+                <TextBox Name="txtAddr"  Margin="0,0,0,10" Text="localhost"></TextBox>
+                <TextBlock Text="Port" Margin="0,0,0,5"></TextBlock>
+                <TextBox Name="txtRemotePort" Margin="0,0,0,10" Text="9980"></TextBox>
+                <TextBlock Text="Manager Account" Margin="0,0,0,5"></TextBlock>
+                <TextBox Name="txtAccount" Margin="0,0,0,10"></TextBox>
+                <TextBlock Margin="0,0,0,5" Text="Password"></TextBlock>
+                <PasswordBox Name="txtPassword" Margin="0,0,0,10"/>
+                <Button Name="btnConnect" Content="Connect" Click="btnConnect_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

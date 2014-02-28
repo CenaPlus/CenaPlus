@@ -145,6 +145,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
                 t.OutputSize = output.Length;
                 t.OutputPreview = Encoding.UTF8.GetString(output.Take(100).ToArray());
             }
+            t.Type = (TestCaseType)cbType.SelectedIndex;
             TestCasesListView.Items.Refresh();
             txtInputFileName.Text = "";
             txtOutputFileName.Text = "";

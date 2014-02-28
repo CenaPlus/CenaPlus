@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="500" d:DesignWidth="700">
     <Grid Style="{StaticResource ContentRoot}">
         <WrapPanel>
-            <ComboBox x:Name="cbLanguage" ></ComboBox>
+            <ComboBox x:Name="cbLanguage" Margin="0,0,10,0"></ComboBox>
             <Button Name="btnSave" Content="Save changes" Click="btnSave_Click"/>
         </WrapPanel>
-        <RichTextBox x:Name="txtCode" AcceptsReturn="True" AcceptsTab="True" Margin="0,30,0,30" VerticalScrollBarVisibility="Auto"/>
+        <RichTextBox x:Name="txtCode" AcceptsReturn="True" AcceptsTab="True" Margin="0,30,200,30" VerticalScrollBarVisibility="Auto"/>
+        <Image x:Name="imgSourceDirectory" AllowDrop="True" Width="150" Height="150" HorizontalAlignment="Right" Margin="0,0,25,0" Source="/CenaPlus.Server;component/Resources/Box.png" DragEnter="imgSourceDirectory_DragEnter" DragLeave="imgSourceDirectory_DragLeave" Drop="imgSourceDirectory_Drop"/>
     </Grid>
 </UserControl>
