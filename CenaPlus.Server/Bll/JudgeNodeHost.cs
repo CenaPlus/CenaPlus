@@ -15,7 +15,7 @@ namespace CenaPlus.Server.Bll
             : base(typeof(JudgeNode))
         {
             Uri uri = new UriBuilder("net.tcp", "localhost", port, "/JudgeNode").Uri;
-            base.AddServiceEndpoint(typeof(IJudgeNode), new NetTcpBinding(SecurityMode.None), uri.ToString());
+            base.AddServiceEndpoint(typeof(IJudgeNode), new NetTcpBinding(SecurityMode.None) { MaxReceivedMessageSize = Int32.MaxValue }, uri.ToString());
 
             broadcaster = new ServiceBroadcaster()
             {

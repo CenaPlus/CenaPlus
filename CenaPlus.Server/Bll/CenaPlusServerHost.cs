@@ -20,7 +20,7 @@ namespace CenaPlus.Server.Bll
             : base(typeof(LocalCenaServer))
         {
             Uri uri = new UriBuilder("net.tcp", "localhost", port, "/CenaPlusServer").Uri;
-            base.AddServiceEndpoint(typeof(ICenaPlusServer), new NetTcpBinding(SecurityMode.None), uri.ToString());
+            base.AddServiceEndpoint(typeof(ICenaPlusServer), new NetTcpBinding(SecurityMode.None) { MaxReceivedMessageSize = Int32.MaxValue }, uri.ToString());
 
             broadcaster = new ServiceBroadcaster()
             {

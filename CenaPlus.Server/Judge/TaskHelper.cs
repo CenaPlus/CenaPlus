@@ -617,10 +617,9 @@ namespace CenaPlus.Server.Judge
                     Hack();
                 }
             }
-            catch 
+            catch (Exception e)
             {
-                if(Task.Type != Entity.TaskType.Hack)
-                    App.Server.Rejudge(Task.Record.ID);
+                
             }
         }
     }
