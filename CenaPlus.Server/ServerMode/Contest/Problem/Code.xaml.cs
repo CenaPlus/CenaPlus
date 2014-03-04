@@ -37,7 +37,7 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var code = new TextRange(txtCode.Document.ContentStart, txtCode.Document.ContentEnd).Text;
-            ProgrammingLanguage language = (ProgrammingLanguage)cbLanguage.SelectedIndex;
+            ProgrammingLanguage language = (ProgrammingLanguage)cbLanguage.SelectedItem;
 
             switch (field)
             {
@@ -143,6 +143,11 @@ namespace CenaPlus.Server.ServerMode.Contest.Problem
             {
                 txtCode.Document.Blocks.Clear();
                 txtCode.Document.Blocks.Add(new Paragraph(new Run(System.IO.File.ReadAllText(files[0]))));
+                var l = Entity.DetectLanguage.PathToLanguage(files[0]);
+                if (l != null)
+                {
+                    cbLanguage.SelectedItem = l.ToString();
+                }
             }
         }
     }

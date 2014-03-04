@@ -4,25 +4,32 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Web.Script.Serialization;
+
 namespace CenaPlus.Entity
 {
     [Table("test_cases")]
     public class TestCase
     {
         [Column("id")]
+        [ScriptIgnore]
         public int ID { get; set; }
 
         [Column("problem_id")]
         [ForeignKey("Problem")]
+        [ScriptIgnore]
         public int ProblemID { get; set; }
 
         [IgnoreDataMember]
+        [ScriptIgnore]
         public virtual Problem Problem { get; set; }
 
         [NotMapped]
+        [ScriptIgnore]
         public string ProblemTitle { get; set; }
 
         [Column("type")]
+        [ScriptIgnore]
         public int TypeAsInt { get; set; }
 
         [NotMapped]
@@ -52,15 +59,19 @@ namespace CenaPlus.Entity
         public byte[] Output { get; set; }
 
         [NotMapped]
+        [ScriptIgnore]
         public string InputPreview { get; set; }
 
         [NotMapped]
+        [ScriptIgnore]
         public string OutputPreview { get; set; }
 
         [NotMapped]
+        [ScriptIgnore]
         public int InputSize { get; set; }
 
         [NotMapped]
+        [ScriptIgnore]
         public int OutputSize { get; set; }
 
         public override bool Equals(object obj)

@@ -164,12 +164,23 @@ namespace CenaPlus.Server.ServerMode.Contest
 
         private void btnRejudgeAll_Click(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < StatusListViewItems.Count(); i++)
+            {
+                StatusListViewItems[i].Status = RecordStatus.Running;
+            }
+            StatusListView.Items.Refresh();
             App.Server.RejudgeAll(contestID);
             ModernDialog.ShowMessage("Rejudging.", "Message", MessageBoxButton.OK);
         }
 
         private void btnRejudgeAllAC_Click(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < StatusListViewItems.Count(); i++)
+            {
+                if (StatusListViewItems[i].Status == RecordStatus.Accepted)
+                    StatusListViewItems[i].Status = RecordStatus.Running;
+            }
+            StatusListView.Items.Refresh();
             App.Server.SystemTest(contestID);
             ModernDialog.ShowMessage("System testing.", "Message", MessageBoxButton.OK);
         }

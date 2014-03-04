@@ -92,6 +92,12 @@ namespace CenaPlus.Server.Bll
                 using (var node = GetFreestNode())
                 {
                     var ret = node.Compile(problem, record);
+                    if (ret.RecordStatus == RecordStatus.SystemError)
+                    {
+                        System.Threading.Thread.Sleep(3000);
+                        App.Server.Rejudge(record.ID);
+                        return;
+                    }
                     if (ret.RecordStatus != RecordStatus.Accepted)
                     {
                         r.Status = ret.RecordStatus;
@@ -141,6 +147,7 @@ namespace CenaPlus.Server.Bll
                         var result = runs[i].Result;
                         if (result.RecordStatus == RecordStatus.SystemError)
                         {
+                            System.Threading.Thread.Sleep(3000);
                             App.Server.Rejudge(result.RecordID);
                             return;
                         }

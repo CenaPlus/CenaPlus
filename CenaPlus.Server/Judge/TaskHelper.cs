@@ -240,6 +240,8 @@ namespace CenaPlus.Server.Judge
                 }
                 catch { }
             }
+            if (System.IO.Directory.Exists(WorkDirectory + "\\" + Task.Record.ID))
+                System.IO.Directory.Delete(WorkDirectory + "\\" + Task.Record.ID, true);
             CenaPlus.Judge.Compiler Compiler = new Compiler();
             Compiler.Identity = Identity;
             Compiler.CompileInfo.Language = Task.Record.Language;
@@ -617,7 +619,7 @@ namespace CenaPlus.Server.Judge
                     Hack();
                 }
             }
-            catch
+            catch (Exception e)
             {
                 switch(Task.Type)
                 {

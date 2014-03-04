@@ -72,7 +72,7 @@ namespace CenaPlus.Server.ServerMode
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var user = UserListBox.SelectedItem as UserListItem;
-            App.Server.UpdateUser(user.ID, txtName.Text, txtNickName.Text, txtPassword.Password == "" ? null : txtPassword.Password, null);
+            App.Server.UpdateUser(user.ID, txtName.Text, txtNickName.Text, txtPassword.Password == "" ? null : txtPassword.Password, (UserRole)lstRole.SelectedIndex);
             user.Name = txtName.Text;
             user.NickName = txtNickName.Text;
             user.Role = (UserRole)lstRole.SelectedIndex;
@@ -140,7 +140,19 @@ namespace CenaPlus.Server.ServerMode
             }
         }
 
-
-
+        private void btnQuery_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtQueryUsername.Text))
+            {
+                UserListBox.ItemsSource = userList;
+            }
+            else
+            {
+                UserListBox.ItemsSource = (from u in userList
+                                           where u.Name.Contains(txtQueryUsername.Text)
+                                           || u.NickName.Contains(txtQueryUsername.Text)
+                                           select u).ToList();
+            }
+        }
     }
 }

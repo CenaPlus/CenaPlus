@@ -1290,6 +1290,31 @@ namespace CenaPlus.Server.Bll
                 };
             }
         }
+        public TestCase GetTestCaseFull(int id)
+        {
+            using (DB db = new DB())
+            {
+                CheckRole(db, UserRole.Manager);
+
+                TestCase testCase = db.TestCases.Find(id);
+                if (testCase == null) return null;
+
+                return new TestCase
+                {
+                    ID = testCase.ID,
+                    InputHash = testCase.InputHash,
+                    OutputHash = testCase.OutputHash,
+                    Input = testCase.Input,
+                    Output = testCase.Output,
+                    InputSize = testCase.Input.Length,
+                    OutputSize = testCase.Output.Length,
+                    ProblemID = testCase.ProblemID,
+                    ProblemTitle = testCase.ProblemTitle,
+                    Type = testCase.Type
+                };
+            }
+        }
+
         public void DeleteTestCase(int id)
         {
             using (DB db = new DB())

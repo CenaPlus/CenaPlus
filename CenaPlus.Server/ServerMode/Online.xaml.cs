@@ -100,7 +100,20 @@ namespace CenaPlus.Server.ServerMode
         {
         }
 
-
+        private void btnQuery_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(QueryBox.Text))
+            {
+                OnlineListBox.ItemsSource = onlineList;
+            }
+            else
+            {
+                OnlineListBox.ItemsSource = (from u in onlineList
+                                             where u.Name.Contains(QueryBox.Text)
+                                             || u.NickName.Contains(QueryBox.Text)
+                                             select u).ToList();
+            }
+        }
     }
     public class OnlineListItem : User
     {

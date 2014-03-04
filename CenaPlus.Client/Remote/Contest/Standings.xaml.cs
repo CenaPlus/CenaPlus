@@ -34,13 +34,17 @@ namespace CenaPlus.Client.Remote.Contest
             char i = 'A';
             Dispatcher.Invoke(new Action(() => {
                 LockList.Clear();
-                foreach (int pid in list)
-                {
-                    if (App.Server.GetLockStatus(pid))
-                        LockList.Add(i);
-                    i++;
-                }
             }));
+            foreach (int pid in list)
+            {
+                bool Locked = App.Server.GetLockStatus(pid);
+                if (Locked)
+                    Dispatcher.Invoke(new Action(() => {
+                        LockList.Add(i);
+                    }));
+                i++;
+            }
+            
         }
         public void Refresh(int contest_id, Entity.StandingItem si)
         {

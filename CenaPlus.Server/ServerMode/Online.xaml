@@ -10,7 +10,7 @@
         <WrapPanel Height="35" VerticalAlignment="Top">
             <TextBlock Text="Name" Margin="0,0,5,0"></TextBlock>
             <TextBox x:Name="QueryBox" Width="120" Margin="0,0,10,0"></TextBox>
-            <Button x:Name="btnQuery" Content="Query"></Button>
+            <Button x:Name="btnQuery" Content="Query" Click="btnQuery_Click"></Button>
         </WrapPanel>
         <ListBox Margin="0,35,0,30" x:Name="OnlineListBox" SelectionChanged="OnlineListBox_SelectionChanged" SelectedValuePath="ID">
             <ListBox.ItemTemplate>

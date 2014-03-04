@@ -250,6 +250,10 @@ namespace CenaPlus.Network
 
         [OperationContract]
         [FaultContract(typeof(AccessDeniedError))]
+        TestCase GetTestCaseFull(int id);
+
+        [OperationContract]
+        [FaultContract(typeof(AccessDeniedError))]
         [FaultContract(typeof(NotFoundError))]
         void DeleteTestCase(int id);
 

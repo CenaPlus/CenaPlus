@@ -7,7 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="700">
     <Grid>
-        <ListView Margin="0,0,0,30" x:Name="ProblemListView" SelectedValuePath="ID" MouseDoubleClick="ProblemListView_MouseDoubleClick">
+        <Grid HorizontalAlignment="Right" Width="300" Margin="0,0,0,30">
+            <StackPanel VerticalAlignment="Center">
+                <Image x:Name="imgSourceDirectory" AllowDrop="True" Width="200" Height="200"  Source="/CenaPlus.Server;component/Resources/Box.png" DragEnter="imgSourceDirectory_DragEnter" DragLeave="imgSourceDirectory_DragLeave" Drop="imgSourceDirectory_Drop"/>
+                <TextBlock x:Name="lbDragTip"  TextWrapping="Wrap" Text="Drag cena+ problem files(*.cep) into the box." HorizontalAlignment="Center"></TextBlock>
+                <ProgressBar x:Name="pbLoading" Visibility="Collapsed" Minimum="0" Maximum="1" Height="16" IsIndeterminate="True" Margin="0,10,0,16" />
+            </StackPanel>
+        </Grid>
+        <ListView Margin="0,0,300,30" x:Name="ProblemListView" SelectedValuePath="ID" MouseDoubleClick="ProblemListView_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
                     <GridViewColumn Header="#" DisplayMemberBinding="{Binding Index}" Width="30"/>
@@ -21,6 +28,7 @@
             <Button Content="Create" Margin="0,0,10,0" x:Name="btnCreate" Click="btnCreate_Click"></Button>
             <Button Content="Modify" Margin="0,0,10,0" x:Name="btnModify" Click="btnModify_Click"></Button>
             <Button Content="Delete" Margin="0,0,10,0" x:Name="btnDelete" Click="btnDelete_Click"></Button>
+            <Button Content="Export" Margin="0,0,10,0" x:Name="btnExport" Click="btnExport_Click"></Button>
         </WrapPanel>
     </Grid>
 </UserControl>

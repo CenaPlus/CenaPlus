@@ -10,7 +10,7 @@
             <StackPanel MinWidth="200">
                 <TextBlock Text="ABOUT" Style="{StaticResource Heading2}" />
                 <TextBlock Text="Developers: Gasai Yuno, Ibe Kaoet, Cuteli, Zaxs, Tangjz, Yaya" Margin="0,0,0,8" TextWrapping="Wrap" />
-                <TextBlock Text="Version: 0.9.2a" Margin="0,0,0,8" TextWrapping="Wrap" />
+                <TextBlock Text="Version: 0.9.4b" Margin="0,0,0,8" TextWrapping="Wrap" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

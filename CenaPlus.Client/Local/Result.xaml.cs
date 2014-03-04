@@ -23,13 +23,26 @@ namespace CenaPlus.Client.Local
     /// </summary>
     public partial class Result : UserControl, IContent
     {
+        public static int CurrentCount = 0;
+        public static int CoreCount = 0;
         public List<ResultListBoxItem> ResultListBoxItems;
         public Result()
         {
             InitializeComponent();
+            int count = 0;
+            foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+            {
+                count += int.Parse(item["NumberOfCores"].ToString());
+            }
+            CoreCount = count;
         }
         public void Judge(object JudgeTask)
         {
+            while (CurrentCount >= CoreCount) 
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
+            CurrentCount++;
             var jt = JudgeTask as ResultListBoxItem;
             jt.Status = Entity.RecordStatus.SystemError;
             CenaPlus.Judge.Runner Runner = new Judge.Runner();
@@ -114,6 +127,7 @@ namespace CenaPlus.Client.Local
                 ResultListBoxItems.Sort((a, b) => a.TestCase.Index - b.TestCase.Index);
                 ResultListBox.Items.Refresh();
             }));
+            CurrentCount--;
         }
 
         private void ResultListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

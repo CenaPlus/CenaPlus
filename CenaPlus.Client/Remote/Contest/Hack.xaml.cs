@@ -28,7 +28,6 @@ namespace CenaPlus.Client.Remote.Contest
         public Hack()
         {
             InitializeComponent();
-            cbbLanguage.ItemsSource = Enum.GetNames(typeof(Entity.ProgrammingLanguage));
             RichTextEditor.HighLightEdit.HighLight(txtData);
             RichTextEditor.HighLightEdit.HighLight(txtSource);
         }
@@ -52,6 +51,22 @@ namespace CenaPlus.Client.Remote.Contest
             record = App.Server.GetRecord(record_id);
             txtSource.Document.Blocks.Clear();
             txtSource.Document.Blocks.Add(new Paragraph(new Run(record.Code)));
+            var p = App.Server.GetProblem(record.ProblemID);
+            var languages = Enum.GetNames(typeof(Entity.ProgrammingLanguage));
+            cbbLanguage.Items.Clear();
+            foreach (var l in languages)
+            {
+                cbbLanguage.Items.Add(l);
+            }
+            var forbidden = p.ForbiddenLanguages.ToList();
+            foreach (var l in forbidden)
+            {
+                var index = cbbLanguage.Items.IndexOf(l);
+                if (index >= 0)
+                    cbbLanguage.Items.RemoveAt(index);
+            }
+            cbbLanguage.Items.Refresh();
+            cbbLanguage.SelectedIndex = 0;
         }
 
         public void OnNavigatedFrom(FirstFloor.ModernUI.Windows.Navigation.NavigationEventArgs e)
@@ -111,6 +126,11 @@ namespace CenaPlus.Client.Remote.Contest
             {
                 txtData.Document.Blocks.Clear();
                 txtData.Document.Blocks.Add(new Paragraph(new Run(System.IO.File.ReadAllText(files[0]))));
+                var l = Entity.DetectLanguage.PathToLanguage(files[0]);
+                if (l != null)
+                {
+                    cbbLanguage.SelectedItem = l.ToString();
+                }
             }
         }
     }

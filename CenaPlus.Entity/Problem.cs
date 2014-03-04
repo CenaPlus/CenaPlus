@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Web.Script.Serialization;
 
 namespace CenaPlus.Entity
 {
@@ -11,6 +12,7 @@ namespace CenaPlus.Entity
     public class Problem
     {
         [Column("id")]
+        [ScriptIgnore]
         public int ID { get; set; }
 
         [Column("title")]
@@ -38,6 +40,7 @@ namespace CenaPlus.Entity
         public string Validator { get; set; }
 
         [Column("std_language")]
+        [ScriptIgnore]
         public int? StdLanguageAsInt { get; set; }
 
         [NotMapped]
@@ -49,6 +52,7 @@ namespace CenaPlus.Entity
         }
 
         [Column("spj_language")]
+        [ScriptIgnore]
         public int? SpjLanguageAsInt { get; set; }
 
         [NotMapped]
@@ -61,6 +65,7 @@ namespace CenaPlus.Entity
 
 
         [Column("validator_language")]
+        [ScriptIgnore]
         public int? ValidatorLanguageAsInt { get; set; }
 
         [NotMapped]
@@ -73,15 +78,19 @@ namespace CenaPlus.Entity
 
         [Column("contest_id")]
         [ForeignKey("Contest")]
+        [ScriptIgnore]
         public int ContestID { get; set; }//for db
 
         [IgnoreDataMember]
+        [ScriptIgnore]
         public virtual Contest Contest { get; set; }//for navigation
 
         [NotMapped]
+        [ScriptIgnore]
         public string ContestTitle { get; set; }//for client
 
         [Column("forbidden_languages")]
+        [ScriptIgnore]
         public string ForbiddenLanguagesAsString { get; set; }
 
         [NotMapped]
@@ -99,12 +108,15 @@ namespace CenaPlus.Entity
         }
 
         [IgnoreDataMember]
+        [ScriptIgnore]
         public virtual ICollection<TestCase> TestCases { get; set; }
 
         [NotMapped]
+        [ScriptIgnore]
         public int TestCasesCount { get; set; }
 
         [IgnoreDataMember]
+        [ScriptIgnore]
         public virtual ICollection<User> LockedUsers { get; set; }
 
         public override bool Equals(object obj)

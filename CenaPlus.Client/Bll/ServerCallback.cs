@@ -37,32 +37,36 @@ namespace CenaPlus.Client.Bll
         }
         public void JudgeFinished(Result result)
         {
-            System.Threading.Tasks.Task.Factory.StartNew(() =>
+            try
             {
-                App.Current.Dispatcher.Invoke(new Action(() =>
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
-                    new ModernDialog
+                    App.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        Title = "Your program has a new status",
-                        Content = new CenaPlus.Client.Remote.Contest.ResultPush(result)
-                    }.ShowDialog();
-                }));
-            });
-            if (OnJudgeFinished != null)
-            {
-                System.Threading.Tasks.Task.Factory.StartNew(() => OnJudgeFinished(result.StatusID));
+                        new ModernDialog
+                        {
+                            Title = "Your program has a new status",
+                            Content = new CenaPlus.Client.Remote.Contest.ResultPush(result)
+                        }.ShowDialog();
+                    }));
+                });
+                if (OnJudgeFinished != null)
+                {
+                    System.Threading.Tasks.Task.Factory.StartNew(() => OnJudgeFinished(result.StatusID));
+                }
             }
+            catch { }
+        }
+        private void GetStandingsProc(object cid)
+        {
+            Bll.StandingsCache.Standings[Convert.ToInt32(cid)] = App.Server.GetStandings(Convert.ToInt32(cid));
         }
         public void StandingsPush(int contest_id, Entity.StandingItem si)
         {
             if (Bll.StandingsCache.Standings[contest_id] == null)
             {
-                System.Threading.Tasks.Task.Factory.StartNew(() => {
-                    App.Current.Dispatcher.Invoke(new Action(() =>
-                    {
-                        App.Server.GetStandings(contest_id);
-                    }));
-                });
+                Thread t = new Thread(GetStandingsProc);
+                t.Start(contest_id);
             }
             else
                 StandingsCache.UpdateSingleUser(contest_id, si);

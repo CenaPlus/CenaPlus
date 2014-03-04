@@ -106,6 +106,9 @@ namespace CenaPlus.Server.Bll
                 Record record = (from r in db.Records
                                  where r.ID == record_id
                                  select r).FirstOrDefault();
+                var Type = record.Problem.Contest.Type;
+                if (Type == ContestType.OI) return;
+                var dtl = (record.Problem.Contest.Type == ContestType.ACM ? "" : record.Detail);
                 Result re = new Result()
                 {
                     StatusID = record.ID,
@@ -115,12 +118,10 @@ namespace CenaPlus.Server.Bll
                     UserID = record.UserID,
                     SubmissionTime = record.SubmissionTime,
                     UserNickName = record.UserNickName,
-                    Detail = record.Detail,
+                    Detail = dtl,
                     Language = record.Language,
                     ProblemTitle = record.Problem.Title
                 };
-                var Type = record.Problem.Contest.Type;
-                if (Type == ContestType.OI) return;
                 System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     LocalCenaServer client;

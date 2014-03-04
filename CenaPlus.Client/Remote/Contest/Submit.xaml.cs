@@ -28,13 +28,28 @@ namespace CenaPlus.Client.Remote.Contest
         public Submit()
         {
             InitializeComponent();
-            lstLanguage.ItemsSource =  Enum.GetNames(typeof(ProgrammingLanguage));
             RichTextEditor.HighLightEdit.HighLight(txtCode);
         }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
+            var languages = Enum.GetNames(typeof(ProgrammingLanguage));
+            lstLanguage.Items.Clear();
+            foreach (var l in languages)
+            {
+                lstLanguage.Items.Add(l);
+            }
             problemID = int.Parse(e.Fragment);
+            var p = App.Server.GetProblem(problemID);
+            var forbidden = p.ForbiddenLanguages.ToList();
+            foreach (var l in forbidden)
+            {
+                var index = lstLanguage.Items.IndexOf(l.ToString());
+                if (index >= 0)
+                    lstLanguage.Items.RemoveAt(index);
+            }
+            lstLanguage.Items.Refresh();
+            lstLanguage.SelectedIndex = 0;
         }
 
         public void OnNavigatedFrom(NavigationEventArgs e)
@@ -92,6 +107,7 @@ namespace CenaPlus.Client.Remote.Contest
             {
                 txtCode.Document.Blocks.Clear();
                 txtCode.Document.Blocks.Add(new Paragraph(new Run(System.IO.File.ReadAllText(files[0]))));
+                lstLanguage.SelectedItem = Entity.DetectLanguage.PathToLanguage(files[0]).ToString();
             }
         }
     }

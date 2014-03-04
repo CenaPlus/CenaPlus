@@ -39,8 +39,8 @@
             </StackPanel>
         </ScrollViewer>
         <WrapPanel>
-            <TextBox HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="User" VerticalAlignment="Top" Width="120" Margin="0,0,10,0" />
-            <Button Content="Query" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75"/>
+            <TextBox x:Name="txtQueryUsername" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="0,0,10,0" />
+            <Button Content="Query" x:Name="btnQuery" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75" Click="btnQuery_Click"/>
         </WrapPanel>
         <WrapPanel VerticalAlignment="Bottom" Height="26">
             <Button x:Name="btnDelete" Content="Delete" IsEnabled="False" Width="75" Margin="0,0,10,0" Click="btnDelete_Click"/>
