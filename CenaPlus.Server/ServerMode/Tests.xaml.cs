@@ -103,7 +103,7 @@ namespace CenaPlus.Server.ServerMode
 
         class ContestListItem : CenaPlus.Entity.Contest
         {
-            private const string DetailTemplate = "{0} UTC / {1} hrs / {2} Format";
+            private const string DetailTemplate = "{0} / {1} hrs / {2} Format";
             public string Detail
             {
                 get

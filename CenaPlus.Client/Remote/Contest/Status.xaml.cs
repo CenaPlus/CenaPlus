@@ -95,10 +95,12 @@ namespace CenaPlus.Client.Remote.Contest
         {
             if (RecordListBox.SelectedItem != null)
             {
+                var rid = (RecordListBox.SelectedItem as RecordListItem).ID;
+                RecordListBox.SelectedIndex = -1;
                 var frame = NavigationHelper.FindFrame(null, this);
                 if (frame != null)
                 {
-                    frame.Source = new Uri("/Remote/Contest/ViewSource.xaml#"+(RecordListBox.SelectedItem as RecordListItem).ID, UriKind.Relative);
+                    frame.Source = new Uri("/Remote/Contest/ViewSource.xaml#" + rid, UriKind.Relative);
                 }
             }
         }

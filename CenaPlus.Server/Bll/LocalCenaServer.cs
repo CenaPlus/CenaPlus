@@ -672,6 +672,17 @@ namespace CenaPlus.Server.Bll
                 });
             }
         }
+
+        public void RejudgeSet(List<int> record_ids)
+        { 
+            foreach(var id in record_ids)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    Rejudge(id);
+                });
+            }
+        }
         public void Rejudge(int recordID)
         {
             using (DB db = new DB())

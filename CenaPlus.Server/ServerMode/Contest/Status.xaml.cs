@@ -25,6 +25,7 @@ namespace CenaPlus.Server.ServerMode.Contest
     public partial class Status : UserControl, IContent
     {
         private List<StatusListViewItem> StatusListViewItems = new List<StatusListViewItem>();
+        private List<StatusListViewItem> QueryItems = new List<StatusListViewItem>();
         private int contestID;
         public Status()
         {
@@ -60,27 +61,36 @@ namespace CenaPlus.Server.ServerMode.Contest
         }
         public void RecordUpdated(int record_id)
         {
-            var r = App.Server.GetRecord(record_id);
-            if (r == null) return;
-            int recordindex = StatusListViewItems.FindIndex(x => x.ID == record_id);
-            if (recordindex == -1) return;
-            var item = new StatusListViewItem
-            {
-                ID = r.ID,
-                Language = r.Language,
-                MemoryUsage = r.MemoryUsage,
-                TimeUsage = r.TimeUsage,
-                ProblemTitle = r.ProblemTitle,
-                Status = r.Status,
-                SubmissionTime = r.SubmissionTime,
-                UserNickName = r.UserNickName,
-                Code = r.Code
-            };
-            Dispatcher.Invoke(new Action(() =>
-            {
-                StatusListViewItems[recordindex] = item;
-                StatusListView.Items.Refresh();
-            }));
+            System.Threading.Tasks.Task.Factory.StartNew(() => {
+                var r = App.Server.GetRecord(record_id);
+                if (r == null) return;
+                int recordindex = StatusListViewItems.FindIndex(x => x.ID == record_id);
+                if (recordindex == -1) return;
+                var item = new StatusListViewItem
+                {
+                    ID = r.ID,
+                    Language = r.Language,
+                    MemoryUsage = r.MemoryUsage,
+                    TimeUsage = r.TimeUsage,
+                    ProblemTitle = r.ProblemTitle,
+                    Status = r.Status,
+                    SubmissionTime = r.SubmissionTime,
+                    UserNickName = r.UserNickName,
+                    Code = r.Code
+                };
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    StatusListViewItems[recordindex] = item;
+                    StatusListView.Items.Refresh();
+                }));
+                recordindex = QueryItems.FindIndex(x => x.ID == record_id);
+                if (recordindex == -1) return;
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    QueryItems[recordindex] = item;
+                    StatusListView.Items.Refresh();
+                }));
+            });
         }
         private void StatusListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -123,10 +133,38 @@ namespace CenaPlus.Server.ServerMode.Contest
             };
             StatusListView.Items.Refresh();
         }
+        public void Query()
+        { 
+            bool Filter_Problem = false, Filter_Status = false, Filter_User = false;
+            if (lstProblem.SelectedIndex != 0) Filter_Problem = true;
+            if (lstStatus.SelectedIndex != 0) Filter_Status = true;
+            if (!string.IsNullOrEmpty(txtName.Text)) Filter_User = true;
+            StatusListView.ItemsSource = (from r in StatusListViewItems
+                                          where r.ProblemTitle == (Filter_Problem ? lstProblem.SelectedItem.ToString() : r.ProblemTitle)
+                                          && r.Status.ToString() == (Filter_Status ? lstStatus.SelectedItem.ToString() : r.Status.ToString())
+                                          && r.UserNickName == (Filter_User ? txtName.Text : r.UserNickName)
+                                          select r).ToList();
+        }
 
         public void OnFragmentNavigation(FragmentNavigationEventArgs e)
         {
             contestID = int.Parse(e.Fragment);
+            var pids = App.Server.GetProblemList(contestID);
+            lstProblem.Items.Add("All");
+            foreach (var pid in pids)
+            {
+                lstProblem.Items.Add(App.Server.GetProblem(pid).Title);
+            }
+            lstProblem.Items.Refresh();
+            lstProblem.SelectedIndex = 0;
+            var statusstr = Enum.GetNames(typeof(Entity.RecordStatus));
+            lstStatus.Items.Add("All");
+            foreach (var status in statusstr)
+            {
+                lstStatus.Items.Add(status);
+            }
+            lstStatus.Items.Refresh();
+            lstStatus.SelectedIndex = 0;
             var list = from id in App.Server.GetRecordList(contestID)
                        let r = App.Server.GetRecord(id)
                        select new StatusListViewItem
@@ -161,7 +199,6 @@ namespace CenaPlus.Server.ServerMode.Contest
         class StatusListViewItem : Record
         {
         }
-
         private void btnRejudgeAll_Click(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < StatusListViewItems.Count(); i++)
@@ -184,6 +221,30 @@ namespace CenaPlus.Server.ServerMode.Contest
             App.Server.SystemTest(contestID);
             ModernDialog.ShowMessage("System testing.", "Message", MessageBoxButton.OK);
         }
-    }
 
+        private void btnQuery_Click(object sender, RoutedEventArgs e)
+        {
+            Query();
+        }
+
+        private void btnRejudgePage_Click(object sender, RoutedEventArgs e)
+        {
+            bool Filter_Problem = false, Filter_Status = false, Filter_User = false;
+            if (lstProblem.SelectedIndex != 0) Filter_Problem = true;
+            if (lstStatus.SelectedIndex != 0) Filter_Status = true;
+            if (!string.IsNullOrEmpty(txtName.Text)) Filter_User = true;
+            QueryItems.Clear();
+            QueryItems = (from r in StatusListViewItems
+                                          where r.ProblemTitle == (Filter_Problem ? lstProblem.SelectedItem.ToString() : r.ProblemTitle)
+                                          && r.Status.ToString() == (Filter_Status ? lstStatus.SelectedItem.ToString() : r.Status.ToString())
+                                          && r.UserNickName == (Filter_User ? txtName.Text : r.UserNickName)
+                                          select r).ToList();
+            for (int i = 0; i < QueryItems.Count(); i++)
+            {
+                QueryItems[i].Status = RecordStatus.Pending;
+            }
+            StatusListView.ItemsSource = QueryItems;
+            App.Server.RejudgeSet((from id in QueryItems select id.ID).ToList());
+        }
+    }
 }

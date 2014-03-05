@@ -108,7 +108,7 @@ namespace CenaPlus.Server.Bll
                                  select r).FirstOrDefault();
                 var Type = record.Problem.Contest.Type;
                 if (Type == ContestType.OI) return;
-                var dtl = (record.Problem.Contest.Type == ContestType.ACM ? "" : record.Detail);
+                var dtl = (record.Problem.Contest.Type == ContestType.ACM && record.Status != RecordStatus.CompileError ? "" : record.Detail);
                 Result re = new Result()
                 {
                     StatusID = record.ID,

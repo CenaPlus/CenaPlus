@@ -153,6 +153,11 @@ namespace CenaPlus.Network
         [FaultContract(typeof(AccessDeniedError))]
         void Rejudge(int recordID);
 
+        [OperationContract]
+        [FaultContract(typeof(NotFoundError))]
+        [FaultContract(typeof(AccessDeniedError))]
+        void RejudgeSet(List<int> record_ids);
+
         /// <summary>
         /// Get record by id
         /// </summary>

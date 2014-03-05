@@ -13,6 +13,6 @@ using System.Resources;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("a199328f-0a7b-4647-b2ab-60537ce586c4")]
-[assembly: AssemblyVersion("0.9.2")]
-[assembly: AssemblyFileVersion("0.9.2.0")]
+[assembly: AssemblyVersion("0.9.5")]
+[assembly: AssemblyFileVersion("0.9.5.2")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]

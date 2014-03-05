@@ -7,7 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
-        <ListView Margin="0,0,0,30" Width="400" x:Name="StatusListView" SelectedValuePath="ID" HorizontalAlignment="Left" SelectionChanged="StatusListView_SelectionChanged">
+        <WrapPanel>
+            <ComboBox x:Name="lstProblem" Margin="0,0,20,0" Width="80"></ComboBox>
+            <ComboBox x:Name="lstStatus" Margin="0,0,20,0" Width="80"></ComboBox>
+            <TextBox x:Name="txtName" Width="60" Margin="0,0,20,0"></TextBox>
+            <Button x:Name="btnQuery" Click="btnQuery_Click">Query</Button>
+        </WrapPanel>
+        <ListView Margin="0,30,0,30" Width="400" x:Name="StatusListView" SelectedValuePath="ID" HorizontalAlignment="Left" SelectionChanged="StatusListView_SelectionChanged">
             <ListView.View>
                 <GridView x:Name="StatisticsGridView">
                     <GridViewColumn Header="#" DisplayMemberBinding="{Binding ID}" Width="30"/>
@@ -19,8 +25,10 @@
             </ListView.View>
         </ListView>
         <WrapPanel VerticalAlignment="Bottom">
-            <Button x:Name="btnRejudgeAll" Content="Rejudge all" Margin="0,0,10,0" Click="btnRejudgeAll_Click"></Button>
-            <Button x:Name="btnRejudgeAllAC" Content="Rejudge all accepted" Margin="0,0,10,0" Click="btnRejudgeAllAC_Click"></Button>
+            <TextBlock Margin="0,0,10,0">Rejudge</TextBlock>
+            <Button x:Name="btnRejudgeAll" Content="All" Margin="0,0,10,0" Click="btnRejudgeAll_Click"></Button>
+            <Button x:Name="btnRejudgeAllAC" Content="Accepted" Margin="0,0,10,0" Click="btnRejudgeAllAC_Click"></Button>
+            <Button x:Name="btnRejudgePage" Click="btnRejudgePage_Click">This query</Button>
         </WrapPanel>
         <ScrollViewer Margin="420,0,0,0" x:Name="DetailsPanel" Visibility="Collapsed">
             <StackPanel>
