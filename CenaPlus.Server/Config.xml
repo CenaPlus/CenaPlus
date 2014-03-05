@@ -17,6 +17,16 @@
       <Python33>python3.3.exe Main.py</Python33>
       <Ruby>ruby Main.rb</Ruby>
     </Arguments>
+    <Directories>
+      <gcc></gcc>
+      <gccinc></gccinc>
+      <gcclib></gcclib>
+      <fpc></fpc>
+      <jdk></jdk>
+      <py27></py27>
+      <py33></py33>
+      <rb></rb>
+    </Directories>
   </Judge>
   <Server>
     <ServerName>Local Cena+ Server</ServerName>

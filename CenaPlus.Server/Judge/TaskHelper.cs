@@ -14,7 +14,37 @@ namespace CenaPlus.Server.Judge
         public string spjOutput;
         public readonly string WorkDirectory = Bll.ConfigHelper.WorkingDirectory;
         public readonly CenaPlus.Judge.Identity Identity = new Identity() { UserName = Bll.ConfigHelper.UserName, Password = Bll.ConfigHelper.Password };
-
+        public static List<Runner.EnvironmentVariableItem> EnvironmentVariables = new List<Runner.EnvironmentVariableItem>();
+        public TaskHelper()
+        {
+            EnvironmentVariables.Clear();
+            var Dir_gcc = Bll.ConfigHelper.Dir_gcc;
+            var Dir_gccinc = Bll.ConfigHelper.Dir_gccinc;
+            var Dir_gcclib = Bll.ConfigHelper.Dir_gcclib;
+            var Dir_fpc = Bll.ConfigHelper.Dir_fpc;
+            var Dir_jdk = Bll.ConfigHelper.Dir_jdk;
+            var Dir_py27 = Bll.ConfigHelper.Dir_py27;
+            var Dir_py33 = Bll.ConfigHelper.Dir_py33;
+            var Dir_rb = Bll.ConfigHelper.Dir_rb;
+            if (!string.IsNullOrEmpty(Dir_gcc))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "Path", Value = Dir_gcc });
+            if (!string.IsNullOrEmpty(Dir_gccinc))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "C_INCLUDE_PATH", Value = Dir_gccinc });
+            if (!string.IsNullOrEmpty(Dir_gccinc))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "CPLUS_INCLUDE_PATH", Value = Dir_gccinc });
+            if (!string.IsNullOrEmpty(Dir_gcclib))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "LIBRARY_PATH", Value = Dir_fpc });
+            if (!string.IsNullOrEmpty(Dir_fpc))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "Path", Value = Dir_fpc });
+            if (!string.IsNullOrEmpty(Dir_jdk))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "Path", Value = Dir_jdk });
+            if (!string.IsNullOrEmpty(Dir_py27))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "Path", Value = Dir_py27 });
+            if (!string.IsNullOrEmpty(Dir_py33))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "Path", Value = Dir_py33 });
+            if (!string.IsNullOrEmpty(Dir_rb))
+                EnvironmentVariables.Add(new Runner.EnvironmentVariableItem() { Key = "Path", Value = Dir_rb });
+        }
         private void Run()
         {
             string ExecuteFile = WorkDirectory + "\\" + Task.Record.ID + "\\Main";
@@ -252,6 +282,7 @@ namespace CenaPlus.Server.Judge
             Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\" + Task.Record.ID;
             Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
             Compiler.CompileInfo.Source = Task.Record.Code;
+            Compiler.EnvironmentVariables = EnvironmentVariables;
             Compiler.Start();
             if (Compiler.CompileResult.CompileFailed)
             {
@@ -280,6 +311,7 @@ namespace CenaPlus.Server.Judge
                     Compiler.CompileInfo.TimeLimit = 1000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\spj" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                    Compiler.EnvironmentVariables = EnvironmentVariables;
                     Compiler.Start();
                     if (Compiler.CompileResult.CompileFailed)
                     {
@@ -307,6 +339,7 @@ namespace CenaPlus.Server.Judge
                     Compiler.CompileInfo.TimeLimit = 1000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\std" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                    Compiler.EnvironmentVariables = EnvironmentVariables;
                     Compiler.Start();
                     if (Compiler.CompileResult.CompileFailed)
                     {
@@ -335,6 +368,7 @@ namespace CenaPlus.Server.Judge
                     Compiler.CompileInfo.TimeLimit = 1000;
                     Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\range" + Task.Problem.ID;
                     Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                    Compiler.EnvironmentVariables = EnvironmentVariables;
                     Compiler.Start();
                     if (Compiler.CompileResult.CompileFailed)
                     {
@@ -375,6 +409,7 @@ namespace CenaPlus.Server.Judge
                 Compiler.CompileInfo.TimeLimit = 1000;
                 Compiler.CompileInfo.WorkingDirectory = WorkDirectory + "\\hack" + Task.Hack.ID;
                 Compiler.CompileInfo.CenaCoreDirectory = Environment.CurrentDirectory + "\\Core\\CenaPlus.Core.exe";
+                Compiler.EnvironmentVariables = EnvironmentVariables;
                 Compiler.Start();
                 if (Compiler.CompileResult.CompileFailed)
                 {

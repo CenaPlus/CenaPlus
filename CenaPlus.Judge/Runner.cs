@@ -8,6 +8,12 @@ namespace CenaPlus.Judge
 {
     public class Runner
     {
+        public class EnvironmentVariableItem
+        {
+            public string Key { get; set; }
+            public string Value { get; set; }
+        }
+        public List<EnvironmentVariableItem> EnvironmentVariables = new List<EnvironmentVariableItem>();
         public Identity Identity = new Identity();
         public RunnerInfo RunnerInfo = new RunnerInfo();
         private string xmlresult;
@@ -23,8 +29,19 @@ namespace CenaPlus.Judge
             Process.StartInfo.CreateNoWindow = true;
             Process.StartInfo.UseShellExecute = false;
             Process.StartInfo.RedirectStandardOutput = true;
-            if(RunnerInfo.WorkingDirectory!=null)
+            foreach(var ev in EnvironmentVariables)
+            {
+                if (Process.StartInfo.EnvironmentVariables[ev.Key]==null)
+                    Process.StartInfo.EnvironmentVariables[ev.Key] = ev.Value;
+                else
+                    Process.StartInfo.EnvironmentVariables[ev.Key]+=";"+ev.Value;
+            }
+            if (RunnerInfo.WorkingDirectory != null)
                 Process.StartInfo.WorkingDirectory = RunnerInfo.WorkingDirectory;
+            if (Process.StartInfo.EnvironmentVariables["Path"] == null)
+                Process.StartInfo.EnvironmentVariables["Path"] = RunnerInfo.WorkingDirectory;
+            else
+                Process.StartInfo.EnvironmentVariables["Path"] += ";" + RunnerInfo.WorkingDirectory;
             if (Identity.UserName != null)
             {
                 Process.StartInfo.UserName = Identity.UserName;

@@ -10,6 +10,7 @@
         <mui:ModernTab Layout="List" SelectedSource="/Settings/Judge.xaml">
             <mui:ModernTab.Links>
                 <mui:Link DisplayName="judge settings" Source="/Settings/Judge.xaml" />
+                <mui:Link DisplayName="compiler settings" Source="/ServerMode/ServerSettings/Compilers.xaml" />
                 <mui:Link DisplayName="appearance" Source="/Settings/SettingsAppearance.xaml" />
                 <mui:Link DisplayName="about" Source="/Settings/About.xaml" />
             </mui:ModernTab.Links>

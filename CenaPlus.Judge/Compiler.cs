@@ -10,6 +10,8 @@ namespace CenaPlus.Judge
 {
     public class Compiler
     {
+        public List<Runner.EnvironmentVariableItem> EnvironmentVariables = new List<Runner.EnvironmentVariableItem>();
+
         public CompileInfo CompileInfo = new CompileInfo();
         public Identity Identity = new Identity();
         private Runner Runner;
@@ -74,6 +76,7 @@ namespace CenaPlus.Judge
                 Runner.RunnerInfo.WorkingDirectory = CompileInfo.WorkingDirectory;
                 Runner.Identity = Identity;
                 Runner.RunnerInfo.KillProcessTree = true;
+                Runner.EnvironmentVariables = EnvironmentVariables;
                 Runner.Start();
             }
 

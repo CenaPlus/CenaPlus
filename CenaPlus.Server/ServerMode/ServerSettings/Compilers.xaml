@@ -10,21 +10,38 @@
         <ScrollViewer>
             <StackPanel MinWidth="200">
                 <TextBlock Text="Compilers" Style="{StaticResource Heading2}" Margin="0,0,0,10" />
-                <TextBlock Margin="0,0,0,20" Text="WARNING: THE SOURCE FILENAME MUST BE SAME WITH THE BINARY FILENAME. EVERY ARGUMENTS MUST USE BINDING FILENAME EXCEPT JAVA." TextWrapping="Wrap"></TextBlock>
+                <TextBlock Text="Gcc directory" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirGcc"></TextBox>
+                <TextBlock Text="Gcc include" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirGccInc"></TextBox>
+                <TextBlock Text="Gcc library" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirGccLib"></TextBox>
                 <TextBlock Text="C language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtC"></TextBox>
                 <TextBlock Text="C++ language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtCXX"></TextBox>
+                <TextBlock Text="C++11 language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtCXX11"></TextBox>
+                <TextBlock Text="JDK directory" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirJDK"></TextBox>
                 <TextBlock Text="JavaC compile arguments (the source name must be Main.java, do not change!)" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,5" x:Name="TxtJavac"></TextBox>
                 <TextBlock Text="Java virtual machine start arguments (the class name must be Main, do not change!)" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtJava"></TextBox>
+                <TextBlock Text="FPC directory" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirFPC"></TextBox>
                 <TextBlock Text="Pascal language compile arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtPascal"></TextBox>
+                <TextBlock Text="Python 2.7 directory" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirPy27"></TextBox>
                 <TextBlock Text="Python 2.7 language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtPython27"></TextBox>
+                <TextBlock Text="Python 3.3" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirPy33"></TextBox>
                 <TextBlock Text="Python 3.3 language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtPython33"></TextBox>
+                <TextBlock Text="Ruby directory" TextWrapping="Wrap" Margin="0,0,0,5" />
+                <TextBox Margin="0,0,0,20" x:Name="TxtDirRb"></TextBox>
                 <TextBlock Text="Ruby language start arguments" TextWrapping="Wrap" Margin="0,0,0,5" />
                 <TextBox Margin="0,0,0,20" x:Name="TxtRuby"></TextBox>
                 <Button x:Name="btnSave" Content="Save changes" Click="btnSave_Click"></Button>

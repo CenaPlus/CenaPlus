@@ -24,6 +24,7 @@ namespace CenaPlus.Server.Bll
             ruby = null;
             servername = null;
             serverport = null;
+            
         }
         private static string workingdirectory;
         public static string WorkingDirectory
@@ -391,6 +392,172 @@ namespace CenaPlus.Server.Bll
                 node[0].InnerText = value;
                 xml.Save(Environment.CurrentDirectory + "\\Config.xml");
                 ruby = value;
+            }
+        }
+
+        public static string Dir_gcc
+        {
+            get
+            {
+                    XmlDocument xml = new XmlDocument();
+                    xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                    XmlNodeList node;
+                    node = xml.GetElementsByTagName("gcc");
+                    return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("gcc");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+
+        public static string Dir_gccinc
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("gccinc");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("gccinc");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+
+        public static string Dir_gcclib
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("gcclib");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("gcclib");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+        public static string Dir_fpc
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("fpc");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("fpc");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+
+        public static string Dir_jdk
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("jdk");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("jdk");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+
+        public static string Dir_py27
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("py27");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("py27");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+        public static string Dir_py33
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("py33");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("py33");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
+            }
+        }
+
+        public static string Dir_rb
+        {
+            get
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("rb");
+                return node[0].InnerText;
+            }
+            set
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(Environment.CurrentDirectory + "\\Config.xml");
+                XmlNodeList node;
+                node = xml.GetElementsByTagName("rb");
+                node[0].InnerText = value;
+                xml.Save(Environment.CurrentDirectory + "\\Config.xml");
             }
         }
     }
