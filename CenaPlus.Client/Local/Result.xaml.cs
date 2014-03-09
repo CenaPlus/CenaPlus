@@ -30,9 +30,16 @@ namespace CenaPlus.Client.Local
         {
             InitializeComponent();
             int count = 0;
-            foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+            try
             {
-                count += int.Parse(item["NumberOfCores"].ToString());
+                foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+                {
+                    count += int.Parse(item["NumberOfCores"].ToString());
+                }
+            }
+            catch 
+            {
+                count = 1;
             }
             CoreCount = count;
         }

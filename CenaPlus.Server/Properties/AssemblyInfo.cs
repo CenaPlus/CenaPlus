@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Cena+ v0.9 Preview")]
+[assembly: AssemblyTitle("Cena+ 1.0.0")]
 [assembly: AssemblyDescription("Server of CenaPlus")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Harbin Smart Software Development Co.,Ltd.")]
@@ -12,5 +12,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("a199328f-0a7b-4647-b2ab-30336ca58884")]
-[assembly: AssemblyVersion("0.9.5")]
-[assembly: AssemblyFileVersion("9.9.5.2")]
+[assembly: AssemblyVersion("1.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

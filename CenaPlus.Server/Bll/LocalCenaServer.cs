@@ -214,7 +214,6 @@ namespace CenaPlus.Server.Bll
                     System.Threading.Tasks.Task.Factory.StartNew(() => ContestDeleted(id));
             }
         }
-
         public int CreateContest(string title, string description, DateTime startTime, DateTime? restTime, DateTime? hackStartTime, DateTime endTime, ContestType type, bool printingEnabled)
         {
             using (DB db = new DB())
@@ -306,7 +305,6 @@ namespace CenaPlus.Server.Bll
                 return ids;
             }
         }
-
         public Contest GetContest(int id)
         {
             using (DB db = new DB())
@@ -329,7 +327,6 @@ namespace CenaPlus.Server.Bll
                 };
             }
         }
-
         #endregion
         #region Problem
         public int GetProblemRelatedContest(int id)

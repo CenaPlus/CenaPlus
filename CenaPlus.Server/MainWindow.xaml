@@ -26,7 +26,7 @@
                 <mui:Link DisplayName="Status" Source="/JudgeNode/Status.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="settings" GroupName="settings">
+        <mui:LinkGroup DisplayName="Cena+ server" GroupName="settings">
             <mui:LinkGroup.Links>
                 <mui:Link DisplayName="software" Source="/Settings/Settings.xaml" />
             </mui:LinkGroup.Links>

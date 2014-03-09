@@ -129,10 +129,11 @@ namespace CenaPlus.Server.ServerMode.Contest
             request.Copies = copies;
             request.Content = txtPrintContent.Text;
 
-            string docName = string.Format("{1}@{2}(len:{0})", request.Content.Length, request.UserNickName, request.Time.ToShortTimeString());
-
             var user = App.Server.GetUser(request.UserID);
-            PrintPlaintext(user.Name + "(" + user.NickName + ")\r\n" + request.Content, docName, request.Copies);
+
+            string docName = string.Format("{1}@{2}(len:{0})", request.Content.Length, user.Name + " " + request.UserNickName, request.Time.ToShortTimeString());
+
+            PrintPlaintext(request.Content, docName, request.Copies);
 
             App.Server.UpdatePrintRequest(id, null, null, PrintRequestStatus.Done);
 
@@ -154,6 +155,7 @@ namespace CenaPlus.Server.ServerMode.Contest
         {
             // Clone the source document's content into a new FlowDocument.
             FlowDocument flowDocumentCopy = new FlowDocument();
+            flowDocumentCopy.Blocks.Add(new Paragraph(new Run(docName)));
             flowDocumentCopy.Blocks.Add(new Paragraph(new Run(text)));
 
             // Create a XpsDocumentWriter object, open a Windows common print dialog.
