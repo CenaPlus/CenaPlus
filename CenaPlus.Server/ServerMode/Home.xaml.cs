@@ -1,34 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Diagnostics;
-using System.Configuration;
-using System.Windows.Navigation;
-using System.Net;
-using System.Net.Sockets;
-using System.IO;
+﻿using CenaPlus.Server.Bll;
+using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Navigation;
-using CenaPlus.Server.Bll;
-using CenaPlus.Server.Dal;
-using CenaPlus.Network;
-using System.ServiceModel;
-using CenaPlus.Entity;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Windows;
+using System.Windows.Controls;
 namespace CenaPlus.Server.ServerMode
 {
     /// <summary>
     /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class Home : UserControl
+    public partial class Home : UserControl,IContent
     {
         private CenaPlusServerHost host;
         private const string ConnectionStr = "Server=localhost;Port={0};Database={1};Uid={2};Password={3};Charset=utf8;";
@@ -175,6 +161,26 @@ namespace CenaPlus.Server.ServerMode
                     WindowStyle = ProcessWindowStyle.Hidden
                 });
             }
+        }
+
+        public void OnFragmentNavigation(FragmentNavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedFrom(NavigationEventArgs e)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (App.Server != null)
+            {
+                btnStartLocal.IsEnabled = false;
+            }
+        }
+
+        public void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
         }
     }
 }
